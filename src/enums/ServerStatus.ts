@@ -1,0 +1,8 @@
+export enum ServerStatus {
+  STATUS_AUTO = 0x00,
+  STATUS_GOOD = 0x01,
+  STATUS_NORMAL = 0x02,
+  STATUS_FULL = 0x03,
+  STATUS_DOWN = 0x04,
+  STATUS_GM_ONLY = 0x05,
+}

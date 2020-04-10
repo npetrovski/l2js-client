@@ -1,0 +1,39 @@
+import GameClientPacket from "./GameClientPacket";
+import GameClient from "../GameClient";
+import AuthLogin from "../serverpackets/AuthLogin";
+import SendablePacket from "../../mmocore/SendablePacket";
+
+export default class KeyPacket extends GameClientPacket {
+  //@Override
+  readImpl(): boolean {
+    let _id: number = this.readC();
+    let _protocolStatus = this.readC(); // 0 - wrong protocol, 1 - protocol ok
+    if (0 == _protocolStatus) {
+      throw Error("Wrong protocol version!");
+    }
+    let key = this.readB(8);
+    let _unkn1 = this.readD();
+    let _unkn2 = this.readD();
+    let _unkn3 = this.readC();
+    let _unkn4 = this.readD();
+
+    var _blowfishKey: Uint8Array = new Uint8Array(16);
+    _blowfishKey.set(key, 0);
+    _blowfishKey.set(Uint8Array.from([0xc8, 0x27, 0x93, 0x01, 0xa1, 0x6c, 0x31, 0x97]), 8); //the last 8 bytes are static
+
+    this.Client.setCryptInitialKey(_blowfishKey);
+    return true;
+  }
+
+  //@Override
+  run(): void {
+    var spk: SendablePacket<GameClient> = new AuthLogin(
+      this.Client.Username,
+      this.Client.PlayOk1,
+      this.Client.PlayOk2,
+      this.Client.LoginOk1,
+      this.Client.LoginOk2
+    );
+    this.Client.sendPacket(spk);
+  }
+}

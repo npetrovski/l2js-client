@@ -1,0 +1,16 @@
+{
+  "name": "l2js",
+  "version": "1.0.0",
+  "description": "Lineage 2 Packets Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nikolay Petrovski",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.9.5",
+    "@types/node-rsa": "^1.0.0",
+    "node-rsa": "^1.0.8"
+  }
+}
