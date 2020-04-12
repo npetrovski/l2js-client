@@ -15,6 +15,11 @@ import DeleteObject from "./clientpackets/DeleteObject";
 import VersionCheck from "./clientpackets/VersionCheck";
 import NpcInfo from "./clientpackets/NpcInfo";
 import EtcStatusUpdate from "./clientpackets/EtcStatusUpdate";
+import StopMove from "./clientpackets/StopMove";
+import Snoop from "./clientpackets/Snoop";
+import MoveToPawn from "./clientpackets/MoveToPawn";
+import JoinParty from "./clientpackets/JoinParty";
+import ShortCutInit from "./clientpackets/ShortCutInit";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   //@Override
@@ -49,17 +54,32 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x30:
           rpk = new NpcSay();
           break;
+        case 0x3a:
+          rpk = new JoinParty();
+          break;
+        case 0x45:
+          rpk = new ShortCutInit();
+          break;
+        case 0x47:
+          rpk = new StopMove();
+          break;
         case 0x4a:
           rpk = new CreatureSay();
           break;
         case 0x62:
           rpk = new SystemMessage();
           break;
+        case 0x72:
+          rpk = new MoveToPawn();
+          break;
         case 0x73:
           rpk = new SSQInfo();
           break;
         case 0xb7:
           rpk = new PetDelete();
+          break;
+        case 0xdb:
+          rpk = new Snoop();
           break;
         case 0xf9:
           rpk = new EtcStatusUpdate();

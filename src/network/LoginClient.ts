@@ -163,14 +163,13 @@ export default class LoginClient extends MMOClient<MMOConnection<LoginClient>> {
   sendPacket(lsp: LoginServerPacket): void {
     lsp.write();
 
-    var size = lsp.Buffer.byteLength;
     this._loginCrypt.setKey(this.BlowfishKey);
-    this._loginCrypt.encrypt(lsp.Buffer, 0, size);
+    this._loginCrypt.encrypt(lsp.Buffer, 0, lsp.Position);
 
-    var sendable: Uint8Array = new Uint8Array(size + 2);
-    sendable[0] = (size + 2) & 0xff;
-    sendable[1] = (size + 2) >>> 8;
-    sendable.set(lsp.Buffer, 2);
+    var sendable: Uint8Array = new Uint8Array(lsp.Position + 2);
+    sendable[0] = (lsp.Position + 2) & 0xff;
+    sendable[1] = (lsp.Position + 2) >>> 8;
+    sendable.set(lsp.Buffer.slice(0, lsp.Position), 2);
 
     this.Connection.write(sendable);
   }

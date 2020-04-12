@@ -14,10 +14,6 @@ export default class RequestAuthLogin extends LoginServerPacket {
     ],
   ]);
 
-  constructor() {
-    super(176);
-  }
-
   write(): void {
     if (this.Client.Username.length > 14) {
       throw Error("Username is too long");
@@ -70,5 +66,6 @@ export default class RequestAuthLogin extends LoginServerPacket {
     }
 
     this.writeB(Uint8Array.from([0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])); //footer
+    this.writeB(Uint8Array.from(Array(16).fill(0)));
   }
 }

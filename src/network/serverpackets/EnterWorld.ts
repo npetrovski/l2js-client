@@ -2,7 +2,7 @@ import GameServerPacket from "./GameServerPacket";
 
 export default class EnterWorld extends GameServerPacket {
   constructor() {
-    super(105);
+    super();
   }
 
   write(): void {

@@ -7,7 +7,7 @@ export default class AuthLogin extends GameServerPacket {
   private _loginKey1: number;
   private _loginKey2: number;
   constructor(username: string, playKey1: number, playKey2: number, loginKey1: number, loginKey2: number) {
-    super(username.length * 2 + 2 + 29);
+    super();
     this._username = username;
     this._playKey1 = playKey1;
     this._playKey2 = playKey2;

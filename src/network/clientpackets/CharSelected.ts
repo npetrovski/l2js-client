@@ -20,6 +20,14 @@ export default class CharSelected extends GameClientPacket {
     let _unkn1 = this.readD(); //??
     this._activeChar.getAppearance().setSex(1 === this.readD());
     let _race = this.readD();
+    let _classId = this.readD();
+    let _active1 = this.readD();
+    this._activeChar.setX(this.readD());
+    this._activeChar.setY(this.readD());
+    this._activeChar.setZ(this.readD());
+
+    this._activeChar.getStatus().setCurrentHp(this.readD());
+    this._activeChar.getStatus().setCurrentMp(this.readD());
 
     //console.log("CharSelected: Not yet fully implemented.");
     this.Client.ActiveChar = this._activeChar;

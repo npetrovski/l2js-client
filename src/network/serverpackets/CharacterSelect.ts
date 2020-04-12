@@ -4,7 +4,7 @@ export default class CharacterSelect extends GameServerPacket {
   private _charSlotIndex: number;
 
   constructor(slot: number) {
-    super(19);
+    super();
     this._charSlotIndex = slot;
   }
 

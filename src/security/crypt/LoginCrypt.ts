@@ -28,7 +28,7 @@ export default class LoginCrypt {
   }
 
   encrypt(raw: Uint8Array, offset: number, size: number): number {
-    NewCrypt.appendChecksum(raw, 0, raw.byteLength - 12);
+    NewCrypt.appendChecksum(raw, offset, size - 12);
     this._crypt.crypt(raw, offset, size);
 
     return 0;

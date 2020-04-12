@@ -83,13 +83,12 @@ export default class GameClient extends MMOClient<MMOConnection<GameClient>> {
   sendPacket(lsp: GameServerPacket): void {
     lsp.write();
 
-    var size = lsp.Buffer.byteLength;
-    this._gameCrypt.encrypt(lsp.Buffer, 0, size);
+    this._gameCrypt.encrypt(lsp.Buffer, 0, lsp.Position);
 
-    var sendable: Uint8Array = new Uint8Array(size + 2);
-    sendable[0] = (size + 2) & 0xff;
-    sendable[1] = (size + 2) >>> 8;
-    sendable.set(lsp.Buffer, 2);
+    var sendable: Uint8Array = new Uint8Array(lsp.Position + 2);
+    sendable[0] = (lsp.Position + 2) & 0xff;
+    sendable[1] = (lsp.Position + 2) >>> 8;
+    sendable.set(lsp.Buffer.slice(0, lsp.Position), 2);
 
     console.log("sending..", lsp.constructor.name);
     this.Connection.write(sendable);

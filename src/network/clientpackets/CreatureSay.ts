@@ -1,8 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import GameClient from "../GameClient";
-import AuthLogin from "../serverpackets/AuthLogin";
-import SendablePacket from "../../mmocore/SendablePacket";
-import Say2 from "../serverpackets/Say2";
 
 export default class CreatureSay extends GameClientPacket {
   //@Override

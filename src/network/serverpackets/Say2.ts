@@ -32,7 +32,7 @@ export default class Say2 extends GameServerPacket {
   private _target!: string;
 
   constructor(type: number, text: string, target?: string) {
-    super(15 + (text.length * 2 + 2) + (target ? target.length * 2 + 2 : 0));
+    super();
     this._type = type;
     this._text = text;
     if (target) {

@@ -13,6 +13,10 @@ export default abstract class L2Object extends ListenersContainer
 
   private _objectId!: number;
 
+  private _x: number = 0;
+  private _y: number = 0;
+  private _z: number = 0;
+
   getId(): number {
     throw new Error("Method not implemented.");
   }
@@ -35,16 +39,18 @@ export default abstract class L2Object extends ListenersContainer
     throw new Error("Method not implemented.");
   }
   setX(x: number): void {
-    throw new Error("Method not implemented.");
+    this._x = x;
   }
   setY(y: number): void {
-    throw new Error("Method not implemented.");
+    this._y = y;
   }
   setZ(z: number): void {
-    throw new Error("Method not implemented.");
+    this._z = z;
   }
   setXYZ(x: number, y: number, z: number): void {
-    throw new Error("Method not implemented.");
+    this._x = x;
+    this._y = y;
+    this._z = z;
   }
   setLocational(loc: ILocational): void {
     throw new Error("Method not implemented.");
@@ -59,13 +65,13 @@ export default abstract class L2Object extends ListenersContainer
     throw new Error("Method not implemented.");
   }
   getX(): number {
-    throw new Error("Method not implemented.");
+    return this._x;
   }
   getY(): number {
-    throw new Error("Method not implemented.");
+    return this._y;
   }
   getZ(): number {
-    throw new Error("Method not implemented.");
+    return this._z;
   }
   getHeading(): number {
     throw new Error("Method not implemented.");

@@ -14,7 +14,6 @@ export default class MoveToLocation extends GameClientPacket {
     let _y = this.readD();
     let _z = this.readD();
 
-    console.log(`Move ${_charObjId} to ${_x},${_y},${_z}`);
     return true;
   }
 

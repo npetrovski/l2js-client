@@ -5,7 +5,7 @@ export default class RequestCharacters extends LoginServerPacket {
   _loginOk2: number = 0;
 
   constructor(loginOk1: number, loginOk2: number) {
-    super(32);
+    super();
     this._loginOk1 = loginOk1;
     this._loginOk2 = loginOk2;
   }
@@ -15,5 +15,6 @@ export default class RequestCharacters extends LoginServerPacket {
     this.writeD(this._loginOk1);
     this.writeD(this._loginOk2);
     this.writeB(Uint8Array.from([0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]));
+    this.writeB(Uint8Array.from(Array(16).fill(0)));
   }
 }

@@ -1,10 +1,6 @@
 import LoginServerPacket from "./LoginServerPacket";
 
 export default class RequestSecurityCard extends LoginServerPacket {
-  constructor() {
-    super(152);
-  }
-
   write(): void {
     this.writeC(0x06);
     // prettier-ignore
