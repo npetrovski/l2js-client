@@ -1,13 +1,25 @@
 {
-  "name": "l2js",
-  "version": "1.0.0",
-  "description": "Lineage 2 Packets Library",
+  "name": "l2js-client",
+  "version": "0.0.1",
+  "description": "Lineage 2 Client Library",
+  "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Nikolay Petrovski",
-  "license": "ISC",
+  "keywords": [
+    "lineage2",
+    "nodejs",
+    "typescript",
+    "packets",
+    "bot",
+    "l2js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npetrovski/l2js-client"
+  },
   "dependencies": {
     "@types/node": "^13.9.5",
     "@types/node-rsa": "^1.0.0",

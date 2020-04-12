@@ -15,7 +15,7 @@ export default class CreatureSay extends GameClientPacket {
       _messages.push(this.readS());
     }
 
-    console.log(`CreatureSay obj=${_objectId} ${_charName}: `, _messages);
+    console.log(`CreatureSay: type=${_textType} obj=${_objectId} ${_charName}: `, _messages);
     return true;
   }
 

@@ -5,9 +5,9 @@ import GameCrypt from "../security/crypt/GameCrypt";
 import GameServerPacket from "./serverpackets/GameServerPacket";
 import GamePacketHandler from "./GamePacketHandler";
 import MMOConfig from "../mmocore/MMOConfig";
-import IStream from "../mmocore/IStream";
 import NetSocket from "../mmocore/NetSocket";
 import L2PcInstance from "../model/actor/instance/L2PcInstance";
+import L2Npc from "../model/actor/L2Npc";
 
 export default class GameClient extends MMOClient<MMOConnection<GameClient>> {
   private _loginClient: LoginClient;
@@ -17,6 +17,12 @@ export default class GameClient extends MMOClient<MMOConnection<GameClient>> {
   private _config!: MMOConfig;
 
   private _activeChar!: L2PcInstance;
+
+  private _npcInfo: Map<number, L2Npc> = new Map();
+
+  get NpcInfo(): Map<number, L2Npc> {
+    return this._npcInfo;
+  }
 
   get PlayOk1(): number {
     return this._loginClient.PlayOk1;
@@ -55,13 +61,16 @@ export default class GameClient extends MMOClient<MMOConnection<GameClient>> {
   }
 
   constructor(lc: LoginClient, config: MMOConfig) {
-    config.assign({
-      //stream: Object.create(lc.Config.stream),
-      stream: new NetSocket(),
-      loginServerIp: lc.SelectedServer.Ipv4(),
-      loginServerPort: lc.SelectedServer.Port,
-    });
-    super(new MMOConnection(config));
+    super(
+      new MMOConnection(
+        config.assign({
+          //stream: Object.create(lc.Config.stream),
+          stream: new NetSocket(),
+          loginServerIp: lc.SelectedServer.Ipv4(),
+          loginServerPort: lc.SelectedServer.Port,
+        })
+      )
+    );
 
     this.Config = config;
     this.Connection.Client = this;

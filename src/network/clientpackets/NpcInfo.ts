@@ -1,16 +1,21 @@
 import AbstractNpcInfo from "./AbstractNpcInfo";
+import L2Npc from "../../model/actor/L2Npc";
 
 export default class NpcInfo extends AbstractNpcInfo {
   //@Override
   readImpl(): boolean {
+    var l2object = new L2Npc();
+
     let _id: number = this.readC();
-    let _objectId = this.readD();
+    l2object.setObjectId(this.readD());
     let _idTemplate = this.readD() - 1000000;
     let _isAttackable = this.readD() == 1;
-    let _x = this.readD();
-    let _y = this.readD();
-    let _z = this.readD();
-    let _heading = this.readD();
+    l2object.setX(this.readD());
+    l2object.setY(this.readD());
+    l2object.setZ(this.readD());
+
+    l2object.setHeading(this.readD());
+
     let _pad1 = this.readD();
     let _mAtkSpd = this.readD();
     let _pAtkSpd = this.readD();
@@ -30,12 +35,12 @@ export default class NpcInfo extends AbstractNpcInfo {
     let _chest = this.readD();
     let _lhand = this.readD(); // left hand weapon
     let _unkn1 = this.readC(); // name above char 1=true ... ??
-    let _isRunning = this.readC() == 1;
+    l2object.setIsRunning(this.readC() == 1);
     let _isInCombat = this.readC() == 1;
     let _isAlikeDead = this.readC() == 1;
     let _isSummoned = this.readC() == 2; // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
     let _unkn2 = this.readD();
-    let _title = this.readS();
+    l2object.setTitle(this.readS());
 
     let _titleColor = this.readD(); // Title color 0=client default
     let _pvpFlag = this.readD(); // pvp flag
@@ -61,7 +66,7 @@ export default class NpcInfo extends AbstractNpcInfo {
     let _abnormalVisualEffectSpecial = this.readD();
     let _displayEffect = this.readD();
 
-    console.log(`NpcInfo for ${_objectId}`);
+    this.Client.NpcInfo.set(l2object.getObjectId(), l2object);
     return true;
   }
 

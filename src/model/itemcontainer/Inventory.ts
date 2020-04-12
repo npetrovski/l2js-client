@@ -1,4 +1,7 @@
-export default abstract class Inventory {
+import L2ItemInstance from "../items/instance/L2ItemInstance";
+import ItemContainer from "./ItemContainer";
+
+export default abstract class Inventory extends ItemContainer {
   static readonly ADENA_ID: number = 57;
   static readonly ANCIENT_ADENA_ID: number = 5575;
 
@@ -28,4 +31,34 @@ export default abstract class Inventory {
   static readonly PAPERDOLL_CLOAK: number = 23;
   static readonly PAPERDOLL_BELT: number = 24;
   static readonly PAPERDOLL_TOTALSLOTS: number = 25;
+
+  private _paperdoll!: L2ItemInstance[];
+
+  private _totalWeight!: number;
+
+  private _wearedMask!: number;
+
+  public getTotalWeight(): number {
+    return this._totalWeight;
+  }
+
+  public getWearedMask(): number {
+    return this._wearedMask;
+  }
+
+  public setTotalWeight(value: number) {
+    this._totalWeight = value;
+  }
+
+  public setWearedMask(value: number) {
+    this._wearedMask = value;
+  }
+
+  public getPaperdoll(): L2ItemInstance[] {
+    return this._paperdoll;
+  }
+
+  public setPaperdoll(value: L2ItemInstance[]) {
+    this._paperdoll = value;
+  }
 }

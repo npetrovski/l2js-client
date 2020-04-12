@@ -3,11 +3,32 @@ import ISkillsHolder from "../interfaces/ISkillsHolder";
 import IDeletable from "../interfaces/IDeletable";
 import Skill from "../skills/Skill";
 import CharStatus from "./status/CharStatus";
+import CharStat from "./stat/CharStat";
 
 export default abstract class L2Character extends L2Object implements ISkillsHolder, IDeletable {
   private _title: string = "";
-
   private _status: CharStatus = new CharStatus();
+  private _stat: CharStat = new CharStat();
+  private _isDead: boolean = false;
+  private _isImmobilized: boolean = false;
+  private _isOverloaded: boolean = false; // the char is carrying too much
+  private _isParalyzed: boolean = false;
+  private _isPendingRevive: boolean = false;
+  private _isRunning: boolean = false;
+  private _isNoRndWalk: boolean = false; // Is no random walk
+  private _showSummonAnimation: boolean = false;
+  private _isTeleporting: boolean = false;
+  private _isInvul: boolean = false;
+  private _isMortal: boolean = true; // Char will die when HP decreased to 0
+  private _isFlying: boolean = false;
+
+  public getStat(): CharStat {
+    return this._stat;
+  }
+
+  public setStat(value: CharStat) {
+    this._stat = value;
+  }
 
   public getStatus(): CharStatus {
     return this._status;
@@ -17,25 +38,127 @@ export default abstract class L2Character extends L2Object implements ISkillsHol
     this._status = value;
   }
 
-  getSkills(): Map<number, Skill> {
+  public getSkills(): Map<number, Skill> {
     throw new Error("Method not implemented.");
   }
-  addSkill(skill: Skill): Skill {
+
+  public addSkill(skill: Skill): Skill {
     throw new Error("Method not implemented.");
   }
-  getKnownSkill(skillId: number): Skill {
+
+  public getKnownSkill(skillId: number): Skill {
     throw new Error("Method not implemented.");
   }
-  getSkillLevel(skillId: any): number {
+
+  public getSkillLevel(skillId: any): number {
     throw new Error("Method not implemented.");
   }
-  deleteMe(): boolean {
+
+  public deleteMe(): boolean {
     throw new Error("Method not implemented.");
   }
-  getTitle(): string {
+
+  public getTitle(): string {
     return this._title;
   }
-  setTitle(title: string): void {
+
+  public setTitle(title: string): void {
     this._title = title;
+  }
+
+  public getIsDead(): boolean {
+    return this._isDead;
+  }
+
+  public setIsDead(value: boolean) {
+    this._isDead = value;
+  }
+
+  public getIsImmobilized(): boolean {
+    return this._isImmobilized;
+  }
+
+  public setIsImmobilized(value: boolean) {
+    this._isImmobilized = value;
+  }
+
+  public getIsOverloaded(): boolean {
+    return this._isOverloaded;
+  }
+
+  public setIsOverloaded(value: boolean) {
+    this._isOverloaded = value;
+  }
+
+  public getIsParalyzed(): boolean {
+    return this._isParalyzed;
+  }
+
+  public setIsParalyzed(value: boolean) {
+    this._isParalyzed = value;
+  }
+
+  public getIsPendingRevive(): boolean {
+    return this._isPendingRevive;
+  }
+
+  public setIsPendingRevive(value: boolean) {
+    this._isPendingRevive = value;
+  }
+
+  public getIsRunning(): boolean {
+    return this._isRunning;
+  }
+
+  public setIsRunning(value: boolean) {
+    this._isRunning = value;
+  }
+
+  public getIsNoRndWalk(): boolean {
+    return this._isNoRndWalk;
+  }
+
+  public setIsNoRndWalk(value: boolean) {
+    this._isNoRndWalk = value;
+  }
+
+  public getShowSummonAnimation(): boolean {
+    return this._showSummonAnimation;
+  }
+
+  public setShowSummonAnimation(value: boolean) {
+    this._showSummonAnimation = value;
+  }
+
+  public getIsTeleporting(): boolean {
+    return this._isTeleporting;
+  }
+
+  public setIsTeleporting(value: boolean) {
+    this._isTeleporting = value;
+  }
+
+  public getIsInvul(): boolean {
+    return this._isInvul;
+  }
+
+  public setIsInvul(value: boolean) {
+    this._isInvul = value;
+  }
+
+  public getIsMortal(): boolean {
+    return this._isMortal;
+  }
+
+  public setIsMortal(value: boolean) {
+    this._isMortal = value;
+  }
+
+  public getIsFlying(): boolean {
+    return this._isFlying;
+  }
+
+  public setIsFlying(value: boolean) {
+    this._isFlying = value;
   }
 }
