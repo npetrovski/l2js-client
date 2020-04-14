@@ -34,6 +34,10 @@ import SunSet from "./clientpackets/SunSet";
 import SunRise from "./clientpackets/SunRise";
 import StopRotation from "./clientpackets/StopRotation";
 import UserInfo from "./clientpackets/UserInfo";
+import ExBrExtraUserInfo from "./clientpackets/ExBrExtraUserInfo";
+import RelationChanged from "./clientpackets/RelationChanged";
+import MyTargetSelected from "./clientpackets/MyTargetSelected";
+import StaticObject from "./clientpackets/StaticObject";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   //@Override
@@ -119,6 +123,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x73:
           rpk = new SSQInfo();
           break;
+        case 0x9f:
+          rpk = new StaticObject();
+          break;
         case 0xa7:
           rpk = new TutorialShowQuestionMark();
           break;
@@ -128,8 +135,14 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xb7:
           rpk = new PetDelete();
           break;
+        case 0xb9:
+          rpk = new MyTargetSelected();
+          break;
         case 0xc7:
           rpk = new SkillCoolTime();
+          break;
+        case 0xce:
+          rpk = new RelationChanged();
           break;
         case 0xdb:
           rpk = new Snoop();
@@ -145,6 +158,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               break;
             case 0xc9:
               rpk = new ExVoteSystemInfo();
+              break;
+            case 0xda:
+              rpk = new ExBrExtraUserInfo();
               break;
 
             default:

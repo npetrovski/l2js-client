@@ -22,6 +22,8 @@ export default class CharStat {
   private _walkSpeed: number = 0;
   private _swimRunSpeed: number = 0;
   private _swimWalkSpeed: number = 0;
+  private _flyRunSpeed: number = 0;
+  private _flyWalkSpeed: number = 0;
   private _baseMoveSpeed: number = 0;
   private _moveSpeed: number = 0;
   private _mReuseRate: number = 0;
@@ -395,5 +397,21 @@ export default class CharStat {
 
   public setWIT(value: number) {
     this._WIT = value;
+  }
+
+  public getFlyRunSpeed(): number {
+    return this._flyRunSpeed;
+  }
+
+  public setFlyRunSpeed(value: number) {
+    this._flyRunSpeed = value;
+  }
+
+  public getFlyWalkSpeed(): number {
+    return this._flyWalkSpeed;
+  }
+
+  public setFlyWalkSpeed(value: number) {
+    this._flyWalkSpeed = value;
   }
 }

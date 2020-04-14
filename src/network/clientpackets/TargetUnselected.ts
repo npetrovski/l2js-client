@@ -13,6 +13,7 @@ export default class TargetUnselected extends GameClientPacket {
 
     let _unkn1 = this.readD();
 
+    this.Client.ActiveChar.setSelected(undefined);
     return true;
   }
 

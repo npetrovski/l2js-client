@@ -1,4 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
+import Location from "../../model/Location";
+import Appearing from "../serverpackets/Appearing";
 
 export default class TeleportToLocation extends GameClientPacket {
   //@Override
@@ -15,9 +17,17 @@ export default class TeleportToLocation extends GameClientPacket {
 
     let _heading = this.readD();
 
+    var user = this.Client.ActiveChar;
+    if (user && _targetObjectId == user.getObjectId()) {
+      user.setLocation(new Location(_x, _y, _z));
+      this.Client.CreaturesList.clear();
+    }
+
     return true;
   }
 
   //@Override
-  run(): void {}
+  run(): void {
+    this.Client.sendPacket(new Appearing());
+  }
 }

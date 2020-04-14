@@ -3,6 +3,6 @@ export default interface ILocational {
   getY(): number;
   getZ(): number;
   getHeading(): number;
-
   getLocation(): ILocational;
+  getInstanceId(): number;
 }

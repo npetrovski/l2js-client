@@ -1,4 +1,5 @@
 import ILocational from "./ILocational";
+import Location from "../Location";
 
 export default interface IPositionable extends ILocational {
   setX(x: number): void;

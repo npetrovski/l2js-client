@@ -8,6 +8,7 @@ import IPositionable from "./interfaces/IPositionable";
 import ILocational from "./interfaces/ILocational";
 import L2WorldRegion from "./L2WorldRegion";
 import { L2InstanceType } from "../enums/L2InstanceType";
+import Location from "./Location";
 
 export default abstract class L2Object extends ListenersContainer
   implements IIdentifiable, INamable, ISpawnable, IUniqueId, IDecayable, IPositionable {
@@ -68,7 +69,7 @@ export default abstract class L2Object extends ListenersContainer
   }
 
   public spawnMe(): boolean {
-    throw new Error("Method not implemented.");
+    return true;
   }
 
   public getObjectId(): number {
@@ -80,7 +81,7 @@ export default abstract class L2Object extends ListenersContainer
   }
 
   public decayMe(): boolean {
-    throw new Error("Method not implemented.");
+    return true;
   }
 
   public setX(x: number): void {
@@ -110,7 +111,7 @@ export default abstract class L2Object extends ListenersContainer
   }
 
   public setInstanceId(instanceId: number): void {
-    throw new Error("Method not implemented.");
+    this._instanceId = instanceId;
   }
 
   public getX(): number {
@@ -130,16 +131,18 @@ export default abstract class L2Object extends ListenersContainer
   }
 
   public setLocation(loc: Location): void {
-    /*
-		_x.set(loc.getX());
-		_y.set(loc.getY());
-		_z.set(loc.getZ());
-		_heading.set(loc.getHeading());
-		_instanceId.set(loc.getInstanceId());
-*/
+    this._x = loc.getX();
+    this._y = loc.getY();
+    this._z = loc.getZ();
+    this._heading = loc.getHeading();
+    this._instanceId = loc.getInstanceId();
+  }
+
+  public getInstanceId(): number {
+    return this._instanceId;
   }
 
   public getLocation(): ILocational {
-    throw new Error("Method not implemented.");
+    throw new Location(this.getX(), this.getY(), this.getZ(), this.getHeading(), this.getInstanceId());
   }
 }

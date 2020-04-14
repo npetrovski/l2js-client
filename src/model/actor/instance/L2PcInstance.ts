@@ -2,6 +2,7 @@ import L2Playable from "../L2Playable";
 import PcAppearance from "../appearance/PcAppearance";
 import Shortcut from "../../Shortcut";
 import PcInventory from "../../itemcontainer/PcInventory";
+
 /**
  * This class represents all player characters in the world.
  */

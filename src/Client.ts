@@ -16,6 +16,9 @@ import CommandSayToClan from "./commands/CommandSayToClan";
 import CommandSayToTrade from "./commands/CommandSayToTrade";
 import CommandSayToAlly from "./commands/CommandSayToAlly";
 import CommandMoveTo from "./commands/CommandMoveTo";
+import L2Npc from "./model/actor/L2Npc";
+import CommandHit from "./commands/CommandHit";
+import L2ObjectCollection from "./model/L2ObjectCollection";
 
 export class Client {
   private _config: MMOConfig = new MMOConfig();
@@ -23,6 +26,8 @@ export class Client {
   private _lc!: LoginClient;
 
   private _gc!: GameClient;
+
+  private _entered: boolean = false;
 
   private _commands: Record<string, ICommand> = {
     say: new CommandSay(),
@@ -34,20 +39,30 @@ export class Client {
     sayToAlly: new CommandSayToAlly(),
 
     moveTo: new CommandMoveTo(),
+    hit: new CommandHit(),
   };
+
+  get Entered(): boolean {
+    return this._entered;
+  }
 
   get Me(): L2PcInstance {
     return this._gc?.ActiveChar;
   }
 
+  get CreaturesList(): L2ObjectCollection<L2Npc> {
+    return this._gc?.CreaturesList;
+  }
+
   constructor() {
-    return new Proxy(this, {
-      get(target: Client, objectKey: string) {
-        if (objectKey in target) {
-          return (target as any)[objectKey];
+    return new Proxy<Client>(this, {
+      get(target: Client, propertyKey: string, receiver: any) {
+        if (propertyKey in target) {
+          //return (target as any)[objectKey];
+          return Reflect.get(target, propertyKey, receiver);
         }
-        if (objectKey in target._commands) {
-          var cmd = target._commands[objectKey] as AbstractGameCommand<any>;
+        if (propertyKey in target._commands) {
+          var cmd = target._commands[propertyKey] as AbstractGameCommand<any>;
           cmd.Client = target._gc;
           return (...args: any) => {
             cmd.execute(...args);
@@ -70,6 +85,7 @@ export class Client {
     this._lc = new LoginClient(this._config, () => {
       this._gc = new GameClient(this._lc, this._config);
       this._gc.sendPacket(new ProtocolVersion());
+      this._entered = true;
     });
 
     return this;

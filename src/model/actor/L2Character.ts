@@ -4,6 +4,7 @@ import IDeletable from "../interfaces/IDeletable";
 import Skill from "../skills/Skill";
 import CharStatus from "./status/CharStatus";
 import CharStat from "./stat/CharStat";
+import L2CharTemplate from "./templates/L2CharTemplate";
 
 export default abstract class L2Character extends L2Object implements ISkillsHolder, IDeletable {
   private _title: string = "";
@@ -21,6 +22,25 @@ export default abstract class L2Character extends L2Object implements ISkillsHol
   private _isInvul: boolean = false;
   private _isMortal: boolean = true; // Char will die when HP decreased to 0
   private _isFlying: boolean = false;
+  private _isInCombat: boolean = false;
+  private _template: L2CharTemplate = new L2CharTemplate();
+  private _selected: L2Object | undefined;
+
+  public getSelected(): L2Object | undefined {
+    return this._selected;
+  }
+
+  public setSelected(value: L2Object | undefined) {
+    this._selected = value;
+  }
+
+  public getTemplate(): L2CharTemplate {
+    return this._template;
+  }
+
+  public setTemplate(value: L2CharTemplate) {
+    this._template = value;
+  }
 
   public getStat(): CharStat {
     return this._stat;
@@ -160,5 +180,13 @@ export default abstract class L2Character extends L2Object implements ISkillsHol
 
   public setIsFlying(value: boolean) {
     this._isFlying = value;
+  }
+
+  public getIsInCombat(): boolean {
+    return this._isInCombat;
+  }
+
+  public setIsInCombat(value: boolean) {
+    this._isInCombat = value;
   }
 }
