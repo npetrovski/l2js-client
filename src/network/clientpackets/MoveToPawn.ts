@@ -1,36 +1,19 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class MoveToPawn extends GameClientPacket {
-  private _charObjId: number = 0;
-  private _targetId: number = 0;
-  private _distance: number = 0;
-  private _x: number = 0;
-  private _y: number = 0;
-  private _z: number = 0;
-  private _tx: number = 0;
-  private _ty: number = 0;
-  private _tz: number = 0;
-
   //@Override
   readImpl(): boolean {
     let _id = this.readC();
-    this._charObjId = this.readD();
+    let _charObjId = this.readD();
+    let _targetId = this.readD();
+    let _distance = this.readD();
 
-    this._targetId = this.readD();
-    this._distance = this.readD();
-
-    this._x = this.readD();
-    this._y = this.readD();
-    this._z = this.readD();
-    this._tx = this.readD();
-    this._ty = this.readD();
-    this._tz = this.readD();
+    let [_x, _y, _z] = this.readLoc();
+    let [_tx, _ty, _tz] = this.readLoc();
 
     return true;
   }
 
   //@Override
-  run(): void {
-    //
-  }
+  run(): void {}
 }

@@ -1,14 +1,13 @@
 import L2Character from "./L2Character";
 import PlayableStat from "./stat/PlayableStat";
+import PlayableStatus from "./status/PlayableStatus";
 
 export default abstract class L2Playable extends L2Character {
-  private _playableStat: PlayableStat = new PlayableStat();
-
   public getStat(): PlayableStat {
-    return this._playableStat;
+    return super.getStat() as PlayableStat;
   }
 
-  public setStat(value: PlayableStat) {
-    this._playableStat = value;
+  public getStatus(): PlayableStatus {
+    return super.getStatus() as PlayableStatus;
   }
 }

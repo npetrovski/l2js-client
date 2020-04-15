@@ -38,6 +38,14 @@ import ExBrExtraUserInfo from "./clientpackets/ExBrExtraUserInfo";
 import RelationChanged from "./clientpackets/RelationChanged";
 import MyTargetSelected from "./clientpackets/MyTargetSelected";
 import StaticObject from "./clientpackets/StaticObject";
+import ValidateLocation from "./clientpackets/ValidateLocation";
+import Revive from "./clientpackets/Revive";
+import StatusUpdate from "./clientpackets/StatusUpdate";
+import AutoAttackStop from "./clientpackets/AutoAttackStop";
+import ChangeMoveType from "./clientpackets/ChangeMoveType";
+import AutoAttackStart from "./clientpackets/AutoAttackStart";
+import Attack from "./clientpackets/Attack";
+import SkillList from "./clientpackets/SkillList";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   //@Override
@@ -51,6 +59,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x00:
           rpk = new Die();
           break;
+        case 0x01:
+          rpk = new Revive();
+          break;
         case 0x08:
           rpk = new DeleteObject();
           break;
@@ -59,6 +70,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x13:
           rpk = new SunSet();
+          break;
+        case 0x18:
+          rpk = new StatusUpdate();
           break;
         case 0x2e:
           rpk = new KeyPacket();
@@ -84,8 +98,17 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x24:
           rpk = new TargetUnselected();
           break;
+        case 0x25:
+          rpk = new AutoAttackStart();
+          break;
+        case 0x26:
+          rpk = new AutoAttackStop();
+          break;
         case 0x27:
           rpk = new SocialAction();
+          break;
+        case 0x28:
+          rpk = new ChangeMoveType();
           break;
         case 0x2f:
           rpk = new MoveToLocation();
@@ -95,6 +118,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x32:
           rpk = new UserInfo();
+          break;
+        case 0x33:
+          rpk = new Attack();
           break;
         case 0x3a:
           rpk = new JoinParty();
@@ -111,6 +137,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x4b:
           rpk = new EquipUpdate();
           break;
+        case 0x5f:
+          rpk = new SkillList();
+          break;
         case 0x61:
           rpk = new StopRotation();
           break;
@@ -122,6 +151,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x73:
           rpk = new SSQInfo();
+          break;
+        case 0x79:
+          rpk = new ValidateLocation();
           break;
         case 0x9f:
           rpk = new StaticObject();

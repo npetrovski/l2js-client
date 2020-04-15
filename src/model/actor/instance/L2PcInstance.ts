@@ -2,6 +2,7 @@ import L2Playable from "../L2Playable";
 import PcAppearance from "../appearance/PcAppearance";
 import Shortcut from "../../Shortcut";
 import PcInventory from "../../itemcontainer/PcInventory";
+import PcStat from "../stat/PcStat";
 
 /**
  * This class represents all player characters in the world.
@@ -22,6 +23,16 @@ export default class L2PcInstance extends L2Playable {
   private _shortCuts: Shortcut[] = [];
 
   private _inventory!: PcInventory;
+
+  private _pcStat: PcStat = new PcStat();
+
+  public getStat(): PcStat {
+    return this._pcStat;
+  }
+
+  public setStat(value: PcStat) {
+    this._pcStat = value;
+  }
 
   public getInventory(): PcInventory {
     return this._inventory;

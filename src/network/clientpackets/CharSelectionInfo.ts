@@ -1,6 +1,5 @@
 import GameClientPacket from "./GameClientPacket";
 import GameClient from "../GameClient";
-import AuthLogin from "../serverpackets/AuthLogin";
 import SendablePacket from "../../mmocore/SendablePacket";
 import CharSelectInfoPackage from "../../model/CharSelectInfoPackage";
 import GameServerPacket from "../serverpackets/GameServerPacket";

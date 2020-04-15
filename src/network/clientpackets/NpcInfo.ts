@@ -6,16 +6,17 @@ export default class NpcInfo extends AbstractNpcInfo {
   readImpl(): boolean {
     let _id: number = this.readC();
     let _objId = this.readD();
+    let _idTemplate = this.readD() - 1000000;
 
     var npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
     if (!npc) {
       npc = new L2Npc();
       npc.setObjectId(_objId);
+      npc.setTemplateId(_idTemplate);
       this.Client.CreaturesList.add(npc);
     }
 
-    let _idTemplate = this.readD() - 1000000;
-    let _isAttackable = this.readD() == 1;
+    npc.setIsAttackable(this.readD() == 1);
     npc.setX(this.readD());
     npc.setY(this.readD());
     npc.setZ(this.readD());
@@ -40,9 +41,12 @@ export default class NpcInfo extends AbstractNpcInfo {
     let _collisionRadius = this.readF();
     let _collisionHeight = this.readF();
 
-    npc.getTemplate().setRhandId(this.readD()); // right hand weapon
-    npc.getTemplate().setChestId(this.readD());
-    npc.getTemplate().setLhandId(this.readD()); // left hand weapon
+    let rhandId = this.readD();
+    let chestId = this.readD();
+    let lhandId = this.readD();
+    //npc.getTemplate().setRhandId(this.readD()); // right hand weapon
+    //npc.getTemplate().setChestId(this.readD());
+    //npc.getTemplate().setLhandId(this.readD()); // left hand weapon
 
     let _unkn1 = this.readC(); // name above char 1=true ... ??
     npc.setIsRunning(this.readC() == 1);

@@ -7,9 +7,7 @@ export default class TargetUnselected extends GameClientPacket {
 
     let _targetObjectId = this.readD();
 
-    let _x = this.readD();
-    let _y = this.readD();
-    let _z = this.readD();
+    let [_x, _y, _z] = this.readLoc();
 
     let _unkn1 = this.readD();
 

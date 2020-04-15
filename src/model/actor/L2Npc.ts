@@ -4,21 +4,47 @@ import NpcStat from "./stat/NpcStat";
 import NpcStatus from "./status/NpcStatus";
 
 export default class L2Npc extends L2Character {
-  private _npcTemplate: L2NpcTemplate = new L2NpcTemplate();
+  private _templateId!: number;
 
-  private _npcStat: NpcStat = new NpcStat();
+  private _isAttackable: boolean = false;
 
-  private _npcStatus: NpcStatus = new NpcStatus();
+  public getIsAttackable(): boolean {
+    return this._isAttackable;
+  }
+
+  public setIsAttackable(value: boolean) {
+    this._isAttackable = value;
+  }
+
+  public getTemplateId(): number {
+    return this._templateId;
+  }
+
+  public setTemplateId(value: number) {
+    this._templateId = value;
+  }
 
   public getTemplate(): L2NpcTemplate {
-    return this._npcTemplate;
+    return super.getTemplate() as L2NpcTemplate;
   }
 
   public getStat(): NpcStat {
-    return this._npcStat;
+    return super.getStat() as NpcStat;
   }
 
   public getStatus(): NpcStatus {
-    return this._npcStatus;
+    return super.getStatus() as NpcStatus;
+  }
+
+  public getLevel(): number {
+    return this.getTemplate().getLevel();
+  }
+
+  public getName(): string {
+    return this.getTemplate().getName();
+  }
+
+  public isTargetable(): boolean {
+    return this.getTemplate().getTargetable();
   }
 }

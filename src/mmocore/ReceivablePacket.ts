@@ -62,4 +62,11 @@ export default abstract class ReceivablePacket<T extends MMOClient<any>> extends
     this._offset += length;
     return Uint8Array.from(value);
   }
+
+  readLoc(): number[] {
+    let _x = this.readD();
+    let _y = this.readD();
+    let _z = this.readD();
+    return [_x, _y, _z];
+  }
 }

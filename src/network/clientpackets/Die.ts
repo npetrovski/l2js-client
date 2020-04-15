@@ -17,6 +17,12 @@ export default class Die extends GameClientPacket {
 
     let _toFortress = this.readD();
 
+    if (_charObjId === this.Client.ActiveChar.getObjectId()) {
+      this.Client.ActiveChar.setSelected(undefined);
+      this.Client.ActiveChar.setIsDead(true);
+      return true;
+    }
+
     return true;
   }
 

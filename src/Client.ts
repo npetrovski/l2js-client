@@ -19,6 +19,7 @@ import CommandMoveTo from "./commands/CommandMoveTo";
 import L2Npc from "./model/actor/L2Npc";
 import CommandHit from "./commands/CommandHit";
 import L2ObjectCollection from "./model/L2ObjectCollection";
+import L2Character from "./model/actor/L2Character";
 
 export class Client {
   private _config: MMOConfig = new MMOConfig();
@@ -48,6 +49,10 @@ export class Client {
 
   get Me(): L2PcInstance {
     return this._gc?.ActiveChar;
+  }
+
+  get CharactersList(): L2ObjectCollection<L2Character> {
+    return this._gc?.CharactersList;
   }
 
   get CreaturesList(): L2ObjectCollection<L2Npc> {

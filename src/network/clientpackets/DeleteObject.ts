@@ -7,6 +7,7 @@ export default class DeleteObject extends GameClientPacket {
     let _objectId = this.readD();
     let _unkn1 = this.readD();
 
+    this.Client.CreaturesList.removeByObjectId(_objectId);
     return true;
   }
 

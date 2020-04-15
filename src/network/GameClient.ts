@@ -9,6 +9,7 @@ import NetSocket from "../mmocore/NetSocket";
 import L2PcInstance from "../model/actor/instance/L2PcInstance";
 import L2Npc from "../model/actor/L2Npc";
 import L2ObjectCollection from "../model/L2ObjectCollection";
+import L2Character from "../model/actor/L2Character";
 
 export default class GameClient extends MMOClient<MMOConnection<GameClient>> {
   private _loginClient: LoginClient;
@@ -20,9 +21,21 @@ export default class GameClient extends MMOClient<MMOConnection<GameClient>> {
   private _activeChar!: L2PcInstance;
 
   private _creatures: L2ObjectCollection<L2Npc> = new L2ObjectCollection<L2Npc>();
+  private _characters: L2ObjectCollection<L2Character> = new L2ObjectCollection<L2Character>();
+  private _party: L2ObjectCollection<L2Npc> = new L2ObjectCollection<L2Npc>();
+  private _pets: L2ObjectCollection<L2Npc> = new L2ObjectCollection<L2Npc>();
 
+  get CharactersList(): L2ObjectCollection<L2Character> {
+    return this._characters;
+  }
   get CreaturesList(): L2ObjectCollection<L2Npc> {
     return this._creatures;
+  }
+  get PartyList(): L2ObjectCollection<L2Npc> {
+    return this._party;
+  }
+  get PetList(): L2ObjectCollection<L2Npc> {
+    return this._pets;
   }
 
   get PlayOk1(): number {

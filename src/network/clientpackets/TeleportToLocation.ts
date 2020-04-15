@@ -9,9 +9,7 @@ export default class TeleportToLocation extends GameClientPacket {
 
     let _targetObjectId = this.readD();
 
-    let _x = this.readD();
-    let _y = this.readD();
-    let _z = this.readD();
+    let [_x, _y, _z] = this.readLoc();
 
     let _unkn1 = this.readD();
 
@@ -21,6 +19,21 @@ export default class TeleportToLocation extends GameClientPacket {
     if (user && _targetObjectId == user.getObjectId()) {
       user.setLocation(new Location(_x, _y, _z));
       this.Client.CreaturesList.clear();
+    } else {
+      var npc = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
+      if (npc) {
+        npc.setLocation(new Location(_x, _y, _z));
+      }
+
+      var npc = this.Client.PartyList.getEntryByObjectId(_targetObjectId);
+      if (npc) {
+        npc.setLocation(new Location(_x, _y, _z));
+      }
+
+      var npc = this.Client.PetList.getEntryByObjectId(_targetObjectId);
+      if (npc) {
+        npc.setLocation(new Location(_x, _y, _z));
+      }
     }
 
     return true;
