@@ -63,10 +63,10 @@ export default class Vector {
 
   divide(v: Vector | number): Vector {
     if (v instanceof Vector) {
-      if (v.X != 0) this._x /= v.X;
-      if (v.Y != 0) this._y /= v.Y;
+      if (v.X !== 0) this._x /= v.X;
+      if (v.Y !== 0) this._y /= v.Y;
     } else {
-      if (v != 0) {
+      if (v !== 0) {
         this._x /= v;
         this._y /= v;
       }
@@ -75,7 +75,7 @@ export default class Vector {
   }
 
   equals(v: Vector): boolean {
-    return this._x == v.X && this._y == v.Y;
+    return this._x === v.X && this._y === v.Y;
   }
 
   dot(v: Vector): number {

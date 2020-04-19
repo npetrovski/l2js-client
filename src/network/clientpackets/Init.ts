@@ -58,8 +58,7 @@ export default class Init extends LoginClientPacket {
 
   // @Override
   run(): void {
-    let spk: SendablePacket<LoginClient> = new AuthGameGuard(this.Client.SessionId);
-    this.Client.sendPacket(spk);
+    this.Client.sendPacket(new AuthGameGuard(this.Client.SessionId));
   }
 
   private unscrambleModulus(mods: Uint8Array): Uint8Array {

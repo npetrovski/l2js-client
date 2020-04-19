@@ -50,13 +50,13 @@ export default class CharInfo extends GameClientPacket {
     char.Sex = this.readD();
     char.BaseClassId = this.readD();
 
-    for (const slot1 in CharInfo.PAPERDOLL_ORDER) {
+    CharInfo.PAPERDOLL_ORDER.forEach(() => {
       const _slotItemDisplayId = this.readD();
-    }
+    });
 
-    for (const slot2 in CharInfo.PAPERDOLL_ORDER) {
+    CharInfo.PAPERDOLL_ORDER.forEach(() => {
       const _slotItemAugmentationId = this.readD();
-    }
+    });
 
     const _talismanSlots = this.readD();
     const _canEquipCloak = this.readD() === 1;
@@ -163,5 +163,7 @@ export default class CharInfo extends GameClientPacket {
   }
 
   // @Override
-  run(): void {}
+  run(): void {
+    // no-op
+  }
 }

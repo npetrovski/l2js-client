@@ -29,7 +29,7 @@ export default abstract class GameServerPacket extends SendablePacket<GameClient
   static readonly PAPERDOLL_BELT: number = 24;
   static readonly PAPERDOLL_TOTALSLOTS: number = 25;
 
-  static readonly PAPERDOLL_ORDER: Array<number> = [
+  static readonly PAPERDOLL_ORDER: number[] = [
     GameServerPacket.PAPERDOLL_UNDER,
     GameServerPacket.PAPERDOLL_REAR,
     GameServerPacket.PAPERDOLL_LEAR,

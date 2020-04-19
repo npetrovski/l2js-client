@@ -3,14 +3,14 @@ import L2Npc from "../../entities/L2Npc";
 import L2Mob from "../../entities/L2Mob";
 
 export default class NpcInfo extends AbstractNpcInfo {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id: number = this.readC();
-    let _objId = this.readD();
-    let _idTemplate = this.readD() - 1000000;
-    let _isAttackable = this.readD() == 1;
+    const _id: number = this.readC();
+    const _objId = this.readD();
+    const _idTemplate = this.readD() - 1000000;
+    const _isAttackable = this.readD() === 1;
 
-    var npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
+    let npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
     if (!npc) {
       if (!_isAttackable) {
         npc = new L2Npc();
@@ -29,9 +29,9 @@ export default class NpcInfo extends AbstractNpcInfo {
 
     npc.Heading = this.readD();
 
-    let _pad1 = this.readD();
-    let MAtkSpd = this.readD();
-    let PAtkSpd = this.readD();
+    const _pad1 = this.readD();
+    const MAtkSpd = this.readD();
+    const PAtkSpd = this.readD();
 
     npc.RunSpeed = this.readD();
     npc.WalkSpeed = this.readD();
@@ -40,62 +40,62 @@ export default class NpcInfo extends AbstractNpcInfo {
     npc.FlyRunSpeed = this.readD();
     npc.FlyWalkSpeed = this.readD();
 
-    let _flyRunSpd1 = this.readD();
-    let _flyWalkSpd1 = this.readD();
+    const _flyRunSpd1 = this.readD();
+    const _flyWalkSpd1 = this.readD();
 
     npc.SpeedMultiplier = this.readF();
-    let AttackSpeedMultiplier = this.readF();
-    let _collisionRadius = this.readF();
-    let _collisionHeight = this.readF();
+    const AttackSpeedMultiplier = this.readF();
+    const _collisionRadius = this.readF();
+    const _collisionHeight = this.readF();
 
-    let rhandId = this.readD();
-    let chestId = this.readD();
-    let lhandId = this.readD();
-    //npc.getTemplate().RhandId = this.readD(); // right hand weapon
-    //npc.getTemplate().ChestId = this.readD();
-    //npc.getTemplate().LhandId = this.readD(); // left hand weapon
+    const rhandId = this.readD();
+    const chestId = this.readD();
+    const lhandId = this.readD();
+    // npc.getTemplate().RhandId = this.readD(); // right hand weapon
+    // npc.getTemplate().ChestId = this.readD();
+    // npc.getTemplate().LhandId = this.readD(); // left hand weapon
 
-    let _unkn1 = this.readC(); // name above char 1=true ... ??
-    npc.IsRunning = this.readC() == 1;
-    npc.IsInCombat = this.readC() == 1;
-    npc.IsDead = this.readC() == 1;
-    let _isSummoned = this.readC() == 2; // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
+    const _unkn1 = this.readC(); // name above char 1=true ... ??
+    npc.IsRunning = this.readC() === 1;
+    npc.IsInCombat = this.readC() === 1;
+    npc.IsDead = this.readC() === 1;
+    const _isSummoned = this.readC() === 2; // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
 
-    let _unkn2 = this.readD();
+    const _unkn2 = this.readD();
     npc.Name = this.readS();
-    let _unkn3 = this.readD();
+    const _unkn3 = this.readD();
     npc.Title = this.readS();
 
-    let _pad2 = this.readD();
-    let _pad3 = this.readD();
-    let _pad4 = this.readD();
+    const _pad2 = this.readD();
+    const _pad3 = this.readD();
+    const _pad4 = this.readD();
 
     // let _titleColor = this.readD(); // Title color 0=client default
     // let _pvpFlag = this.readD(); // pvp flag
     // let _karma = this.readD(); // karma
 
-    let _invisibleVisualEffect = this.readD();
-    let _clanId = this.readD();
-    let _clanCrest = this.readD();
-    let _allyId = this.readD();
-    let _allyCrest = this.readD();
+    const _invisibleVisualEffect = this.readD();
+    const _clanId = this.readD();
+    const _clanCrest = this.readD();
+    const _allyId = this.readD();
+    const _allyCrest = this.readD();
 
-    let _insideZone = this.readC(); // 1=water, 2=flying
-    let _teamId = this.readC();
+    const _insideZone = this.readC(); // 1=water, 2=flying
+    const _teamId = this.readC();
 
-    let _collisionRadius1 = this.readF();
-    let _collisionHeight2 = this.readF();
-    let _enchantEffect = this.readD(); //C4
-    let _isFlying = this.readD() == 1; //C6
-    let _pad5 = this.readD();
-    let _colorEffect = this.readD(); // CT1.5 Pet form and skills, Color effect
+    const _collisionRadius1 = this.readF();
+    const _collisionHeight2 = this.readF();
+    const _enchantEffect = this.readD(); // C4
+    const _isFlying = this.readD() === 1; // C6
+    const _pad5 = this.readD();
+    const _colorEffect = this.readD(); // CT1.5 Pet form and skills, Color effect
 
-    npc.IsTargetable = this.readC() == 1;
-    let _isShowName = this.readC() == 1;
-    let _abnormalVisualEffectSpecial = this.readD();
-    let _displayEffect = this.readD();
+    npc.IsTargetable = this.readC() === 1;
+    const _isShowName = this.readC() === 1;
+    const _abnormalVisualEffectSpecial = this.readD();
+    const _displayEffect = this.readD();
 
-    let user = this.Client.ActiveChar;
+    const user = this.Client.ActiveChar;
     if (user) {
       npc.Distance = this.Client.calculateDistance(npc, user);
     }
@@ -103,6 +103,8 @@ export default class NpcInfo extends AbstractNpcInfo {
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

@@ -20,7 +20,7 @@ export default class PlayOk extends LoginClientPacket {
   run(): void {
     this.Client.Connection.close();
     if (this.Client.onSuccessCallback) {
-      this.Client.onSuccessCallback(this.Client);
+      this.Client.onSuccessCallback();
     }
   }
 }

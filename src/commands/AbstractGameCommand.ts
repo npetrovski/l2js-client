@@ -1,7 +1,7 @@
 import ICommand from "./ICommand";
 import MMOClient from "../mmocore/MMOClient";
 
-export default abstract class AbstractGameCommand<T extends MMOClient<any>> implements ICommand {
+export default abstract class AbstractGameCommand<T extends MMOClient> implements ICommand {
   private _client!: T;
 
   public get Client(): T {

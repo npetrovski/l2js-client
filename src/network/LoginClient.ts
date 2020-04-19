@@ -6,7 +6,7 @@ import MMOConnection from "../mmocore/MMOConnection";
 import LoginPacketHandler from "./LoginPacketHandler";
 import MMOConfig from "../mmocore/MMOConfig";
 
-export default class LoginClient extends MMOClient<MMOConnection<LoginClient>> {
+export default class LoginClient extends MMOClient {
   private _username: string;
 
   private _password: string;
@@ -145,7 +145,7 @@ export default class LoginClient extends MMOClient<MMOConnection<LoginClient>> {
   constructor(config: MMOConfig, onSuccessCallback?: () => void) {
     super(new MMOConnection(config));
     this.Config = config;
-    this.Connection.Client = this;
+    (this.Connection as MMOConnection<LoginClient>).Client = this;
     this.PacketHandler = new LoginPacketHandler();
     if (onSuccessCallback) {
       this.onSuccessCallback = onSuccessCallback;

@@ -12,5 +12,7 @@ export default class JoinParty extends GameClientPacket {
   }
 
   // @Override
-  run(): void {}
+  run(): void {
+    // no-op
+  }
 }

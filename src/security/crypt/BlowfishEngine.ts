@@ -359,10 +359,10 @@ export default class BlowfishEngine {
     );
   }
 
-  bits32ToBytes(in_b: number, b: Uint8Array, offset: number): void {
-    b[offset] = in_b;
-    b[offset + 1] = in_b >> 8;
-    b[offset + 2] = in_b >> 16;
-    b[offset + 3] = in_b >> 24;
+  bits32ToBytes(inb: number, b: Uint8Array, offset: number): void {
+    b[offset] = inb;
+    b[offset + 1] = inb >> 8;
+    b[offset + 2] = inb >> 16;
+    b[offset + 3] = inb >> 24;
   }
 }

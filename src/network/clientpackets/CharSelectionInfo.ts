@@ -57,10 +57,10 @@ export default class CharSelectionInfo extends GameClientPacket {
       const _unknD6 = this.readD();
       const _unknD7 = this.readD();
 
-      let _paperdoll = [];
-      for (const slot in GameServerPacket.PAPERDOLL_ORDER) {
+      const _paperdoll = [];
+      GameServerPacket.PAPERDOLL_ORDER.forEach(() => {
         _paperdoll.push(this.readD());
-      }
+      });
 
       const hairStyle = this.readD();
       const hairColor = this.readD();

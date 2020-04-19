@@ -1,8 +1,9 @@
 import MMOClient from "./MMOClient";
 import IStream from "./IStream";
 import MMOConfig from "./MMOConfig";
+import IConnection from "./IConnection";
 
-export default class MMOConnection<T extends MMOClient<any>> {
+export default class MMOConnection<T extends MMOClient> implements IConnection {
   private _client!: T;
 
   private _stream: IStream;
@@ -21,7 +22,7 @@ export default class MMOConnection<T extends MMOClient<any>> {
     this._client = client;
   }
 
-  write(buf: Uint8Array) {
+  write(buf: Uint8Array): void {
     this._stream.send(buf);
   }
 

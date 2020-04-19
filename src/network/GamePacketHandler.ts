@@ -51,11 +51,11 @@ import SpawnItem from "./clientpackets/SpawnItem";
 import CharInfo from "./clientpackets/CharInfo";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
-  //@Override
+  // @Override
   handlePacket(data: Uint8Array, client: GameClient): ReceivablePacket<GameClient> {
-    var opcode: number = data[0] & 0xff;
+    const opcode: number = data[0] & 0xff;
 
-    var rpk!: ReceivablePacket<GameClient>;
+    let rpk!: ReceivablePacket<GameClient>;
 
     try {
       switch (opcode) {
@@ -195,7 +195,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new EtcStatusUpdate();
           break;
         case 0xfe:
-          let sub = data[1] + (data[2] << 8);
+          const sub = data[1] + (data[2] << 8);
           switch (sub) {
             case 0x8d:
               rpk = new NpcQuestHtmlMessage();
@@ -235,7 +235,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           }
 
           return rpk;
-        //throw Error("Unknown game packet received." + opcode);
       }
 
       rpk.Client = client;

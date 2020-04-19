@@ -7,7 +7,7 @@ export default class GGAuth extends LoginClientPacket {
   // @Override
   readImpl(): boolean {
     const _id: number = this.readC();
-    let _response = this.readD();
+    const _response = this.readD();
 
     return true;
   }

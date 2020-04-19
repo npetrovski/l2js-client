@@ -2,35 +2,36 @@ import MMOConnection from "./MMOConnection";
 import ReceivablePacket from "./ReceivablePacket";
 import IPacketHandler from "./IPacketHandler";
 import { GlobalEvents } from "./EventEmitter";
+import IConnection from "./IConnection";
 
-export default abstract class MMOClient<T extends MMOConnection<any>> {
-  private _connection!: T;
+export default abstract class MMOClient {
+  private _connection!: IConnection;
 
-  private _packetHandler!: IPacketHandler<MMOClient<any>>;
+  private _packetHandler!: IPacketHandler<MMOClient>;
 
-  constructor(con: T) {
+  constructor(con: IConnection) {
     this._connection = con;
   }
   abstract encrypt(var1: Uint8Array, var2: number, var3: number): void;
 
   abstract decrypt(var1: Uint8Array, var2: number, var3: number): void;
 
-  get Connection(): T {
+  get Connection(): IConnection {
     return this._connection;
   }
 
-  get PacketHandler(): IPacketHandler<MMOClient<any>> {
+  get PacketHandler(): IPacketHandler<MMOClient> {
     return this._packetHandler;
   }
 
-  set PacketHandler(handler: IPacketHandler<MMOClient<any>>) {
+  set PacketHandler(handler: IPacketHandler<MMOClient>) {
     this._packetHandler = handler;
   }
 
   private _buffer: Uint8Array = new Uint8Array();
 
   process(raw: Uint8Array): void {
-    var data: Uint8Array = new Uint8Array(raw);
+    let data: Uint8Array = new Uint8Array(raw);
     if (this._buffer.byteLength > 0) {
       data = new Uint8Array(raw.byteLength + this._buffer.byteLength);
       data.set(this._buffer, 0);
@@ -38,9 +39,9 @@ export default abstract class MMOClient<T extends MMOConnection<any>> {
       this._buffer = new Uint8Array();
     }
 
-    var i = 0;
+    let i = 0;
     while (i < data.byteLength) {
-      var pLen = data[i] + (data[i + 1] << 8);
+      const pLen = data[i] + (data[i + 1] << 8);
 
       if (pLen <= 2) {
         break;
@@ -51,15 +52,14 @@ export default abstract class MMOClient<T extends MMOConnection<any>> {
         break;
       }
 
-      (function (i, that) {
-        var r = Math.random().toString(36).substring(7).toUpperCase();
-        var packetData = new Uint8Array(data.slice(i + 2, i + pLen)); // +2 is for skipping the packet size
-        that.decrypt(packetData, 0, packetData.byteLength);
+      ((n, ctx) => {
+        const packetData = new Uint8Array(data.slice(n + 2, n + pLen)); // +2 is for skipping the packet size
+        ctx.decrypt(packetData, 0, packetData.byteLength);
 
         setTimeout(() => {
-          var rcp: ReceivablePacket<MMOClient<any>> = that._packetHandler.handlePacket(packetData, that);
+          const rcp: ReceivablePacket<MMOClient> = ctx._packetHandler.handlePacket(packetData, ctx);
           if (!rcp) {
-            return; //We cannot parse the data. Most probably the game packet is not yet implemented.
+            return; // We cannot find the required packet handler. Most probably the game packet is not yet implemented.
           }
 
           if (rcp.read()) {
@@ -82,11 +82,11 @@ export default abstract class MMOClient<T extends MMOConnection<any>> {
       "\r\n" +
       Array.from(Array.from(data), (byte, k) => {
         return (
-          (k % 16 == 0
+          (k % 16 === 0
             ? ("00000" + ((Math.ceil(k / 16) * 16) & 0xffff).toString(16)).slice(-5).toUpperCase() + "  "
             : "") +
           ("0" + (byte & 0xff).toString(16)).slice(-2) +
-          ((k + 1) % 16 == 0 ? "\r\n" : " ")
+          ((k + 1) % 16 === 0 ? "\r\n" : " ")
         );
       })
         .join("")

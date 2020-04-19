@@ -4,7 +4,7 @@ export default class RequestAnswerJoinParty extends GameServerPacket {
   static readonly ANSWER_CANCEL = 0;
   static readonly ANSWER_ACCEPT = 1;
 
-  private _answer: number = -1; //auto-refuse party
+  private _answer: number = -1; // auto-refuse party
 
   constructor(answer: number) {
     super();

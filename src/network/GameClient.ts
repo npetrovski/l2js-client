@@ -15,7 +15,7 @@ import L2DroppedItem from "../entities/L2DroppedItem";
 import L2Character from "../entities/L2Character";
 import ProtocolVersion from "./serverpackets/ProtocolVersion";
 
-export default class GameClient extends MMOClient<MMOConnection<GameClient>> {
+export default class GameClient extends MMOClient {
   private _loginClient: LoginClient;
 
   private _gameCrypt: GameCrypt;
@@ -94,7 +94,7 @@ export default class GameClient extends MMOClient<MMOConnection<GameClient>> {
     );
 
     this.Config = config;
-    this.Connection.Client = this;
+    (this.Connection as MMOConnection<GameClient>).Client = this;
     this.PacketHandler = new GamePacketHandler();
 
     this._loginClient = lc;

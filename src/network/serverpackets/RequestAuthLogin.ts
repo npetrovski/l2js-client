@@ -23,14 +23,14 @@ export default class RequestAuthLogin extends LoginServerPacket {
       throw Error("Password is too long");
     }
 
-    var login_info: Uint8Array = new Uint8Array(128);
+    const loginInfo: Uint8Array = new Uint8Array(128);
 
-    login_info[0x5b] = 0x24;
-    for (let i = 0; i < this.Client.Username.length; i++) login_info[0x5e + i] = this.Client.Username.charCodeAt(i);
-    for (let i = 0; i < this.Client.Password.length; i++) login_info[0x6c + i] = this.Client.Password.charCodeAt(i);
+    loginInfo[0x5b] = 0x24;
+    for (let i = 0; i < this.Client.Username.length; i++) loginInfo[0x5e + i] = this.Client.Username.charCodeAt(i);
+    for (let i = 0; i < this.Client.Password.length; i++) loginInfo[0x6c + i] = this.Client.Password.charCodeAt(i);
 
-    var modulus: Buffer = Buffer.from(this.Client.PublicKey);
-    var data: Buffer = Buffer.from(login_info);
+    const modulus: Buffer = Buffer.from(this.Client.PublicKey);
+    const data: Buffer = Buffer.from(loginInfo);
 
     const key = new NodeRSA();
     key.setOptions({
@@ -54,9 +54,9 @@ export default class RequestAuthLogin extends LoginServerPacket {
     this.writeB(encryptedLoginInfo);
     this.writeD(this.Client.SessionId);
 
-    var query: Uint8Array = new Uint8Array(16);
+    const query: Uint8Array = new Uint8Array(16);
     query.set(this._buffer.slice(5, 21), 0);
-    var gg: string = Array.from(Array.from(query), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join("");
+    const gg: string = Array.from(Array.from(query), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join("");
 
     if (RequestAuthLogin.LOGIN_GG.has(gg)) {
       this.writeB(Uint8Array.from(RequestAuthLogin.LOGIN_GG.get(gg) ?? []));
@@ -65,7 +65,7 @@ export default class RequestAuthLogin extends LoginServerPacket {
       this.writeB( Uint8Array.from([0x23, 0x01, 0x00, 0x00, 0x67, 0x45, 0x00, 0x00, 0xab, 0x89, 0x00, 0x00, 0xef, 0xcd, 0x00, 0x00]));
     }
 
-    this.writeB(Uint8Array.from([0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])); //footer
+    this.writeB(Uint8Array.from([0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])); // footer
     this.writeB(Uint8Array.from(Array(16).fill(0)));
   }
 }

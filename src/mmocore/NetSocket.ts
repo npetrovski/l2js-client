@@ -17,7 +17,7 @@ export default class NetSocket implements IStream {
       this._socket.pause();
       this.receive(data);
     });
-    this._socket.connect(port, ip, () => {});
+    this._socket.connect(port, ip);
   }
   send(bytes: Uint8Array): void {
     if (!this._socket.destroyed) {

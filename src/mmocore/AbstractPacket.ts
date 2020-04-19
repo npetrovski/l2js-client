@@ -1,6 +1,6 @@
 import MMOClient from "../mmocore/MMOClient";
 
-export default abstract class AbstractPacket<T extends MMOClient<any>> {
+export default abstract class AbstractPacket<T extends MMOClient> {
   _client!: T;
 
   get Client(): T {

@@ -1,7 +1,7 @@
 import AbstractPacket from "./AbstractPacket";
 import MMOClient from "./MMOClient";
 
-export default abstract class SendablePacket<T extends MMOClient<any>> extends AbstractPacket<T> {
+export default abstract class SendablePacket<T extends MMOClient> extends AbstractPacket<T> {
   static readonly PACKET_MAX_SIZE: number = 4096;
   _buffer: Uint8Array;
   _offset: number = 0;
@@ -61,8 +61,8 @@ export default abstract class SendablePacket<T extends MMOClient<any>> extends A
 
   writeS(txt: string) {
     if (txt.length > 0) {
-      for (var i = 0; i < txt.length; ++i) {
-        let c = txt.charCodeAt(i);
+      for (let i = 0; i < txt.length; ++i) {
+        const c = txt.charCodeAt(i);
         this.writeC(c & 0xff);
         this.writeC((c & 0xff00) >>> 8);
       }

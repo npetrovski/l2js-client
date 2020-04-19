@@ -11,11 +11,11 @@ import LoginFail from "./clientpackets/LoginFail";
 import AccountKicked from "./clientpackets/AccountKicked";
 
 export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
-  //@Override
+  // @Override
   handlePacket(data: Uint8Array, client: LoginClient): ReceivablePacket<LoginClient> {
-    var opcode: number = data[0] & 0xff;
+    const opcode: number = data[0] & 0xff;
 
-    var rpk!: ReceivablePacket<LoginClient>;
+    let rpk!: ReceivablePacket<LoginClient>;
 
     switch (opcode) {
       case 0x00:
