@@ -1,14 +1,16 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class TutorialShowQuestionMark extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _markId = this.readD();
+    const _id = this.readC();
+    const _markId = this.readD();
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

@@ -1,5 +1,6 @@
 import AbstractNpcInfo from "./AbstractNpcInfo";
-import L2Npc from "../../model/actor/L2Npc";
+import L2Npc from "../../entities/L2Npc";
+import L2Mob from "../../entities/L2Mob";
 
 export default class NpcInfo extends AbstractNpcInfo {
   //@Override
@@ -7,57 +8,63 @@ export default class NpcInfo extends AbstractNpcInfo {
     let _id: number = this.readC();
     let _objId = this.readD();
     let _idTemplate = this.readD() - 1000000;
+    let _isAttackable = this.readD() == 1;
 
     var npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
     if (!npc) {
-      npc = new L2Npc();
-      npc.setObjectId(_objId);
-      npc.setTemplateId(_idTemplate);
+      if (!_isAttackable) {
+        npc = new L2Npc();
+      } else {
+        npc = new L2Mob();
+      }
+
+      npc.ObjectId = _objId;
       this.Client.CreaturesList.add(npc);
     }
 
-    npc.setIsAttackable(this.readD() == 1);
-    npc.setX(this.readD());
-    npc.setY(this.readD());
-    npc.setZ(this.readD());
+    npc.IsAttackable = _isAttackable;
+    npc.X = this.readD();
+    npc.Y = this.readD();
+    npc.Z = this.readD();
 
-    npc.setHeading(this.readD());
+    npc.Heading = this.readD();
 
     let _pad1 = this.readD();
-    npc.getStat().setMAtkSpd(this.readD());
-    npc.getStat().setPAtkSpd(this.readD());
-    npc.getStat().setRunSpeed(this.readD());
-    npc.getStat().setWalkSpeed(this.readD());
-    npc.getStat().setSwimRunSpeed(this.readD());
-    npc.getStat().setSwimWalkSpeed(this.readD());
-    npc.getStat().setFlyRunSpeed(this.readD());
-    npc.getStat().setFlyWalkSpeed(this.readD());
+    let MAtkSpd = this.readD();
+    let PAtkSpd = this.readD();
+
+    npc.RunSpeed = this.readD();
+    npc.WalkSpeed = this.readD();
+    npc.SwimRunSpeed = this.readD();
+    npc.SwimWalkSpeed = this.readD();
+    npc.FlyRunSpeed = this.readD();
+    npc.FlyWalkSpeed = this.readD();
 
     let _flyRunSpd1 = this.readD();
     let _flyWalkSpd1 = this.readD();
 
-    npc.getStat().setMovementSpeedMultiplier(this.readF());
-    npc.getStat().setAttackSpeedMultiplier(this.readF());
+    npc.SpeedMultiplier = this.readF();
+    let AttackSpeedMultiplier = this.readF();
     let _collisionRadius = this.readF();
     let _collisionHeight = this.readF();
 
     let rhandId = this.readD();
     let chestId = this.readD();
     let lhandId = this.readD();
-    //npc.getTemplate().setRhandId(this.readD()); // right hand weapon
-    //npc.getTemplate().setChestId(this.readD());
-    //npc.getTemplate().setLhandId(this.readD()); // left hand weapon
+    //npc.getTemplate().RhandId = this.readD(); // right hand weapon
+    //npc.getTemplate().ChestId = this.readD();
+    //npc.getTemplate().LhandId = this.readD(); // left hand weapon
 
     let _unkn1 = this.readC(); // name above char 1=true ... ??
-    npc.setIsRunning(this.readC() == 1);
-    npc.setIsInCombat(this.readC() == 1);
-    npc.setIsDead(this.readC() == 1);
+    npc.IsRunning = this.readC() == 1;
+    npc.IsInCombat = this.readC() == 1;
+    npc.IsDead = this.readC() == 1;
     let _isSummoned = this.readC() == 2; // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
 
     let _unkn2 = this.readD();
-    npc.setName(this.readS());
+    npc.Name = this.readS();
     let _unkn3 = this.readD();
-    npc.setTitle(this.readS());
+    npc.Title = this.readS();
 
     let _pad2 = this.readD();
     let _pad3 = this.readD();
@@ -83,10 +90,15 @@ export default class NpcInfo extends AbstractNpcInfo {
     let _pad5 = this.readD();
     let _colorEffect = this.readD(); // CT1.5 Pet form and skills, Color effect
 
-    let _isTargetable = this.readC() == 1;
+    npc.IsTargetable = this.readC() == 1;
     let _isShowName = this.readC() == 1;
     let _abnormalVisualEffectSpecial = this.readD();
     let _displayEffect = this.readD();
+
+    let user = this.Client.ActiveChar;
+    if (user) {
+      npc.Distance = this.Client.calculateDistance(npc, user);
+    }
 
     return true;
   }

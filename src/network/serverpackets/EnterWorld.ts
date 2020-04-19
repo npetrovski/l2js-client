@@ -1,10 +1,6 @@
 import GameServerPacket from "./GameServerPacket";
 
 export default class EnterWorld extends GameServerPacket {
-  constructor() {
-    super();
-  }
-
   write(): void {
     this.writeC(0x11);
     this.writeB(new Uint8Array(32)); // Unknown Byte Array

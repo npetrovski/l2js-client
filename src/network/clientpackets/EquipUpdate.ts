@@ -1,15 +1,15 @@
 import GameClientPacket from "./GameClientPacket";
-import L2Item from "../../model/items/L2Item";
+import L2Item from "../../entities/L2Item";
 
 export default class EquipUpdate extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
 
-    let _change = this.readD();
-    let _objId = this.readD();
+    const _change = this.readD();
+    const _objId = this.readD();
 
-    let _bodyPart = this.readD();
+    const _bodyPart = this.readD();
     let _l2item = 0;
 
     switch (_bodyPart) {
@@ -66,6 +66,8 @@ export default class EquipUpdate extends GameClientPacket {
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

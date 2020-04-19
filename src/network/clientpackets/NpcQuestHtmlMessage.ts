@@ -1,20 +1,20 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class NpcQuestHtmlMessage extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _sub = this.readH();
+    const _id = this.readC();
+    const _sub = this.readH();
 
-    let _npcObjId = this.readD();
-
-    let _html = this.readS();
-
-    let _questId = this.readD();
+    const _npcObjId = this.readD();
+    const _html = this.readS();
+    const _questId = this.readD();
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

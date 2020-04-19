@@ -1,38 +1,39 @@
 import GameClientPacket from "./GameClientPacket";
-import Location from "../../model/Location";
 
 export default class Revive extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _objectId = this.readD();
+    const _id = this.readC();
+    const _objectId = this.readD();
 
-    if (_objectId === this.Client.ActiveChar.getObjectId()) {
-      this.Client.ActiveChar.setIsDead(false);
+    if (_objectId === this.Client.ActiveChar.ObjectId) {
+      this.Client.ActiveChar.IsDead = false;
       return true;
     }
 
-    var npc = this.Client.CreaturesList.getEntryByObjectId(_objectId);
-    if (npc) {
-      npc.setIsDead(false);
+    const creature = this.Client.CreaturesList.getEntryByObjectId(_objectId);
+    if (creature) {
+      creature.IsDead = false;
       return true;
     }
 
-    var npc = this.Client.PartyList.getEntryByObjectId(_objectId);
-    if (npc) {
-      npc.setIsDead(false);
+    const partyPlayer = this.Client.PartyList.getEntryByObjectId(_objectId);
+    if (partyPlayer) {
+      partyPlayer.IsDead = false;
       return true;
     }
 
-    var npc = this.Client.PetList.getEntryByObjectId(_objectId);
-    if (npc) {
-      npc.setIsDead(false);
+    const pet = this.Client.PetList.getEntryByObjectId(_objectId);
+    if (pet) {
+      pet.IsDead = false;
       return true;
     }
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

@@ -1,8 +1,6 @@
 import MMOConfig from "./mmocore/MMOConfig";
 import LoginClient from "./network/LoginClient";
 import GameClient from "./network/GameClient";
-import ProtocolVersion from "./network/serverpackets/ProtocolVersion";
-import L2PcInstance from "./model/actor/instance/L2PcInstance";
 import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
 
 // Commands
@@ -16,10 +14,16 @@ import CommandSayToClan from "./commands/CommandSayToClan";
 import CommandSayToTrade from "./commands/CommandSayToTrade";
 import CommandSayToAlly from "./commands/CommandSayToAlly";
 import CommandMoveTo from "./commands/CommandMoveTo";
-import L2Npc from "./model/actor/L2Npc";
 import CommandHit from "./commands/CommandHit";
-import L2ObjectCollection from "./model/L2ObjectCollection";
-import L2Character from "./model/actor/L2Character";
+import L2User from "./entities/L2User";
+import L2ObjectCollection from "./entities/L2ObjectCollection";
+import L2Creature from "./entities/L2Creature";
+import CommandCancelTarget from "./commands/CommandCancelTarget";
+import CommandAcceptJoinParty from "./commands/CommandAcceptJoinParty";
+import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
+import L2DroppedItem from "./entities/L2DroppedItem";
+import L2Character from "./entities/L2Character";
+import CommandNextTarget from "./commands/CommandNextTarget";
 
 export class Client {
   private _config: MMOConfig = new MMOConfig();
@@ -27,8 +31,6 @@ export class Client {
   private _lc!: LoginClient;
 
   private _gc!: GameClient;
-
-  private _entered: boolean = false;
 
   private _commands: Record<string, ICommand> = {
     say: new CommandSay(),
@@ -41,62 +43,71 @@ export class Client {
 
     moveTo: new CommandMoveTo(),
     hit: new CommandHit(),
+
+    cancelTarget: new CommandCancelTarget(),
+
+    acceptJoinParty: new CommandAcceptJoinParty(),
+    declineJoinParty: new CommandDeclineJoinParty(),
+
+    nextTarget: new CommandNextTarget(),
   };
 
-  get Entered(): boolean {
-    return this._entered;
-  }
-
-  get Me(): L2PcInstance {
+  get Me(): L2User {
     return this._gc?.ActiveChar;
   }
 
   get CharactersList(): L2ObjectCollection<L2Character> {
     return this._gc?.CharactersList;
   }
-
-  get CreaturesList(): L2ObjectCollection<L2Npc> {
+  get CreaturesList(): L2ObjectCollection<L2Creature> {
     return this._gc?.CreaturesList;
+  }
+  get PartyList(): L2ObjectCollection<L2Creature> {
+    return this._gc?.PartyList;
+  }
+  get PetList(): L2ObjectCollection<L2Creature> {
+    return this._gc?.PetList;
+  }
+  get DroppedItems(): L2ObjectCollection<L2DroppedItem> {
+    return this._gc?.DroppedItems;
   }
 
   constructor() {
     return new Proxy<Client>(this, {
       get(target: Client, propertyKey: string, receiver: any) {
         if (propertyKey in target) {
-          //return (target as any)[objectKey];
+          // return (target as any)[objectKey];
           return Reflect.get(target, propertyKey, receiver);
         }
         if (propertyKey in target._commands) {
-          var cmd = target._commands[propertyKey] as AbstractGameCommand<any>;
+          const cmd = target._commands[propertyKey] as AbstractGameCommand<any>;
           cmd.Client = target._gc;
           return (...args: any) => {
-            cmd.execute(...args);
+            return cmd.execute(...args);
           };
         }
       },
     });
   }
 
-  setConfig(config: MMOConfig | object): Client {
+  setConfig(config: MMOConfig | object): this {
     this._config.assign(config);
     return this;
   }
 
-  enter(config?: MMOConfig | object): Client {
+  enter(config?: MMOConfig | object): this {
     if (config) {
       this.setConfig(config);
     }
 
     this._lc = new LoginClient(this._config, () => {
       this._gc = new GameClient(this._lc, this._config);
-      this._gc.sendPacket(new ProtocolVersion());
-      this._entered = true;
     });
 
     return this;
   }
 
-  on(event: string, handler: EventHandler): Client {
+  on(event: string, handler: EventHandler): this {
     GlobalEvents.on(event, handler);
     return this;
   }

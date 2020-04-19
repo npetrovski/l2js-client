@@ -4,9 +4,9 @@ import IStream from "./IStream";
 export default class NetSocket implements IStream {
   private _socket: net.Socket = new net.Socket();
 
-  private _onDataCallback!: Function;
+  private _onDataCallback!: (bytes: Uint8Array) => void;
 
-  setDataCallback(callback?: Function): void {
+  setDataCallback(callback?: (bytes: Uint8Array) => void): void {
     if (callback) {
       this._onDataCallback = callback;
     }

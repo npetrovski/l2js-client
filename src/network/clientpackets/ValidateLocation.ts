@@ -1,38 +1,37 @@
 import GameClientPacket from "./GameClientPacket";
-import Location from "../../model/Location";
 
 export default class ValidateLocation extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _charObjId = this.readD();
+    const _id = this.readC();
+    const _charObjId = this.readD();
+    const [_x, _y, _z] = this.readLoc();
+    const _heading = this.readD();
 
-    let [_x, _y, _z] = this.readLoc();
-
-    let _heading = this.readD();
-
-    if (_charObjId === this.Client.ActiveChar.getObjectId()) {
-      this.Client.ActiveChar.setLocation(new Location(_x, _y, _z, _heading));
+    if (_charObjId === this.Client.ActiveChar.ObjectId) {
+      this.Client.ActiveChar.setLocation(_x, _y, _z, _heading);
     }
 
-    var npc = this.Client.CreaturesList.getEntryByObjectId(_charObjId);
-    if (npc) {
-      npc.setLocation(new Location(_x, _y, _z, _heading));
+    const creature = this.Client.CreaturesList.getEntryByObjectId(_charObjId);
+    if (creature) {
+      creature.setLocation(_x, _y, _z, _heading);
     }
 
-    var npc = this.Client.PartyList.getEntryByObjectId(_charObjId);
-    if (npc) {
-      npc.setLocation(new Location(_x, _y, _z, _heading));
+    const partyMember = this.Client.PartyList.getEntryByObjectId(_charObjId);
+    if (partyMember) {
+      partyMember.setLocation(_x, _y, _z, _heading);
     }
 
-    var npc = this.Client.PetList.getEntryByObjectId(_charObjId);
-    if (npc) {
-      npc.setLocation(new Location(_x, _y, _z, _heading));
+    const pet = this.Client.PetList.getEntryByObjectId(_charObjId);
+    if (pet) {
+      pet.setLocation(_x, _y, _z, _heading);
     }
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

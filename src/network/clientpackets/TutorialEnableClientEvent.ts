@@ -1,14 +1,16 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class TutorialEnableClientEvent extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _eventId = this.readD();
+    const _id = this.readC();
+    const _eventId = this.readD();
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

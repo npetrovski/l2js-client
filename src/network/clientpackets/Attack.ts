@@ -1,30 +1,32 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class Attack extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
 
-    let _attackerObjId = this.readD();
+    const _attackerObjId = this.readD();
 
-    let _targetId = this.readD();
-    let _damage = this.readD();
-    let _flags = this.readC();
+    const _targetId = this.readD();
+    const _damage = this.readD();
+    const _flags = this.readC();
 
-    let [_attackerX, _attackerY, _attackerZ] = this.readLoc();
+    const [_attackerX, _attackerY, _attackerZ] = this.readLoc();
 
-    let _hitSize = this.readH();
-    for (var i = 0; i < _hitSize; i++) {
-      let _targetId1 = this.readD();
-      let _damage1 = this.readD();
-      let _flags1 = this.readC();
+    const _hitSize = this.readH();
+    for (let i = 0; i < _hitSize; i++) {
+      const _targetId1 = this.readD();
+      const _damage1 = this.readD();
+      const _flags1 = this.readC();
     }
 
-    let [_targetX, _targetY, _targetZ] = this.readLoc();
+    const [_targetX, _targetY, _targetZ] = this.readLoc();
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

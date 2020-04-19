@@ -1,39 +1,47 @@
 import GameClientPacket from "./GameClientPacket";
-import Location from "../../model/Location";
 
 export default class MoveToLocation extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _charObjId = this.readD();
+    const _id = this.readC();
+    const _charObjId = this.readD();
 
-    let [_xDst, _yDst, _zDst] = this.readLoc();
-    let [_x, _y, _z] = this.readLoc();
+    const [_xDst, _yDst, _zDst] = this.readLoc();
+    const [_x, _y, _z] = this.readLoc();
 
-    if (_charObjId === this.Client.ActiveChar.getObjectId()) {
-      this.Client.ActiveChar.setLocation(new Location(_x, _y, _z));
+    if (_charObjId === this.Client.ActiveChar.ObjectId) {
+      this.Client.ActiveChar.setLocation(_xDst, _yDst, _zDst);
     }
 
-    var npc = this.Client.CreaturesList.getEntryByObjectId(_charObjId);
-    if (npc) {
-      npc.setLocation(new Location(_x, _y, _z));
+    const creature = this.Client.CreaturesList.getEntryByObjectId(_charObjId);
+    if (creature) {
+      creature.setLocation(_xDst, _yDst, _zDst);
+      creature.Distance = this.Client.calculateDistance(this.Client.ActiveChar, creature);
     }
 
-    var npc = this.Client.PartyList.getEntryByObjectId(_charObjId);
-    if (npc) {
-      npc.setLocation(new Location(_x, _y, _z));
+    const partyMember = this.Client.PartyList.getEntryByObjectId(_charObjId);
+    if (partyMember) {
+      partyMember.setLocation(_xDst, _yDst, _zDst);
+      partyMember.Distance = this.Client.calculateDistance(this.Client.ActiveChar, partyMember);
     }
 
-    var npc = this.Client.PetList.getEntryByObjectId(_charObjId);
-    if (npc) {
-      npc.setLocation(new Location(_x, _y, _z));
+    const pet = this.Client.PetList.getEntryByObjectId(_charObjId);
+    if (pet) {
+      pet.setLocation(_xDst, _yDst, _zDst);
+      pet.Distance = this.Client.calculateDistance(this.Client.ActiveChar, pet);
+    }
+
+    const char = this.Client.CharactersList.getEntryByObjectId(_charObjId);
+    if (char) {
+      char.setLocation(_xDst, _yDst, _zDst);
+      char.Distance = this.Client.calculateDistance(this.Client.ActiveChar, char);
     }
 
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    //
+    // no-op
   }
 }

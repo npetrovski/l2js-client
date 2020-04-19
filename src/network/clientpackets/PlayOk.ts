@@ -5,9 +5,9 @@ export default class PlayOk extends LoginClientPacket {
 
   _playOk2: number = 0;
 
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id: number = this.readC();
+    const _id: number = this.readC();
     this._playOk1 = this.readD();
     this._playOk2 = this.readD();
 
@@ -16,7 +16,7 @@ export default class PlayOk extends LoginClientPacket {
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
     this.Client.Connection.close();
     if (this.Client.onSuccessCallback) {

@@ -1,37 +1,32 @@
 import GameClientPacket from "./GameClientPacket";
-import L2Character from "../../model/actor/L2Character";
 
 export default class TargetSelected extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
 
-    let _objectId = this.readD();
-    let _targetObjectId = this.readD();
+    const _objectId = this.readD();
+    const _targetObjectId = this.readD();
 
-    let [_x, _y, _z] = this.readLoc();
+    const [_x, _y, _z] = this.readLoc();
 
-    let _unkn1 = this.readD();
+    const _unkn1 = this.readD();
 
-    var char!: L2Character | undefined;
-    if (this.Client.ActiveChar.getObjectId() === _objectId) {
-      char = this.Client.ActiveChar;
-    } else {
-      char = this.Client.CreaturesList.getEntryByObjectId(_objectId);
-    }
-
+    const char = this.Client.CreaturesList.getEntryByObjectId(_objectId);
     if (!char) {
       return true;
     }
 
-    var target = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
+    const target = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
     if (target) {
-      char.setSelected(target);
+      char.Target = target;
     }
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

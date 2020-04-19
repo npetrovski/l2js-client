@@ -4,17 +4,17 @@ import SendablePacket from "../../mmocore/SendablePacket";
 import RequestAuthLogin from "../serverpackets/RequestAuthLogin";
 
 export default class GGAuth extends LoginClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id: number = this.readC();
-    var _response = this.readD();
+    const _id: number = this.readC();
+    let _response = this.readD();
 
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    var spk: SendablePacket<LoginClient> = new RequestAuthLogin();
+    const spk: SendablePacket<LoginClient> = new RequestAuthLogin();
     spk.Client = this.Client;
     this.Client.sendPacket(spk);
   }

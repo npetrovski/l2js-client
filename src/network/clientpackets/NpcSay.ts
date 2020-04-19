@@ -1,15 +1,15 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class NpcSay extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _charObjId = this.readD();
-    let _textType = this.readD();
-    let _npcId = this.readD() - 1000000;
-    let _npcString = this.readD();
+    const _id = this.readC();
+    const _charObjId = this.readD();
+    const _textType = this.readD();
+    const _npcId = this.readD() - 1000000;
+    const _npcString = this.readD();
 
-    let _messages = [];
+    const _messages = [];
     while (this._offset + 1 < this._buffer.byteLength) {
       _messages.push(this.readS());
     }
@@ -19,8 +19,8 @@ export default class NpcSay extends GameClientPacket {
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    //
+    // no-op
   }
 }

@@ -13,7 +13,7 @@ export default class LoginClient extends MMOClient<MMOConnection<LoginClient>> {
 
   private _loginCrypt: LoginCrypt;
 
-  onSuccessCallback!: Function;
+  onSuccessCallback!: () => void;
 
   private _sessionId: number = 0;
 
@@ -29,7 +29,7 @@ export default class LoginClient extends MMOClient<MMOConnection<LoginClient>> {
 
   private _playOk2!: number;
 
-  private _servers: Array<ServerData> = [];
+  private _servers: ServerData[] = [];
 
   private _selectedServer!: ServerData;
 
@@ -117,11 +117,11 @@ export default class LoginClient extends MMOClient<MMOConnection<LoginClient>> {
     this._blowfishKey = blowfishKey;
   }
 
-  get Servers(): Array<ServerData> {
+  get Servers(): ServerData[] {
     return this._servers;
   }
 
-  set Servers(servers: Array<ServerData>) {
+  set Servers(servers: ServerData[]) {
     this._servers = servers;
     this._selectedServer = servers.find((s) => s.Id === this.Config.serverId) ?? servers[0];
   }
@@ -142,7 +142,7 @@ export default class LoginClient extends MMOClient<MMOConnection<LoginClient>> {
     this._config = config;
   }
 
-  constructor(config: MMOConfig, onSuccessCallback?: Function) {
+  constructor(config: MMOConfig, onSuccessCallback?: () => void) {
     super(new MMOConnection(config));
     this.Config = config;
     this.Connection.Client = this;
@@ -166,7 +166,7 @@ export default class LoginClient extends MMOClient<MMOConnection<LoginClient>> {
     this._loginCrypt.setKey(this.BlowfishKey);
     this._loginCrypt.encrypt(lsp.Buffer, 0, lsp.Position);
 
-    var sendable: Uint8Array = new Uint8Array(lsp.Position + 2);
+    const sendable: Uint8Array = new Uint8Array(lsp.Position + 2);
     sendable[0] = (lsp.Position + 2) & 0xff;
     sendable[1] = (lsp.Position + 2) >>> 8;
     sendable.set(lsp.Buffer.slice(0, lsp.Position), 2);

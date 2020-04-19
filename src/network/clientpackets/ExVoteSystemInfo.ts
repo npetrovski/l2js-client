@@ -6,12 +6,12 @@ export default class ExVoteSystemInfo extends GameClientPacket {
     let _id = this.readC();
     let _sub = this.readH();
 
-    var player = this.Client.ActiveChar;
-    player.setRecomLeft(this.readD());
-    player.setRecomHave(this.readD());
-    player.setRecoBonusTime(this.readD());
-    player.setRecoBonusVal(this.readD());
-    player.setRecoBonusType(this.readD());
+    var user = this.Client.ActiveChar;
+    user.RecommLeft = this.readD();
+    user.RecommHave = this.readD();
+    let _recoBonusTime = this.readD();
+    let _recoBonusVal = this.readD();
+    let _recoBonusType = this.readD();
 
     return true;
   }

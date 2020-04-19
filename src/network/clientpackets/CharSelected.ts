@@ -4,45 +4,45 @@ import GameClient from "../GameClient";
 import RequestManorList from "../serverpackets/RequestManorList";
 import RequestKeyMapping from "../serverpackets/RequestKeyMapping";
 import EnterWorld from "../serverpackets/EnterWorld";
-import L2PcInstance from "../../model/actor/instance/L2PcInstance";
+import L2User from "../../entities/L2User";
 
 export default class CharSelected extends GameClientPacket {
-  private _activeChar: L2PcInstance = new L2PcInstance();
-
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    this._activeChar.setName(this.readS());
-    this._activeChar.setObjectId(this.readD());
-    this._activeChar.setTitle(this.readS());
-    let _sessionId = this.readD();
-    this._activeChar.setClanId(this.readD());
-    let _unkn1 = this.readD(); //??
-    this._activeChar.getAppearance().setSex(1 === this.readD());
-    let _race = this.readD();
-    let _classId = this.readD();
-    let _active1 = this.readD();
-    this._activeChar.setX(this.readD());
-    this._activeChar.setY(this.readD());
-    this._activeChar.setZ(this.readD());
+    const _id = this.readC();
+    const user = new L2User();
 
-    this._activeChar.getStatus().setCurrentHp(this.readD());
-    this._activeChar.getStatus().setCurrentMp(this.readD());
+    user.Name = this.readS();
+    user.ObjectId = this.readD();
+    const title = this.readS();
+    const _sessionId = this.readD();
+    const clanId = this.readD();
+    const _unkn1 = this.readD(); // ??
+    const sex = 1 === this.readD();
+    const _race = this.readD();
+    const _classId = this.readD();
+    const _active1 = this.readD();
+    user.X = this.readD();
+    user.Y = this.readD();
+    user.Z = this.readD();
 
-    //console.log("CharSelected: Not yet fully implemented.");
-    this.Client.ActiveChar = this._activeChar;
+    user.Hp = this.readD();
+    user.Mp = this.readD();
+
+    // console.log("CharSelected: Not yet fully implemented.");
+    this.Client.ActiveChar = user;
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    var spk: SendablePacket<GameClient> = new RequestManorList();
-    this.Client.sendPacket(spk);
+    const spk1: SendablePacket<GameClient> = new RequestManorList();
+    this.Client.sendPacket(spk1);
 
-    var spk: SendablePacket<GameClient> = new RequestKeyMapping();
-    this.Client.sendPacket(spk);
+    const spk2: SendablePacket<GameClient> = new RequestKeyMapping();
+    this.Client.sendPacket(spk2);
 
-    var spk: SendablePacket<GameClient> = new EnterWorld();
-    this.Client.sendPacket(spk);
+    const spk3: SendablePacket<GameClient> = new EnterWorld();
+    this.Client.sendPacket(spk3);
   }
 }

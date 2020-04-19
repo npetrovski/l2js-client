@@ -1,31 +1,33 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class Die extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
 
-    let _charObjId = this.readD();
-    let _canTeleport = this.readD() == 1;
+    const _charObjId = this.readD();
+    const _canTeleport = this.readD() === 1;
 
-    let _hideOutId = this.readD();
-    let _toCastle = this.readD();
-    let _toSiegeHQ = this.readD();
+    const _hideOutId = this.readD();
+    const _toCastle = this.readD();
+    const _toSiegeHQ = this.readD();
 
-    let _sweepable = this.readD() == 1; //blue glow
-    let _staticRes = this.readD() == 1; //to Fixed
+    const _sweepable = this.readD() === 1; // blue glow
+    const _staticRes = this.readD() === 1; // to Fixed
 
-    let _toFortress = this.readD();
+    const _toFortress = this.readD();
 
-    if (_charObjId === this.Client.ActiveChar.getObjectId()) {
-      this.Client.ActiveChar.setSelected(undefined);
-      this.Client.ActiveChar.setIsDead(true);
+    if (_charObjId === this.Client.ActiveChar.ObjectId) {
+      this.Client.ActiveChar.Target = null;
+      this.Client.ActiveChar.IsDead = true;
       return true;
     }
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

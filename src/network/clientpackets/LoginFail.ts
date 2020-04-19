@@ -6,10 +6,10 @@ import RequestSecurityCard from "../serverpackets/RequestSecurityCard";
 
 export default class LoginFail extends LoginClientPacket {
   _securityCard: boolean = false;
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id: number = this.readC();
-    let _reason = this.readC();
+    const _id: number = this.readC();
+    const _reason = this.readC();
     if (_reason === 0x1f) {
       this._securityCard = true;
     } else {
@@ -19,10 +19,10 @@ export default class LoginFail extends LoginClientPacket {
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
     if (this._securityCard) {
-      var spk: SendablePacket<LoginClient> = new RequestSecurityCard();
+      const spk: SendablePacket<LoginClient> = new RequestSecurityCard();
       this.Client.sendPacket(spk);
     }
   }

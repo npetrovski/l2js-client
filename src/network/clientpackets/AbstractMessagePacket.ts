@@ -20,12 +20,12 @@ export default abstract class AbstractMessagePacket<T extends AbstractMessagePac
   static readonly TYPE_TEXT: number = 0;
 
   readMe(): void {
-    let _id = this.readC();
-    let _messageId = this.readD();
-    let _paramsLength = this.readD();
+    const _id = this.readC();
+    const _messageId = this.readD();
+    const _paramsLength = this.readD();
     var _params = [];
     for (let i = 0; i < _paramsLength; i++) {
-      var _paramType = this.readD();
+      let _paramType = this.readD();
       switch (_paramType) {
         case AbstractMessagePacket.TYPE_TEXT:
         case AbstractMessagePacket.TYPE_PLAYER_NAME:

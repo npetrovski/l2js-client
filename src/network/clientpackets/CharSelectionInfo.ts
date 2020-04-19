@@ -1,98 +1,101 @@
 import GameClientPacket from "./GameClientPacket";
 import GameClient from "../GameClient";
 import SendablePacket from "../../mmocore/SendablePacket";
-import CharSelectInfoPackage from "../../model/CharSelectInfoPackage";
 import GameServerPacket from "../serverpackets/GameServerPacket";
 import CharacterSelect from "../serverpackets/CharacterSelect";
+import L2User from "../../entities/L2User";
+import L2ObjectCollection from "../../entities/L2ObjectCollection";
 
 export default class CharSelectionInfo extends GameClientPacket {
-  private _characterPackages: Array<CharSelectInfoPackage> = [];
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _characterPackages = this.readD();
-    let _charMaxNumber = this.readD();
-    let _pad = this.readC();
+    const _id = this.readC();
+    const _characterPackages: L2ObjectCollection<L2User> = new L2ObjectCollection();
 
-    for (let i = 0; i < _characterPackages; i++) {
-      var char: CharSelectInfoPackage = new CharSelectInfoPackage();
+    const _characterPackagesSize = this.readD();
+    const _charMaxNumber = this.readD();
+    const _pad = this.readC();
 
-      char.name = this.readS();
+    for (let i = 0; i < _characterPackagesSize; i++) {
+      const char: L2User = new L2User();
 
-      char.objectId = this.readD();
-      let _loginName = this.readS();
-      let _sessionId = this.readD();
-      char.clanId = this.readD();
-      let _builderLevel = this.readD();
+      char.Name = this.readS();
 
-      char.sex = this.readD();
-      char.race = this.readD();
-      char.baseClassId = this.readD();
+      char.ObjectId = this.readD();
+      const _loginName = this.readS();
+      const _sessionId = this.readD();
+      const clanId = this.readD();
+      const _builderLevel = this.readD();
 
-      let _active = this.readD(); //??
+      const sex = this.readD();
+      const race = this.readD();
+      const baseClassId = this.readD();
 
-      char.x = this.readD();
-      char.y = this.readD();
-      char.z = this.readD();
+      const _active = this.readD(); // ??
 
-      char.currentHp = this.readF();
-      char.currentMp = this.readF();
+      char.X = this.readD();
+      char.Y = this.readD();
+      char.Z = this.readD();
 
-      char.sp = this.readD();
-      char.exp = this.readQ();
-      let _expPercentFromCurrentLevel = this.readF();
+      char.Hp = this.readF();
+      char.Mp = this.readF();
 
-      char.level = this.readD();
-      char.karma = this.readD();
-      char.pkKills = this.readD();
-      char.pvpKills = this.readD();
+      char.Sp = this.readD();
+      char.Exp = this.readQ();
+      char.ExpPercent = this.readF();
 
-      let _unknD1 = this.readD();
-      let _unknD2 = this.readD();
-      let _unknD3 = this.readD();
-      let _unknD4 = this.readD();
-      let _unknD5 = this.readD();
-      let _unknD6 = this.readD();
-      let _unknD7 = this.readD();
+      char.Level = this.readD();
+      char.Karma = this.readD();
+      char.PkKills = this.readD();
+      char.PvpKills = this.readD();
 
-      for (let slot in GameServerPacket.PAPERDOLL_ORDER) {
-        char.paperdoll.push(this.readD());
+      const _unknD1 = this.readD();
+      const _unknD2 = this.readD();
+      const _unknD3 = this.readD();
+      const _unknD4 = this.readD();
+      const _unknD5 = this.readD();
+      const _unknD6 = this.readD();
+      const _unknD7 = this.readD();
+
+      let _paperdoll = [];
+      for (const slot in GameServerPacket.PAPERDOLL_ORDER) {
+        _paperdoll.push(this.readD());
       }
 
-      char.hairStyle = this.readD();
-      char.hairColor = this.readD();
-      char.face = this.readD();
+      const hairStyle = this.readD();
+      const hairColor = this.readD();
+      const face = this.readD();
 
-      char.maxHp = this.readF();
-      char.maxMp = this.readF();
+      char.MaxHp = this.readF();
+      char.MaxMp = this.readF();
 
-      let _daysLeftBeforeDelete = this.readD();
-      char.classId = this.readD();
-      let _c3AutoSelectChar = this.readD(); // is this char active - the last one used
+      const _daysLeftBeforeDelete = this.readD();
+      char.ClassId = this.readD();
+      const _c3AutoSelectChar = this.readD(); // is this char active - the last one used
 
-      let _enchantEffect = this.readC();
-      char.augmentationId = this.readD();
+      const _enchantEffect = this.readC();
+      const augmentationId = this.readD();
 
-      let _hideTransformation = this.readD();
+      const _hideTransformation = this.readD();
 
-      let _notImplementedPetId = this.readD();
-      let _notImplementedPetLevel = this.readD();
-      let _notImplementedPetMaxFood = this.readD();
-      let _notImplementedPetCurrentFood = this.readD();
-      let _notImplementedPetMaxHP = this.readF();
-      let _notImplementedPetMaxMP = this.readF();
+      const _notImplementedPetId = this.readD();
+      const _notImplementedPetLevel = this.readD();
+      const _notImplementedPetMaxFood = this.readD();
+      const _notImplementedPetCurrentFood = this.readD();
+      const _notImplementedPetMaxHP = this.readF();
+      const _notImplementedPetMaxMP = this.readF();
 
-      char.vitalityPoints = this.readD();
+      char.Vitality = this.readD();
 
-      this._characterPackages.push(char);
+      _characterPackages.add(char);
     }
 
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    var spk: SendablePacket<GameClient> = new CharacterSelect(this.Client.Config.charSlotIndex ?? 0);
+    const spk: SendablePacket<GameClient> = new CharacterSelect(this.Client.Config.charSlotIndex ?? 0);
     this.Client.sendPacket(spk);
   }
 }

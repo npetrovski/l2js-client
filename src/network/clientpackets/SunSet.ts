@@ -1,13 +1,14 @@
 import GameClientPacket from "./GameClientPacket";
-
 export default class SunSet extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

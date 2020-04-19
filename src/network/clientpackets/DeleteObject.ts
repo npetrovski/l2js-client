@@ -1,18 +1,19 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class DeleteObject extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _objectId = this.readD();
-    let _unkn1 = this.readD();
+    const _id = this.readC();
+    const _objectId = this.readD();
+    const _unkn1 = this.readD();
 
     this.Client.CreaturesList.removeByObjectId(_objectId);
+    this.Client.DroppedItems.removeByObjectId(_objectId);
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    //
+    // no-op
   }
 }

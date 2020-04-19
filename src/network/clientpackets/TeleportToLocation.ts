@@ -1,45 +1,40 @@
 import GameClientPacket from "./GameClientPacket";
-import Location from "../../model/Location";
 import Appearing from "../serverpackets/Appearing";
 
 export default class TeleportToLocation extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
+    const _targetObjectId = this.readD();
+    const [_x, _y, _z] = this.readLoc();
+    const _unkn1 = this.readD();
+    const _heading = this.readD();
 
-    let _targetObjectId = this.readD();
-
-    let [_x, _y, _z] = this.readLoc();
-
-    let _unkn1 = this.readD();
-
-    let _heading = this.readD();
-
-    var user = this.Client.ActiveChar;
-    if (user && _targetObjectId == user.getObjectId()) {
-      user.setLocation(new Location(_x, _y, _z));
+    const user = this.Client.ActiveChar;
+    if (user && _targetObjectId === user.ObjectId) {
+      user.setLocation(_x, _y, _z);
       this.Client.CreaturesList.clear();
     } else {
-      var npc = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
-      if (npc) {
-        npc.setLocation(new Location(_x, _y, _z));
+      const creature = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
+      if (creature) {
+        creature.setLocation(_x, _y, _z);
       }
 
-      var npc = this.Client.PartyList.getEntryByObjectId(_targetObjectId);
-      if (npc) {
-        npc.setLocation(new Location(_x, _y, _z));
+      const partyMember = this.Client.PartyList.getEntryByObjectId(_targetObjectId);
+      if (partyMember) {
+        partyMember.setLocation(_x, _y, _z);
       }
 
-      var npc = this.Client.PetList.getEntryByObjectId(_targetObjectId);
-      if (npc) {
-        npc.setLocation(new Location(_x, _y, _z));
+      const pet = this.Client.PetList.getEntryByObjectId(_targetObjectId);
+      if (pet) {
+        pet.setLocation(_x, _y, _z);
       }
     }
 
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
     this.Client.sendPacket(new Appearing());
   }

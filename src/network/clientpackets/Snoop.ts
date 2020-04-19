@@ -7,12 +7,12 @@ export default class Snoop extends GameClientPacket {
   private _speaker: string = "";
   private _msg: string = "";
 
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
     this._convoId = this.readD();
     this._name = this.readS();
-    let _unkn1 = this.readD();
+    const _unkn1 = this.readD();
 
     this._type = this.readD();
     this._speaker = this.readS();
@@ -21,6 +21,8 @@ export default class Snoop extends GameClientPacket {
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

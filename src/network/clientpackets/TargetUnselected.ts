@@ -1,20 +1,19 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class TargetUnselected extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
+    const _targetObjectId = this.readD();
+    const [_x, _y, _z] = this.readLoc();
+    const _unkn1 = this.readD();
 
-    let _targetObjectId = this.readD();
-
-    let [_x, _y, _z] = this.readLoc();
-
-    let _unkn1 = this.readD();
-
-    this.Client.ActiveChar.setSelected(undefined);
+    this.Client.ActiveChar.Target = null;
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

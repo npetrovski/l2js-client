@@ -26,13 +26,13 @@ export default class RequestAuthLogin extends LoginServerPacket {
     var login_info: Uint8Array = new Uint8Array(128);
 
     login_info[0x5b] = 0x24;
-    for (var i = 0; i < this.Client.Username.length; i++) login_info[0x5e + i] = this.Client.Username.charCodeAt(i);
-    for (var i = 0; i < this.Client.Password.length; i++) login_info[0x6c + i] = this.Client.Password.charCodeAt(i);
+    for (let i = 0; i < this.Client.Username.length; i++) login_info[0x5e + i] = this.Client.Username.charCodeAt(i);
+    for (let i = 0; i < this.Client.Password.length; i++) login_info[0x6c + i] = this.Client.Password.charCodeAt(i);
 
     var modulus: Buffer = Buffer.from(this.Client.PublicKey);
     var data: Buffer = Buffer.from(login_info);
 
-    var key = new NodeRSA();
+    const key = new NodeRSA();
     key.setOptions({
       encryptionScheme: {
         scheme: "pkcs1",
@@ -42,13 +42,13 @@ export default class RequestAuthLogin extends LoginServerPacket {
 
     key.importKey(
       {
-        e: 65537, //Uint8Array.from([1, 0, 1]), // Public exponent-value F4 = 65537.
-        n: modulus, //Modulus
+        e: 65537, // Uint8Array.from([1, 0, 1]), // Public exponent-value F4 = 65537.
+        n: modulus, // Modulus
       },
       "components-public"
     );
 
-    var encryptedLoginInfo: Uint8Array = key.encrypt(data, "buffer");
+    const encryptedLoginInfo: Uint8Array = key.encrypt(data, "buffer");
 
     this.writeC(0);
     this.writeB(encryptedLoginInfo);

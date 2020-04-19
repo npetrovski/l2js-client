@@ -46,6 +46,9 @@ import ChangeMoveType from "./clientpackets/ChangeMoveType";
 import AutoAttackStart from "./clientpackets/AutoAttackStart";
 import Attack from "./clientpackets/Attack";
 import SkillList from "./clientpackets/SkillList";
+import AskJoinParty from "./clientpackets/AskJoinParty";
+import SpawnItem from "./clientpackets/SpawnItem";
+import CharInfo from "./clientpackets/CharInfo";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   //@Override
@@ -61,6 +64,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x01:
           rpk = new Revive();
+          break;
+        case 0x05:
+          rpk = new SpawnItem();
           break;
         case 0x08:
           rpk = new DeleteObject();
@@ -116,11 +122,17 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x30:
           rpk = new NpcSay();
           break;
+        case 0x31:
+          rpk = new CharInfo();
+          break;
         case 0x32:
           rpk = new UserInfo();
           break;
         case 0x33:
           rpk = new Attack();
+          break;
+        case 0x39:
+          rpk = new AskJoinParty();
           break;
         case 0x3a:
           rpk = new JoinParty();

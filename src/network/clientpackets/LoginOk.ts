@@ -8,9 +8,9 @@ export default class LoginOk extends LoginClientPacket {
 
   _loginOk2: number = 0;
 
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id: number = this.readC();
+    const _id: number = this.readC();
     this._loginOk1 = this.readD();
     this._loginOk2 = this.readD();
 
@@ -19,9 +19,8 @@ export default class LoginOk extends LoginClientPacket {
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    var spk: SendablePacket<LoginClient> = new RequestCharacters(this.Client.LoginOk1, this.Client.LoginOk2);
-    this.Client.sendPacket(spk);
+    this.Client.sendPacket(new RequestCharacters(this.Client.LoginOk1, this.Client.LoginOk2));
   }
 }

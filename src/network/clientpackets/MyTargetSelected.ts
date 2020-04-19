@@ -13,7 +13,7 @@ export default class MyTargetSelected extends GameClientPacket {
       var npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
 
       if (npc) {
-        this.Client.ActiveChar.setSelected(npc);
+        this.Client.ActiveChar.Target = npc;
       }
     }
 

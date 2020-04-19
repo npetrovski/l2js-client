@@ -224,13 +224,13 @@ export default class BlowfishEngine {
      * (1) Initialize the S-boxes and the P-array, with a fixed string This
      * string contains the hexadecimal digits of pi (3.141...)
      */
-    for (var i = 0; i < BlowfishEngine.SBOX_SK; i++) {
+    for (let i = 0; i < BlowfishEngine.SBOX_SK; i++) {
       this.S0[i] = BlowfishEngine.KS0[i];
       this.S1[i] = BlowfishEngine.KS1[i];
       this.S2[i] = BlowfishEngine.KS2[i];
       this.S3[i] = BlowfishEngine.KS3[i];
     }
-    for (var i = 0; i < BlowfishEngine.P_SZ; i++) {
+    for (let i = 0; i < BlowfishEngine.P_SZ; i++) {
       this.P[i] = BlowfishEngine.KP[i];
     }
 
@@ -240,12 +240,12 @@ export default class BlowfishEngine {
      * to P[17]). Repeatedly cycle through the key bits until the entire
      * P-array has been XOR-ed with the key bits
      */
-    var keyLength = key.byteLength;
-    var keyIndex = 0;
-    for (var i = 0; i < BlowfishEngine.P_SZ; i++) {
+    const keyLength = key.byteLength;
+    let keyIndex = 0;
+    for (let i = 0; i < BlowfishEngine.P_SZ; i++) {
       // get the 32 bits of the key, in 4 * 8 bit chunks
-      var data = 0x0000000;
-      for (var j = 0; j < 4; j++) {
+      let data = 0x0000000;
+      for (let j = 0; j < 4; j++) {
         // create a 32 bit block
         data = (data << 8) | (key[keyIndex++] & 0xff);
         // wrap when we get to the end of the key
@@ -279,12 +279,12 @@ export default class BlowfishEngine {
     this.processTable(this.S2[BlowfishEngine.SBOX_SK - 2], this.S2[BlowfishEngine.SBOX_SK - 1], this.S3);
   }
 
-  processTable(xl: number, xr: number, table: Array<number>): void {
-    var size: number = table.length;
-    for (var s = 0; s < size; s += 2) {
+  processTable(xl: number, xr: number, table: number[]): void {
+    const size: number = table.length;
+    for (let s = 0; s < size; s += 2) {
       xl = this.xor(xl, this.P[0]);
 
-      for (var i = 1; i < BlowfishEngine.ROUNDS; i += 2) {
+      for (let i = 1; i < BlowfishEngine.ROUNDS; i += 2) {
         xr = this.xor(xr, this.xor(this.F(xl), this.P[i]));
         xl = this.xor(xl, this.xor(this.F(xr), this.P[i + 1]));
       }
@@ -315,10 +315,10 @@ export default class BlowfishEngine {
   }
 
   encryptBlock(src: Uint8Array, srcIndex: number, dst: Uint8Array, dstIndex: number): void {
-    var xl: number = this.bytesTo32Bits(src, srcIndex);
-    var xr: number = this.bytesTo32Bits(src, srcIndex + 4);
+    let xl: number = this.bytesTo32Bits(src, srcIndex);
+    let xr: number = this.bytesTo32Bits(src, srcIndex + 4);
     xl ^= this.P[0];
-    for (var i = 1; i < BlowfishEngine.ROUNDS; i += 2) {
+    for (let i = 1; i < BlowfishEngine.ROUNDS; i += 2) {
       xr ^= this.F(xl) ^ this.P[i];
       xl ^= this.F(xr) ^ this.P[i + 1];
     }
@@ -328,8 +328,8 @@ export default class BlowfishEngine {
   }
 
   decryptBlock(src: Uint8Array, srcIndex: number, dst: Uint8Array, dstIndex: number): void {
-    var xl = this.bytesTo32Bits(src, srcIndex);
-    var xr = this.bytesTo32Bits(src, srcIndex + 4);
+    let xl = this.bytesTo32Bits(src, srcIndex);
+    let xr = this.bytesTo32Bits(src, srcIndex + 4);
     xl ^= this.P[BlowfishEngine.ROUNDS + 1];
     for (let i = BlowfishEngine.ROUNDS; i > 0; i -= 2) {
       xr ^= this.F(xl) ^ this.P[i];

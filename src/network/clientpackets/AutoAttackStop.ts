@@ -1,15 +1,16 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class AutoAttackStop extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-
-    let _targetObjId = this.readD();
+    const _id = this.readC();
+    const _targetObjId = this.readD();
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

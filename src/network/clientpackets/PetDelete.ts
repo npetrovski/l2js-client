@@ -1,17 +1,17 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class PetDelete extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _petType = this.readD();
-    let _petObjId = this.readD();
+    const _id = this.readC();
+    const _petType = this.readD();
+    const _petObjId = this.readD();
 
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    //
+    // no-op
   }
 }

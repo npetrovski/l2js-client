@@ -2,119 +2,117 @@ import GameClientPacket from "./GameClientPacket";
 import GameServerPacket from "../serverpackets/GameServerPacket";
 
 export default class UserInfo extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
+    const _id = this.readC();
 
-    var user = this.Client.ActiveChar;
+    const user = this.Client.ActiveChar;
 
-    var stat = user.getStat();
-    var status = user.getStatus();
-    var appearance = user.getAppearance();
+    user.X = this.readD();
+    user.Y = this.readD();
+    user.Z = this.readD();
+    const _vehicleId = this.readD();
 
-    user.setX(this.readD());
-    user.setY(this.readD());
-    user.setZ(this.readD());
-    let _vehicleId = this.readD();
+    user.ObjectId = this.readD();
+    user.Name = this.readS();
+    user.Race = this.readD();
+    user.Sex = this.readD();
 
-    user.setObjectId(this.readD());
-    user.getAppearance().setVisibleName(this.readS());
-    let _race = this.readD();
-    user.getAppearance().setSex(this.readD() == 1);
+    user.BaseClassId = this.readD();
+    user.Level = this.readD();
+    user.Exp = this.readQ();
+    const _percentFromCurrentLevel = this.readF();
+    user.STR = this.readD();
+    user.DEX = this.readD();
+    user.CON = this.readD();
+    user.INT = this.readD();
+    user.WIT = this.readD();
+    user.MEN = this.readD();
+    user.MaxHp = this.readD();
+    user.Hp = this.readD();
+    user.MaxMp = this.readD();
+    user.Mp = this.readD();
+    user.Sp = this.readD();
 
-    let _baseClass = this.readD();
-    stat.setLevel(this.readD());
-    stat.setExp(this.readQ());
-    let _percentFromCurrentLevel = this.readF();
-    stat.setSTR(this.readD());
-    stat.setDEX(this.readD());
-    stat.setCON(this.readD());
-    stat.setINT(this.readD());
-    stat.setWIT(this.readD());
-    stat.setMEN(this.readD());
-    stat.setMaxHp(this.readD());
-    status.setCurrentHp(this.readD());
-    stat.setMaxMp(this.readD());
-    status.setCurrentMp(this.readD());
-    stat.setSp(this.readD());
+    const _currentLoad = this.readD(); // inventory => totalWeight
+    const _maxLoad = this.readD();
 
-    let _currentLoad = this.readD(); //inventory => totalWeight
-    let _maxLoad = this.readD();
+    const _activeWeapon = this.readD() === 40; // 20 no weapon, 40 weapon equipped
 
-    let _activeWeapon = this.readD() == 40; // 20 no weapon, 40 weapon equipped
+    GameServerPacket.PAPERDOLL_ORDER.forEach((value) => {
+      const _slot1 = this.readD();
+    });
 
-    for (let slot in GameServerPacket.PAPERDOLL_ORDER) {
-      let _slot = this.readD();
-    }
+    GameServerPacket.PAPERDOLL_ORDER.forEach((value) => {
+      const _slot2 = this.readD();
+    });
 
-    for (let slot in GameServerPacket.PAPERDOLL_ORDER) {
-      let _slot = this.readD();
-    }
+    GameServerPacket.PAPERDOLL_ORDER.forEach((value) => {
+      const _slot3 = this.readD();
+    });
 
-    for (let slot in GameServerPacket.PAPERDOLL_ORDER) {
-      let _slot = this.readD();
-    }
+    const _talismanSlots = this.readD();
+    const _canEquipCloak = this.readD() === 1;
 
-    let _talismanSlots = this.readD();
-    let _canEquipCloak = this.readD() == 1;
+    user.PAtk = this.readD();
+    user.PAtkSpd = this.readD();
+    user.PDef = this.readD();
+    user.EvasionRate = this.readD();
+    user.Accuracy = this.readD();
+    user.Crit = this.readD();
+    user.MAtk = this.readD();
+    user.MAtkSpd = this.readD();
 
-    stat.setPAtk(this.readD());
-    stat.setPAtkSpd(this.readD());
-    stat.setPDef(this.readD());
-    stat.setEvasionRate(this.readD());
-    stat.setAccuracy(this.readD());
-    stat.setCriticalHit(this.readD());
-    stat.setMAtk(this.readD());
-    stat.setMAtkSpd(this.readD());
+    const _pAtkSpd1 = this.readD();
+    user.MDef = this.readD();
+    const _pvpFlag = this.readD();
+    const _karma = this.readD();
 
-    let _pAtkSpd1 = this.readD();
-    stat.setMDef(this.readD());
-    let _pvpFlag = this.readD();
-    let _karma = this.readD();
+    user.RunSpeed = this.readD();
+    user.WalkSpeed = this.readD();
+    user.SwimRunSpeed = this.readD();
+    user.SwimWalkSpeed = this.readD();
+    user.FlyRunSpeed = this.readD();
+    user.FlyWalkSpeed = this.readD();
 
-    stat.setRunSpeed(this.readD());
-    stat.setWalkSpeed(this.readD());
-    stat.setSwimRunSpeed(this.readD());
-    stat.setSwimWalkSpeed(this.readD());
-    stat.setFlyRunSpeed(this.readD());
-    stat.setFlyWalkSpeed(this.readD());
+    user.SpeedMultiplier = this.readF();
+    user.AtkSpdMultiplier = this.readF();
+    const _collisionRadius = this.readF();
+    const _collisionHeight = this.readF();
 
-    stat.setMovementSpeedMultiplier(this.readF());
-    stat.setAttackSpeedMultiplier(this.readF());
-    let _collisionRadius = this.readF();
-    let _collisionHeight = this.readF();
+    const HairStyle = this.readD();
+    const HairColor = this.readD();
+    const Face = this.readD();
 
-    appearance.setHairStyle(this.readD());
-    appearance.setHairColor(this.readD());
-    appearance.setFace(this.readD());
+    const _isGM = this.readD();
 
-    let _isGM = this.readD();
-
-    user.setTitle(this.readS());
-    user.setClanId(this.readD());
-    let _clanCrestId = this.readD();
-    let _allyId = this.readD();
-    let _allyCrestId = this.readD();
+    user.Title = this.readS();
+    const ClanId = this.readD();
+    const _clanCrestId = this.readD();
+    const _allyId = this.readD();
+    const _allyCrestId = this.readD();
 
     // 0x40 leader rights
     // siege flags: attacker - 0x180 sword over name, defender - 0x80 shield, 0xC0 crown (|leader), 0x1C0 flag (|leader)
-    let _relation = this.readD();
+    const _relation = this.readD();
 
-    let _mountType = this.readC();
-    let _privateStoreType = this.readC();
-    let _dwarvenCraft = this.readC();
+    const _mountType = this.readC();
+    const _privateStoreType = this.readC();
+    const _dwarvenCraft = this.readC();
 
-    let _pkKills = this.readD();
-    let _pvpKills = this.readD();
+    user.PkKills = this.readD();
+    user.PvpKills = this.readD();
 
-    let _cubicsNum = this.readH();
-    for (var j = 0; j < _cubicsNum; j++) {
-      let _cubicId = this.readH();
+    const _cubicsNum = this.readH();
+    for (let j = 0; j < _cubicsNum; j++) {
+      const _cubicId = this.readH();
     }
 
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

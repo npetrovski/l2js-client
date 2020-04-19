@@ -1,4 +1,3 @@
-import BlowfishEngine from "../security/crypt/BlowfishEngine";
 import AbstractPacket from "./AbstractPacket";
 import MMOClient from "./MMOClient";
 
@@ -10,8 +9,6 @@ export default abstract class SendablePacket<T extends MMOClient<any>> extends A
 
   constructor() {
     super();
-    //this._buffer = new Uint8Array(size + 4 + ((size + 4) % 8));
-    //this._buffer.fill(0, size);
     this._buffer = new Uint8Array(SendablePacket.PACKET_MAX_SIZE);
     this._view = new DataView(this._buffer.buffer);
   }
@@ -53,8 +50,8 @@ export default abstract class SendablePacket<T extends MMOClient<any>> extends A
   }
 
   writeQ(val: number) {
-    let hi = Math.floor(val / this.pow2(32)),
-      lo = val - hi * this.pow2(32);
+    const hi = Math.floor(val / this.pow2(32));
+    const lo = val - hi * this.pow2(32);
 
     this._view.setUint32(this._offset, lo, true);
     this._view.setUint32(this._offset + 4, hi, true);

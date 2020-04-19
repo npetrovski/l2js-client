@@ -6,14 +6,7 @@ import MoveBackwardToLocation from "../network/serverpackets/MoveBackwardToLocat
 export default class CommandMoveTo extends AbstractGameCommand<GameClient> {
   execute(x: number, y: number, z: number): void {
     this.Client?.sendPacket(
-      new MoveBackwardToLocation(
-        x,
-        y,
-        z,
-        this.Client.ActiveChar.getX(),
-        this.Client.ActiveChar.getY(),
-        this.Client.ActiveChar.getZ()
-      )
+      new MoveBackwardToLocation(x, y, z, this.Client.ActiveChar.X, this.Client.ActiveChar.Y, this.Client.ActiveChar.Z)
     );
   }
 }

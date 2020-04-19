@@ -1,8 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
-import L2Npc from "../../model/actor/L2Npc";
-import L2Object from "../../model/L2Object";
-import L2Character from "../../model/actor/L2Character";
-import L2PcInstance from "../../model/actor/instance/L2PcInstance";
+import L2User from "../../entities/L2User";
+import L2Creature from "../../entities/L2Creature";
 
 export default class StatusUpdate extends GameClientPacket {
   static readonly LEVEL: number = 0x01;
@@ -38,15 +36,15 @@ export default class StatusUpdate extends GameClientPacket {
   static readonly CUR_CP: number = 0x21;
   static readonly MAX_CP: number = 0x22;
 
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _objectId = this.readD();
+    const _id = this.readC();
+    const _objectId = this.readD();
 
-    let _attributeSize = this.readD();
+    const _attributeSize = this.readD();
 
-    var char!: L2Character | undefined;
-    if (this.Client.ActiveChar.getObjectId() === _objectId) {
+    let char!: L2User | L2Creature | undefined;
+    if (this.Client.ActiveChar.ObjectId === _objectId) {
       char = this.Client.ActiveChar;
     } else {
       char = this.Client.CreaturesList.getEntryByObjectId(_objectId);
@@ -56,97 +54,129 @@ export default class StatusUpdate extends GameClientPacket {
       return true;
     }
 
-    for (var i = 0; i < _attributeSize; i++) {
-      let status = this.readD();
-      let value = this.readD();
+    for (let i = 0; i < _attributeSize; i++) {
+      const status = this.readD();
+      const value = this.readD();
       switch (status) {
         case StatusUpdate.LEVEL:
-          char.getStat().setLevel(value);
+          if (char instanceof L2User) {
+            char.Level = value;
+          }
           break;
         case StatusUpdate.EXP:
-          if (char instanceof L2PcInstance) {
-            char.getStat().setExp(value);
+          if (char instanceof L2User) {
+            char.Exp = value;
           }
           break;
         case StatusUpdate.STR:
-          char.getStat().setSTR(value);
+          if (char instanceof L2User) {
+            char.STR = value;
+          }
           break;
         case StatusUpdate.DEX:
-          char.getStat().setDEX(value);
+          if (char instanceof L2User) {
+            char.DEX = value;
+          }
           break;
         case StatusUpdate.CON:
-          char.getStat().setCON(value);
+          if (char instanceof L2User) {
+            char.CON = value;
+          }
           break;
         case StatusUpdate.INT:
-          char.getStat().setINT(value);
+          if (char instanceof L2User) {
+            char.INT = value;
+          }
           break;
         case StatusUpdate.WIT:
-          char.getStat().setWIT(value);
+          if (char instanceof L2User) {
+            char.WIT = value;
+          }
           break;
         case StatusUpdate.MEN:
-          char.getStat().setMEN(value);
+          if (char instanceof L2User) {
+            char.MEN = value;
+          }
           break;
         case StatusUpdate.CUR_HP:
-          char.getStatus().setCurrentHp(value);
+          char.Hp = value;
           break;
         case StatusUpdate.MAX_HP:
-          char.getStat().setMaxHp(value);
+          char.MaxHp = value;
           break;
         case StatusUpdate.CUR_MP:
-          char.getStatus().setCurrentMp(value);
+          char.Mp = value;
           break;
         case StatusUpdate.MAX_MP:
-          char.getStat().setMaxMp(value);
+          char.MaxMp = value;
           break;
         case StatusUpdate.SP:
-          if (char instanceof L2PcInstance) {
-            char.getStat().setSp(value);
+          if (char instanceof L2User) {
+            char.Sp = value;
           }
           break;
         case StatusUpdate.CUR_LOAD:
           // todo
           break;
         case StatusUpdate.MAX_LOAD:
-          //todo
+          // todo
           break;
         case StatusUpdate.P_ATK:
-          char.getStat().setPAtk(value);
+          if (char instanceof L2User) {
+            char.PAtk = value;
+          }
           break;
         case StatusUpdate.ATK_SPD:
-          char.getStat().setPAtkSpd(value);
+          if (char instanceof L2User) {
+            char.PAtkSpd = value;
+          }
           break;
         case StatusUpdate.P_DEF:
-          char.getStat().setPDef(value);
+          if (char instanceof L2User) {
+            char.PDef = value;
+          }
           break;
         case StatusUpdate.EVASION:
-          char.getStat().setEvasionRate(value);
+          if (char instanceof L2User) {
+            char.EvasionRate = value;
+          }
           break;
         case StatusUpdate.ACCURACY:
-          char.getStat().setAccuracy(value);
+          if (char instanceof L2User) {
+            char.Accuracy = value;
+          }
           break;
         case StatusUpdate.CRITICAL:
-          char.getStat().setCriticalHit(value);
+          if (char instanceof L2User) {
+            char.Crit = value;
+          }
           break;
         case StatusUpdate.M_ATK:
-          char.getStat().setMAtk(value);
+          if (char instanceof L2User) {
+            char.MAtk = value;
+          }
           break;
         case StatusUpdate.CAST_SPD:
-          char.getStat().setMAtkSpd(value);
+          if (char instanceof L2User) {
+            char.MAtkSpd = value;
+          }
           break;
         case StatusUpdate.M_DEF:
-          char.getStat().setMDef(value);
+          if (char instanceof L2User) {
+            char.MDef = value;
+          }
           break;
         case StatusUpdate.PVP_FLAG:
-          //todo
+          // todo
           break;
         case StatusUpdate.KARMA:
-          //todo
+          // todo
           break;
         case StatusUpdate.CUR_CP:
-          //todo
+          // todo
           break;
         case StatusUpdate.MAX_CP:
-          //todo
+          // todo
           break;
       }
     }
@@ -154,6 +184,8 @@ export default class StatusUpdate extends GameClientPacket {
     return true;
   }
 
-  //@Override
-  run(): void {}
+  // @Override
+  run(): void {
+    // no-op
+  }
 }

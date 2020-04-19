@@ -7,5 +7,5 @@ export default interface IStream {
 
   close(): void;
 
-  setDataCallback(callback?: Function): void;
+  setDataCallback(callback?: (bytes: Uint8Array) => void): void;
 }

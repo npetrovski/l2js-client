@@ -1,0 +1,7 @@
+export enum PartyDistributionType {
+  FINDERS_KEEPERS,
+  RANDOM,
+  RANDOM_INCLUDING_SPOIL,
+  BY_TURN,
+  BY_TURN_INCLUDING_SPOIL,
+}
