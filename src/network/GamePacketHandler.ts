@@ -56,6 +56,7 @@ import PartyMemberPosition from "./clientpackets/PartyMemberPosition";
 import PartySmallWindowUpdate from "./clientpackets/PartySmallWindowUpdate";
 import PartySmallWindowDeleteAll from "./clientpackets/PartySmallWindowDeleteAll";
 import ItemList from "./clientpackets/ItemList";
+import ExQuestItemList from "./clientpackets/ExQuestItemList";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   // @Override
@@ -227,6 +228,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           switch (sub) {
             case 0x8d:
               rpk = new NpcQuestHtmlMessage();
+              break;
+            case 0xc6:
+              rpk = new ExQuestItemList();
               break;
             case 0xc9:
               rpk = new ExVoteSystemInfo();

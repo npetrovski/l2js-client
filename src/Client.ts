@@ -55,7 +55,7 @@ export class Client {
     nextTarget: new CommandNextTarget(),
 
     inventory: new CommandInventory(),
-    useItem: new CommandUseItem();
+    useItem: new CommandUseItem(),
   };
 
   get Me(): L2User {
