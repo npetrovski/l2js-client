@@ -55,6 +55,7 @@ import PartySmallWindowAdd from "./clientpackets/PartySmallWindowAdd";
 import PartyMemberPosition from "./clientpackets/PartyMemberPosition";
 import PartySmallWindowUpdate from "./clientpackets/PartySmallWindowUpdate";
 import PartySmallWindowDeleteAll from "./clientpackets/PartySmallWindowDeleteAll";
+import ItemList from "./clientpackets/ItemList";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   // @Override
@@ -76,6 +77,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x08:
           rpk = new DeleteObject();
+          break;
+        case 0x11:
+          rpk = new ItemList();
           break;
         case 0x12:
           rpk = new SunRise();

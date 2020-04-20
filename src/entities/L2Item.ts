@@ -49,7 +49,7 @@ export default class L2Item extends L2Object {
   private _defAttHolly!: number;
   private _defAttUnholly!: number;
   private _augmentBonus!: number;
-  private _isEquiped!: boolean;
+  private _isEquipped!: boolean;
   private _isQuest!: boolean;
   private _isCrystalizable!: boolean;
   private _isStackable!: boolean;
@@ -92,8 +92,8 @@ export default class L2Item extends L2Object {
     return this._augmentBonus;
   }
 
-  public get IsEquiped(): boolean {
-    return this._isEquiped;
+  public get IsEquipped(): boolean {
+    return this._isEquipped;
   }
 
   public get IsQuest(): boolean {
@@ -152,8 +152,8 @@ export default class L2Item extends L2Object {
     this._augmentBonus = value;
   }
 
-  public set IsEquiped(value: boolean) {
-    this._isEquiped = value;
+  public set IsEquipped(value: boolean) {
+    this._isEquipped = value;
   }
 
   public set IsQuest(value: boolean) {

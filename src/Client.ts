@@ -24,6 +24,9 @@ import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
 import L2DroppedItem from "./entities/L2DroppedItem";
 import L2Character from "./entities/L2Character";
 import CommandNextTarget from "./commands/CommandNextTarget";
+import CommandInventory from "./commands/CommandInventory";
+import L2Item from "./entities/L2Item";
+import CommandUseItem from "./commands/CommandUseItem";
 
 export class Client {
   private _config: MMOConfig = new MMOConfig();
@@ -50,6 +53,9 @@ export class Client {
     declineJoinParty: new CommandDeclineJoinParty(),
 
     nextTarget: new CommandNextTarget(),
+
+    inventory: new CommandInventory(),
+    useItem: new CommandUseItem();
   };
 
   get Me(): L2User {
@@ -66,6 +72,9 @@ export class Client {
 
   get DroppedItems(): L2ObjectCollection<L2DroppedItem> {
     return this._gc?.DroppedItems;
+  }
+  get InventoryItems(): L2ObjectCollection<L2Item> {
+    return this._gc?.InventoryItems;
   }
 
   constructor() {
