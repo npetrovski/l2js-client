@@ -33,12 +33,11 @@ export default class L2User extends L2Character {
 
   private _vitality!: number;
   private _isSitting!: boolean;
-  private _cp!: number;
-  private _maxCp!: number;
+
   private _exp!: number;
   private _expPercent!: number;
   private _sp!: number;
-  private _level!: number;
+
   private _load!: number;
   private _maxLoad!: number;
 
@@ -170,14 +169,6 @@ export default class L2User extends L2Character {
     return this._isSitting;
   }
 
-  public get Cp(): number {
-    return this._cp;
-  }
-
-  public get MaxCp(): number {
-    return this._maxCp;
-  }
-
   public get Exp(): number {
     return this._exp;
   }
@@ -188,10 +179,6 @@ export default class L2User extends L2Character {
 
   public get Sp(): number {
     return this._sp;
-  }
-
-  public get Level(): number {
-    return this._level;
   }
 
   public get Load(): number {
@@ -322,14 +309,6 @@ export default class L2User extends L2Character {
     this._isSitting = value;
   }
 
-  public set Cp(value: number) {
-    this._cp = value;
-  }
-
-  public set MaxCp(value: number) {
-    this._maxCp = value;
-  }
-
   public set Exp(value: number) {
     this._exp = value;
   }
@@ -340,10 +319,6 @@ export default class L2User extends L2Character {
 
   public set Sp(value: number) {
     this._sp = value;
-  }
-
-  public set Level(value: number) {
-    this._level = value;
   }
 
   public set Load(value: number) {

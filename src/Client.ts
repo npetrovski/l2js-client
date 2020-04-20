@@ -56,18 +56,14 @@ export class Client {
     return this._gc?.ActiveChar;
   }
 
-  get CharactersList(): L2ObjectCollection<L2Character> {
-    return this._gc?.CharactersList;
-  }
   get CreaturesList(): L2ObjectCollection<L2Creature> {
     return this._gc?.CreaturesList;
   }
+
   get PartyList(): L2ObjectCollection<L2Creature> {
     return this._gc?.PartyList;
   }
-  get PetList(): L2ObjectCollection<L2Creature> {
-    return this._gc?.PetList;
-  }
+
   get DroppedItems(): L2ObjectCollection<L2DroppedItem> {
     return this._gc?.DroppedItems;
   }

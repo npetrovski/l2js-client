@@ -1,34 +1,8 @@
 import LoginClientPacket from "./LoginClientPacket";
-import LoginClient from "../LoginClient";
 import AuthGameGuard from "../serverpackets/AuthGameGuard";
 import NewCrypt from "../../security/crypt/NewCrypt";
-import SendablePacket from "../../mmocore/SendablePacket";
 
 export default class Init extends LoginClientPacket {
-  _sessionId: number = 0;
-
-  _protocolVersion: number = 0;
-
-  _publicKey: Uint8Array = new Uint8Array();
-
-  _blowfishKey: Uint8Array = new Uint8Array();
-
-  get SessionId(): number {
-    return this._sessionId;
-  }
-
-  get PublicKey(): Uint8Array {
-    return this._publicKey;
-  }
-
-  get BlowfishKey(): Uint8Array {
-    return this._blowfishKey;
-  }
-
-  get ProtocolVersion(): number {
-    return this._protocolVersion;
-  }
-
   // @Override
   readImpl(): boolean {
     const checkNum: number = new DataView(
@@ -38,9 +12,9 @@ export default class Init extends LoginClientPacket {
     NewCrypt.decXORPass(this._buffer, 0, this._buffer.length, checkNum);
 
     const _id: number = this.readC();
-    this._sessionId = this.readD();
-    this._protocolVersion = this.readD();
-    this._publicKey = this.unscrambleModulus(this.readB(128));
+    const _sessionId = this.readD();
+    const _protocolVersion = this.readD();
+    const _publicKey = this.unscrambleModulus(this.readB(128));
 
     // unk GG related?
     const _unkn1 = this.readD();
@@ -48,11 +22,11 @@ export default class Init extends LoginClientPacket {
     const _unkn3 = this.readD();
     const _unkn4 = this.readD();
 
-    this._blowfishKey = this.readB(16);
+    const _blowfishKey = this.readB(16);
 
-    this.Client.SessionId = this._sessionId;
-    this.Client.BlowfishKey = this._blowfishKey;
-    this.Client.PublicKey = this._publicKey;
+    this.Client.SessionId = _sessionId;
+    this.Client.BlowfishKey = _blowfishKey;
+    this.Client.PublicKey = _publicKey;
     return true;
   }
 

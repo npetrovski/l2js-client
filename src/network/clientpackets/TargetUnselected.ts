@@ -8,7 +8,10 @@ export default class TargetUnselected extends GameClientPacket {
     const [_x, _y, _z] = this.readLoc();
     const _unkn1 = this.readD();
 
-    this.Client.ActiveChar.Target = null;
+    const char = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
+    if (char) {
+      char.Target = null;
+    }
     return true;
   }
 

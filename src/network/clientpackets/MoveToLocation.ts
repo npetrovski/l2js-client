@@ -19,24 +19,6 @@ export default class MoveToLocation extends GameClientPacket {
       creature.Distance = this.Client.calculateDistance(this.Client.ActiveChar, creature);
     }
 
-    const partyMember = this.Client.PartyList.getEntryByObjectId(_charObjId);
-    if (partyMember) {
-      partyMember.setLocation(_xDst, _yDst, _zDst);
-      partyMember.Distance = this.Client.calculateDistance(this.Client.ActiveChar, partyMember);
-    }
-
-    const pet = this.Client.PetList.getEntryByObjectId(_charObjId);
-    if (pet) {
-      pet.setLocation(_xDst, _yDst, _zDst);
-      pet.Distance = this.Client.calculateDistance(this.Client.ActiveChar, pet);
-    }
-
-    const char = this.Client.CharactersList.getEntryByObjectId(_charObjId);
-    if (char) {
-      char.setLocation(_xDst, _yDst, _zDst);
-      char.Distance = this.Client.calculateDistance(this.Client.ActiveChar, char);
-    }
-
     return true;
   }
 

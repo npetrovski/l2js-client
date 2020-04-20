@@ -9,23 +9,10 @@ export default class StopMove extends GameClientPacket {
 
     const _heading = this.readD();
 
-    if (_objectId === this.Client.ActiveChar.ObjectId) {
-      this.Client.ActiveChar.setLocation(_x, _y, _z, _heading);
-    }
-
     const creature = this.Client.CreaturesList.getEntryByObjectId(_objectId);
     if (creature) {
       creature.setLocation(_x, _y, _z, _heading);
-    }
-
-    const partyMember = this.Client.PartyList.getEntryByObjectId(_objectId);
-    if (partyMember) {
-      partyMember.setLocation(_x, _y, _z, _heading);
-    }
-
-    const pet = this.Client.PetList.getEntryByObjectId(_objectId);
-    if (pet) {
-      pet.setLocation(_x, _y, _z, _heading);
+      this.Client.calculateDistance(this.Client.ActiveChar, creature);
     }
 
     return true;

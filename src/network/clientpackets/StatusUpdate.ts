@@ -43,12 +43,7 @@ export default class StatusUpdate extends GameClientPacket {
 
     const _attributeSize = this.readD();
 
-    let char!: L2User | L2Creature | undefined;
-    if (this.Client.ActiveChar.ObjectId === _objectId) {
-      char = this.Client.ActiveChar;
-    } else {
-      char = this.Client.CreaturesList.getEntryByObjectId(_objectId);
-    }
+    const char = this.Client.CreaturesList.getEntryByObjectId(_objectId);
 
     if (!char) {
       return true;

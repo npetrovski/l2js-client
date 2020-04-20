@@ -3,7 +3,8 @@
   "extends": ["tslint:recommended"],
   "rules": {
     "no-console": false,
-    "no-bitwise": false
+    "no-bitwise": false,
+    "adjacent-overload-signatures": false
   },
   "jsRules": {},
   "rulesDirectory": []

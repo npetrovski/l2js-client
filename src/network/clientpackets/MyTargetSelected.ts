@@ -1,16 +1,16 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class MyTargetSelected extends GameClientPacket {
-  //@Override
+  // @Override
   readImpl(): boolean {
-    let _id = this.readC();
-    let _objId = this.readD();
-    let _color = this.readH();
+    const _id = this.readC();
+    const _objId = this.readD();
+    const _color = this.readH();
 
-    let _pad = this.readD();
+    const _pad = this.readD();
 
     if (typeof this.Client.CreaturesList !== "undefined") {
-      var npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
+      let npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
 
       if (npc) {
         this.Client.ActiveChar.Target = npc;
@@ -20,8 +20,8 @@ export default class MyTargetSelected extends GameClientPacket {
     return true;
   }
 
-  //@Override
+  // @Override
   run(): void {
-    //
+    // no-op
   }
 }

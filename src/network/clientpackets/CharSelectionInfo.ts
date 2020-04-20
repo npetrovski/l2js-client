@@ -1,6 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import GameClient from "../GameClient";
-import SendablePacket from "../../mmocore/SendablePacket";
 import GameServerPacket from "../serverpackets/GameServerPacket";
 import CharacterSelect from "../serverpackets/CharacterSelect";
 import L2User from "../../entities/L2User";
@@ -95,7 +93,6 @@ export default class CharSelectionInfo extends GameClientPacket {
 
   // @Override
   run(): void {
-    const spk: SendablePacket<GameClient> = new CharacterSelect(this.Client.Config.charSlotIndex ?? 0);
-    this.Client.sendPacket(spk);
+    this.Client.sendPacket(new CharacterSelect(this.Client.Config.charSlotIndex ?? 0));
   }
 }

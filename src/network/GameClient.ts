@@ -14,6 +14,7 @@ import L2Object from "../entities/L2Object";
 import L2DroppedItem from "../entities/L2DroppedItem";
 import L2Character from "../entities/L2Character";
 import ProtocolVersion from "./serverpackets/ProtocolVersion";
+import L2PartyPet from "../entities/L2PartyPet";
 
 export default class GameClient extends MMOClient {
   private _loginClient: LoginClient;
@@ -22,26 +23,19 @@ export default class GameClient extends MMOClient {
 
   private _config!: MMOConfig;
 
-  private _activeChar!: L2User;
-
+  private _activeChar: L2User = new L2User();
   private _creatures: L2ObjectCollection<L2Creature> = new L2ObjectCollection();
-  private _characters: L2ObjectCollection<L2Character> = new L2ObjectCollection();
   private _party: L2ObjectCollection<L2PartyMember> = new L2ObjectCollection();
-  private _pets: L2ObjectCollection<L2User> = new L2ObjectCollection();
   private _droppedItems: L2ObjectCollection<L2DroppedItem> = new L2ObjectCollection();
 
-  get CharactersList(): L2ObjectCollection<L2Character> {
-    return this._characters;
-  }
   get CreaturesList(): L2ObjectCollection<L2Creature> {
     return this._creatures;
   }
-  get PartyList(): L2ObjectCollection<L2Creature> {
+
+  get PartyList(): L2ObjectCollection<L2PartyMember> {
     return this._party;
   }
-  get PetList(): L2ObjectCollection<L2Creature> {
-    return this._pets;
-  }
+
   get DroppedItems(): L2ObjectCollection<L2DroppedItem> {
     return this._droppedItems;
   }

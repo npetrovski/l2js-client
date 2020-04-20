@@ -33,12 +33,12 @@ export default class CharInfo extends GameClientPacket {
     const _vehicleId = this.readD();
     const _objId = this.readD();
 
-    let char = this.Client.CharactersList.getEntryByObjectId(_objId);
+    let char = this.Client.CreaturesList.getEntryByObjectId(_objId);
     if (!char) {
       char = new L2Character();
 
       char.ObjectId = _objId;
-      this.Client.CharactersList.add(char);
+      this.Client.CreaturesList.add(char);
     }
     char.X = _x;
     char.Y = _y;

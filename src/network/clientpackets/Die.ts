@@ -1,4 +1,5 @@
 import GameClientPacket from "./GameClientPacket";
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class Die extends GameClientPacket {
   // @Override
@@ -17,10 +18,11 @@ export default class Die extends GameClientPacket {
 
     const _toFortress = this.readD();
 
-    if (_charObjId === this.Client.ActiveChar.ObjectId) {
-      this.Client.ActiveChar.Target = null;
-      this.Client.ActiveChar.IsDead = true;
-      return true;
+    const creature = this.Client.CreaturesList.getEntryByObjectId(_charObjId);
+    if (creature) {
+      creature.Target = null;
+      creature.IsDead = true;
+      GlobalEvents.fire(`Die`, { creature, isSpoiled: _sweepable });
     }
 
     return true;

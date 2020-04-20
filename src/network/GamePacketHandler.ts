@@ -49,6 +49,12 @@ import SkillList from "./clientpackets/SkillList";
 import AskJoinParty from "./clientpackets/AskJoinParty";
 import SpawnItem from "./clientpackets/SpawnItem";
 import CharInfo from "./clientpackets/CharInfo";
+import PartySmallWindowDelete from "./clientpackets/PartySmallWindowDelete";
+import PartySmallWindowAll from "./clientpackets/PartySmallWindowAll";
+import PartySmallWindowAdd from "./clientpackets/PartySmallWindowAdd";
+import PartyMemberPosition from "./clientpackets/PartyMemberPosition";
+import PartySmallWindowUpdate from "./clientpackets/PartySmallWindowUpdate";
+import PartySmallWindowDeleteAll from "./clientpackets/PartySmallWindowDeleteAll";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   // @Override
@@ -149,6 +155,21 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x4b:
           rpk = new EquipUpdate();
           break;
+        case 0x4e:
+          rpk = new PartySmallWindowAll();
+          break;
+        case 0x4f:
+          rpk = new PartySmallWindowAdd();
+          break;
+        case 0x50:
+          rpk = new PartySmallWindowDeleteAll();
+          break;
+        case 0x51:
+          rpk = new PartySmallWindowDelete();
+          break;
+        case 0x52:
+          rpk = new PartySmallWindowUpdate();
+          break;
         case 0x5f:
           rpk = new SkillList();
           break;
@@ -181,6 +202,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0xb9:
           rpk = new MyTargetSelected();
+          break;
+        case 0xba:
+          rpk = new PartyMemberPosition();
           break;
         case 0xc7:
           rpk = new SkillCoolTime();

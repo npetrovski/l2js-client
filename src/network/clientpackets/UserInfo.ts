@@ -108,6 +108,8 @@ export default class UserInfo extends GameClientPacket {
       const _cubicId = this.readH();
     }
 
+    this.Client.CreaturesList.add(user);
+
     return true;
   }
 
