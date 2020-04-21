@@ -32,7 +32,7 @@ export default class GameClient extends MMOClient {
   private _droppedItems: L2ObjectCollection<L2DroppedItem> = new L2ObjectCollection();
   private _items: L2ObjectCollection<L2Item> = new L2ObjectCollection();
   private _buffs: L2ObjectCollection<L2Buff> = new L2ObjectCollection();
-  private _skill: L2ObjectCollection<L2Skill> = new L2ObjectCollection();
+  private _skills: L2ObjectCollection<L2Skill> = new L2ObjectCollection();
 
   get CreaturesList(): L2ObjectCollection<L2Creature> {
     return this._creatures;
@@ -55,7 +55,7 @@ export default class GameClient extends MMOClient {
   }
 
   get SkillsList(): L2ObjectCollection<L2Skill> {
-    return this._skill;
+    return this._skills;
   }
 
   get PlayOk1(): number {
