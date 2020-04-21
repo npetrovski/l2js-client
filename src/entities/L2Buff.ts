@@ -9,6 +9,17 @@ export default class L2Buff extends L2Object {
 
   private _description!: string;
 
+  constructor(id?: number, level?: number) {
+    super();
+    if (id) {
+      this.Id = id;
+    }
+
+    if (level) {
+      this.SkillLevel = level;
+    }
+  }
+
   public get IsDebuff(): boolean {
     return this._isDebuff;
   }

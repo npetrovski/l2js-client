@@ -1,5 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 import { GlobalEvents } from "../../mmocore/EventEmitter";
+import L2User from "../../entities/L2User";
 
 export default class Die extends GameClientPacket {
   // @Override
@@ -22,6 +23,10 @@ export default class Die extends GameClientPacket {
     if (creature) {
       creature.Target = null;
       creature.IsDead = true;
+      if (creature.ObjectId === this.Client.ActiveChar.ObjectId) {
+        this.Client.BuffsList.clear();
+      }
+
       GlobalEvents.fire(`Die`, { creature, isSpoiled: _sweepable });
     }
 

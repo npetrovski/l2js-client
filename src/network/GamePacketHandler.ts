@@ -57,6 +57,8 @@ import PartySmallWindowUpdate from "./clientpackets/PartySmallWindowUpdate";
 import PartySmallWindowDeleteAll from "./clientpackets/PartySmallWindowDeleteAll";
 import ItemList from "./clientpackets/ItemList";
 import ExQuestItemList from "./clientpackets/ExQuestItemList";
+import ExRedSky from "./clientpackets/ExRedSky";
+import AbnormalStatusUpdate from "./clientpackets/AbnormalStatusUpdate";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   // @Override
@@ -193,6 +195,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x79:
           rpk = new ValidateLocation();
           break;
+        case 0x85:
+          rpk = new AbnormalStatusUpdate();
+          break;
         case 0x9f:
           rpk = new StaticObject();
           break;
@@ -226,6 +231,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xfe:
           const sub = data[1] + (data[2] << 8);
           switch (sub) {
+            case 0x41:
+              rpk = new ExRedSky();
+              break;
             case 0x8d:
               rpk = new NpcQuestHtmlMessage();
               break;

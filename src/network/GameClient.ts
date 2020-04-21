@@ -16,6 +16,8 @@ import L2Character from "../entities/L2Character";
 import ProtocolVersion from "./serverpackets/ProtocolVersion";
 import L2PartyPet from "../entities/L2PartyPet";
 import L2Item from "../entities/L2Item";
+import L2Buff from "../entities/L2Buff";
+import L2Skill from "../entities/L2Skill";
 
 export default class GameClient extends MMOClient {
   private _loginClient: LoginClient;
@@ -29,6 +31,8 @@ export default class GameClient extends MMOClient {
   private _party: L2ObjectCollection<L2PartyMember> = new L2ObjectCollection();
   private _droppedItems: L2ObjectCollection<L2DroppedItem> = new L2ObjectCollection();
   private _items: L2ObjectCollection<L2Item> = new L2ObjectCollection();
+  private _buffs: L2ObjectCollection<L2Buff> = new L2ObjectCollection();
+  private _skill: L2ObjectCollection<L2Skill> = new L2ObjectCollection();
 
   get CreaturesList(): L2ObjectCollection<L2Creature> {
     return this._creatures;
@@ -44,6 +48,14 @@ export default class GameClient extends MMOClient {
 
   get InventoryItems(): L2ObjectCollection<L2Item> {
     return this._items;
+  }
+
+  get BuffsList(): L2ObjectCollection<L2Buff> {
+    return this._buffs;
+  }
+
+  get SkillsList(): L2ObjectCollection<L2Skill> {
+    return this._skill;
   }
 
   get PlayOk1(): number {

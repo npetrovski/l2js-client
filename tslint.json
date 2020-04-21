@@ -4,7 +4,8 @@
   "rules": {
     "no-console": false,
     "no-bitwise": false,
-    "adjacent-overload-signatures": false
+    "adjacent-overload-signatures": false,
+    "no-trailing-whitespace": [true, "ignore-jsdoc"]
   },
   "jsRules": {},
   "rulesDirectory": []

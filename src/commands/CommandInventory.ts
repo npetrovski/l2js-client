@@ -3,7 +3,7 @@ import GameClient from "../network/GameClient";
 import RequestItemList from "../network/serverpackets/RequestItemList";
 
 export default class CommandInventory extends AbstractGameCommand<GameClient> {
-  execute(text: string): void {
+  execute(): void {
     this.Client?.sendPacket(new RequestItemList());
   }
 }

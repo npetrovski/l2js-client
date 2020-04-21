@@ -1,4 +1,5 @@
 import MMOConfig from "./mmocore/MMOConfig";
+import MMOClient from "./mmocore/MMOClient";
 import LoginClient from "./network/LoginClient";
 import GameClient from "./network/GameClient";
 import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
@@ -22,12 +23,32 @@ import CommandCancelTarget from "./commands/CommandCancelTarget";
 import CommandAcceptJoinParty from "./commands/CommandAcceptJoinParty";
 import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
 import L2DroppedItem from "./entities/L2DroppedItem";
-import L2Character from "./entities/L2Character";
 import CommandNextTarget from "./commands/CommandNextTarget";
 import CommandInventory from "./commands/CommandInventory";
 import L2Item from "./entities/L2Item";
 import CommandUseItem from "./commands/CommandUseItem";
+import L2Buff from "./entities/L2Buff";
+import L2Skill from "./entities/L2Skill";
 
+/**
+ * Lineage 2 Client
+ *
+ * @method say(text: string):void Send a general message
+ * @method shout(text: string):void Shout a message
+ * @method tell(text: string, target: string):void  Send a PM
+ * @method sayToParty(text: string):void Send message to party
+ * @method sayToClan(text: string):void Send message to party
+ * @method sayToTrade(text: string):void Send message to party
+ * @method sayToAlly(text: string):void Send message to party
+ * @method moveTo(x: number, y: number, z: number):void Move to location
+ * @method hit(object: L2Object | number, shift?: boolean):void Hit on target. Accepts L2Object object or ObjectId
+ * @method cancelTarget():void Cancel the active target
+ * @method acceptJoinParty():void Accepts the requested party invite
+ * @method declineJoinParty():void Declines the requested party invite
+ * @method nextTarget():void Select next/closest attackable target
+ * @method inventory():void Request for inventory item list
+ * @method useItem(item: L2Item | number):void Use an item. Accepts L2Item object or ObjectId
+ */
 export class Client {
   private _config: MMOConfig = new MMOConfig();
 
@@ -76,6 +97,12 @@ export class Client {
   get InventoryItems(): L2ObjectCollection<L2Item> {
     return this._gc?.InventoryItems;
   }
+  get BuffsList(): L2ObjectCollection<L2Buff> {
+    return this._gc?.BuffsList;
+  }
+  get SkillsList(): L2ObjectCollection<L2Skill> {
+    return this._gc?.SkillsList;
+  }
 
   constructor() {
     return new Proxy<Client>(this, {
@@ -85,7 +112,7 @@ export class Client {
           return Reflect.get(target, propertyKey, receiver);
         }
         if (propertyKey in target._commands) {
-          const cmd = target._commands[propertyKey] as AbstractGameCommand<any>;
+          const cmd = target._commands[propertyKey] as AbstractGameCommand<MMOClient>;
           cmd.Client = target._gc;
           return (...args: any) => {
             return cmd.execute(...args);
