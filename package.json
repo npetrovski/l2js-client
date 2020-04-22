@@ -4,8 +4,10 @@
   "description": "Lineage 2 Client Library",
   "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/Client.js",
+  "types": "dist/Client.d.ts",
   "scripts": {
+    "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,8 +23,10 @@
     "url": "https://github.com/npetrovski/l2js-client"
   },
   "dependencies": {
-    "@types/node": "^13.9.5",
-    "@types/node-rsa": "^1.0.0",
     "node-rsa": "^1.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.2",
+    "@types/node-rsa": "^1.0.0"
   }
 }
