@@ -16,7 +16,7 @@ export default abstract class L2Creature extends L2Object {
   private _dy!: number;
   private _dz!: number;
 
-  private _isDead!: boolean;
+  private _isDead: boolean = false;
   private _runSpeed!: number;
   private _walkSpeed!: number;
   private _speedMultiplier!: number;

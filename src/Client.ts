@@ -3,6 +3,13 @@ import MMOClient from "./mmocore/MMOClient";
 import LoginClient from "./network/LoginClient";
 import GameClient from "./network/GameClient";
 import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
+import L2ObjectCollection from "./entities/L2ObjectCollection";
+import L2User from "./entities/L2User";
+import L2Creature from "./entities/L2Creature";
+import L2DroppedItem from "./entities/L2DroppedItem";
+import L2Item from "./entities/L2Item";
+import L2Buff from "./entities/L2Buff";
+import L2Skill from "./entities/L2Skill";
 
 // Commands
 import ICommand from "./commands/ICommand";
@@ -16,19 +23,13 @@ import CommandSayToTrade from "./commands/CommandSayToTrade";
 import CommandSayToAlly from "./commands/CommandSayToAlly";
 import CommandMoveTo from "./commands/CommandMoveTo";
 import CommandHit from "./commands/CommandHit";
-import L2User from "./entities/L2User";
-import L2ObjectCollection from "./entities/L2ObjectCollection";
-import L2Creature from "./entities/L2Creature";
 import CommandCancelTarget from "./commands/CommandCancelTarget";
 import CommandAcceptJoinParty from "./commands/CommandAcceptJoinParty";
 import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
-import L2DroppedItem from "./entities/L2DroppedItem";
 import CommandNextTarget from "./commands/CommandNextTarget";
 import CommandInventory from "./commands/CommandInventory";
-import L2Item from "./entities/L2Item";
 import CommandUseItem from "./commands/CommandUseItem";
-import L2Buff from "./entities/L2Buff";
-import L2Skill from "./entities/L2Skill";
+import CommandRequestDuel from "./commands/CommandRequestDuel";
 
 /**
  * Lineage 2 Client
@@ -48,6 +49,7 @@ import L2Skill from "./entities/L2Skill";
  * @method nextTarget():void Select next/closest attackable target
  * @method inventory():void Request for inventory item list
  * @method useItem(item: L2Item | number):void Use an item. Accepts L2Item object or ObjectId
+ * @method requestDuel(char?: L2Character | string):void Request player a duel. If no char is provided, the command tries to request the selected target
  */
 export class Client {
   private _config: MMOConfig = new MMOConfig();
@@ -77,6 +79,8 @@ export class Client {
 
     inventory: new CommandInventory(),
     useItem: new CommandUseItem(),
+
+    requestDuel: new CommandRequestDuel(),
   };
 
   get Me(): L2User {

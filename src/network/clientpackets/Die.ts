@@ -1,6 +1,5 @@
 import GameClientPacket from "./GameClientPacket";
 import { GlobalEvents } from "../../mmocore/EventEmitter";
-import L2User from "../../entities/L2User";
 
 export default class Die extends GameClientPacket {
   // @Override

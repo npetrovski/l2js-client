@@ -59,6 +59,7 @@ import ItemList from "./clientpackets/ItemList";
 import ExQuestItemList from "./clientpackets/ExQuestItemList";
 import ExRedSky from "./clientpackets/ExRedSky";
 import AbnormalStatusUpdate from "./clientpackets/AbnormalStatusUpdate";
+import ExDuelAskStart from "./clientpackets/ExDuelAskStart";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   // @Override
@@ -233,6 +234,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           switch (sub) {
             case 0x41:
               rpk = new ExRedSky();
+              break;
+            case 0x4c:
+              rpk = new ExDuelAskStart();
               break;
             case 0x8d:
               rpk = new NpcQuestHtmlMessage();

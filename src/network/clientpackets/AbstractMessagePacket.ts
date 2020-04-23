@@ -23,9 +23,9 @@ export default abstract class AbstractMessagePacket<T extends AbstractMessagePac
     const _id = this.readC();
     const _messageId = this.readD();
     const _paramsLength = this.readD();
-    var _params = [];
+    const _params = [];
     for (let i = 0; i < _paramsLength; i++) {
-      let _paramType = this.readD();
+      const _paramType = this.readD();
       switch (_paramType) {
         case AbstractMessagePacket.TYPE_TEXT:
         case AbstractMessagePacket.TYPE_PLAYER_NAME:
@@ -60,6 +60,6 @@ export default abstract class AbstractMessagePacket<T extends AbstractMessagePac
       }
     }
 
-    console.log(_params);
+    console.log(`System msg #${_messageId}`, _params);
   }
 }
