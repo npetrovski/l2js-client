@@ -124,7 +124,7 @@ The CM obfuscation key also changes each time a character is logged in.
 
 Except for the first packet, each game server packet is transmitted by taking the following steps:
 
-    1, Write packet data
+    1. Write packet data
     2. Encipher payload using XOR with both parts of the key
     3. Update the mutable part of the key
     4. Send packet

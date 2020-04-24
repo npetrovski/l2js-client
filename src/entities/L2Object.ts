@@ -81,7 +81,7 @@ export default abstract class L2Object {
     }
   }
 
-  public getLocation(): Array<number> {
+  public getLocation(): number[] {
     return Array.from([this._x, this._y, this._z, this._heading]);
   }
 }

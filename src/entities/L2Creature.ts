@@ -1,6 +1,7 @@
 import L2Object from "./L2Object";
 import { Sex } from "../enums/Sex";
 import { Race } from "../enums/Race";
+import Vector from "../mmocore/Vector";
 
 export default abstract class L2Creature extends L2Object {
   private _hp!: number;
@@ -42,6 +43,8 @@ export default abstract class L2Creature extends L2Object {
   private _baseClassName!: string;
 
   private _race!: Race;
+  private _isMoving: boolean = false;
+  private _movingVector!: Vector;
 
   public get Race(): Race {
     return this._race;
@@ -289,5 +292,52 @@ export default abstract class L2Creature extends L2Object {
 
   public set IsHero(value: boolean) {
     this._isHero = value;
+  }
+
+  public get IsMoving(): boolean {
+    return this._isMoving;
+  }
+
+  public set IsMoving(value: boolean) {
+    this._isMoving = value;
+  }
+
+  public get MovingVector(): Vector {
+    return this._movingVector;
+  }
+
+  public set MovingVector(value: Vector) {
+    this._movingVector = value;
+  }
+
+  public get CurrentSpeed(): number {
+    return this.IsRunning ? this.RunSpeed * this.SpeedMultiplier : this.WalkSpeed * this.SpeedMultiplier;
+  }
+
+  private _moveInterval!: ReturnType<typeof setInterval>;
+
+  public setMovingTo(dx: number, dy: number, dz: number, heading?: number) {
+    this.IsMoving = true;
+    this.MovingVector = new Vector(dx - this.X, dy - this.Y);
+
+    let moveCnt = Math.ceil(this.MovingVector.length() / (this.CurrentSpeed / 10));
+
+    clearInterval(this._moveInterval);
+
+    this._moveInterval = setInterval(() => {
+      this.MovingVector.normalize();
+      this.X += Math.floor(this.MovingVector.X * (this.CurrentSpeed / 10));
+      this.Y += Math.floor(this.MovingVector.Y * (this.CurrentSpeed / 10));
+
+      moveCnt--;
+      if (moveCnt > 0) {
+        this.MovingVector = new Vector(dx - this.X, dy - this.Y);
+      } else {
+        this.IsMoving = false;
+        this.X = dx;
+        this.Y = dy;
+        clearInterval(this._moveInterval);
+      }
+    }, 100);
   }
 }
