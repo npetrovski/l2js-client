@@ -9,8 +9,14 @@ export default class MoveToPawn extends GameClientPacket {
     const _distance = this.readD();
 
     const [_x, _y, _z] = this.readLoc();
-    const [_tx, _ty, _tz] = this.readLoc();
+    const [_xDst, _yDst, _zDst] = this.readLoc();
 
+    const creature = this.Client.CreaturesList.getEntryByObjectId(_charObjId);
+    if (creature) {
+      creature.setLocation(_x, _y, _z);
+      creature.setMovingTo(_xDst, _yDst, _zDst);
+      creature.Distance = this.Client.calculateDistance(this.Client.ActiveChar, creature);
+    }
     return true;
   }
 

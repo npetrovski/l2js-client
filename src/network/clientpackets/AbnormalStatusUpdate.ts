@@ -12,6 +12,12 @@ export default class AbnormalStatusUpdate extends GameClientPacket {
       buff.SkillLevel = this.readH();
       buff.RemainingTime = this.readD();
 
+      if (buff.RemainingTime > 0) {
+        buff.autoCountDown(() => {
+          this.Client.BuffsList.removeById(buff.Id);
+        });
+      }
+
       this.Client.BuffsList.removeById(buff.Id);
       this.Client.BuffsList.add(buff);
     }

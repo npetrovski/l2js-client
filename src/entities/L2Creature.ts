@@ -2,6 +2,7 @@ import L2Object from "./L2Object";
 import { Sex } from "../enums/Sex";
 import { Race } from "../enums/Race";
 import Vector from "../mmocore/Vector";
+import { GlobalEvents } from "../mmocore/EventEmitter";
 
 export default abstract class L2Creature extends L2Object {
   private _hp!: number;
@@ -299,6 +300,11 @@ export default abstract class L2Creature extends L2Object {
   }
 
   public set IsMoving(value: boolean) {
+    if (value) {
+      GlobalEvents.fire(`StartMoving`, this);
+    } else {
+      GlobalEvents.fire(`StopMoving`, this);
+    }
     this._isMoving = value;
   }
 
@@ -317,11 +323,13 @@ export default abstract class L2Creature extends L2Object {
   private _moveInterval!: ReturnType<typeof setInterval>;
 
   public setMovingTo(dx: number, dy: number, dz: number, heading?: number) {
-    this.IsMoving = true;
+    this.Dx = dx;
+    this.Dy = dy;
+    this.Dz = dz;
     this.MovingVector = new Vector(dx - this.X, dy - this.Y);
 
     let moveCnt = Math.ceil(this.MovingVector.length() / (this.CurrentSpeed / 10));
-
+    this.IsMoving = true;
     clearInterval(this._moveInterval);
 
     this._moveInterval = setInterval(() => {
@@ -334,8 +342,8 @@ export default abstract class L2Creature extends L2Object {
         this.MovingVector = new Vector(dx - this.X, dy - this.Y);
       } else {
         this.IsMoving = false;
-        this.X = dx;
-        this.Y = dy;
+        this.X = this.Dx;
+        this.Y = this.Dy;
         clearInterval(this._moveInterval);
       }
     }, 100);

@@ -12,6 +12,7 @@ export default class TeleportToLocation extends GameClientPacket {
 
     if (_targetObjectId === this.Client.ActiveChar.ObjectId) {
       this.Client.CreaturesList.clear();
+      this.Client.DroppedItems.clear();
     }
 
     const creature = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);

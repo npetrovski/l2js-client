@@ -24,31 +24,44 @@ export default class L2Buff extends L2Object {
     return this._isDebuff;
   }
 
-  public get SkillLevel(): number {
-    return this._skillLevel;
-  }
-
-  public get RemainingTime(): number {
-    return this._remainingTime;
-  }
-
-  public get Description(): string {
-    return this._description;
-  }
-
   public set IsDebuff(value: boolean) {
     this._isDebuff = value;
+  }
+
+  public get SkillLevel(): number {
+    return this._skillLevel;
   }
 
   public set SkillLevel(value: number) {
     this._skillLevel = value;
   }
 
+  public get RemainingTime(): number {
+    return this._remainingTime;
+  }
+
   public set RemainingTime(value: number) {
     this._remainingTime = value;
   }
 
+  public get Description(): string {
+    return this._description;
+  }
+
   public set Description(value: string) {
     this._description = value;
+  }
+
+  public autoCountDown(callback?: () => void): void {
+    let interval = setInterval(() => {
+      this.RemainingTime = this.RemainingTime - 1;
+      if (this.RemainingTime <= 0) {
+        this.RemainingTime = 0;
+        clearInterval(interval);
+        if (callback) {
+          callback();
+        }
+      }
+    }, 1000);
   }
 }
