@@ -1,21 +1,13 @@
-import LoginClientPacket from "./LoginClientPacket";
-import LoginClient from "../LoginClient";
-import SendablePacket from "../../mmocore/SendablePacket";
 import RequestCharacters from "../serverpackets/RequestCharacters";
+import LoginClientPacket from "./LoginClientPacket";
 
 export default class LoginOk extends LoginClientPacket {
-  _loginOk1: number = 0;
-
-  _loginOk2: number = 0;
-
   // @Override
   readImpl(): boolean {
     const _id: number = this.readC();
-    this._loginOk1 = this.readD();
-    this._loginOk2 = this.readD();
+    this.Client.LoginOk1 = this.readD();
+    this.Client.LoginOk2 = this.readD();
 
-    this.Client.LoginOk1 = this._loginOk1;
-    this.Client.LoginOk2 = this._loginOk2;
     return true;
   }
 

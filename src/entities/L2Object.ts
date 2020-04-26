@@ -84,4 +84,8 @@ export default abstract class L2Object {
   public getLocation(): number[] {
     return Array.from([this._x, this._y, this._z, this._heading]);
   }
+
+  public calculateDistance(obj: L2Object): void {
+    this.Distance = Math.sqrt((this.X - obj.X) * (this.X - obj.X) + (this.Y - obj.Y) * (this.Y - obj.Y));
+  }
 }

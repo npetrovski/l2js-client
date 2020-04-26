@@ -1,23 +1,21 @@
-import MMOConnection from "../mmocore/MMOConnection";
-import MMOClient from "../mmocore/MMOClient";
-import LoginClient from "./LoginClient";
-import GameCrypt from "../security/crypt/GameCrypt";
-import GameServerPacket from "./serverpackets/GameServerPacket";
-import GamePacketHandler from "./GamePacketHandler";
-import MMOConfig from "../mmocore/MMOConfig";
-import NetSocket from "../mmocore/NetSocket";
-import L2User from "../entities/L2User";
-import L2ObjectCollection from "../entities/L2ObjectCollection";
-import L2Creature from "../entities/L2Creature";
-import L2PartyMember from "../entities/L2PartyMember";
-import L2Object from "../entities/L2Object";
-import L2DroppedItem from "../entities/L2DroppedItem";
-import L2Character from "../entities/L2Character";
-import ProtocolVersion from "./serverpackets/ProtocolVersion";
-import L2PartyPet from "../entities/L2PartyPet";
-import L2Item from "../entities/L2Item";
 import L2Buff from "../entities/L2Buff";
+import L2Creature from "../entities/L2Creature";
+import L2DroppedItem from "../entities/L2DroppedItem";
+import L2Item from "../entities/L2Item";
+import L2Object from "../entities/L2Object";
+import L2ObjectCollection from "../entities/L2ObjectCollection";
+import L2PartyMember from "../entities/L2PartyMember";
 import L2Skill from "../entities/L2Skill";
+import L2User from "../entities/L2User";
+import MMOClient from "../mmocore/MMOClient";
+import MMOConfig from "../mmocore/MMOConfig";
+import MMOConnection from "../mmocore/MMOConnection";
+import NetSocket from "../mmocore/NetSocket";
+import GameCrypt from "../security/crypt/GameCrypt";
+import GamePacketHandler from "./GamePacketHandler";
+import LoginClient from "./LoginClient";
+import GameServerPacket from "./serverpackets/GameServerPacket";
+import ProtocolVersion from "./serverpackets/ProtocolVersion";
 
 export default class GameClient extends MMOClient {
   private _loginClient: LoginClient;
@@ -136,9 +134,5 @@ export default class GameClient extends MMOClient {
 
     console.log("sending..", lsp.constructor.name);
     this.Connection.write(sendable);
-  }
-
-  calculateDistance(obj1: L2Object, obj2: L2Object): number {
-    return Math.sqrt((obj1.X - obj2.X) * (obj1.X - obj2.X) + (obj1.Y - obj2.Y) * (obj1.Y - obj2.Y));
   }
 }

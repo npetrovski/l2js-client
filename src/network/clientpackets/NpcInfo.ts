@@ -95,10 +95,7 @@ export default class NpcInfo extends AbstractNpcInfo {
     const _abnormalVisualEffectSpecial = this.readD();
     const _displayEffect = this.readD();
 
-    const user = this.Client.ActiveChar;
-    if (user) {
-      npc.Distance = this.Client.calculateDistance(npc, user);
-    }
+    npc.calculateDistance(this.Client.ActiveChar);
 
     return true;
   }

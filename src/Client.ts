@@ -1,35 +1,33 @@
-import MMOConfig from "./mmocore/MMOConfig";
-import MMOClient from "./mmocore/MMOClient";
-import LoginClient from "./network/LoginClient";
-import GameClient from "./network/GameClient";
-import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
-import L2ObjectCollection from "./entities/L2ObjectCollection";
-import L2User from "./entities/L2User";
+import AbstractGameCommand from "./commands/AbstractGameCommand";
+import CommandAcceptJoinParty from "./commands/CommandAcceptJoinParty";
+import CommandCancelTarget from "./commands/CommandCancelTarget";
+import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
+import CommandHit from "./commands/CommandHit";
+import CommandInventory from "./commands/CommandInventory";
+import CommandMoveTo from "./commands/CommandMoveTo";
+import CommandNextTarget from "./commands/CommandNextTarget";
+import CommandRequestDuel from "./commands/CommandRequestDuel";
+import CommandSay from "./commands/CommandSay";
+import CommandSayToAlly from "./commands/CommandSayToAlly";
+import CommandSayToClan from "./commands/CommandSayToClan";
+import CommandSayToParty from "./commands/CommandSayToParty";
+import CommandSayToTrade from "./commands/CommandSayToTrade";
+import CommandShout from "./commands/CommandShout";
+import CommandTell from "./commands/CommandTell";
+import CommandUseItem from "./commands/CommandUseItem";
+import ICommand from "./commands/ICommand";
+import L2Buff from "./entities/L2Buff";
 import L2Creature from "./entities/L2Creature";
 import L2DroppedItem from "./entities/L2DroppedItem";
 import L2Item from "./entities/L2Item";
-import L2Buff from "./entities/L2Buff";
+import L2ObjectCollection from "./entities/L2ObjectCollection";
 import L2Skill from "./entities/L2Skill";
-
-// Commands
-import ICommand from "./commands/ICommand";
-import AbstractGameCommand from "./commands/AbstractGameCommand";
-import CommandSay from "./commands/CommandSay";
-import CommandShout from "./commands/CommandShout";
-import CommandTell from "./commands/CommandTell";
-import CommandSayToParty from "./commands/CommandSayToParty";
-import CommandSayToClan from "./commands/CommandSayToClan";
-import CommandSayToTrade from "./commands/CommandSayToTrade";
-import CommandSayToAlly from "./commands/CommandSayToAlly";
-import CommandMoveTo from "./commands/CommandMoveTo";
-import CommandHit from "./commands/CommandHit";
-import CommandCancelTarget from "./commands/CommandCancelTarget";
-import CommandAcceptJoinParty from "./commands/CommandAcceptJoinParty";
-import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
-import CommandNextTarget from "./commands/CommandNextTarget";
-import CommandInventory from "./commands/CommandInventory";
-import CommandUseItem from "./commands/CommandUseItem";
-import CommandRequestDuel from "./commands/CommandRequestDuel";
+import L2User from "./entities/L2User";
+import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
+import MMOClient from "./mmocore/MMOClient";
+import MMOConfig from "./mmocore/MMOConfig";
+import GameClient from "./network/GameClient";
+import LoginClient from "./network/LoginClient";
 
 /**
  * Lineage 2 Client
@@ -137,6 +135,7 @@ export class Client {
     }
 
     this._lc = new LoginClient(this._config, () => {
+      console.log(this._lc);
       this._gc = new GameClient(this._lc, this._config);
     });
 

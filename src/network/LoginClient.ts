@@ -1,10 +1,10 @@
 import MMOClient from "../mmocore/MMOClient";
-import LoginCrypt from "../security/crypt/LoginCrypt";
-import LoginServerPacket from "./serverpackets/LoginServerPacket";
-import ServerData from "./ServerData";
-import MMOConnection from "../mmocore/MMOConnection";
-import LoginPacketHandler from "./LoginPacketHandler";
 import MMOConfig from "../mmocore/MMOConfig";
+import MMOConnection from "../mmocore/MMOConnection";
+import LoginCrypt from "../security/crypt/LoginCrypt";
+import LoginPacketHandler from "./LoginPacketHandler";
+import ServerData from "./ServerData";
+import LoginServerPacket from "./serverpackets/LoginServerPacket";
 
 export default class LoginClient extends MMOClient {
   private _username: string;
@@ -123,7 +123,6 @@ export default class LoginClient extends MMOClient {
 
   set Servers(servers: ServerData[]) {
     this._servers = servers;
-    this._selectedServer = servers.find((s) => s.Id === this.Config.serverId) ?? servers[0];
   }
 
   get SelectedServer(): ServerData {

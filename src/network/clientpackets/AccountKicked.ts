@@ -8,7 +8,7 @@ export default class AccountKicked extends LoginClientPacket {
     const _reason = this.readC();
 
     throw Error("Account kicked. Reason: " + AccountKickedReason[_reason]);
-    return true;
+    // return true;
   }
 
   // @Override

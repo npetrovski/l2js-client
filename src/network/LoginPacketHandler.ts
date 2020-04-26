@@ -1,14 +1,14 @@
 import IPacketHandler from "../mmocore/IPacketHandler";
-import LoginClient from "./LoginClient";
 import ReceivablePacket from "../mmocore/ReceivablePacket";
-import Init from "./clientpackets/Init";
-import LoginOk from "./clientpackets/LoginOk";
-import GGAuth from "./clientpackets/GGAuth";
-import ServerList from "./clientpackets/ServerList";
-import PlayOk from "./clientpackets/PlayOk";
-import PlayFail from "./clientpackets/PlayFail";
-import LoginFail from "./clientpackets/LoginFail";
 import AccountKicked from "./clientpackets/AccountKicked";
+import GGAuth from "./clientpackets/GGAuth";
+import Init from "./clientpackets/Init";
+import LoginFail from "./clientpackets/LoginFail";
+import LoginOk from "./clientpackets/LoginOk";
+import PlayFail from "./clientpackets/PlayFail";
+import PlayOk from "./clientpackets/PlayOk";
+import ServerList from "./clientpackets/ServerList";
+import LoginClient from "./LoginClient";
 
 export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
   // @Override

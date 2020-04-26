@@ -13,7 +13,7 @@ export default class PartyMemberPosition extends GameClientPacket {
       const char = this.Client.PartyList.getEntryByObjectId(_objId);
       if (char) {
         char.setLocation(_x, _y, _z);
-        char.Distance = this.Client.calculateDistance(this.Client.ActiveChar, char);
+        char.calculateDistance(this.Client.ActiveChar);
       }
     }
 

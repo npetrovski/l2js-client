@@ -21,7 +21,7 @@ export default class SpawnItem extends GameClientPacket {
 
     if (!this.Client.DroppedItems.containsObjectId(item.ObjectId)) {
       this.Client.DroppedItems.add(item);
-      item.Distance = this.Client.calculateDistance(this.Client.ActiveChar, item);
+      item.calculateDistance(this.Client.ActiveChar);
     }
 
     return true;

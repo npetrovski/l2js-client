@@ -122,10 +122,7 @@ export default class CharInfo extends GameClientPacket {
 
     const _pad1 = this.readD();
 
-    const user = this.Client.ActiveChar;
-    if (user) {
-      char.Distance = this.Client.calculateDistance(char, user);
-    }
+    char.calculateDistance(this.Client.ActiveChar);
 
     const _enchantEffect = this.readC();
 

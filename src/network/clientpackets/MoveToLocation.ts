@@ -13,7 +13,7 @@ export default class MoveToLocation extends GameClientPacket {
     if (creature) {
       creature.setLocation(_x, _y, _z);
       creature.setMovingTo(_xDst, _yDst, _zDst);
-      creature.Distance = this.Client.calculateDistance(this.Client.ActiveChar, creature);
+      creature.calculateDistance(this.Client.ActiveChar);
     }
 
     return true;
