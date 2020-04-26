@@ -23,11 +23,11 @@
     "url": "https://github.com/npetrovski/l2js-client"
   },
   "dependencies": {
-    "node-rsa": "^1.0.8",
-    "typescript": "^3.8.3"
+    "node-rsa": "^1.0.8"
   },
   "devDependencies": {
     "@types/node": "^13.13.2",
-    "@types/node-rsa": "^1.0.0"
+    "@types/node-rsa": "^1.0.0",
+    "typescript": "^3.8.3"
   }
 }
