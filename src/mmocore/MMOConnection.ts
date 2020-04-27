@@ -22,8 +22,8 @@ export default class MMOConnection<T extends MMOClient> implements IConnection {
     this._client = client;
   }
 
-  write(buf: Uint8Array): void {
-    this._stream.send(buf);
+  async write(buf: Uint8Array): Promise<boolean> {
+    return this._stream.send(buf);
   }
 
   read(data: Uint8Array): void {

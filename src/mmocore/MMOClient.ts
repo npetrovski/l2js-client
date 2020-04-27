@@ -41,19 +41,19 @@ export default abstract class MMOClient {
 
     let i = 0;
     while (i < data.byteLength) {
-      const pLen = data[i] + (data[i + 1] << 8);
+      const packetLength = data[i] + (data[i + 1] << 8);
 
-      if (pLen <= 2) {
+      if (packetLength <= 2) {
         break;
       }
 
-      if (i + pLen > data.byteLength) {
+      if (i + packetLength > data.byteLength) {
         this._buffer = data.slice(i);
         break;
       }
 
       ((n, ctx) => {
-        const packetData = new Uint8Array(data.slice(n + 2, n + pLen)); // +2 is for skipping the packet size
+        const packetData = new Uint8Array(data.slice(n + 2, n + packetLength)); // +2 is for skipping the packet size
         ctx.decrypt(packetData, 0, packetData.byteLength);
 
         setTimeout(() => {
@@ -69,7 +69,7 @@ export default abstract class MMOClient {
         }, 0);
       })(i, this);
 
-      i += pLen;
+      i += packetLength;
     }
   }
 

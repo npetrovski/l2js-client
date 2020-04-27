@@ -14,9 +14,9 @@ export default class MMOConfig {
   loginServerIp: string = "127.0.0.1";
   loginServerPort: number = 2106;
 
-  assign(props: MMOConfigPartial): MMOConfig {
+  assign(props: MMOConfigPartial): this {
     for (const key of Object.keys(props)) {
-      (<any>this)[key] = (<any>props)[key];
+      (this as any)[key] = (props as any)[key];
     }
     return this;
   }

@@ -25,6 +25,8 @@ export default abstract class SendablePacket<T extends MMOClient> extends Abstra
     this._offset = n;
   }
 
+  abstract write(): void;
+
   writeD(val: number) {
     this._view.setInt32(this._offset, val, true);
     this._offset += 4;
@@ -76,6 +78,4 @@ export default abstract class SendablePacket<T extends MMOClient> extends Abstra
     this._offset += buf.byteLength;
     return this;
   }
-
-  abstract write(): void;
 }

@@ -25,9 +25,9 @@ export default class CharSelectionInfo extends GameClientPacket {
       const clanId = this.readD();
       const _builderLevel = this.readD();
 
-      const sex = this.readD();
-      const race = this.readD();
-      const baseClassId = this.readD();
+      char.Sex = this.readD();
+      char.Race = this.readD();
+      char.BaseClassId = this.readD();
 
       const _active = this.readD(); // ??
 

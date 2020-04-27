@@ -1,10 +1,8 @@
-import GameClientPacket from "./GameClientPacket";
-import SendablePacket from "../../mmocore/SendablePacket";
-import GameClient from "../GameClient";
-import RequestManorList from "../serverpackets/RequestManorList";
-import RequestKeyMapping from "../serverpackets/RequestKeyMapping";
-import EnterWorld from "../serverpackets/EnterWorld";
 import L2User from "../../entities/L2User";
+import EnterWorld from "../serverpackets/EnterWorld";
+import RequestKeyMapping from "../serverpackets/RequestKeyMapping";
+import RequestManorList from "../serverpackets/RequestManorList";
+import GameClientPacket from "./GameClientPacket";
 
 export default class CharSelected extends GameClientPacket {
   // @Override
@@ -14,13 +12,13 @@ export default class CharSelected extends GameClientPacket {
 
     user.Name = this.readS();
     user.ObjectId = this.readD();
-    const title = this.readS();
+    user.Title = this.readS();
     const _sessionId = this.readD();
     const clanId = this.readD();
     const _unkn1 = this.readD(); // ??
-    const sex = 1 === this.readD();
-    const _race = this.readD();
-    const _classId = this.readD();
+    user.Sex = this.readD();
+    user.Race = this.readD();
+    user.ClassId = this.readD();
     const _active1 = this.readD();
     user.X = this.readD();
     user.Y = this.readD();
@@ -29,20 +27,14 @@ export default class CharSelected extends GameClientPacket {
     user.Hp = this.readD();
     user.Mp = this.readD();
 
-    // console.log("CharSelected: Not yet fully implemented.");
     this.Client.ActiveChar = user;
     return true;
   }
 
   // @Override
   run(): void {
-    const spk1: SendablePacket<GameClient> = new RequestManorList();
-    this.Client.sendPacket(spk1);
-
-    const spk2: SendablePacket<GameClient> = new RequestKeyMapping();
-    this.Client.sendPacket(spk2);
-
-    const spk3: SendablePacket<GameClient> = new EnterWorld();
-    this.Client.sendPacket(spk3);
+    this.Client.sendPacket(new RequestManorList());
+    this.Client.sendPacket(new RequestKeyMapping());
+    this.Client.sendPacket(new EnterWorld());
   }
 }

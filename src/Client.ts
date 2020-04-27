@@ -135,7 +135,6 @@ export class Client {
     }
 
     this._lc = new LoginClient(this._config, () => {
-      console.log(this._lc);
       this._gc = new GameClient(this._lc, this._config);
     });
 

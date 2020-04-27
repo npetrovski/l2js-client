@@ -19,11 +19,17 @@ export default class NetSocket implements IStream {
     });
     this._socket.connect(port, ip);
   }
-  send(bytes: Uint8Array): void {
-    if (!this._socket.destroyed) {
-      this._socket.write(bytes);
-    }
+
+  async send(bytes: Uint8Array): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (!this._socket.destroyed) {
+        resolve(this._socket.write(bytes));
+      } else {
+        reject("Connection is closed");
+      }
+    });
   }
+
   receive(bytes: Uint8Array): void {
     if (this._onDataCallback) {
       setTimeout(() => {

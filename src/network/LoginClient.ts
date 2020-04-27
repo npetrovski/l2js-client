@@ -170,7 +170,10 @@ export default class LoginClient extends MMOClient {
     sendable[1] = (lsp.Position + 2) >>> 8;
     sendable.set(lsp.Buffer.slice(0, lsp.Position), 2);
 
-    this.Connection.write(sendable);
+    console.info("sending..", lsp.constructor.name);
+    this.Connection.write(sendable).catch((error) => {
+      console.error(error);
+    });
   }
 
   encrypt(buf: Uint8Array, offset: number, size: number): void {

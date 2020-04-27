@@ -64,9 +64,6 @@ export default abstract class ReceivablePacket<T extends MMOClient> extends Abst
   }
 
   readLoc(): number[] {
-    const _x = this.readD();
-    const _y = this.readD();
-    const _z = this.readD();
-    return [_x, _y, _z];
+    return [this.readD(), this.readD(), this.readD()]; // X, Y, Z
   }
 }

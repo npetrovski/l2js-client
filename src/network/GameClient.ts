@@ -122,17 +122,19 @@ export default class GameClient extends MMOClient {
     this._gameCrypt.setKey(key);
   }
 
-  sendPacket(lsp: GameServerPacket): void {
-    lsp.write();
+  sendPacket(gsp: GameServerPacket): void {
+    gsp.write();
 
-    this._gameCrypt.encrypt(lsp.Buffer, 0, lsp.Position);
+    this._gameCrypt.encrypt(gsp.Buffer, 0, gsp.Position);
 
-    const sendable: Uint8Array = new Uint8Array(lsp.Position + 2);
-    sendable[0] = (lsp.Position + 2) & 0xff;
-    sendable[1] = (lsp.Position + 2) >>> 8;
-    sendable.set(lsp.Buffer.slice(0, lsp.Position), 2);
+    const sendable: Uint8Array = new Uint8Array(gsp.Position + 2);
+    sendable[0] = (gsp.Position + 2) & 0xff;
+    sendable[1] = (gsp.Position + 2) >>> 8;
+    sendable.set(gsp.Buffer.slice(0, gsp.Position), 2);
 
-    console.log("sending..", lsp.constructor.name);
-    this.Connection.write(sendable);
+    console.info("sending..", gsp.constructor.name);
+    this.Connection.write(sendable).catch((error) => {
+      console.error(error);
+    });
   }
 }
