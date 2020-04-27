@@ -1,5 +1,6 @@
 import AbstractGameCommand from "./commands/AbstractGameCommand";
 import CommandAcceptJoinParty from "./commands/CommandAcceptJoinParty";
+import CommandAutoShots from "./commands/CommandAutoShots";
 import CommandCancelTarget from "./commands/CommandCancelTarget";
 import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
 import CommandHit from "./commands/CommandHit";
@@ -48,6 +49,7 @@ import LoginClient from "./network/LoginClient";
  * @method inventory():void Request for inventory item list
  * @method useItem(item: L2Item | number):void Use an item. Accepts L2Item object or ObjectId
  * @method requestDuel(char?: L2Character | string):void Request player a duel. If no char is provided, the command tries to request the selected target
+ * @method autoShots(item: L2Item | ShotsType | number, enable: boolean):void Enable/disable auto-shots
  */
 export class Client {
   private _config: MMOConfig = new MMOConfig();
@@ -79,6 +81,8 @@ export class Client {
     useItem: new CommandUseItem(),
 
     requestDuel: new CommandRequestDuel(),
+
+    autoShots: new CommandAutoShots(),
   };
 
   get Me(): L2User {
