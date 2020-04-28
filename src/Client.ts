@@ -29,6 +29,8 @@ import MMOClient from "./mmocore/MMOClient";
 import MMOConfig from "./mmocore/MMOConfig";
 import GameClient from "./network/GameClient";
 import LoginClient from "./network/LoginClient";
+import CommandCancelBuff from "./commands/CommandCancelBuff";
+import CommandSitStand from "./commands/CommandSitStand";
 
 /**
  * Lineage 2 Client
@@ -50,6 +52,8 @@ import LoginClient from "./network/LoginClient";
  * @method useItem(item: L2Item | number):void Use an item. Accepts L2Item object or ObjectId
  * @method requestDuel(char?: L2Character | string):void Request player a duel. If no char is provided, the command tries to request the selected target
  * @method autoShots(item: L2Item | ShotsType | number, enable: boolean):void Enable/disable auto-shots
+ * @method cancelBuff(object: L2Character | number, buff: L2Buff | number, level?: number):void Cancel a buff
+ * @method sitOrStand():void Sit or stand
  */
 export class Client {
   private _config: MMOConfig = new MMOConfig();
@@ -83,6 +87,9 @@ export class Client {
     requestDuel: new CommandRequestDuel(),
 
     autoShots: new CommandAutoShots(),
+
+    cancelBuff: new CommandCancelBuff(),
+    sitOrStand: new CommandSitStand(),
   };
 
   get Me(): L2User {
