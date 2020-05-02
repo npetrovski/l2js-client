@@ -8,7 +8,8 @@
   "types": "dist/Client.d.ts",
   "scripts": {
     "prepublish": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "tsc-bundle ./tsconfig.json --outFile ./bundle.js"
   },
   "keywords": [
     "lineage2",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/node": "^13.13.2",
     "@types/node-rsa": "^1.0.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "typescript-bundle": "^1.0.16"
   }
 }
