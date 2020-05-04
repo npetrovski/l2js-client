@@ -21,6 +21,96 @@ npm install l2js-client
 
 ///@todo
 
+## Examples
+
+### Logging in
+
+```ts
+import Client from "l2js-client";
+
+const l2 = new Client();
+l2.enter({
+  /* required */ username: "l2js",
+  /* required */ password: "passwd",
+  /* required */ loginServerIp: "127.0.0.1",
+  /* optional */ serverId: 1, //Bartz
+  /* optional */ charSlotIndex: 0,
+});
+```
+
+### Chat
+
+```ts
+l2.on("LoggedIn", () => {
+  l2.say("Hello from " + l2.Me.Name);
+  l2.shout("Hello world !!!");
+  l2.tell("hi there", "myMainCharName");
+  l2.sayToParty("Hello party");
+  l2.sayToClan("Hello clan");
+  l2.sayToTrade("Hello traders");
+  l2.sayToAlly("Hello ppls");
+});
+```
+
+### Move to location
+
+```ts
+l2.on("LoggedIn", () => {
+  let x = 50 + Math.floor(Math.random() * 50) + l2.Me.X;
+  let y = 50 + Math.floor(Math.random() * 50) + l2.Me.Y;
+  let z = l2.Me.Z;
+  l2.moveTo(x, y, z);
+});
+```
+
+### Fight back
+
+```ts
+type AttackedEvent = { object: number; subjects: number[] };
+
+l2.on("Attacked", (e) => {
+  var eventData = e.data as AttackedEvent;
+
+  if (Array.from(eventData.subjects).indexOf(l2.Me.ObjectId) !== -1) {
+    l2.hit(eventData.object);
+    l2.hit(eventData.object);
+  }
+});
+```
+
+### Follow a character
+
+```ts
+...
+import L2Creature from "l2js-client/dist/entities/L2Creature";
+
+
+l2.on("StartMoving", ({ data }) => {
+  let player = data as L2Creature;
+  if (player.Name === "MyMainChar") {
+    l2.moveTo(player.Dx, player.Dy, player.Dz);
+  }
+});
+```
+
+### Simple bot
+
+```ts
+l2.on("Die", ({ data }) => {
+  if (l2.Me.Target && data.creature.ObjectId === l2.Me.Target.ObjectId) {
+    l2.cancelTarget();
+  }
+});
+
+setInterval(() => {
+  if (l2.Me.Target == null) {
+    l2.nextTarget();
+    setTimeout(() => l2.hit(l2.Me.Target), 100);
+    setTimeout(() => l2.hit(l2.Me.Target), 100);
+  }
+}, 500);
+```
+
 ## API
 
 ///@todo

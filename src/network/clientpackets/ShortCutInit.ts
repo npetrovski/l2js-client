@@ -1,6 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 import { ShortcutType } from "../../enums/ShortcutType";
-
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 export default class ShortCutInit extends GameClientPacket {
   // @Override
   readImpl(): boolean {
@@ -40,6 +40,8 @@ export default class ShortCutInit extends GameClientPacket {
     // }
 
     /// this.Client.ActiveChar.setShortCuts(_shortCuts);
+
+    GlobalEvents.fire(`LoggedIn`);
     return true;
   }
 

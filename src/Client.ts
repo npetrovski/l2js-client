@@ -1,6 +1,7 @@
 import AbstractGameCommand from "./commands/AbstractGameCommand";
 import CommandAcceptJoinParty from "./commands/CommandAcceptJoinParty";
 import CommandAutoShots from "./commands/CommandAutoShots";
+import CommandCancelBuff from "./commands/CommandCancelBuff";
 import CommandCancelTarget from "./commands/CommandCancelTarget";
 import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
 import CommandHit from "./commands/CommandHit";
@@ -14,48 +15,129 @@ import CommandSayToClan from "./commands/CommandSayToClan";
 import CommandSayToParty from "./commands/CommandSayToParty";
 import CommandSayToTrade from "./commands/CommandSayToTrade";
 import CommandShout from "./commands/CommandShout";
+import CommandSitStand from "./commands/CommandSitStand";
 import CommandTell from "./commands/CommandTell";
 import CommandUseItem from "./commands/CommandUseItem";
 import ICommand from "./commands/ICommand";
 import L2Buff from "./entities/L2Buff";
+import L2Character from "./entities/L2Character";
 import L2Creature from "./entities/L2Creature";
 import L2DroppedItem from "./entities/L2DroppedItem";
 import L2Item from "./entities/L2Item";
+import L2Object from "./entities/L2Object";
 import L2ObjectCollection from "./entities/L2ObjectCollection";
 import L2Skill from "./entities/L2Skill";
 import L2User from "./entities/L2User";
+import { ShotsType } from "./enums/ShotsType";
 import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
 import MMOClient from "./mmocore/MMOClient";
 import MMOConfig from "./mmocore/MMOConfig";
 import GameClient from "./network/GameClient";
 import LoginClient from "./network/LoginClient";
-import CommandCancelBuff from "./commands/CommandCancelBuff";
-import CommandSitStand from "./commands/CommandSitStand";
+
+export default interface Client {
+  /**
+   * Send a general message
+   * @param text
+   */
+  say(text: string): void;
+  /**
+   * Shout a message
+   * @param text
+   */
+  shout(text: string): void;
+  /**
+   * Send a PM
+   * @param text
+   * @param target
+   */
+  tell(text: string, target: string): void;
+  /**
+   * Send message to party
+   * @param text
+   */
+  sayToParty(text: string): void;
+  /**
+   * Send message to clan
+   * @param text
+   */
+  sayToClan(text: string): void;
+  /**
+   * Send message to trade
+   * @param text
+   */
+  sayToTrade(text: string): void;
+  /**
+   * Send message to ally
+   * @param text
+   */
+  sayToAlly(text: string): void;
+  /**
+   * Move to location
+   * @param x
+   * @param y
+   * @param z
+   */
+  moveTo(x: number, y: number, z: number): void;
+  /**
+   * Hit on target. Accepts L2Object object or ObjectId
+   * @param object
+   * @param shift
+   */
+  hit(object: L2Object | number, shift?: boolean): void;
+  /**
+   * Cancel the active target
+   */
+  cancelTarget(): void;
+  /**
+   * Accepts the requested party invite
+   */
+  acceptJoinParty(): void;
+  /**
+   * Declines the requested party invite
+   */
+  declineJoinParty(): void;
+  /**
+   * Select next/closest attackable target
+   */
+  nextTarget(): void;
+  /**
+   * Request for inventory item list
+   */
+  inventory(): void;
+  /**
+   * Use an item. Accepts L2Item object or ObjectId
+   * @param item
+   */
+  useItem(item: L2Item | number): void;
+  /**
+   * Request player a duel. If no char is provided, the command tries to request the selected target
+   * @param char
+   */
+  requestDuel(char?: L2Character | string): void;
+  /**
+   * Enable/disable auto-shots
+   * @param item
+   * @param enable
+   */
+  autoShots(item: L2Item | ShotsType | number, enable: boolean): void;
+  /**
+   * Cancel a buff
+   * @param object
+   * @param buff
+   * @param level
+   */
+  cancelBuff(object: L2Character | number, buff: L2Buff | number, level?: number): void;
+  /**
+   * Sit or stand
+   */
+  sitOrStand(): void;
+}
 
 /**
  * Lineage 2 Client
- *
- * @method say(text: string):void Send a general message
- * @method shout(text: string):void Shout a message
- * @method tell(text: string, target: string):void  Send a PM
- * @method sayToParty(text: string):void Send message to party
- * @method sayToClan(text: string):void Send message to party
- * @method sayToTrade(text: string):void Send message to party
- * @method sayToAlly(text: string):void Send message to party
- * @method moveTo(x: number, y: number, z: number):void Move to location
- * @method hit(object: L2Object | number, shift?: boolean):void Hit on target. Accepts L2Object object or ObjectId
- * @method cancelTarget():void Cancel the active target
- * @method acceptJoinParty():void Accepts the requested party invite
- * @method declineJoinParty():void Declines the requested party invite
- * @method nextTarget():void Select next/closest attackable target
- * @method inventory():void Request for inventory item list
- * @method useItem(item: L2Item | number):void Use an item. Accepts L2Item object or ObjectId
- * @method requestDuel(char?: L2Character | string):void Request player a duel. If no char is provided, the command tries to request the selected target
- * @method autoShots(item: L2Item | ShotsType | number, enable: boolean):void Enable/disable auto-shots
- * @method cancelBuff(object: L2Character | number, buff: L2Buff | number, level?: number):void Cancel a buff
- * @method sitOrStand():void Sit or stand
  */
-export class Client {
+export default class Client {
   private _config: MMOConfig = new MMOConfig();
 
   private _lc!: LoginClient;
