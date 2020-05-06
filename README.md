@@ -139,6 +139,42 @@ l2.on("LoggedIn", () => {
 
 ## API
 
+### Objects
+
+```
+L2Object
+  |
+  ├── L2Buff
+  ├── L2Skill
+  ├── L2Creature
+  |     ├── L2PartyPet
+  |     ├── L2Summon
+  |     ├── L2Mob
+  |     ├── L2Npc
+  |     └── L2Character
+  |           ├── L2User
+  |           └── L2PartyMember
+  ├── L2Mail
+  └── L2Item
+        └── L2DroppedItem
+```
+
+### Events
+
+| Event            | Event Data Type   | When?                                |
+| ---------------- | ----------------- | ------------------------------------ |
+| LoggedIn         | void              | logged in to Game server             |
+| PacketReceived   | EPacketReceived   | a packet is received                 |
+| PacketSent       | EPacketSent       | a packet is sent                     |
+| PartyRequest     | EPartyRequest     | receive a party request              |
+| Die              | EDie              | L2Creature is dead                   |
+| TargetSelected   | ETargetSelected   | L2Creature is selected by L2Creature |
+| MyTargetSelected | EMyTargetSelected | L2Creature is selected by L2User     |
+| Attacked         | EAttacked         | L2User is beings attacked            |
+| RequestedDuel    | ERequestedDuel    | receive a duel request               |
+| StartMoving      | EStartMoving      | L2Creature starts moving             |
+| StopMoving       | EStopMoving       | L2Creature stops moving              |
+
 ///@todo
 
 ## Contributing
