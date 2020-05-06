@@ -1,8 +1,7 @@
-import AbstractGameCommand from "./AbstractGameCommand";
-import GameClient from "../network/GameClient";
-import Action from "../network/serverpackets/Action";
 import L2Object from "../entities/L2Object";
+import GameClient from "../network/GameClient";
 import AttackRequest from "../network/serverpackets/AttackRequest";
+import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandAttack extends AbstractGameCommand<GameClient> {
   execute(object: L2Object | number, shift?: boolean): void {

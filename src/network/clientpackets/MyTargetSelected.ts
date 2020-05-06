@@ -10,8 +10,7 @@ export default class MyTargetSelected extends GameClientPacket {
 
     const _pad = this.readD();
 
-    let npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
-
+    const npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
     if (npc) {
       this.Client.ActiveChar.Target = npc;
     }

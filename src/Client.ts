@@ -29,7 +29,7 @@ import L2ObjectCollection from "./entities/L2ObjectCollection";
 import L2Skill from "./entities/L2Skill";
 import L2User from "./entities/L2User";
 import { ShotsType } from "./enums/ShotsType";
-import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
+import { GlobalEvents } from "./mmocore/EventEmitter";
 import MMOClient from "./mmocore/MMOClient";
 import MMOConfig from "./mmocore/MMOConfig";
 import GameClient from "./network/GameClient";
@@ -158,36 +158,36 @@ export default class Client {
   private _gc!: GameClient;
 
   private _commands: Record<string, ICommand> = {
-    say: new CommandSay(),
-    shout: new CommandShout(),
-    tell: new CommandTell(),
-    sayToParty: new CommandSayToParty(),
-    sayToClan: new CommandSayToClan(),
-    sayToTrade: new CommandSayToTrade(),
-    sayToAlly: new CommandSayToAlly(),
+    say: CommandSay.prototype,
+    shout: CommandShout.prototype,
+    tell: CommandTell.prototype,
+    sayToParty: CommandSayToParty.prototype,
+    sayToClan: CommandSayToClan.prototype,
+    sayToTrade: CommandSayToTrade.prototype,
+    sayToAlly: CommandSayToAlly.prototype,
 
-    moveTo: new CommandMoveTo(),
-    hit: new CommandHit(),
-    attack: new CommandAttack(),
+    moveTo: CommandMoveTo.prototype,
+    hit: CommandHit.prototype,
+    attack: CommandAttack.prototype,
 
-    cancelTarget: new CommandCancelTarget(),
+    cancelTarget: CommandCancelTarget.prototype,
 
-    acceptJoinParty: new CommandAcceptJoinParty(),
-    declineJoinParty: new CommandDeclineJoinParty(),
+    acceptJoinParty: CommandAcceptJoinParty.prototype,
+    declineJoinParty: CommandDeclineJoinParty.prototype,
 
-    nextTarget: new CommandNextTarget(),
+    nextTarget: CommandNextTarget.prototype,
 
-    inventory: new CommandInventory(),
-    useItem: new CommandUseItem(),
+    inventory: CommandInventory.prototype,
+    useItem: CommandUseItem.prototype,
 
-    requestDuel: new CommandRequestDuel(),
+    requestDuel: CommandRequestDuel.prototype,
 
-    autoShots: new CommandAutoShots(),
+    autoShots: CommandAutoShots.prototype,
 
-    cancelBuff: new CommandCancelBuff(),
-    sitOrStand: new CommandSitStand(),
+    cancelBuff: CommandCancelBuff.prototype,
+    sitOrStand: CommandSitStand.prototype,
 
-    validatePosition: new CommandValidatePosition(),
+    validatePosition: CommandValidatePosition.prototype,
   };
 
   get Me(): L2User {
@@ -223,7 +223,7 @@ export default class Client {
           return Reflect.get(target, propertyKey, receiver);
         }
         if (propertyKey in target._commands) {
-          const cmd = target._commands[propertyKey] as AbstractGameCommand<MMOClient>;
+          const cmd = Object.create(target._commands[propertyKey] as AbstractGameCommand<MMOClient>);
           cmd.Client = target._gc;
           return (...args: any) => {
             return cmd.execute(...args);
@@ -231,6 +231,14 @@ export default class Client {
         }
       },
     });
+  }
+
+  registerCommand(commandName: string, commandHandler: ICommand): this {
+    if (commandName in this._commands) {
+      throw new Error(`Command ${commandName} is already registered.`);
+    }
+    this._commands[commandName] = commandHandler;
+    return this;
   }
 
   setConfig(config: MMOConfig | object): this {
