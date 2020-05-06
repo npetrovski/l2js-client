@@ -1,4 +1,5 @@
 import GameClientPacket from "./GameClientPacket";
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class TargetSelected extends GameClientPacket {
   // @Override
@@ -13,14 +14,18 @@ export default class TargetSelected extends GameClientPacket {
     const _unkn1 = this.readD();
 
     const char = this.Client.CreaturesList.getEntryByObjectId(_objectId);
-    if (!char) {
-      return true;
+    if (char) {
+      const target = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
+      if (target) {
+        char.Target = target;
+      }
     }
 
-    const target = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
-    if (target) {
-      char.Target = target;
-    }
+    GlobalEvents.fire("TargetSelected", {
+      objectId: _objectId,
+      targetObjectId: _targetObjectId,
+      targetLocation: [_x, _y, _z],
+    });
 
     return true;
   }

@@ -60,6 +60,7 @@ import TutorialShowQuestionMark from "./clientpackets/TutorialShowQuestionMark";
 import UserInfo from "./clientpackets/UserInfo";
 import ValidateLocation from "./clientpackets/ValidateLocation";
 import GameClient from "./GameClient";
+import ActionFailed from "./clientpackets/ActionFailed";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   // @Override
@@ -108,6 +109,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x16:
           rpk = new DropItem();
+          break;
+        case 0x1f:
+          rpk = new ActionFailed();
           break;
         case 0x22:
           rpk = new TeleportToLocation();

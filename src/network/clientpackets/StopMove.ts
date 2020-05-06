@@ -13,6 +13,7 @@ export default class StopMove extends GameClientPacket {
     if (creature) {
       creature.setLocation(_x, _y, _z, _heading);
       creature.calculateDistance(this.Client.ActiveChar);
+      creature.IsMoving = false;
     }
 
     return true;

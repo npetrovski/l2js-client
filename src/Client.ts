@@ -34,6 +34,8 @@ import MMOClient from "./mmocore/MMOClient";
 import MMOConfig from "./mmocore/MMOConfig";
 import GameClient from "./network/GameClient";
 import LoginClient from "./network/LoginClient";
+import CommandValidatePosition from "./commands/CommandValidatePosition";
+import CommandAttack from "./commands/CommandAttack";
 
 export default interface Client {
   /**
@@ -86,6 +88,12 @@ export default interface Client {
    */
   hit(object: L2Object | number, shift?: boolean): void;
   /**
+   * Attack
+   * @param object
+   * @param shift
+   */
+  attack(object: L2Object | number, shift?: boolean): void;
+  /**
    * Cancel the active target
    */
   cancelTarget(): void;
@@ -100,7 +108,7 @@ export default interface Client {
   /**
    * Select next/closest attackable target
    */
-  nextTarget(): void;
+  nextTarget(): L2Creature | undefined;
   /**
    * Request for inventory item list
    */
@@ -132,6 +140,10 @@ export default interface Client {
    * Sit or stand
    */
   sitOrStand(): void;
+  /**
+   * Sync position with server
+   */
+  validatePosition(): void;
 }
 
 /**
@@ -155,6 +167,7 @@ export default class Client {
 
     moveTo: new CommandMoveTo(),
     hit: new CommandHit(),
+    attack: new CommandAttack(),
 
     cancelTarget: new CommandCancelTarget(),
 
@@ -172,6 +185,8 @@ export default class Client {
 
     cancelBuff: new CommandCancelBuff(),
     sitOrStand: new CommandSitStand(),
+
+    validatePosition: new CommandValidatePosition(),
   };
 
   get Me(): L2User {

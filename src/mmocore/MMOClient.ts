@@ -1,4 +1,3 @@
-import MMOConnection from "./MMOConnection";
 import ReceivablePacket from "./ReceivablePacket";
 import IPacketHandler from "./IPacketHandler";
 import { GlobalEvents } from "./EventEmitter";
@@ -63,7 +62,7 @@ export default abstract class MMOClient {
           }
 
           if (rcp.read()) {
-            GlobalEvents.fire(`packet:${rcp.constructor.name}`, rcp);
+            GlobalEvents.fire(`PacketReceived:${rcp.constructor.name}`, { packet: rcp });
             rcp.run();
           }
         }, 0);

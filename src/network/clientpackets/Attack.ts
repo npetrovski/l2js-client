@@ -1,5 +1,5 @@
-import GameClientPacket from "./GameClientPacket";
 import { GlobalEvents } from "../../mmocore/EventEmitter";
+import GameClientPacket from "./GameClientPacket";
 
 export default class Attack extends GameClientPacket {
   // @Override
@@ -7,16 +7,13 @@ export default class Attack extends GameClientPacket {
     const _id = this.readC();
 
     const _attackerObjId = this.readD();
-    const event: { object: number; subjects: number[] } = {
-      object: _attackerObjId,
-      subjects: [],
-    };
 
     const _targetId = this.readD();
     const _damage = this.readD();
     const _flags = this.readC();
 
-    event.subjects.push(_targetId);
+    const subjects = [];
+    subjects.push(_targetId);
 
     const [_attackerX, _attackerY, _attackerZ] = this.readLoc();
 
@@ -26,12 +23,15 @@ export default class Attack extends GameClientPacket {
       const _damage1 = this.readD();
       const _flags1 = this.readC();
 
-      event.subjects.push(_targetId1);
+      subjects.push(_targetId1);
     }
 
     const [_targetX, _targetY, _targetZ] = this.readLoc();
 
-    GlobalEvents.fire(`Attacked`, event);
+    GlobalEvents.fire(`Attacked`, {
+      object: _attackerObjId,
+      subjects,
+    });
 
     return true;
   }

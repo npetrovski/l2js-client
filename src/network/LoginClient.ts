@@ -5,6 +5,7 @@ import LoginCrypt from "../security/crypt/LoginCrypt";
 import LoginPacketHandler from "./LoginPacketHandler";
 import ServerData from "./ServerData";
 import LoginServerPacket from "./serverpackets/LoginServerPacket";
+import { GlobalEvents } from "../mmocore/EventEmitter";
 
 export default class LoginClient extends MMOClient {
   private _username: string;
@@ -171,9 +172,13 @@ export default class LoginClient extends MMOClient {
     sendable.set(lsp.Buffer.slice(0, lsp.Position), 2);
 
     console.info("sending..", lsp.constructor.name);
-    this.Connection.write(sendable).catch((error) => {
-      console.error(error);
-    });
+    this.Connection.write(sendable)
+      .then(() => {
+        GlobalEvents.fire(`PacketSent:${lsp.constructor.name}`, { packet: lsp });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   encrypt(buf: Uint8Array, offset: number, size: number): void {

@@ -301,10 +301,11 @@ export default abstract class L2Creature extends L2Object {
 
   public set IsMoving(value: boolean) {
     if (value) {
-      GlobalEvents.fire(`StartMoving`, this);
+      GlobalEvents.fire("StartMoving", { creature: this });
     } else {
-      GlobalEvents.fire(`StopMoving`, this);
+      GlobalEvents.fire("StopMoving", { creature: this });
     }
+    clearInterval(this._moveInterval);
     this._isMoving = value;
   }
 
@@ -330,7 +331,6 @@ export default abstract class L2Creature extends L2Object {
 
     let moveCnt = Math.ceil(this.MovingVector.length() / (this.CurrentSpeed / 10));
     this.IsMoving = true;
-    clearInterval(this._moveInterval);
 
     this._moveInterval = setInterval(() => {
       this.MovingVector.normalize();
@@ -344,7 +344,6 @@ export default abstract class L2Creature extends L2Object {
         this.IsMoving = false;
         this.X = this.Dx;
         this.Y = this.Dy;
-        clearInterval(this._moveInterval);
       }
     }, 100);
   }

@@ -66,10 +66,10 @@ l2.on("LoggedIn", () => {
 ### Fight back
 
 ```ts
-type AttackedEvent = { object: number; subjects: number[] };
+import { OnAttackedEvent } from "l2js-client/dist/events/EventTypes";
 
 l2.on("Attacked", (e) => {
-  var eventData = e.data as AttackedEvent;
+  var eventData = e.data as OnAttackedEvent;
 
   if (Array.from(eventData.subjects).indexOf(l2.Me.ObjectId) !== -1) {
     l2.hit(eventData.object);
@@ -93,18 +93,23 @@ l2.on("StartMoving", ({ data }) => {
 });
 ```
 
-### Simple bot
+### Simple bot (auto-target and auto-close-combat-hit)
 
 ```ts
-l2.on("Die", ({ data }) => {
-  if (l2.Me.Target && data.creature.ObjectId === l2.Me.Target.ObjectId) {
+type EventData = { creature: L2Creature; isSpoiled: boolean };
+
+l2.on("Die", (e) => {
+  let eventData = e.data as EventData;
+
+  if (l2.Me.Target && eventData.creature.ObjectId === l2.Me.Target.ObjectId) {
     l2.cancelTarget();
   }
 });
 
 setInterval(() => {
-  if (l2.Me.Target == null) {
+  if (l2.Me.Target === null) {
     l2.nextTarget();
+  } else {
     setTimeout(() => l2.hit(l2.Me.Target), 100);
     setTimeout(() => l2.hit(l2.Me.Target), 100);
   }
