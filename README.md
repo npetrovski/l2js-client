@@ -187,19 +187,19 @@ L2Object
 
 ### Events
 
-| Event Type       | Event Data Type   | When?                                |
-| ---------------- | ----------------- | ------------------------------------ |
-| LoggedIn         | void              | logged in to Game server             |
-| PacketReceived   | EPacketReceived   | a packet is received                 |
-| PacketSent       | EPacketSent       | a packet is sent                     |
-| PartyRequest     | EPartyRequest     | receive a party request              |
-| Die              | EDie              | L2Creature is dead                   |
-| TargetSelected   | ETargetSelected   | L2Creature is selected by L2Creature |
-| MyTargetSelected | EMyTargetSelected | L2Creature is selected by L2User     |
-| Attacked         | EAttacked         | L2User is beings attacked            |
-| RequestedDuel    | ERequestedDuel    | receive a duel request               |
-| StartMoving      | EStartMoving      | L2Creature starts moving             |
-| StopMoving       | EStopMoving       | L2Creature stops moving              |
+| Event Type       | Event Data Type                                                                                         | When?                                |
+| ---------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| LoggedIn         | void                                                                                                    | logged in to Game server             |
+| PacketReceived   | [EPacketReceived](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L6)    | a packet is received                 |
+| PacketSent       | [EPacketSent](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L7)        | a packet is sent                     |
+| PartyRequest     | [EPartyRequest](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L8)      | receive a party request              |
+| Die              | [EDie](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L13)              | L2Creature is dead                   |
+| TargetSelected   | [ETargetSelected](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L14)   | L2Creature is selected by L2Creature |
+| MyTargetSelected | [EMyTargetSelected](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L19) | L2Creature is selected by L2User     |
+| Attacked         | [EAttacked](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L20)         | L2User is beings attacked            |
+| RequestedDuel    | [ERequestedDuel](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L21)    | receive a duel request               |
+| StartMoving      | [EStartMoving](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L22)      | L2Creature starts moving             |
+| StopMoving       | [EStopMoving](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L23)       | L2Creature stops moving              |
 
 ///@todo
 
