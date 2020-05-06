@@ -89,7 +89,7 @@ export default interface Client {
    */
   hit(object: L2Object | number, shift?: boolean): void;
   /**
-   * Attack
+   * Attack a target
    * @param object
    * @param shift
    */

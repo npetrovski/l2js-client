@@ -159,9 +159,35 @@ L2Object
         └── L2DroppedItem
 ```
 
+### Commands
+
+| Command          | Does what?                                                                                      |
+| ---------------- | ----------------------------------------------------------------------------------------------- |
+| say              | Send a general message                                                                          |
+| shout            | Shout a message                                                                                 |
+| tell             | Send a PM                                                                                       |
+| sayToParty       | Send a party message                                                                            |
+| sayToClan        | Send a clan message                                                                             |
+| sayToTrade       | Send a trade message                                                                            |
+| sayToAlly        | Send an ally message                                                                            |
+| moveTo           | Move to location                                                                                |
+| hit              | Hit on target. Accepts L2Object object or ObjectId                                              |
+| attack           | Attack a target. Accepts L2Object object or ObjectId                                            |
+| cancelTarget     | Cancel the active target                                                                        |
+| acceptJoinParty  | Accepts the requested party invite                                                              |
+| declineJoinParty | Declines the requested party invite                                                             |
+| nextTarget       | Select next/closest attackable target                                                           |
+| inventory        | Request for inventory item list                                                                 |
+| useItem          | Use an item. Accepts L2Item object or ObjectId                                                  |
+| requestDuel      | Request player a duel. If no char is provided, the command tries to request the selected target |
+| autoShots        | Enable/disable auto-shots                                                                       |
+| cancelBuff       | Cancel a buff                                                                                   |
+| sitOrStand       | Sit or stand                                                                                    |
+| validatePosition | Sync position with server                                                                       |
+
 ### Events
 
-| Event            | Event Data Type   | When?                                |
+| Event Type       | Event Data Type   | When?                                |
 | ---------------- | ----------------- | ------------------------------------ |
 | LoggedIn         | void              | logged in to Game server             |
 | PacketReceived   | EPacketReceived   | a packet is received                 |
@@ -176,10 +202,6 @@ L2Object
 | StopMoving       | EStopMoving       | L2Creature stops moving              |
 
 ///@todo
-
-## Contributing
-
-I welcome contributions of all types, as long as you enjoy it and do it for fun :-) !
 
 ## Protocol Overview
 
@@ -293,3 +315,7 @@ Except for the first packet, each game client packet is transmitted by taking th
 
 - complete the library with all packet handlers
 - remove dependency for node-rsa, ideally the library should be able to be executed client-side (by a browser), excluding the part with the socket connection
+
+## Contributing
+
+I welcome contributions of all types, as long as you enjoy it and do it for fun :-) !
