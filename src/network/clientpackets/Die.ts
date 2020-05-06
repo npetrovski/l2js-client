@@ -26,7 +26,7 @@ export default class Die extends GameClientPacket {
         this.Client.BuffsList.clear();
       }
 
-      GlobalEvents.fire(`Die`, { creature, isSpoiled: _sweepable });
+      GlobalEvents.fire("Die", { creature, isSpoiled: _sweepable });
     }
 
     return true;

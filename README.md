@@ -66,14 +66,12 @@ l2.on("LoggedIn", () => {
 ### Fight back
 
 ```ts
-import { OnAttackedEvent } from "l2js-client/dist/events/EventTypes";
+import { EAttacked } from "l2js-client/dist/events/EventTypes";
 
-l2.on("Attacked", (e) => {
-  var eventData = e.data as OnAttackedEvent;
-
-  if (Array.from(eventData.subjects).indexOf(l2.Me.ObjectId) !== -1) {
-    l2.hit(eventData.object);
-    l2.hit(eventData.object);
+l2.on("Attacked", (e: EAttacked) => {
+  if (Array.from(e.data.subjects).indexOf(l2.Me.ObjectId) !== -1) {
+    l2.hit(e.data.object);
+    l2.hit(e.data.object);
   }
 });
 ```
@@ -81,14 +79,11 @@ l2.on("Attacked", (e) => {
 ### Follow a character
 
 ```ts
-...
-import L2Creature from "l2js-client/dist/entities/L2Creature";
+import { EStartMoving } from "l2js-client/dist/events/EventTypes";
 
-
-l2.on("StartMoving", ({ data }) => {
-  let player = data as L2Creature;
-  if (player.Name === "MyMainChar") {
-    l2.moveTo(player.Dx, player.Dy, player.Dz);
+l2.on("StartMoving", (e: EStartMoving) => {
+  if (e.data.creature.Name === "Adm") {
+    l2.moveTo(e.data.creature.Dx, e.data.creature.Dy, e.data.creature.Dz);
   }
 });
 ```
@@ -96,24 +91,50 @@ l2.on("StartMoving", ({ data }) => {
 ### Simple bot (auto-target and auto-close-combat-hit)
 
 ```ts
-type EventData = { creature: L2Creature; isSpoiled: boolean };
+import L2Creature from "l2js-client/dist/entities/L2Creature";
+import { ShotsType } from "l2js-client/dist/enums/ShotsType";
+import { EDie, EMyTargetSelected, EPartyRequest, EAttacked } from "l2js-client/dist/events/EventTypes";
 
-l2.on("Die", (e) => {
-  let eventData = e.data as EventData;
+l2.on("LoggedIn", () => {
+  l2.cancelTarget();
+  l2.validatePosition();
+  l2.moveTo(l2.Me.X + 1, l2.Me.Y + 1, l2.Me.Z);
+  l2.autoShots(ShotsType.SSS, true); // enable SSS
 
-  if (l2.Me.Target && eventData.creature.ObjectId === l2.Me.Target.ObjectId) {
-    l2.cancelTarget();
-  }
-});
-
-setInterval(() => {
-  if (l2.Me.Target === null) {
-    l2.nextTarget();
-  } else {
-    setTimeout(() => l2.hit(l2.Me.Target), 100);
-    setTimeout(() => l2.hit(l2.Me.Target), 100);
-  }
-}, 500);
+  setInterval(() => {
+    if (l2.DroppedItems.size > 0) {
+      l2.hit(Array.from(l2.DroppedItems)[0]);
+    } else if (!l2.Me.Target || l2.Me.Target.ObjectId === l2.Me.ObjectId) {
+      let creature: L2Creature | undefined = l2.nextTarget();
+      if (creature instanceof L2Creature) {
+        l2.hit(creature);
+      }
+    }
+  }, 500);
+})
+  .on("MyTargetSelected", (e: EMyTargetSelected) => {
+    if (l2.Me.Target) {
+      l2.hit(l2.Me.Target);
+      l2.attack(l2.Me.Target);
+    }
+  })
+  .on("Die", (e: EDie) => {
+    if (l2.Me.Target && e.data.creature.ObjectId === l2.Me.Target.ObjectId) {
+      l2.cancelTarget();
+      l2.CreaturesList.forEach((c) => {
+        c.calculateDistance(l2.Me);
+      });
+    }
+  })
+  .on("PartyRequest", (e: EPartyRequest) => {
+    l2.acceptJoinParty();
+  })
+  .on("Attacked", (e: EAttacked) => {
+    if (Array.from(e.data.subjects).indexOf(l2.Me.ObjectId) !== -1) {
+      l2.hit(e.data.object);
+      l2.hit(e.data.object);
+    }
+  });
 ```
 
 ## API

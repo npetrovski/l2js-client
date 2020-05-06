@@ -36,6 +36,7 @@ import GameClient from "./network/GameClient";
 import LoginClient from "./network/LoginClient";
 import CommandValidatePosition from "./commands/CommandValidatePosition";
 import CommandAttack from "./commands/CommandAttack";
+import { EventHandlerType } from "./events/EventTypes";
 
 export default interface Client {
   /**
@@ -249,8 +250,17 @@ export default class Client {
     return this;
   }
 
-  on(event: string, handler: EventHandler): this {
-    GlobalEvents.on(event, handler);
+  on(...params: EventHandlerType): this {
+    let type: string;
+    let handler: any;
+    if (params.length >= 3) {
+      type = `${params[0]}:${params[1]}`;
+      handler = params[2];
+    } else {
+      type = params[0];
+      handler = params[1];
+    }
+    GlobalEvents.on(type, handler as any);
     return this;
   }
 }
