@@ -16,6 +16,7 @@ import GamePacketHandler from "./GamePacketHandler";
 import LoginClient from "./LoginClient";
 import GameServerPacket from "./serverpackets/GameServerPacket";
 import ProtocolVersion from "./serverpackets/ProtocolVersion";
+import L2Recipe from "../entities/L2Recipe";
 
 export default class GameClient extends MMOClient {
   private _loginClient: LoginClient;
@@ -31,6 +32,8 @@ export default class GameClient extends MMOClient {
   private _items: L2ObjectCollection<L2Item> = new L2ObjectCollection();
   private _buffs: L2ObjectCollection<L2Buff> = new L2ObjectCollection();
   private _skills: L2ObjectCollection<L2Skill> = new L2ObjectCollection();
+  private _dwarfRecipeBook: L2ObjectCollection<L2Recipe> = new L2ObjectCollection();
+  private _commonRecipeBook: L2ObjectCollection<L2Recipe> = new L2ObjectCollection();
 
   get CreaturesList(): L2ObjectCollection<L2Creature> {
     return this._creatures;
@@ -54,6 +57,14 @@ export default class GameClient extends MMOClient {
 
   get SkillsList(): L2ObjectCollection<L2Skill> {
     return this._skills;
+  }
+
+  get DwarfRecipeBook(): L2ObjectCollection<L2Recipe> {
+    return this._dwarfRecipeBook;
+  }
+
+  get CommonRecipeBook(): L2ObjectCollection<L2Recipe> {
+    return this._commonRecipeBook;
   }
 
   get PlayOk1(): number {

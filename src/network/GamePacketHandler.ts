@@ -61,6 +61,8 @@ import UserInfo from "./clientpackets/UserInfo";
 import ValidateLocation from "./clientpackets/ValidateLocation";
 import GameClient from "./GameClient";
 import ActionFailed from "./clientpackets/ActionFailed";
+import RecipeItemMakeInfo from "./clientpackets/RecipeItemMakeInfo";
+import RecipeBookItemList from "./clientpackets/RecipeBookItemList";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   // @Override
@@ -83,21 +85,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x08:
           rpk = new DeleteObject();
           break;
-        case 0x11:
-          rpk = new ItemList();
-          break;
-        case 0x12:
-          rpk = new SunRise();
-          break;
-        case 0x13:
-          rpk = new SunSet();
-          break;
-        case 0x18:
-          rpk = new StatusUpdate();
-          break;
-        case 0x2e:
-          rpk = new KeyPacket();
-          break;
         case 0x09:
           rpk = new CharSelectionInfo();
           break;
@@ -107,8 +94,20 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x0c:
           rpk = new NpcInfo();
           break;
+        case 0x11:
+          rpk = new ItemList();
+          break;
+        case 0x12:
+          rpk = new SunRise();
+          break;
+        case 0x13:
+          rpk = new SunSet();
+          break;
         case 0x16:
           rpk = new DropItem();
+          break;
+        case 0x18:
+          rpk = new StatusUpdate();
           break;
         case 0x1f:
           rpk = new ActionFailed();
@@ -133,6 +132,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x28:
           rpk = new ChangeMoveType();
+          break;
+        case 0x2e:
+          rpk = new KeyPacket();
           break;
         case 0x2f:
           rpk = new MoveToLocation();
@@ -229,6 +231,12 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0xdb:
           rpk = new Snoop();
+          break;
+        case 0xdc:
+          rpk = new RecipeBookItemList();
+          break;
+        case 0xdd:
+          rpk = new RecipeItemMakeInfo();
           break;
         case 0xf9:
           rpk = new EtcStatusUpdate();

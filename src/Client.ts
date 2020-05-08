@@ -37,6 +37,10 @@ import LoginClient from "./network/LoginClient";
 import CommandValidatePosition from "./commands/CommandValidatePosition";
 import CommandAttack from "./commands/CommandAttack";
 import { EventHandlerType } from "./events/EventTypes";
+import CommandCast from "./commands/CommandCast";
+import CommandDwarvenCraftRecipes from "./commands/CommandDwarvenCraftRecipes";
+import CommandCraft from "./commands/CommandCraft";
+import L2Recipe from "./entities/L2Recipe";
 
 export default interface Client {
   /**
@@ -145,6 +149,22 @@ export default interface Client {
    * Sync position with server
    */
   validatePosition(): void;
+  /**
+   * Cast a magic skill
+   * @param magicId
+   * @param ctrl
+   * @param shift
+   */
+  cast(magicSkillId: number, ctrl?: boolean, shift?: boolean): void;
+  /**
+   * Open dwarven craft recipe book
+   */
+  dwarvenCraftRecipes(): void;
+  /**
+   * Craft an item
+   * @param recipeId
+   */
+  craft(recipeId: number): void;
 }
 
 /**
@@ -188,6 +208,12 @@ export default class Client {
     sitOrStand: CommandSitStand.prototype,
 
     validatePosition: CommandValidatePosition.prototype,
+
+    cast: CommandCast.prototype,
+
+    dwarvenCraftRecipes: CommandDwarvenCraftRecipes.prototype,
+
+    craft: CommandCraft.prototype,
   };
 
   get Me(): L2User {
@@ -213,6 +239,12 @@ export default class Client {
   }
   get SkillsList(): L2ObjectCollection<L2Skill> {
     return this._gc?.SkillsList;
+  }
+  get DwarfRecipeBook(): L2ObjectCollection<L2Recipe> {
+    return this._gc?.DwarfRecipeBook;
+  }
+  get CommonRecipeBook(): L2ObjectCollection<L2Recipe> {
+    return this._gc?.CommonRecipeBook;
   }
 
   constructor() {

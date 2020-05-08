@@ -21,6 +21,8 @@ export declare type EAttacked = { type: string; data: { object: number; subjects
 export declare type ERequestedDuel = { type: string; data: { requestorName: string }; once: boolean };
 export declare type EStartMoving = { type: string; data: { creature: L2Creature }; once: boolean };
 export declare type EStopMoving = { type: string; data: { creature: L2Creature }; once: boolean };
+export declare type ECraftResult = { type: string; data: { recipeId: number; success: boolean }; once: boolean };
+export declare type ERecipeBook = { type: string; data: { isDwarven: boolean }; once: boolean };
 
 // Events
 export declare type OnLoggedInEvent = ["LoggedIn", () => void];
@@ -34,6 +36,8 @@ export declare type OnAttackedEvent = ["Attacked", (e: EAttacked) => void];
 export declare type OnRequestedDuelEvent = ["RequestedDuel", (e: ERequestedDuel) => void];
 export declare type OnStartMovingEvent = ["StartMoving", (e: EStartMoving) => void];
 export declare type OnStopMovingEvent = ["StopMoving", (e: EStopMoving) => void];
+export declare type OnCraftResultEvent = ["CraftResult", (e: ECraftResult) => void];
+export declare type OnRecipeBookEvent = ["RecipeBook", (e: ERecipeBook) => void];
 
 // prettier-ignore
 export declare type EventHandlerType =
@@ -47,4 +51,6 @@ export declare type EventHandlerType =
   | OnAttackedEvent
   | OnRequestedDuelEvent
   | OnStartMovingEvent
-  | OnStopMovingEvent;
+  | OnStopMovingEvent
+  | OnCraftResultEvent
+  | OnRecipeBookEvent;

@@ -154,6 +154,37 @@ l2.on("LoggedIn", () => {
 });
 ```
 
+### Simple craft (Soulshot S-Grade)
+
+```ts
+import { ERecipeBook, ECraftResult } from "l2js-client/dist/events/EventTypes";
+import L2Recipe from "l2js-client/dist/entities/L2Recipe";
+
+const RECIPE_SSS = 0x18;
+var craftIntervalId: ReturnType<typeof setInterval>;
+
+l2.on("LoggedIn", () => {
+  l2.dwarvenCraftRecipes();
+})
+  .on("RecipeBook", (e: ERecipeBook) => {
+    if (e.data.isDwarven) {
+      let recipeSSS = Array.from(l2.DwarfRecipeBook).find((r: L2Recipe) => r.Id === RECIPE_SSS);
+      if (recipeSSS) {
+        clearInterval(craftIntervalId);
+
+        craftIntervalId = setInterval(() => {
+          l2.craft(RECIPE_SSS);
+        }, 500);
+      }
+    }
+  })
+  .on("CraftResult", (e: ECraftResult) => {
+    if (!e.data.success) {
+      clearInterval(craftIntervalId);
+    }
+  });
+```
+
 ## API
 
 ### Objects
@@ -172,6 +203,7 @@ L2Object
   |           ├── L2User
   |           └── L2PartyMember
   ├── L2Mail
+  ├── L2Recipe
   └── L2Item
         └── L2DroppedItem
 ```
