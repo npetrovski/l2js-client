@@ -210,29 +210,31 @@ L2Object
 
 ### Commands
 
-| Command          | Does what?                                                                                      |
-| ---------------- | ----------------------------------------------------------------------------------------------- |
-| say              | Send a general message                                                                          |
-| shout            | Shout a message                                                                                 |
-| tell             | Send a PM                                                                                       |
-| sayToParty       | Send a party message                                                                            |
-| sayToClan        | Send a clan message                                                                             |
-| sayToTrade       | Send a trade message                                                                            |
-| sayToAlly        | Send an ally message                                                                            |
-| moveTo           | Move to location                                                                                |
-| hit              | Hit on target. Accepts L2Object object or ObjectId                                              |
-| attack           | Attack a target. Accepts L2Object object or ObjectId                                            |
-| cancelTarget     | Cancel the active target                                                                        |
-| acceptJoinParty  | Accepts the requested party invite                                                              |
-| declineJoinParty | Declines the requested party invite                                                             |
-| nextTarget       | Select next/closest attackable target                                                           |
-| inventory        | Request for inventory item list                                                                 |
-| useItem          | Use an item. Accepts L2Item object or ObjectId                                                  |
-| requestDuel      | Request player a duel. If no char is provided, the command tries to request the selected target |
-| autoShots        | Enable/disable auto-shots                                                                       |
-| cancelBuff       | Cancel a buff                                                                                   |
-| sitOrStand       | Sit or stand                                                                                    |
-| validatePosition | Sync position with server                                                                       |
+| Command             | Does what?                                                                                      |
+| ------------------- | ----------------------------------------------------------------------------------------------- |
+| say                 | Send a general message                                                                          |
+| shout               | Shout a message                                                                                 |
+| tell                | Send a PM                                                                                       |
+| sayToParty          | Send a party message                                                                            |
+| sayToClan           | Send a clan message                                                                             |
+| sayToTrade          | Send a trade message                                                                            |
+| sayToAlly           | Send an ally message                                                                            |
+| moveTo              | Move to location                                                                                |
+| hit                 | Hit on target. Accepts L2Object object or ObjectId                                              |
+| attack              | Attack a target. Accepts L2Object object or ObjectId                                            |
+| cancelTarget        | Cancel the active target                                                                        |
+| acceptJoinParty     | Accepts the requested party invite                                                              |
+| declineJoinParty    | Declines the requested party invite                                                             |
+| nextTarget          | Select next/closest attackable target                                                           |
+| inventory           | Request for inventory item list                                                                 |
+| useItem             | Use an item. Accepts L2Item object or ObjectId                                                  |
+| requestDuel         | Request player a duel. If no char is provided, the command tries to request the selected target |
+| autoShots           | Enable/disable auto-shots                                                                       |
+| cancelBuff          | Cancel a buff                                                                                   |
+| sitOrStand          | Sit or stand                                                                                    |
+| validatePosition    | Sync position with server                                                                       |
+| dwarvenCraftRecipes | Dwarven craft recipe book                                                                       |
+| craft               | Craft an item                                                                                   |
 
 ### Events
 
@@ -249,6 +251,8 @@ L2Object
 | RequestedDuel    | [ERequestedDuel](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L21)    | receive a duel request               |
 | StartMoving      | [EStartMoving](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L22)      | L2Creature starts moving             |
 | StopMoving       | [EStopMoving](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L23)       | L2Creature stops moving              |
+| CraftResult      | [ECraftResult](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L24)      | A result from crafting an item       |
+| RecipeBook       | [ERecipeBook](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L25)       | A receipt book is received           |
 
 ///@todo
 
