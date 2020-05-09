@@ -1,6 +1,7 @@
 import LoginServerPacket from "./LoginServerPacket";
 import * as constants from "constants";
 import NodeRSA from "node-rsa";
+import BigInteger from "../../security/crypt/BigInteger";
 
 export default class RequestAuthLogin extends LoginServerPacket {
   static LOGIN_GG: Map<string, Uint8Array> = new Map([
@@ -29,26 +30,16 @@ export default class RequestAuthLogin extends LoginServerPacket {
     for (let i = 0; i < this.Client.Username.length; i++) loginInfo[0x5e + i] = this.Client.Username.charCodeAt(i);
     for (let i = 0; i < this.Client.Password.length; i++) loginInfo[0x6c + i] = this.Client.Password.charCodeAt(i);
 
-    const modulus: Buffer = Buffer.from(this.Client.PublicKey);
-    const data: Buffer = Buffer.from(loginInfo);
-
-    const key = new NodeRSA();
-    key.setOptions({
-      encryptionScheme: {
-        scheme: "pkcs1",
-        padding: constants.RSA_NO_PADDING,
-      },
-    });
-
-    key.importKey(
-      {
-        e: 65537, // Uint8Array.from([1, 0, 1]), // Public exponent-value F4 = 65537.
-        n: modulus, // Modulus
-      },
-      "components-public"
+    const e = new BigInteger("65537", 10);
+    const modulus = new BigInteger(
+      Array.from(Array.from(this.Client.PublicKey), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join(""),
+      16
     );
-
-    const encryptedLoginInfo: Uint8Array = key.encrypt(data, "buffer");
+    const input = new BigInteger(
+      Array.from(Array.from(loginInfo), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join(""),
+      16
+    );
+    const encryptedLoginInfo: Uint8Array = Uint8Array.from(input.modPow(e, modulus).toByteArray(false));
 
     this.writeC(0);
     this.writeB(encryptedLoginInfo);

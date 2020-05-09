@@ -9,7 +9,9 @@
   "scripts": {
     "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "tsc-bundle ./tsconfig.json --outFile ./bundle.js"
+    "lint": "eslint ./src/**",
+    "bundle": "tsc-bundle ./tsconfig.json --outFile ./bundle.js",
+    "publish": "npm publish --access public"
   },
   "keywords": [
     "lineage2",
@@ -23,9 +25,11 @@
     "type": "git",
     "url": "https://github.com/npetrovski/l2js-client"
   },
-  "dependencies": {
-    "node-rsa": "^1.0.8"
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/npetrovski/l2js-client/issues"
   },
+  "homepage": "https://github.com/npetrovski/l2js-client",
   "devDependencies": {
     "@types/node": "^13.13.2",
     "@types/node-rsa": "^1.0.0",
