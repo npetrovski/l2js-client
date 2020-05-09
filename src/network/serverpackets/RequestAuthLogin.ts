@@ -1,7 +1,5 @@
-import LoginServerPacket from "./LoginServerPacket";
-import * as constants from "constants";
-import NodeRSA from "node-rsa";
 import BigInteger from "../../security/crypt/BigInteger";
+import LoginServerPacket from "./LoginServerPacket";
 
 export default class RequestAuthLogin extends LoginServerPacket {
   static LOGIN_GG: Map<string, Uint8Array> = new Map([
@@ -31,14 +29,8 @@ export default class RequestAuthLogin extends LoginServerPacket {
     for (let i = 0; i < this.Client.Password.length; i++) loginInfo[0x6c + i] = this.Client.Password.charCodeAt(i);
 
     const e = new BigInteger("65537", 10);
-    const modulus = new BigInteger(
-      Array.from(Array.from(this.Client.PublicKey), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join(""),
-      16
-    );
-    const input = new BigInteger(
-      Array.from(Array.from(loginInfo), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join(""),
-      16
-    );
+    const modulus = new BigInteger(this._hexStr(this.Client.PublicKey), 16);
+    const input = new BigInteger(this._hexStr(loginInfo), 16);
     const encryptedLoginInfo: Uint8Array = Uint8Array.from(input.modPow(e, modulus).toByteArray(false));
 
     this.writeC(0);
@@ -47,7 +39,7 @@ export default class RequestAuthLogin extends LoginServerPacket {
 
     const query: Uint8Array = new Uint8Array(16);
     query.set(this._buffer.slice(5, 21), 0);
-    const gg: string = Array.from(Array.from(query), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join("");
+    const gg: string = this._hexStr(query);
 
     if (RequestAuthLogin.LOGIN_GG.has(gg)) {
       this.writeB(Uint8Array.from(RequestAuthLogin.LOGIN_GG.get(gg) ?? []));
@@ -58,5 +50,9 @@ export default class RequestAuthLogin extends LoginServerPacket {
 
     this.writeB(Uint8Array.from([0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])); // footer
     this.writeB(Uint8Array.from(Array(16).fill(0)));
+  }
+
+  private _hexStr(buffer: Uint8Array) {
+    return Array.from(Array.from(buffer), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join("");
   }
 }

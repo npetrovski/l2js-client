@@ -367,7 +367,6 @@ Except for the first packet, each game client packet is transmitted by taking th
 ## To-do List
 
 - complete the library with all packet handlers
-- remove dependency for node-rsa, ideally the library should be able to be executed client-side (by a browser), excluding the part with the socket connection
 
 ## Contributing
 
