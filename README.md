@@ -2,6 +2,37 @@
 
 This project was made while experimenting with TypeScript and es6. The idea is to have a NCSoft Lineage 2 client library, that allows other projects to build L2 client functionalities (like bots, game helpers, etc.) on top of it. It can be also used as a framework for building Lineage2 automated tests for L2 private servers.
 
+> _Table Of Contents_
+>
+> - [Supported L2 Chronicles](#supported-l2-chronicles)
+> - [Installation](#installation)
+> - [Examples](#examples)
+>   - [Logging in](#logging-in)
+>   - [Chat](#chat)
+>   - [Move to location](#move-to-location)
+>   - [Fight back](#fight-back)
+>   - [Follow a character](#follow-a-character)
+>   - [Simple bot (auto-target and auto-close-combat-hit)](#simple-bot-auto-target-and-auto-close-combat-hit)
+>   - [Add a custom command](#add-a-custom-command)
+>   - [Simple craft (Soulshot S-Grade)](#simple-craft-soulshot-s-grade)
+> - [API](#api)
+>   - [Objects](#objects)
+>   - [Commands](#commands)
+>   - [Events](#events)
+> - [Lineage 2 Authorization Procedure](#lineage-2-authorization-procedure)
+>   - [General Information](#general-information)
+>   - [The order of interaction of the authorization server with the client](#the-order-of-interaction-of-the-authorization-server-with-the-client)
+>   - [Sending packets by the authorization server.](#sending-packets-by-the-authorization-server)
+> - [Protocol Overview](#protocol-overview)
+>   - [Data Transfer](#data-transfer)
+>   - [Header](#header)
+>   - [Content](#content)
+>   - [Opcodes](#opcodes)
+> - [Login (Auth) Protocol](#login-auth-protocol)
+> - [Game Protocol](#game-protocol)
+> - [To-Do List](#to-do-list)
+> - [Contributing](#contributing)
+
 ## Supported L2 Chronicles
 
 For now the library supports only Lineage 2 HighFive:
@@ -444,7 +475,7 @@ Except for the first packet, each game client packet is transmitted by taking th
     4. Update the mutable part of the key
     5. Send packet Game server/client packets are not padded.
 
-## To-do List
+## To-Do List
 
 - complete the library with all packet handlers
 
