@@ -1,4 +1,4 @@
-import RequestCharacters from "../serverpackets/RequestCharacters";
+import RequestServerList from "../serverpackets/RequestServerList";
 import LoginClientPacket from "./LoginClientPacket";
 
 export default class LoginOk extends LoginClientPacket {
@@ -13,6 +13,6 @@ export default class LoginOk extends LoginClientPacket {
 
   // @Override
   run(): void {
-    this.Client.sendPacket(new RequestCharacters(this.Client.LoginOk1, this.Client.LoginOk2));
+    this.Client.sendPacket(new RequestServerList(this.Client.LoginOk1, this.Client.LoginOk2));
   }
 }

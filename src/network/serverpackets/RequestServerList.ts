@@ -1,6 +1,6 @@
 import LoginServerPacket from "./LoginServerPacket";
 
-export default class RequestCharacters extends LoginServerPacket {
+export default class RequestServerList extends LoginServerPacket {
   _loginOk1: number = 0;
   _loginOk2: number = 0;
 
