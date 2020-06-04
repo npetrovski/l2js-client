@@ -315,9 +315,8 @@ Interaction procedure for successful authorization:
 7. The server checks the username and password and sends S / 0x03 (LoginOk)
 8. The client requests a list of game servers with the C / 0x05 package (RequestServerList)
 9. The server sends a list of game servers in the S / 0x04 package (ServerList)
-10. The user selects a server from the list, presses the input
-11. The client sends a C / 0x02 packet (RequestServerLogin)
-12. Server sends packet S / 0x07 (PlayOK)
+10. The client selects a server from the list, and sends a C / 0x02 packet (RequestServerLogin)
+11. Server sends packet S / 0x07 (PlayOK)
 
 Next, the client disconnects from the authorization server and connects to the game server.
 
