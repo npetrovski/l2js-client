@@ -1,6 +1,6 @@
 # Lineage 2 JavaScript Client
 
-This project was made while experimenting with TypeScript and es6. The idea is to have a NCSoft Lineage 2 client library, that allows other projects to build L2 client functionalities (like bots, game helpers, etc.) on top of it. It can be also used as a framework for building Lineage2 automated tests for L2 private servers.
+This project was made while experimenting with TypeScript and es6. The idea is to have an NCSoft Lineage 2 client library, that allows other projects to build L2 client functionalities (like bots, game helpers, etc.) on top of it. It can be also used as a framework for building Lineage2 automated tests for L2 private servers.
 
 > _Table Of Contents_
 >
@@ -300,7 +300,7 @@ L2Object
 - The length of the packet is not encrypted and is not taken into account when calculating the checksum, since it is calculated after. The type of package, as well as the contents, is taken into account when calculating the checksum. The packet type, contents and checksum are encrypted together using the Blowfish algorithm.
 - Packet Length - A number indicating the length of the entire packet. In other words, it also includes the length of the encrypted data (which consists of the contents and type of the packet, the checksum and is encrypted using the Blowfish algorithm) and two bytes for the number itself, indicating the length
 - Blowfish is a block cipher algorithm that processes blocks of 8 bytes each, which means that the length of the contents of the packet together with the type and checksum must be a multiple of 8 (for this, the checksum is beaten from the contents of the packet with the required number of zeros)
-- Please note that depending on whether you collect the package in advance in Little Endian order or later deploy the encryption and checksum calculation algorithms, respectively, will be different.
+- Please note that depending on whether you collect the package in advance in Little Endian order or later deploy the encryption and checksum calculation algorithms, respectively, it will be different.
   This may be important if, for example, the library selected for your programming language Blowfish can only encrypt bytes in direct order (Big Endian)
 
 ### The order of interaction of the authorization server with the client
@@ -338,7 +338,7 @@ The contents of the C / 0x00 packet (RequestAuthLogin) comes with the RSA encryp
 Interaction procedure for successful authorization:
 
 1. _User initializes the client with login and password_
-2. Client connects to server (default socket port 2106)
+2. Client connects to a server (default socket port 2106)
 3. Server sends `S / 0x00` packet ([Init](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/Init.ts))
 4. Client sends `C / 0x07` packet ([AuthGameGuard](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/AuthGameGuard.ts))
 5. Server sends `S / 0x0b` packet ([GGAuth](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/GGAuth.ts))
@@ -356,7 +356,7 @@ Next, the client disconnects from the authorization server and connects to the g
 Packets are written as an array of bytes:
 
 1. Write 1 byte of packet type, for example, 0x00
-2. We form and add the contents of the package (session ID, server version, keys, zero byte of Blowfish key end, etc.)
+2. We form and add the contents of the package (session ID, server version, keys, zero-byte of Blowfish key end, etc.)
 3. We calculate the checksum for the current byte array
 4. We achieve the length of the current byte array with zero bytes up to a multiple of 8
 5. Add the checksum to the array
@@ -376,7 +376,7 @@ _From a TCP socket, bytes should be read in reverse order._
 | A | B  |C|D|E|F|G|H|I|…|
 ```
 
-All fields (header and content) are written in little endian (a.k.a. Intel's byte order). This includes both numeric and string fields.
+All fields (header and content) are written in little-endian (a.k.a. Intel's byte order). This includes both numeric and string fields.
 
 ### Header
 
@@ -388,11 +388,11 @@ The only field in a packet's header is a 2-byte unsigned integer, specifying the
 | A | B  |C|D|E|F|G|H|I|…|
 ```
 
-Thus, the largest packet size is 64K (65535 bytes), with 2 bytes reserved for size. The smallest valid packet is 2 bytes long and has no real meaning (as TCP makes keep-alives redundant).
+Thus, the largest packet size is 64K (65535 bytes), with 2 bytes reserved for size. The smallest valid packet is 2 bytes long and has no real meaning (as TCP makes keep-alive redundant).
 
 ### Content
 
-The packet's content is what server emulators typically call 'a packet'. The content starts with an unique dynamic-size prefix identifying the type of the packet, followed by the packet's actual content.
+The packet's content is what server emulators typically call 'a packet'. The content starts with a unique dynamic-size prefix identifying the type of the packet, followed by the packet's actual content.
 
 ```txt
 | Header |      Content      |
@@ -414,7 +414,7 @@ All transmitted data is enciphered. There are different protocol encryption sche
 
 ## Login (Auth) Protocol
 
-All login server/client packets are encrypted using a modified blowfish scheme. Each Blowfish encrypted block is 64 bits long. Once a client connects, server initiates communications by sending an initialization packet. This packet is encrypted with a constant blowfish key (which can be found in the client). What is important, this packet contains the blowfish key used for further communications.
+All login server/client packets are encrypted using a modified blowfish scheme. Each Blowfish encrypted block is 64 bits long. Once a client connects, the server initiates communications by sending an initialization packet. This packet is encrypted with a constant blowfish key (which can be found in the client). What is important, this packet contains the blowfish key used for further communications.
 
 First packet from the server:
 
@@ -452,11 +452,11 @@ The same encryption scheme (with only minor differences) was used both pre- and 
 
 All game server/client packets are enciphered using an XOR-based scheme.
 
-The initial key is made of two parts: a dynamic part given by the game server and a pre-shared part known to the game client (and server) in advance. Legacy clients had two pre-shared key parts. The one to be selected was determined by evaluating the dynamic key part sent by server.
+The initial key is made of two parts: a dynamic part given by the game server and a pre-shared part known to the game client (and server) in advance. Legacy clients had two pre-shared key parts. The one to be selected was determined by evaluating the dynamic key part sent by the server.
 
 During cipher operations, the last 4 bytes (DWORD) of the dynamic key part is incremented by the amount of bytes processed by each operation.
 
-Once a client connects, it will immediately send an unenciphered protocol version packet. The server will respond with an unenciphered packet specifying whether the protocol is supported and disclose the mutable key part. The server, if applicable, will also identify itself and send an initial opcode obfuscation key for the client. If the opcode obfuscation key is not 0, client will then shuffle most of its 1st and 2nd opcodes.
+Once a client connects, it will immediately send an unenciphered protocol version packet. The server will respond with an unenciphered packet specifying whether the protocol is supported and disclose the mutable key part. The server, if applicable, will also identify itself and send an initial opcode obfuscation key for the client. If the opcode obfuscation key is not 0, the client will then shuffle most of its 1st and 2nd opcodes.
 
 The CM obfuscation key also changes each time a character is logged in.
 
