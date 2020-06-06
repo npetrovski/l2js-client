@@ -14,8 +14,8 @@ import NetSocket from "../mmocore/NetSocket";
 import GameCrypt from "../security/crypt/GameCrypt";
 import GamePacketHandler from "./GamePacketHandler";
 import LoginClient from "./LoginClient";
-import GameServerPacket from "./serverpackets/GameServerPacket";
-import ProtocolVersion from "./serverpackets/ProtocolVersion";
+import GameServerPacket from "./clientpackets/GameServerPacket";
+import ProtocolVersion from "./clientpackets/ProtocolVersion";
 import L2Recipe from "../entities/L2Recipe";
 
 export default class GameClient extends MMOClient {

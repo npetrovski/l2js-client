@@ -1,4 +1,4 @@
-import RequestServerList from "../serverpackets/RequestServerList";
+import RequestServerList from "../clientpackets/RequestServerList";
 import LoginClientPacket from "./LoginClientPacket";
 
 export default class LoginOk extends LoginClientPacket {

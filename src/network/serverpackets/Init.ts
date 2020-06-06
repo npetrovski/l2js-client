@@ -1,5 +1,5 @@
 import LoginClientPacket from "./LoginClientPacket";
-import AuthGameGuard from "../serverpackets/AuthGameGuard";
+import AuthGameGuard from "../clientpackets/AuthGameGuard";
 import NewCrypt from "../../security/crypt/NewCrypt";
 
 export default class Init extends LoginClientPacket {

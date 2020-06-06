@@ -1,7 +1,7 @@
 import AbstractGameCommand from "./AbstractGameCommand";
 import GameClient from "../network/GameClient";
-import RequestTargetCancel from "../network/serverpackets/RequestTargetCancel";
-import RequestAnswerJoinParty from "../network/serverpackets/RequestAnswerJoinParty";
+import RequestTargetCancel from "../network/clientpackets/RequestTargetCancel";
+import RequestAnswerJoinParty from "../network/clientpackets/RequestAnswerJoinParty";
 
 export default class CommandAcceptJoinParty extends AbstractGameCommand<GameClient> {
   execute(): void {

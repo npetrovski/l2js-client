@@ -1,7 +1,7 @@
 import AbstractGameCommand from "./AbstractGameCommand";
 import GameClient from "../network/GameClient";
 import L2Creature from "../entities/L2Creature";
-import Action from "../network/serverpackets/Action";
+import Action from "../network/clientpackets/Action";
 
 export default class CommandNextTarget extends AbstractGameCommand<GameClient> {
   execute(): L2Creature | undefined {

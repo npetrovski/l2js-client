@@ -1,6 +1,6 @@
 import L2Character from "../../entities/L2Character";
 import GameClientPacket from "./GameClientPacket";
-import GameServerPacket from "../serverpackets/GameServerPacket";
+import GameServerPacket from "../clientpackets/GameServerPacket";
 
 export default class CharInfo extends GameClientPacket {
   static readonly PAPERDOLL_ORDER: number[] = [

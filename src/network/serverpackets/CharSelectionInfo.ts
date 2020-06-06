@@ -1,6 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
-import GameServerPacket from "../serverpackets/GameServerPacket";
-import CharacterSelect from "../serverpackets/CharacterSelect";
+import GameServerPacket from "../clientpackets/GameServerPacket";
+import CharacterSelect from "../clientpackets/CharacterSelect";
 import L2User from "../../entities/L2User";
 import L2ObjectCollection from "../../entities/L2ObjectCollection";
 

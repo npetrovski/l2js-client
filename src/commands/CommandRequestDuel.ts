@@ -1,7 +1,7 @@
 import AbstractGameCommand from "./AbstractGameCommand";
 import GameClient from "../network/GameClient";
 import L2Character from "../entities/L2Character";
-import RequestDuelStart from "../network/serverpackets/RequestDuelStart";
+import RequestDuelStart from "../network/clientpackets/RequestDuelStart";
 
 export default class CommandRequestDuel extends AbstractGameCommand<GameClient> {
   execute(char?: L2Character | string, partyDuel: boolean = false): void {

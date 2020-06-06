@@ -1,6 +1,6 @@
 import SendablePacket from "../../mmocore/SendablePacket";
 import LoginClient from "../LoginClient";
-import RequestAuthLogin from "../serverpackets/RequestAuthLogin";
+import RequestAuthLogin from "../clientpackets/RequestAuthLogin";
 import LoginClientPacket from "./LoginClientPacket";
 
 export default class GGAuth extends LoginClientPacket {

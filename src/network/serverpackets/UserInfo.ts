@@ -1,5 +1,5 @@
 import GameClientPacket from "./GameClientPacket";
-import GameServerPacket from "../serverpackets/GameServerPacket";
+import GameServerPacket from "../clientpackets/GameServerPacket";
 
 export default class UserInfo extends GameClientPacket {
   // @Override

@@ -339,15 +339,15 @@ Interaction procedure for successful authorization:
 
 1. _User initializes the client with login and password_
 2. Client connects to a server (default socket port 2106)
-3. Server sends `S / 0x00` packet ([Init](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/Init.ts))
-4. Client sends `C / 0x07` packet ([AuthGameGuard](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/AuthGameGuard.ts))
-5. Server sends `S / 0x0b` packet ([GGAuth](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/GGAuth.ts))
-6. Client sends username and password in `C / 0x00` packet ([RequestAuthLogin](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/RequestAuthLogin.ts))
-7. The server checks the username and password and sends `S / 0x03` ([LoginOk](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/LoginOk.ts))
-8. The client requests a list of game servers with the `C / 0x05` package ([RequestServerList](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/RequestServerList.ts))
-9. The server sends a list of game servers in the `S / 0x04` package ([ServerList](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/ServerList.ts))
-10. The client selects a server from the list, and sends a `C / 0x02` packet ([RequestServerLogin](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/RequestServerLogin.ts))
-11. Server sends packet `S / 0x07` ([PlayOK](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/PlayOk.ts))
+3. Server sends `S / 0x00` packet ([Init](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/Init.ts))
+4. Client sends `C / 0x07` packet ([AuthGameGuard](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/AuthGameGuard.ts))
+5. Server sends `S / 0x0b` packet ([GGAuth](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/GGAuth.ts))
+6. Client sends username and password in `C / 0x00` packet ([RequestAuthLogin](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/RequestAuthLogin.ts))
+7. The server checks the username and password and sends `S / 0x03` ([LoginOk](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/LoginOk.ts))
+8. The client requests a list of game servers with the `C / 0x05` package ([RequestServerList](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/RequestServerList.ts))
+9. The server sends a list of game servers in the `S / 0x04` package ([ServerList](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/ServerList.ts))
+10. The client selects a server from the list, and sends a `C / 0x02` packet ([RequestServerLogin](https://github.com/npetrovski/l2js-client/blob/master/src/network/clientpackets/RequestServerLogin.ts))
+11. Server sends packet `S / 0x07` ([PlayOK](https://github.com/npetrovski/l2js-client/blob/master/src/network/serverpackets/PlayOk.ts))
 
 Next, the client disconnects from the authorization server and connects to the game server.
 

@@ -1,6 +1,6 @@
 import L2Object from "../entities/L2Object";
 import GameClient from "../network/GameClient";
-import AttackRequest from "../network/serverpackets/AttackRequest";
+import AttackRequest from "../network/clientpackets/AttackRequest";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandAttack extends AbstractGameCommand<GameClient> {

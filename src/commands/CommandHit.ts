@@ -1,6 +1,6 @@
 import AbstractGameCommand from "./AbstractGameCommand";
 import GameClient from "../network/GameClient";
-import Action from "../network/serverpackets/Action";
+import Action from "../network/clientpackets/Action";
 import L2Object from "../entities/L2Object";
 
 export default class CommandHit extends AbstractGameCommand<GameClient> {

@@ -1,13 +1,13 @@
 import IPacketHandler from "../mmocore/IPacketHandler";
 import ReceivablePacket from "../mmocore/ReceivablePacket";
-import AccountKicked from "./clientpackets/AccountKicked";
-import GGAuth from "./clientpackets/GGAuth";
-import Init from "./clientpackets/Init";
-import LoginFail from "./clientpackets/LoginFail";
-import LoginOk from "./clientpackets/LoginOk";
-import PlayFail from "./clientpackets/PlayFail";
-import PlayOk from "./clientpackets/PlayOk";
-import ServerList from "./clientpackets/ServerList";
+import AccountKicked from "./serverpackets/AccountKicked";
+import GGAuth from "./serverpackets/GGAuth";
+import Init from "./serverpackets/Init";
+import LoginFail from "./serverpackets/LoginFail";
+import LoginOk from "./serverpackets/LoginOk";
+import PlayFail from "./serverpackets/PlayFail";
+import PlayOk from "./serverpackets/PlayOk";
+import ServerList from "./serverpackets/ServerList";
 import LoginClient from "./LoginClient";
 
 export default class LoginPacketHandler implements IPacketHandler<LoginClient> {

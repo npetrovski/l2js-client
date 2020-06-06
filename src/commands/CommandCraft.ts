@@ -1,5 +1,5 @@
 import GameClient from "../network/GameClient";
-import RequestRecipeItemMakeSelf from "../network/serverpackets/RequestRecipeItemMakeSelf";
+import RequestRecipeItemMakeSelf from "../network/clientpackets/RequestRecipeItemMakeSelf";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandCraft extends AbstractGameCommand<GameClient> {

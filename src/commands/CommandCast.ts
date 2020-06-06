@@ -1,5 +1,5 @@
 import GameClient from "../network/GameClient";
-import RequestMagicSkillUse from "../network/serverpackets/RequestMagicSkillUse";
+import RequestMagicSkillUse from "../network/clientpackets/RequestMagicSkillUse";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandCast extends AbstractGameCommand<GameClient> {

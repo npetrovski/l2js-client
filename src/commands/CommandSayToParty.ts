@@ -1,6 +1,6 @@
 import AbstractGameCommand from "./AbstractGameCommand";
 import GameClient from "../network/GameClient";
-import Say2 from "../network/serverpackets/Say2";
+import Say2 from "../network/clientpackets/Say2";
 
 export default class CommandSayToParty extends AbstractGameCommand<GameClient> {
   execute(text: string): void {

@@ -1,7 +1,7 @@
 import L2User from "../../entities/L2User";
-import EnterWorld from "../serverpackets/EnterWorld";
-import RequestKeyMapping from "../serverpackets/RequestKeyMapping";
-import RequestManorList from "../serverpackets/RequestManorList";
+import EnterWorld from "../clientpackets/EnterWorld";
+import RequestKeyMapping from "../clientpackets/RequestKeyMapping";
+import RequestManorList from "../clientpackets/RequestManorList";
 import GameClientPacket from "./GameClientPacket";
 
 export default class CharSelected extends GameClientPacket {

@@ -1,7 +1,7 @@
 import GameClientPacket from "./GameClientPacket";
 import { GlobalEvents } from "../../mmocore/EventEmitter";
 import L2Character from "../../entities/L2Character";
-import Appearing from "../serverpackets/Appearing";
+import Appearing from "../clientpackets/Appearing";
 
 export default class PartySmallWindowDelete extends GameClientPacket {
   // @Override

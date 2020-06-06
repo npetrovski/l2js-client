@@ -1,5 +1,5 @@
 import GameClientPacket from "./GameClientPacket";
-import Appearing from "../serverpackets/Appearing";
+import Appearing from "../clientpackets/Appearing";
 
 export default class TeleportToLocation extends GameClientPacket {
   // @Override

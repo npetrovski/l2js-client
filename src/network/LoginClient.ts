@@ -4,7 +4,7 @@ import MMOConnection from "../mmocore/MMOConnection";
 import LoginCrypt from "../security/crypt/LoginCrypt";
 import LoginPacketHandler from "./LoginPacketHandler";
 import ServerData from "./ServerData";
-import LoginServerPacket from "./serverpackets/LoginServerPacket";
+import LoginServerPacket from "./clientpackets/LoginServerPacket";
 import { GlobalEvents } from "../mmocore/EventEmitter";
 
 export default class LoginClient extends MMOClient {

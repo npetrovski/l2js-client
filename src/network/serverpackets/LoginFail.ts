@@ -2,7 +2,7 @@ import LoginClientPacket from "./LoginClientPacket";
 import LoginClient from "../LoginClient";
 import SendablePacket from "../../mmocore/SendablePacket";
 import { LoginFailReason } from "../../enums/LoginFailReason";
-import RequestSecurityCard from "../serverpackets/RequestSecurityCard";
+import RequestSecurityCard from "../clientpackets/RequestSecurityCard";
 
 export default class LoginFail extends LoginClientPacket {
   _securityCard: boolean = false;

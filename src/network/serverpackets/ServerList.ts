@@ -1,5 +1,5 @@
 import ServerData from "../ServerData";
-import RequestServerLogin from "../serverpackets/RequestServerLogin";
+import RequestServerLogin from "../clientpackets/RequestServerLogin";
 import LoginClientPacket from "./LoginClientPacket";
 
 export default class ServerList extends LoginClientPacket {

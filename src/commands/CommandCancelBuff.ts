@@ -1,7 +1,7 @@
 import L2Buff from "../entities/L2Buff";
 import L2Character from "../entities/L2Character";
 import GameClient from "../network/GameClient";
-import RequestDispel from "../network/serverpackets/RequestDispel";
+import RequestDispel from "../network/clientpackets/RequestDispel";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandCancelBuff extends AbstractGameCommand<GameClient> {

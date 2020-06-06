@@ -1,6 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 import GameClient from "../GameClient";
-import AuthLogin from "../serverpackets/AuthLogin";
+import AuthLogin from "../clientpackets/AuthLogin";
 import SendablePacket from "../../mmocore/SendablePacket";
 
 export default class KeyPacket extends GameClientPacket {

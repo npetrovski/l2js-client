@@ -1,5 +1,5 @@
 import GameClient from "../network/GameClient";
-import ValidatePosition from "../network/serverpackets/ValidatePosition";
+import ValidatePosition from "../network/clientpackets/ValidatePosition";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandValidatePosition extends AbstractGameCommand<GameClient> {
