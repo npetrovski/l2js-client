@@ -2,6 +2,7 @@ import MMOClient from "./MMOClient";
 import IStream from "./IStream";
 import MMOConfig from "./MMOConfig";
 import IConnection from "./IConnection";
+import SocketFactory from "../socket/SocketFactory";
 
 export default class MMOConnection<T extends MMOClient> implements IConnection {
   private _client!: T;
@@ -9,9 +10,9 @@ export default class MMOConnection<T extends MMOClient> implements IConnection {
   private _stream: IStream;
 
   constructor(config: MMOConfig) {
-    this._stream = config.stream;
+    this._stream = SocketFactory.getSocketAdapter(config.Stream);
     this._stream.setDataCallback((buf: Uint8Array) => this.read(buf));
-    this._stream.connect(config.loginServerIp, config.loginServerPort);
+    this._stream.connect(config.Ip, config.Port);
   }
 
   get Client(): T {

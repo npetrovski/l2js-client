@@ -61,11 +61,11 @@ import Client from "l2js-client";
 
 const l2 = new Client();
 l2.enter({
-  /* required */ username: "l2js",
-  /* required */ password: "passwd",
-  /* required */ loginServerIp: "127.0.0.1",
-  /* optional */ serverId: 1, //Bartz
-  /* optional */ charSlotIndex: 0,
+  /* required */ Username: "l2js",
+  /* required */ Password: "passwd",
+  /* required */ Ip: "127.0.0.1",
+  /* optional */ ServerId: 1, //Bartz
+  /* optional */ CharSlotIndex: 0,
 });
 ```
 

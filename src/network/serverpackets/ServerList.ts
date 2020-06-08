@@ -31,7 +31,7 @@ export default class ServerList extends LoginClientPacket {
     // ...
 
     this.Client.SelectedServer =
-      this.Client.Servers.find((s) => s.Id === this.Client.Config.serverId) ?? this.Client.Servers[0];
+      this.Client.Servers.find((s) => s.Id === this.Client.Config.ServerId) ?? this.Client.Servers[0];
 
     return true;
   }

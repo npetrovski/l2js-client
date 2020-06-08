@@ -1,4 +1,5 @@
 import LoginClientPacket from "./LoginClientPacket";
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class PlayOk extends LoginClientPacket {
   // @Override
@@ -13,8 +14,6 @@ export default class PlayOk extends LoginClientPacket {
   // @Override
   run(): void {
     this.Client.Connection.close();
-    if (this.Client.onSuccessCallback) {
-      this.Client.onSuccessCallback();
-    }
+    GlobalEvents.fire("PlayOk");
   }
 }

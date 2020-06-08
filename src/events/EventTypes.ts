@@ -25,6 +25,7 @@ export declare type ECraftResult = { type: string; data: { recipeId: number; suc
 export declare type ERecipeBook = { type: string; data: { isDwarven: boolean }; once: boolean };
 
 // Events
+export declare type OnPlayOk = ["PlayOk", () => void];
 export declare type OnLoggedInEvent = ["LoggedIn", () => void];
 export declare type OnPacketReceivedEvent = ["PacketReceived", string, (e: EPacketReceived) => void];
 export declare type OnPacketSentEvent = ["PacketSent", string, (e: EPacketSent) => void];

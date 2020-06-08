@@ -38,10 +38,9 @@ export default class NewCrypt {
 
   static appendChecksum(raw: Uint8Array, offset: number, size: number) {
     var chksum: number = 0;
-    var count: number = size - 4;
     var ecx: number;
 
-    for (var i = offset; i < count; i += 4) {
+    for (var i = offset; i < size - 4; i += 4) {
       ecx = raw[i] & 0xff;
       ecx |= (raw[i + 1] << 8) & 0xff00;
       ecx |= (raw[i + 2] << 0x10) & 0xff0000;

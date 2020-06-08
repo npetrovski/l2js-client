@@ -10,7 +10,6 @@ import { GlobalEvents } from "../mmocore/EventEmitter";
 import MMOClient from "../mmocore/MMOClient";
 import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
-import NetSocket from "../mmocore/NetSocket";
 import GameCrypt from "../security/crypt/GameCrypt";
 import GamePacketHandler from "./GamePacketHandler";
 import LoginClient from "./LoginClient";
@@ -107,9 +106,8 @@ export default class GameClient extends MMOClient {
     super(
       new MMOConnection(
         config.assign({
-          stream: new NetSocket(),
-          loginServerIp: lc.SelectedServer.Ipv4(),
-          loginServerPort: lc.SelectedServer.Port,
+          Ip: lc.SelectedServer.Ipv4(),
+          Port: lc.SelectedServer.Port,
         })
       )
     );

@@ -8,6 +8,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
+    "removeComments": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
 

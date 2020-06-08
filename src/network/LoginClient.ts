@@ -14,8 +14,6 @@ export default class LoginClient extends MMOClient {
 
   private _loginCrypt: LoginCrypt;
 
-  onSuccessCallback!: () => void;
-
   private _sessionId: number = 0;
 
   private _blowfishKey!: Uint8Array;
@@ -142,19 +140,16 @@ export default class LoginClient extends MMOClient {
     this._config = config;
   }
 
-  constructor(config: MMOConfig, onSuccessCallback?: () => void) {
+  constructor(config: MMOConfig) {
     super(new MMOConnection(config));
     this.Config = config;
     (this.Connection as MMOConnection<LoginClient>).Client = this;
     this.PacketHandler = new LoginPacketHandler();
-    if (onSuccessCallback) {
-      this.onSuccessCallback = onSuccessCallback;
-    }
 
-    this._username = config.username;
-    this._password = config.password;
-    if (config.serverId) {
-      this._serverId = config.serverId;
+    this._username = config.Username;
+    this._password = config.Password;
+    if (config.ServerId) {
+      this._serverId = config.ServerId;
     }
     this._loginCrypt = new LoginCrypt();
     this._loginCrypt.setKey(LoginCrypt.STATIC_BLOWFISH_KEY);
@@ -163,13 +158,14 @@ export default class LoginClient extends MMOClient {
   sendPacket(lsp: LoginServerPacket): void {
     lsp.write();
 
+    const count = lsp.Position % 8 === 0 ? lsp.Position : lsp.Position + (8 - (lsp.Position % 8));
     this._loginCrypt.setKey(this.BlowfishKey);
-    this._loginCrypt.encrypt(lsp.Buffer, 0, lsp.Position);
+    this._loginCrypt.encrypt(lsp.Buffer, 0, count);
 
-    const sendable: Uint8Array = new Uint8Array(lsp.Position + 2);
-    sendable[0] = (lsp.Position + 2) & 0xff;
-    sendable[1] = (lsp.Position + 2) >>> 8;
-    sendable.set(lsp.Buffer.slice(0, lsp.Position), 2);
+    const sendable: Uint8Array = new Uint8Array(count + 2);
+    sendable[0] = (count + 2) & 0xff;
+    sendable[1] = (count + 2) >>> 8;
+    sendable.set(lsp.Buffer.slice(0, count), 2);
 
     console.info("sending..", lsp.constructor.name);
     this.Connection.write(sendable)

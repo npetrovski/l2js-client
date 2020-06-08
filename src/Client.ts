@@ -283,9 +283,11 @@ export default class Client {
       this.setConfig(config);
     }
 
-    this._lc = new LoginClient(this._config, () => {
+    GlobalEvents.once("PlayOk", () => {
       this._gc = new GameClient(this._lc, this._config);
     });
+
+    this._lc = new LoginClient(this._config);
 
     return this;
   }
