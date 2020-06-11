@@ -458,6 +458,9 @@ During cipher operations, the last 4 bytes (DWORD) of the dynamic key part is in
 
 Once a client connects, it will immediately send an unenciphered protocol version packet. The server will respond with an unenciphered packet specifying whether the protocol is supported and disclose the mutable key part. The server, if applicable, will also identify itself and send an initial opcode obfuscation key for the client. If the opcode obfuscation key is not 0, the client will then shuffle most of its 1st and 2nd opcodes.
 
+Following this is an exchange of packet between the client and server to choose which character and enter the game.
+When exchanging these packets the client must be careful to not send packet "too fast" otherwise the server will just refuse the connection (a delay of 500 milliseconds).
+
 The CM obfuscation key also changes each time a character is logged in.
 
 Except for the first packet, each game server packet is transmitted by taking the following steps:
