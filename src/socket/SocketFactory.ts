@@ -1,5 +1,5 @@
 import IStream from "../mmocore/IStream";
-import Node from "./adapters/Node";
+import NetSocket from "./adapters/NetSocket";
 
 export default class SocketFactory {
   static getSocketAdapter(stream: IStream | string): IStream {
@@ -11,7 +11,7 @@ export default class SocketFactory {
       case "auto":
         // is NodeJS
         if (typeof process !== "undefined" && process.release.name === "node") {
-          return new Node();
+          return new NetSocket();
         }
         if (typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
           throw new Error("Not yet implemented");
@@ -21,5 +21,9 @@ export default class SocketFactory {
     }
 
     throw new Error("Cannot find appropriate socket adapter");
+  }
+
+  static async loadModule(mod: string) {
+    return module;
   }
 }

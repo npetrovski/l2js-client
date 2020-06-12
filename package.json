@@ -1,6 +1,6 @@
 {
   "name": "l2js-client",
-  "version": "0.0.6",
+  "version": "0.0.5",
   "description": "Lineage 2 Client Library",
   "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
   "license": "MIT",
@@ -8,9 +8,7 @@
   "types": "dist/Client.d.ts",
   "scripts": {
     "prepublish": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./src/**",
-    "bundle": "tsc-bundle ./tsconfig.json --outFile ./bundle.js --entryPoint Client",
     "publish": "npm publish --access public"
   },
   "keywords": [
@@ -33,7 +31,6 @@
   "devDependencies": {
     "@types/node": "^13.13.2",
     "@types/node-rsa": "^1.0.0",
-    "typescript": "^3.8.3",
-    "typescript-bundle": "^1.0.16"
+    "typescript": "^3.8.3"
   }
 }

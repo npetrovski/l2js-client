@@ -1,7 +1,7 @@
 import * as net from "net";
 import IStream from "../../mmocore/IStream";
 
-export default class Node implements IStream {
+export default class NetSocket implements IStream {
   private _socket: net.Socket = new net.Socket();
 
   private _onDataCallback!: (bytes: Uint8Array) => void;
