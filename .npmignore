@@ -1,2 +1,5 @@
 data
-example.js
+*.map
+*.spec.*
+SetupPackage.*
+version.txt

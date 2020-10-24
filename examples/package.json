@@ -1,0 +1,29 @@
+{
+  "name": "l2js-client-example",
+  "version": "1.0.0",
+  "description": "An example client for l2js-client library",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepare": "tsc",
+    "login": "node dist/login.js",
+    "chat": "node dist/chat.js",
+    "move": "node dist/move.js",
+    "follow": "node dist/follow.js",
+    "bot": "node dist/bot.js",
+    "craft": "node dist/craft.js",
+    "respond-to-attack": "node dist/respond-to-attack.js",
+    "custom-command": "node dist/custom-command.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "l2js"
+  ],
+  "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "l2js-client": "file:../"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.4"
+  }
+}

@@ -3,27 +3,14 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "lib": [
-      "es5",
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "es2017"],
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
-    "removeComments": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
+
     "experimentalDecorators": true
-  },
-  "include": [
-    "**/*"
-  ],
-  "exclude": [
-    "**/dist/**/*.d.ts",
-    "dist",
-    "node_modules",
-    "examples"
-  ]
+  }
 }

@@ -63,6 +63,8 @@ import GameClient from "./GameClient";
 import ActionFailed from "./serverpackets/ActionFailed";
 import RecipeItemMakeInfo from "./serverpackets/RecipeItemMakeInfo";
 import RecipeBookItemList from "./serverpackets/RecipeBookItemList";
+import MagicSkillLaunched from "./serverpackets/MagicSkillLaunched";
+import MagicSkillUse from "./serverpackets/MagicSkillUse";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   // @Override
@@ -163,6 +165,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x47:
           rpk = new StopMove();
           break;
+        case 0x48:
+          rpk = new MagicSkillUse();
+          break;
         case 0x4a:
           rpk = new CreatureSay();
           break;
@@ -183,6 +188,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x52:
           rpk = new PartySmallWindowUpdate();
+          break;
+        case 0x54:
+          rpk = new MagicSkillLaunched();
           break;
         case 0x5f:
           rpk = new SkillList();
@@ -265,13 +273,13 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
 
             default:
               if (data.byteLength > 2) {
-                console.log(
+                console.debug(
                   "Unknown game packet received. [0x" +
-                    opcode.toString(16) +
-                    " 0x" +
-                    data[1].toString(16) +
-                    "] len=" +
-                    data.byteLength
+                  opcode.toString(16) +
+                  " 0x" +
+                  data[1].toString(16) +
+                  "] len=" +
+                  data.byteLength
                 );
               }
 
@@ -280,13 +288,13 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         default:
           if (data.byteLength > 2) {
-            console.log(
+            console.debug(
               "Unknown game packet received. [0x" +
-                opcode.toString(16) +
-                " 0x" +
-                data[1].toString(16) +
-                "] len=" +
-                data.byteLength
+              opcode.toString(16) +
+              " 0x" +
+              data[1].toString(16) +
+              "] len=" +
+              data.byteLength
             );
           }
 
@@ -296,9 +304,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
       rpk.Client = client;
       rpk.Buffer = data;
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
-    if (rpk) console.log("processing...", rpk.constructor.name);
+    //if (rpk) console.log("processing...", rpk.constructor.name);
     return rpk;
   }
 }

@@ -14,14 +14,14 @@ export default class GameCrypt {
       return;
     }
 
-    var temp = 0;
+    let temp = 0;
     for (var i = 0; i < size; i++) {
-      var temp2 = raw[offset + i];
+      const temp2 = raw[offset + i];
       raw[offset + i] = temp2 ^ this._inKey[i & 15] ^ temp;
       temp = temp2;
     }
 
-    var old = this._inKey[8] & 0xff;
+    let old = this._inKey[8] & 0xff;
     old |= (this._inKey[9] << 8) & 0xff00;
     old |= (this._inKey[10] << 0x10) & 0xff0000;
     old |= (this._inKey[11] << 0x18) & 0xff000000;
