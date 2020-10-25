@@ -9,7 +9,7 @@ export default class AskJoinParty extends GameClientPacket {
     const _requestorName = this.readS();
     const _partyDistributionType = PartyDistributionType[this.readD()];
 
-    console.log(`${_requestorName} is requesting to join a party of type ${_partyDistributionType}`);
+    this.logger.info(`${_requestorName} is requesting to join a party of type ${_partyDistributionType}`);
 
     GlobalEvents.fire(`PartyRequest`, { requestorName: _requestorName, partyDistributionType: _partyDistributionType });
     return true;

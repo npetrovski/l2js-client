@@ -65,8 +65,13 @@ import RecipeItemMakeInfo from "./serverpackets/RecipeItemMakeInfo";
 import RecipeBookItemList from "./serverpackets/RecipeBookItemList";
 import MagicSkillLaunched from "./serverpackets/MagicSkillLaunched";
 import MagicSkillUse from "./serverpackets/MagicSkillUse";
+import TempBan from "./serverpackets/TempBan";
+import Logger from "../mmocore/Logger";
+
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
+  protected logger: Logger = Logger.getLogger(this.constructor.name);
+
   // @Override
   handlePacket(data: Uint8Array, client: GameClient): ReceivablePacket<GameClient> {
     const opcode: number = data[0] & 0xff;
@@ -89,6 +94,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x09:
           rpk = new CharSelectionInfo();
+          break;
+        case 0x0a:
+          rpk = new TempBan();
           break;
         case 0x0b:
           rpk = new CharSelected();
@@ -273,7 +281,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
 
             default:
               if (data.byteLength > 2) {
-                console.debug(
+                this.logger.debug(
                   "Unknown game packet received. [0x" +
                   opcode.toString(16) +
                   " 0x" +
@@ -288,7 +296,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         default:
           if (data.byteLength > 2) {
-            console.debug(
+            this.logger.debug(
               "Unknown game packet received. [0x" +
               opcode.toString(16) +
               " 0x" +
@@ -304,9 +312,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
       rpk.Client = client;
       rpk.Buffer = data;
     } catch (err) {
-      console.error(err);
+      this.logger.error(err);
     }
-    //if (rpk) console.log("processing...", rpk.constructor.name);
+
     return rpk;
   }
 }

@@ -141,13 +141,13 @@ export default class GameClient extends MMOClient {
     sendable[1] = (gsp.Position + 2) >>> 8;
     sendable.set(gsp.Buffer.slice(0, gsp.Position), 2);
 
-    console.info("sending..", gsp.constructor.name);
+    this.logger.info("Sending ", gsp.constructor.name);
     this.Connection.write(sendable)
       .then(() => {
         GlobalEvents.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
       })
       .catch((error) => {
-        console.error(error);
+        this.logger.error(error);
       });
   }
 }

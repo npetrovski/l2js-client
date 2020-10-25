@@ -15,7 +15,7 @@ export default class CommandCancelBuff extends AbstractGameCommand<GameClient> {
       buff = buff.Id;
     }
     if (!level) {
-      console.error("Cancel buff error: skill level is required.");
+      this.logger.error("Cancel buff error: skill level is required.");
       return;
     }
 

@@ -6,8 +6,10 @@ import LoginPacketHandler from "./LoginPacketHandler";
 import ServerData from "./ServerData";
 import LoginServerPacket from "./clientpackets/LoginServerPacket";
 import { GlobalEvents } from "../mmocore/EventEmitter";
+import Logger from "../mmocore/Logger";
 
 export default class LoginClient extends MMOClient {
+
   private _username: string;
 
   private _password: string;
@@ -167,13 +169,13 @@ export default class LoginClient extends MMOClient {
     sendable[1] = (count + 2) >>> 8;
     sendable.set(lsp.Buffer.slice(0, count), 2);
 
-    console.info("sending..", lsp.constructor.name);
+    this.logger.info("Sending ", lsp.constructor.name);
     this.Connection.write(sendable)
       .then(() => {
         GlobalEvents.fire(`PacketSent:${lsp.constructor.name}`, { packet: lsp });
       })
       .catch((error) => {
-        console.error(error);
+        this.logger.error(error);
       });
   }
 

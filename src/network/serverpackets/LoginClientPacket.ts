@@ -7,7 +7,7 @@ export default abstract class LoginClientPacket extends ReceivablePacket<LoginCl
     try {
       return this.readImpl();
     } catch (err) {
-      console.log(err);
+      this.logger.error(err);
       return false;
     }
   }

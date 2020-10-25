@@ -55,11 +55,11 @@ export default abstract class AbstractMessagePacket<T extends AbstractMessagePac
           _params.push([/** x*/ this.readD(), /** y */ this.readD(), /** z */ this.readD()]);
           break;
         default:
-          console.log("Unknown message packet type: " + _paramType.toString(16));
+          this.logger.warn("Unknown message packet type: " + _paramType.toString(16));
           return;
       }
     }
 
-    console.log(`System msg #${_messageId}`, _params);
+    this.logger.info(`System msg #${_messageId}`, _params);
   }
 }

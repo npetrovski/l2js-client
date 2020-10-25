@@ -2,8 +2,11 @@ import ReceivablePacket from "./ReceivablePacket";
 import IPacketHandler from "./IPacketHandler";
 import { GlobalEvents } from "./EventEmitter";
 import IConnection from "./IConnection";
+import Logger from "./Logger";
 
 export default abstract class MMOClient {
+  protected logger: Logger = Logger.getLogger(this.constructor.name);
+
   private _connection!: IConnection;
 
   private _packetHandler!: IPacketHandler<MMOClient>;
@@ -62,6 +65,7 @@ export default abstract class MMOClient {
           }
 
           if (rcp.read()) {
+            this.logger.info("Receive", rcp.constructor.name);
             GlobalEvents.fire(`PacketReceived:${rcp.constructor.name}`, { packet: rcp });
             rcp.run();
           }

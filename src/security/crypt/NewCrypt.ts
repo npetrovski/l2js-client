@@ -11,14 +11,15 @@ export default class NewCrypt {
   static verifyChecksum(raw: Uint8Array, offset?: number, size?: number): boolean {
     offset = offset ?? 0;
     size = size ?? raw.byteLength;
-    if ((size & 3) != 0 || size <= 4) {
+    if ((size & 3) !== 0 || size <= 4) {
       return false;
     }
 
-    var chksum: number = 0;
-    var count: number = size - 4;
-    var check: number = Number.MAX_VALUE;
-    for (var i = offset; i < count; i += 4) {
+    let chksum: number = 0;
+    const count: number = size - 4;
+    let check: number = Number.MAX_VALUE;
+    let i: number;
+    for (i = offset; i < count; i += 4) {
       check = raw[i] & 0xff;
       check |= (raw[i + 1] << 8) & 0xff00;
       check |= (raw[i + 2] << 0x10) & 0xff0000;
@@ -33,14 +34,15 @@ export default class NewCrypt {
     check |= (raw[i + 2] << 0x10) & 0xff0000;
     check |= (raw[i + 3] << 0x18) & 0xff000000;
 
-    return check == chksum;
+    return check === chksum;
   }
 
   static appendChecksum(raw: Uint8Array, offset: number, size: number) {
-    var chksum: number = 0;
-    var ecx: number;
+    let chksum: number = 0;
+    let ecx: number;
+    let i: number;
 
-    for (var i = offset; i < size - 4; i += 4) {
+    for (i = offset; i < size - 4; i += 4) {
       ecx = raw[i] & 0xff;
       ecx |= (raw[i + 1] << 8) & 0xff00;
       ecx |= (raw[i + 2] << 0x10) & 0xff0000;
@@ -62,10 +64,10 @@ export default class NewCrypt {
   }
 
   static decXORPass(raw: Uint8Array, offset: number, size: number, key: number) {
-    var stop: number = 4 + offset;
-    var pos: number = size - 12;
-    var edx: number;
-    var ecx: number = key;
+    const stop: number = 4 + offset;
+    let pos: number = size - 12;
+    let edx: number;
+    let ecx: number = key;
     while (stop <= pos) {
       edx = raw[pos] & 0xff;
       edx |= (raw[pos + 1] & 0xff) << 8;

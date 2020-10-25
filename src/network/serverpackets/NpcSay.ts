@@ -14,7 +14,7 @@ export default class NpcSay extends GameClientPacket {
       _messages.push(this.readS());
     }
 
-    console.log("NpcSay", _messages);
+    this.logger.info("NpcSay", _messages);
 
     return true;
   }

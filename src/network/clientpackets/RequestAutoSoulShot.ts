@@ -16,7 +16,7 @@ export default class RequestAutoSoulShot extends GameServerPacket {
     }
 
     if (!ShotsType[this._shotItemId]) {
-      console.error("Invalid shot item Id");
+      this.logger.error("Invalid shot item Id");
     }
 
     this._enabled = enabled;

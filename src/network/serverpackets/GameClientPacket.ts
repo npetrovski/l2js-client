@@ -8,7 +8,7 @@ export default abstract class GameClientPacket extends ReceivablePacket<GameClie
     try {
       return this.readImpl();
     } catch (err) {
-      console.log(err);
+      this.logger.error(err);
       return false;
     }
   }

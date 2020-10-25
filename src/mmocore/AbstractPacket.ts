@@ -1,6 +1,9 @@
 import MMOClient from "../mmocore/MMOClient";
+import Logger from "./Logger";
 
 export default abstract class AbstractPacket<T extends MMOClient> {
+  protected logger: Logger = Logger.getLogger(this.constructor.name);
+
   _client!: T;
 
   get Client(): T {

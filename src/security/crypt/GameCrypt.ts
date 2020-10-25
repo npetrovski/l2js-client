@@ -15,7 +15,7 @@ export default class GameCrypt {
     }
 
     let temp = 0;
-    for (var i = 0; i < size; i++) {
+    for (let i = 0; i < size; i++) {
       const temp2 = raw[offset + i];
       raw[offset + i] = temp2 ^ this._inKey[i & 15] ^ temp;
       temp = temp2;
@@ -39,14 +39,14 @@ export default class GameCrypt {
       return;
     }
 
-    var temp = 0;
-    for (var i = 0; i < size; i++) {
-      var temp2 = raw[offset + i] & 0xff;
+    let temp = 0;
+    for (let i = 0; i < size; i++) {
+      let temp2 = raw[offset + i] & 0xff;
       temp = temp2 ^ this._outKey[i & 15] ^ temp;
       raw[offset + i] = temp & 0xff;
     }
 
-    var old = this._outKey[8] & 0xff;
+    let old = this._outKey[8] & 0xff;
     old |= (this._outKey[9] << 8) & 0xff00;
     old |= (this._outKey[10] << 0x10) & 0xff0000;
     old |= (this._outKey[11] << 0x18) & 0xff000000;

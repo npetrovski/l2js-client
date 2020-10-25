@@ -15,8 +15,8 @@ export default class RequestAuthLogin extends LoginServerPacket {
     const loginInfo: Uint8Array = new Uint8Array(128);
 
     loginInfo[0x5b] = 0x24;
-    [this.Client.Username].forEach((k, i) => loginInfo[0x5e + i] = k.charCodeAt(0));
-    [this.Client.Password].forEach((k, i) => loginInfo[0x6c + i] = k.charCodeAt(0));
+    [...this.Client.Username].forEach((k, i) => loginInfo[0x5e + i] = k.charCodeAt(0));
+    [...this.Client.Password].forEach((k, i) => loginInfo[0x6c + i] = k.charCodeAt(0));
 
     const e = new BigInteger("65537", 10);
     const modulus = new BigInteger(this._hexStr(this.Client.PublicKey), 16);
