@@ -36,11 +36,23 @@ import GameClient from "./network/GameClient";
 import LoginClient from "./network/LoginClient";
 import CommandValidatePosition from "./commands/CommandValidatePosition";
 import CommandAttack from "./commands/CommandAttack";
-import { EventHandlerType } from "./events/EventTypes";
+import { EPacketReceived, EventHandlerType } from "./events/EventTypes";
 import CommandCast from "./commands/CommandCast";
 import CommandDwarvenCraftRecipes from "./commands/CommandDwarvenCraftRecipes";
 import CommandCraft from "./commands/CommandCraft";
 import L2Recipe from "./entities/L2Recipe";
+import AuthGameGuard from "./network/clientpackets/AuthGameGuard";
+import SendablePacket from "./mmocore/SendablePacket";
+import RequestAuthLogin from "./network/clientpackets/RequestAuthLogin";
+import RequestServerList from "./network/clientpackets/RequestServerList";
+import RequestServerLogin from "./network/clientpackets/RequestServerLogin";
+import ServerList from "./network/serverpackets/ServerList";
+import RequestManorList from "./network/clientpackets/RequestManorList";
+import RequestKeyMapping from "./network/clientpackets/RequestKeyMapping";
+import EnterWorld from "./network/clientpackets/EnterWorld";
+import ProtocolVersion from "./network/clientpackets/ProtocolVersion";
+import AuthLogin from "./network/clientpackets/AuthLogin";
+import CharacterSelect from "./network/clientpackets/CharacterSelect";
 
 export default interface Client {
   /**
@@ -283,11 +295,43 @@ export default class Client {
       this.setConfig(config);
     }
 
-    GlobalEvents.once("PlayOk", () => {
-      this._gc = new GameClient(this._lc, this._config);
-    });
-
     this._lc = new LoginClient(this._config);
+
+    GlobalEvents.once("PacketReceived:Init", () => this._lc.sendPacket(new AuthGameGuard(this._lc.SessionId)));
+    GlobalEvents.once("PacketReceived:GGAuth", () => {
+      const spk: SendablePacket<LoginClient> = new RequestAuthLogin();
+      spk.Client = this._lc;
+      this._lc.sendPacket(spk);
+    });
+    GlobalEvents.once("PacketReceived:LoginOk", () => this._lc.sendPacket(new RequestServerList(this._lc.LoginOk1, this._lc.LoginOk2)));
+    GlobalEvents.once("PacketReceived:ServerList", (e: EPacketReceived) => {
+      this._lc.sendPacket(
+        new RequestServerLogin(this._lc.LoginOk1, this._lc.LoginOk2, this._lc.ServerId ?? (e.data.packet as ServerList)._lastServerId)
+      );
+    });
+    GlobalEvents.once("PacketReceived:PlayOk", () => {
+      this._lc.Connection.close();
+      this._gc = new GameClient(this._lc, this._config);
+      this._gc.sendPacket(new ProtocolVersion());
+    });
+    GlobalEvents.once("PacketReceived:KeyPacket", () => {
+      const spk: SendablePacket<GameClient> = new AuthLogin(
+        this._gc.Username,
+        this._gc.PlayOk1,
+        this._gc.PlayOk2,
+        this._gc.LoginOk1,
+        this._gc.LoginOk2
+      );
+      this._gc.sendPacket(spk);
+    });
+    GlobalEvents.once("PacketReceived:CharSelectionInfo", () => {
+      this._gc.sendPacket(new CharacterSelect(this._gc.Config.CharSlotIndex ?? 0));
+    });
+    GlobalEvents.once("PacketReceived:CharSelected", () => {
+      this._gc.sendPacket(new RequestManorList());
+      this._gc.sendPacket(new RequestKeyMapping());
+      this._gc.sendPacket(new EnterWorld());
+    });
 
     return this;
   }

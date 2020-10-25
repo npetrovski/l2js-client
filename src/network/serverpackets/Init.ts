@@ -29,7 +29,7 @@ export default class Init extends LoginClientPacket {
 
   // @Override
   run(): void {
-    this.Client.sendPacket(new AuthGameGuard(this.Client.SessionId));
+    // no-op
   }
 
   private unscrambleModulus(mods: Uint8Array): Uint8Array {

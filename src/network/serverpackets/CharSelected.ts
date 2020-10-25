@@ -33,8 +33,6 @@ export default class CharSelected extends GameClientPacket {
 
   // @Override
   run(): void {
-    this.Client.sendPacket(new RequestManorList());
-    this.Client.sendPacket(new RequestKeyMapping());
-    this.Client.sendPacket(new EnterWorld());
+    // no-op
   }
 }

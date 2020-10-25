@@ -93,6 +93,6 @@ export default class CharSelectionInfo extends GameClientPacket {
 
   // @Override
   run(): void {
-    this.Client.sendPacket(new CharacterSelect(this.Client.Config.CharSlotIndex ?? 0));
+    // no-op
   }
 }

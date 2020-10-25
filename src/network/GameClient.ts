@@ -119,7 +119,6 @@ export default class GameClient extends MMOClient {
     this._loginClient = lc;
     this._gameCrypt = new GameCrypt();
 
-    this.sendPacket(new ProtocolVersion());
   }
   encrypt(buf: Uint8Array, offset: number, size: number): void {
     this._gameCrypt.encrypt(buf, offset, size);

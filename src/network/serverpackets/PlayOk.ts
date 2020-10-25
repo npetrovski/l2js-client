@@ -13,7 +13,6 @@ export default class PlayOk extends LoginClientPacket {
 
   // @Override
   run(): void {
-    this.Client.Connection.close();
-    GlobalEvents.fire("PlayOk");
+    // no-op
   }
 }

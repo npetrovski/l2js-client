@@ -14,8 +14,6 @@ export default class GGAuth extends LoginClientPacket {
 
   // @Override
   run(): void {
-    const spk: SendablePacket<LoginClient> = new RequestAuthLogin();
-    spk.Client = this.Client;
-    this.Client.sendPacket(spk);
+    // no-op
   }
 }

@@ -13,6 +13,6 @@ export default class LoginOk extends LoginClientPacket {
 
   // @Override
   run(): void {
-    this.Client.sendPacket(new RequestServerList(this.Client.LoginOk1, this.Client.LoginOk2));
+    // no-op
   }
 }

@@ -38,8 +38,6 @@ export default class ServerList extends LoginClientPacket {
 
   // @Override
   run(): void {
-    this.Client.sendPacket(
-      new RequestServerLogin(this.Client.LoginOk1, this.Client.LoginOk2, this.Client.ServerId ?? this._lastServerId)
-    );
+    // no-op
   }
 }

@@ -27,13 +27,6 @@ export default class KeyPacket extends GameClientPacket {
 
   // @Override
   run(): void {
-    const spk: SendablePacket<GameClient> = new AuthLogin(
-      this.Client.Username,
-      this.Client.PlayOk1,
-      this.Client.PlayOk2,
-      this.Client.LoginOk1,
-      this.Client.LoginOk2
-    );
-    this.Client.sendPacket(spk);
+    // no-op
   }
 }
