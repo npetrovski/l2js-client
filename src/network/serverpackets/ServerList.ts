@@ -30,7 +30,7 @@ export default class ServerList extends LoginClientPacket {
     const _unkn = this.readH();
     // ...
 
-    this.Client.SelectedServer =
+    this.Client.Session.selectedServer =
       this.Client.Servers.find((s) => s.Id === this.Client.Config.ServerId) ?? this.Client.Servers[0];
 
     return true;

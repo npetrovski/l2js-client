@@ -1,12 +1,11 @@
 import LoginClientPacket from "./LoginClientPacket";
-import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class PlayOk extends LoginClientPacket {
   // @Override
   readImpl(): boolean {
     const _id: number = this.readC();
-    this.Client.PlayOk1 = this.readD();
-    this.Client.PlayOk2 = this.readD();
+    this.Client.Session.playOk1 = this.readD();
+    this.Client.Session.playOk2 = this.readD();
 
     return true;
   }

@@ -303,24 +303,20 @@ export default class Client {
       spk.Client = this._lc;
       this._lc.sendPacket(spk);
     });
-    GlobalEvents.once("PacketReceived:LoginOk", () => this._lc.sendPacket(new RequestServerList(this._lc.LoginOk1, this._lc.LoginOk2)));
+    GlobalEvents.once("PacketReceived:LoginOk", () => this._lc.sendPacket(new RequestServerList(this._lc.Session)));
     GlobalEvents.once("PacketReceived:ServerList", (e: EPacketReceived) => {
       this._lc.sendPacket(
-        new RequestServerLogin(this._lc.LoginOk1, this._lc.LoginOk2, this._lc.ServerId ?? (e.data.packet as ServerList)._lastServerId)
+        new RequestServerLogin(this._lc.Session, this._lc.ServerId ?? (e.data.packet as ServerList)._lastServerId)
       );
     });
     GlobalEvents.once("PacketReceived:PlayOk", () => {
       this._lc.Connection.close();
-      this._gc = new GameClient(this._lc, this._config);
+      this._gc = new GameClient(this._lc.Session, this._config);
       this._gc.sendPacket(new ProtocolVersion());
     });
     GlobalEvents.once("PacketReceived:KeyPacket", () => {
       const spk: SendablePacket<GameClient> = new AuthLogin(
-        this._gc.Username,
-        this._gc.PlayOk1,
-        this._gc.PlayOk2,
-        this._gc.LoginOk1,
-        this._gc.LoginOk2
+        this._gc.Session
       );
       this._gc.sendPacket(spk);
     });

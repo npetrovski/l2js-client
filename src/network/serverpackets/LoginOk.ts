@@ -5,8 +5,8 @@ export default class LoginOk extends LoginClientPacket {
   // @Override
   readImpl(): boolean {
     const _id: number = this.readC();
-    this.Client.LoginOk1 = this.readD();
-    this.Client.LoginOk2 = this.readD();
+    this.Client.Session.loginOk1 = this.readD();
+    this.Client.Session.loginOk2 = this.readD();
 
     return true;
   }

@@ -1,11 +1,9 @@
 export default interface IStream {
-  connect(ip: string, port: number): void;
+  connect(ip: string, port: number): Promise<void>;
 
-  send(bytes: Uint8Array): Promise<boolean>;
+  send(bytes: Uint8Array): Promise<void>;
 
-  receive(bytes: Uint8Array): void;
+  recv(): Promise<Uint8Array>;
 
-  close(): void;
-
-  setDataCallback(callback?: (bytes: Uint8Array) => void): void;
+  close(): Promise<void>;
 }

@@ -22,17 +22,7 @@ export default class LoginClient extends MMOClient {
 
   private _publicKey!: Uint8Array;
 
-  private _loginOk1!: number;
-
-  private _loginOk2!: number;
-
-  private _playOk1!: number;
-
-  private _playOk2!: number;
-
   private _servers: ServerData[] = [];
-
-  private _selectedServer!: ServerData;
 
   private _serverId!: number;
 
@@ -44,38 +34,6 @@ export default class LoginClient extends MMOClient {
 
   set ServerId(serverId: number) {
     this._serverId = serverId;
-  }
-
-  get PlayOk1(): number {
-    return this._playOk1;
-  }
-
-  set PlayOk1(playOk1: number) {
-    this._playOk1 = playOk1;
-  }
-
-  get PlayOk2(): number {
-    return this._playOk2;
-  }
-
-  set PlayOk2(playOk2: number) {
-    this._playOk2 = playOk2;
-  }
-
-  get LoginOk1(): number {
-    return this._loginOk1;
-  }
-
-  set LoginOk1(loginOk1: number) {
-    this._loginOk1 = loginOk1;
-  }
-
-  get LoginOk2(): number {
-    return this._loginOk2;
-  }
-
-  set LoginOk2(loginOk2: number) {
-    this._loginOk2 = loginOk2;
   }
 
   get Username(): string {
@@ -126,14 +84,6 @@ export default class LoginClient extends MMOClient {
     this._servers = servers;
   }
 
-  get SelectedServer(): ServerData {
-    return this._selectedServer;
-  }
-
-  set SelectedServer(server: ServerData) {
-    this._selectedServer = server;
-  }
-
   get Config(): MMOConfig {
     return this._config;
   }
@@ -148,6 +98,7 @@ export default class LoginClient extends MMOClient {
     (this.Connection as MMOConnection<LoginClient>).Client = this;
     this.PacketHandler = new LoginPacketHandler();
 
+    this.Session.username = config.Username;
     this._username = config.Username;
     this._password = config.Password;
     if (config.ServerId) {
@@ -169,14 +120,10 @@ export default class LoginClient extends MMOClient {
     sendable[1] = (count + 2) >>> 8;
     sendable.set(lsp.Buffer.slice(0, count), 2);
 
-    this.logger.info("Sending ", lsp.constructor.name);
-    this.Connection.write(sendable)
-      .then(() => {
-        GlobalEvents.fire(`PacketSent:${lsp.constructor.name}`, { packet: lsp });
-      })
-      .catch((error) => {
-        this.logger.error(error);
-      });
+    this.logger.debug("Sending ", lsp.constructor.name);
+    this.sendRaw(sendable).then(() => {
+      GlobalEvents.fire(`PacketSent:${lsp.constructor.name}`, { packet: lsp });
+    });
   }
 
   encrypt(buf: Uint8Array, offset: number, size: number): void {

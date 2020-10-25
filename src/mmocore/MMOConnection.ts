@@ -13,10 +13,14 @@ export default class MMOConnection<T extends MMOClient> implements IConnection {
   private _stream: IStream;
 
   constructor(config: MMOConfig) {
-    this.logger.info("Connecting", `${config.Ip}:${config.Port}`);
     this._stream = SocketFactory.getSocketAdapter(config.Stream);
-    this._stream.setDataCallback((buf: Uint8Array) => this.read(buf));
-    this._stream.connect(config.Ip, config.Port);
+    this.logger.debug("Connecting", `${config.Ip}:${config.Port}`);
+    this._stream.connect(config.Ip, config.Port).then(() => {
+      this.logger.info("Connected", `${config.Ip}:${config.Port}`);
+      this.read();
+    }).catch(() => {
+      this.logger.error("Connection fail to ", `${config.Ip}:${config.Port}`);
+    });
   }
 
   get Client(): T {
@@ -27,15 +31,19 @@ export default class MMOConnection<T extends MMOClient> implements IConnection {
     this._client = client;
   }
 
-  async write(buf: Uint8Array): Promise<boolean> {
-    return this._stream.send(buf);
+  async read(): Promise<void> {
+    const data: Uint8Array = await this._stream.recv();
+    if (data) {
+      this._client.process(data);
+    }
+    this.read();
   }
 
-  read(data: Uint8Array): void {
-    this._client.process(data);
+  write(raw: Uint8Array): Promise<void> {
+    return this._stream.send(raw);
   }
 
-  close(): void {
-    this._stream.close();
+  close(): Promise<void> {
+    return this._stream.close();
   }
 }

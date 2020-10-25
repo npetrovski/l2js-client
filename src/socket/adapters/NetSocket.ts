@@ -4,43 +4,49 @@ import IStream from "../../mmocore/IStream";
 export default class NetSocket implements IStream {
   private _socket: net.Socket = new net.Socket();
 
-  private _onDataCallback!: (bytes: Uint8Array) => void;
-
-  setDataCallback(callback?: (bytes: Uint8Array) => void): void {
-    if (callback) {
-      this._onDataCallback = callback;
-    }
-  }
-
-  connect(ip: string, port: number): void {
-    this._socket.on("data", (data: Uint8Array) => {
-      this._socket.pause();
-      this.receive(data);
+  async connect(ip: string, port: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this._socket.connect(port, ip, () => {
+        resolve();
+      });
     });
-    this._socket.connect(port, ip);
   }
 
-  async send(bytes: Uint8Array): Promise<boolean> {
+  async send(bytes: Uint8Array): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this._socket.destroyed) {
-        resolve(this._socket.write(bytes));
+        this._socket.write(bytes);
+        resolve();
       } else {
         reject("Connection is closed");
       }
     });
   }
 
-  receive(bytes: Uint8Array): void {
-    if (this._onDataCallback) {
-      setTimeout(() => {
-        this._onDataCallback(bytes);
-        this._socket.resume();
-      }, 1);
-    }
+  async recv(): Promise<Uint8Array> {
+    this._socket.resume();
+    return new Promise((resolve, reject) => {
+      this._socket.on("data", (data: Uint8Array) => {
+        this._socket.pause();
+        resolve(data);
+      });
+      this._socket.on("error", err => reject(err));
+    });
   }
-  close(): void {
-    if (!this._socket.destroyed) {
-      this._socket.destroy();
-    }
+
+
+  async close(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (!this._socket.destroyed) {
+        this._socket.on("close", (err) => {
+          if (err) {
+            reject();
+          } else {
+            resolve();
+          }
+        });
+        this._socket.destroy();
+      }
+    });
   }
 }

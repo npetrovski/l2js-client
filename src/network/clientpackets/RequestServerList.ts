@@ -1,13 +1,14 @@
+import MMOSession from "../../mmocore/MMOSession";
 import LoginServerPacket from "./LoginServerPacket";
 
 export default class RequestServerList extends LoginServerPacket {
   _loginOk1: number = 0;
   _loginOk2: number = 0;
 
-  constructor(loginOk1: number, loginOk2: number) {
+  constructor(session: MMOSession) {
     super();
-    this._loginOk1 = loginOk1;
-    this._loginOk2 = loginOk2;
+    this._loginOk1 = session.loginOk1;
+    this._loginOk2 = session.loginOk2;
   }
 
   write(): void {

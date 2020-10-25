@@ -3,6 +3,7 @@ import IPacketHandler from "./IPacketHandler";
 import { GlobalEvents } from "./EventEmitter";
 import IConnection from "./IConnection";
 import Logger from "./Logger";
+import MMOSession from "./MMOSession";
 
 export default abstract class MMOClient {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
@@ -11,12 +12,21 @@ export default abstract class MMOClient {
 
   private _packetHandler!: IPacketHandler<MMOClient>;
 
+  private _session: MMOSession = new MMOSession();
+
   constructor(con: IConnection) {
     this._connection = con;
   }
-  abstract encrypt(var1: Uint8Array, var2: number, var3: number): void;
+  abstract encrypt(data: Uint8Array, offset: number, size: number): void;
 
-  abstract decrypt(var1: Uint8Array, var2: number, var3: number): void;
+  abstract decrypt(data: Uint8Array, offset: number, size: number): void;
+  get Session(): MMOSession {
+    return this._session;
+  }
+
+  set Session(sess: MMOSession) {
+    this._session = sess;
+  }
 
   get Connection(): IConnection {
     return this._connection;
@@ -65,7 +75,7 @@ export default abstract class MMOClient {
           }
 
           if (rcp.read()) {
-            this.logger.info("Receive", rcp.constructor.name);
+            this.logger.debug("Receive", rcp.constructor.name);
             GlobalEvents.fire(`PacketReceived:${rcp.constructor.name}`, { packet: rcp });
             rcp.run();
           }
@@ -74,6 +84,11 @@ export default abstract class MMOClient {
 
       i += packetLength;
     }
+  }
+
+  sendRaw(raw: Uint8Array): Promise<void> {
+    return this._connection.write(raw)
+      .catch((error) => this.logger.error(error));
   }
 
   hexString(data: Uint8Array): string {

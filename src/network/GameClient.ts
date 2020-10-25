@@ -14,12 +14,10 @@ import GameCrypt from "../security/crypt/GameCrypt";
 import GamePacketHandler from "./GamePacketHandler";
 import LoginClient from "./LoginClient";
 import GameServerPacket from "./clientpackets/GameServerPacket";
-import ProtocolVersion from "./clientpackets/ProtocolVersion";
 import L2Recipe from "../entities/L2Recipe";
+import MMOSession from "../mmocore/MMOSession";
 
 export default class GameClient extends MMOClient {
-  private _loginClient: LoginClient;
-
   private _gameCrypt: GameCrypt;
 
   private _config!: MMOConfig;
@@ -66,26 +64,6 @@ export default class GameClient extends MMOClient {
     return this._commonRecipeBook;
   }
 
-  get PlayOk1(): number {
-    return this._loginClient.PlayOk1;
-  }
-
-  get PlayOk2(): number {
-    return this._loginClient.PlayOk2;
-  }
-
-  get LoginOk1(): number {
-    return this._loginClient.LoginOk1;
-  }
-
-  get LoginOk2(): number {
-    return this._loginClient.LoginOk2;
-  }
-
-  get Username(): string {
-    return this._loginClient.Username;
-  }
-
   get Config(): MMOConfig {
     return this._config;
   }
@@ -102,12 +80,12 @@ export default class GameClient extends MMOClient {
     this._activeChar = char;
   }
 
-  constructor(lc: LoginClient, config: MMOConfig) {
+  constructor(session: MMOSession, config: MMOConfig) {
     super(
       new MMOConnection(
         config.assign({
-          Ip: lc.SelectedServer.Ipv4(),
-          Port: lc.SelectedServer.Port,
+          Ip: session.selectedServer.Ipv4(),
+          Port: session.selectedServer.Port,
         })
       )
     );
@@ -116,7 +94,7 @@ export default class GameClient extends MMOClient {
     (this.Connection as MMOConnection<GameClient>).Client = this;
     this.PacketHandler = new GamePacketHandler();
 
-    this._loginClient = lc;
+    this.Session = session;
     this._gameCrypt = new GameCrypt();
 
   }
@@ -140,13 +118,10 @@ export default class GameClient extends MMOClient {
     sendable[1] = (gsp.Position + 2) >>> 8;
     sendable.set(gsp.Buffer.slice(0, gsp.Position), 2);
 
-    this.logger.info("Sending ", gsp.constructor.name);
-    this.Connection.write(sendable)
-      .then(() => {
-        GlobalEvents.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
-      })
-      .catch((error) => {
-        this.logger.error(error);
-      });
+    this.logger.debug("Sending ", gsp.constructor.name);
+    this.sendRaw(sendable).then(() => {
+      GlobalEvents.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
+    });
   }
+
 }
