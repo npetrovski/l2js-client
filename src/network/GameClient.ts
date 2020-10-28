@@ -18,10 +18,8 @@ import L2Recipe from "../entities/L2Recipe";
 import MMOSession from "../mmocore/MMOSession";
 
 export default class GameClient extends MMOClient {
-  private _gameCrypt: GameCrypt;
-
+  private _gameCrypt: GameCrypt = new GameCrypt();
   private _config!: MMOConfig;
-
   private _activeChar: L2User = new L2User();
   private _creatures: L2ObjectCollection<L2Creature> = new L2ObjectCollection();
   private _party: L2ObjectCollection<L2PartyMember> = new L2ObjectCollection();
@@ -81,22 +79,13 @@ export default class GameClient extends MMOClient {
   }
 
   constructor(session: MMOSession, config: MMOConfig) {
-    super(
-      new MMOConnection(
-        config.assign({
-          Ip: session.selectedServer.Ipv4(),
-          Port: session.selectedServer.Port,
-        })
-      )
-    );
+    super();
+    this.Connection = new MMOConnection(config, this);
 
     this.Config = config;
-    (this.Connection as MMOConnection<GameClient>).Client = this;
-    this.PacketHandler = new GamePacketHandler();
-
     this.Session = session;
-    this._gameCrypt = new GameCrypt();
 
+    this.PacketHandler = new GamePacketHandler();
   }
   encrypt(buf: Uint8Array, offset: number, size: number): void {
     this._gameCrypt.encrypt(buf, offset, size);
@@ -108,7 +97,7 @@ export default class GameClient extends MMOClient {
     this._gameCrypt.setKey(key);
   }
 
-  sendPacket(gsp: GameServerPacket): void {
+  sendPacket(gsp: GameServerPacket): Promise<void> {
     gsp.write();
 
     this._gameCrypt.encrypt(gsp.Buffer, 0, gsp.Position);
@@ -119,7 +108,7 @@ export default class GameClient extends MMOClient {
     sendable.set(gsp.Buffer.slice(0, gsp.Position), 2);
 
     this.logger.debug("Sending ", gsp.constructor.name);
-    this.sendRaw(sendable).then(() => {
+    return this.sendRaw(sendable).then(() => {
       GlobalEvents.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
     });
   }

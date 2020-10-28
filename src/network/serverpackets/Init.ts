@@ -12,9 +12,9 @@ export default class Init extends LoginClientPacket {
     NewCrypt.decXORPass(this._buffer, 0, this._buffer.length, checkNum);
 
     const _id: number = this.readC();
-    this.Client.SessionId = this.readD();
+    this.Client.Session.sessionId = this.readD();
     const _protocolVersion = this.readD();
-    this.Client.PublicKey = this.unscrambleModulus(this.readB(128));
+    this.Client.Session.publicKey = this.unscrambleModulus(this.readB(128));
 
     // unk GG related?
     const _unkn1 = this.readD();

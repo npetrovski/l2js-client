@@ -184,10 +184,10 @@ export default class ServerData {
   }
 
   public Ipv4() {
-    var p1 = this._ip & 255;
-    var p2 = (this._ip >> 8) & 255;
-    var p3 = (this._ip >> 16) & 255;
-    var p4 = (this._ip >> 24) & 255;
+    const p1 = this._ip & 255;
+    const p2 = (this._ip >> 8) & 255;
+    const p3 = (this._ip >> 16) & 255;
+    const p4 = (this._ip >> 24) & 255;
 
     return `${p1}.${p2}.${p3}.${p4}`;
   }

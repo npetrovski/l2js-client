@@ -41,7 +41,6 @@ export default class ShortCutInit extends GameClientPacket {
 
     /// this.Client.ActiveChar.setShortCuts(_shortCuts);
 
-    GlobalEvents.fire(`LoggedIn`);
     return true;
   }
 

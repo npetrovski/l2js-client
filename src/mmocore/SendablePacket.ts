@@ -3,15 +3,9 @@ import MMOClient from "./MMOClient";
 
 export default abstract class SendablePacket<T extends MMOClient> extends AbstractPacket<T> {
   static readonly PACKET_MAX_SIZE: number = 4096;
-  _buffer: Uint8Array;
+  _buffer: Uint8Array = new Uint8Array(SendablePacket.PACKET_MAX_SIZE);
   _offset: number = 0;
-  _view: DataView;
-
-  constructor() {
-    super();
-    this._buffer = new Uint8Array(SendablePacket.PACKET_MAX_SIZE);
-    this._view = new DataView(this._buffer.buffer);
-  }
+  _view: DataView = new DataView(this._buffer.buffer);
 
   get Buffer(): Uint8Array {
     return this._buffer;

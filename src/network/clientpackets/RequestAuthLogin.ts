@@ -1,31 +1,43 @@
+import MMOSession from "../../mmocore/MMOSession";
 import BigInteger from "../../security/crypt/BigInteger";
 import LoginServerPacket from "./LoginServerPacket";
 
 export default class RequestAuthLogin extends LoginServerPacket {
 
+  private _username!: string;
+  private _password!: string;
+  private _session!: MMOSession;
+
+  constructor(username: string, password: string, session: MMOSession) {
+    super();
+    this._username = username;
+    this._password = password;
+    this._session = session;
+  }
+
   write(): void {
-    if (this.Client.Username.length > 14) {
+    if (this._username.length > 14) {
       throw Error("Username is too long");
     }
 
-    if (this.Client.Password.length > 16) {
+    if (this._password.length > 16) {
       throw Error("Password is too long");
     }
 
     const loginInfo: Uint8Array = new Uint8Array(128);
 
     loginInfo[0x5b] = 0x24;
-    [...this.Client.Username].forEach((k, i) => loginInfo[0x5e + i] = k.charCodeAt(0));
-    [...this.Client.Password].forEach((k, i) => loginInfo[0x6c + i] = k.charCodeAt(0));
+    [...this._username].forEach((k, i) => loginInfo[0x5e + i] = k.charCodeAt(0));
+    [...this._password].forEach((k, i) => loginInfo[0x6c + i] = k.charCodeAt(0));
 
     const e = new BigInteger("65537", 10);
-    const modulus = new BigInteger(this._hexStr(this.Client.PublicKey), 16);
+    const modulus = new BigInteger(this._hexStr(this._session.publicKey), 16);
     const input = new BigInteger(this._hexStr(loginInfo), 16);
     const encryptedLoginInfo: Uint8Array = Uint8Array.from(input.modPow(e, modulus).toByteArray(false));
 
     this.writeC(0);
     this.writeB(encryptedLoginInfo);
-    this.writeD(this.Client.SessionId);
+    this.writeD(this._session.sessionId);
 
     /**
      * GameGuard special 

@@ -4,8 +4,10 @@ import { GlobalEvents } from "./EventEmitter";
 import IConnection from "./IConnection";
 import Logger from "./Logger";
 import MMOSession from "./MMOSession";
+import IProcessable from "./IProcessable";
+import SendablePacket from "./SendablePacket";
 
-export default abstract class MMOClient {
+export default abstract class MMOClient implements IProcessable {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
   private _connection!: IConnection;
@@ -14,12 +16,12 @@ export default abstract class MMOClient {
 
   private _session: MMOSession = new MMOSession();
 
-  constructor(con: IConnection) {
-    this._connection = con;
-  }
   abstract encrypt(data: Uint8Array, offset: number, size: number): void;
 
   abstract decrypt(data: Uint8Array, offset: number, size: number): void;
+
+  abstract sendPacket(packet: SendablePacket<this>): void;
+
   get Session(): MMOSession {
     return this._session;
   }
@@ -32,6 +34,10 @@ export default abstract class MMOClient {
     return this._connection;
   }
 
+  set Connection(conn: IConnection) {
+    this._connection = conn;
+  }
+
   get PacketHandler(): IPacketHandler<MMOClient> {
     return this._packetHandler;
   }
@@ -41,6 +47,10 @@ export default abstract class MMOClient {
   }
 
   private _buffer: Uint8Array = new Uint8Array();
+
+  connect(): Promise<void> {
+    return this._connection.connect();
+  }
 
   process(raw: Uint8Array): void {
     let data: Uint8Array = new Uint8Array(raw);

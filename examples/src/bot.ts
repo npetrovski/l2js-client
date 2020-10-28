@@ -13,7 +13,7 @@ l2.on("LoggedIn", () => {
     if (l2.DroppedItems.size > 0) {
       l2.hit(Array.from(l2.DroppedItems)[0]);
     } else if (!l2.Me.Target || l2.Me.Target.ObjectId === l2.Me.ObjectId) {
-      let creature: L2Creature | undefined = l2.nextTarget();
+      const creature: L2Creature | undefined = l2.nextTarget();
       if (creature instanceof L2Creature) {
         l2.hit(creature);
       }

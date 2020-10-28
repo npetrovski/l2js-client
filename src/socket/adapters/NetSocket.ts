@@ -4,7 +4,7 @@ import IStream from "../../mmocore/IStream";
 export default class NetSocket implements IStream {
   private _socket: net.Socket = new net.Socket();
 
-  async connect(ip: string, port: number): Promise<void> {
+  connect(ip: string, port: number): Promise<void> {
     return new Promise((resolve, reject) => {
       this._socket.connect(port, ip, () => {
         resolve();
@@ -12,7 +12,7 @@ export default class NetSocket implements IStream {
     });
   }
 
-  async send(bytes: Uint8Array): Promise<void> {
+  send(bytes: Uint8Array): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this._socket.destroyed) {
         this._socket.write(bytes);
@@ -23,22 +23,21 @@ export default class NetSocket implements IStream {
     });
   }
 
-  async recv(): Promise<Uint8Array> {
+  recv(): Promise<Uint8Array> {
     this._socket.resume();
     return new Promise((resolve, reject) => {
-      this._socket.on("data", (data: Uint8Array) => {
-        this._socket.pause();
+      //this._socket.once("error", err => reject(err));
+      this._socket.once("data", (data: Uint8Array) => {
         resolve(data);
+        this._socket.pause();
       });
-      this._socket.on("error", err => reject(err));
     });
   }
 
-
-  async close(): Promise<void> {
+  close(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this._socket.destroyed) {
-        this._socket.on("close", (err) => {
+        this._socket.once("close", (err) => {
           if (err) {
             reject();
           } else {

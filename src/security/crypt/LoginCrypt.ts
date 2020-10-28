@@ -10,6 +10,12 @@ export default class LoginCrypt {
 
   private _static: boolean = true;
 
+  constructor(key?: Uint8Array) {
+    if (key) {
+      this.setKey(key);
+    }
+  }
+
   setKey(key: Uint8Array) {
     this._crypt = new NewCrypt(key);
   }

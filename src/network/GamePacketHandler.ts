@@ -67,6 +67,7 @@ import MagicSkillLaunched from "./serverpackets/MagicSkillLaunched";
 import MagicSkillUse from "./serverpackets/MagicSkillUse";
 import TempBan from "./serverpackets/TempBan";
 import Logger from "../mmocore/Logger";
+import PlayerInGame from "./serverpackets/PlayerInGame";
 
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
@@ -85,6 +86,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x01:
           rpk = new Revive();
+          break;
+        case 0x02:
+          rpk = new PlayerInGame();
           break;
         case 0x05:
           rpk = new SpawnItem();
