@@ -6,10 +6,11 @@ import LoginPacketHandler from "./LoginPacketHandler";
 import ServerData from "./ServerData";
 import LoginServerPacket from "./clientpackets/LoginServerPacket";
 import { GlobalEvents } from "../mmocore/EventEmitter";
+import IConnection from "../mmocore/IConnection";
 
 export default class LoginClient extends MMOClient {
 
-  private _loginCrypt: LoginCrypt = new LoginCrypt(LoginCrypt.STATIC_BLOWFISH_KEY);
+  private _loginCrypt: LoginCrypt = new LoginCrypt();
   private _blowfishKey!: Uint8Array;
   private _servers: ServerData[] = [];
   private _serverId!: number;
@@ -29,6 +30,7 @@ export default class LoginClient extends MMOClient {
 
   set BlowfishKey(blowfishKey: Uint8Array) {
     this._blowfishKey = blowfishKey;
+    this._loginCrypt.setKey(blowfishKey);
   }
 
   get Servers(): ServerData[] {
@@ -47,9 +49,9 @@ export default class LoginClient extends MMOClient {
     this._config = config;
   }
 
-  constructor(config: MMOConfig) {
+  constructor(config: MMOConfig, connection?: IConnection) {
     super();
-    this.Connection = new MMOConnection(config, this);
+    this.Connection = connection ?? new MMOConnection(config, this);
 
     this.Config = config;
 
@@ -62,11 +64,10 @@ export default class LoginClient extends MMOClient {
     }
   }
 
-  sendPacket(lsp: LoginServerPacket): void {
+  pack(lsp: LoginServerPacket): Uint8Array {
     lsp.write();
 
     const count = lsp.Position % 8 === 0 ? lsp.Position : lsp.Position + (8 - (lsp.Position % 8));
-    this._loginCrypt.setKey(this.BlowfishKey);
     this._loginCrypt.encrypt(lsp.Buffer, 0, count);
 
     const sendable: Uint8Array = new Uint8Array(count + 2);
@@ -74,8 +75,14 @@ export default class LoginClient extends MMOClient {
     sendable[1] = (count + 2) >>> 8;
     sendable.set(lsp.Buffer.slice(0, count), 2);
 
+    return sendable;
+  }
+
+  sendPacket(lsp: LoginServerPacket): Promise<void> {
+    const sendable: Uint8Array = this.pack(lsp);
+
     this.logger.debug("Sending ", lsp.constructor.name);
-    this.sendRaw(sendable).then(() => {
+    return this.sendRaw(sendable).then(() => {
       GlobalEvents.fire(`PacketSent:${lsp.constructor.name}`, { packet: lsp });
     });
   }

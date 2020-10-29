@@ -68,6 +68,7 @@ import MagicSkillUse from "./serverpackets/MagicSkillUse";
 import TempBan from "./serverpackets/TempBan";
 import Logger from "../mmocore/Logger";
 import PlayerInGame from "./serverpackets/PlayerInGame";
+import ExSendManorList from "./serverpackets/ExSendManorList";
 
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
@@ -264,6 +265,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xfe:
           const sub = data[1] + (data[2] << 8);
           switch (sub) {
+            case 0x22:
+              rpk = new ExSendManorList();
+              break;
             case 0x41:
               rpk = new ExRedSky();
               break;

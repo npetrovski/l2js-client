@@ -12,10 +12,10 @@ import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
 import GameCrypt from "../security/crypt/GameCrypt";
 import GamePacketHandler from "./GamePacketHandler";
-import LoginClient from "./LoginClient";
 import GameServerPacket from "./clientpackets/GameServerPacket";
 import L2Recipe from "../entities/L2Recipe";
 import MMOSession from "../mmocore/MMOSession";
+import IConnection from "../mmocore/IConnection";
 
 export default class GameClient extends MMOClient {
   private _gameCrypt: GameCrypt = new GameCrypt();
@@ -78,9 +78,9 @@ export default class GameClient extends MMOClient {
     this._activeChar = char;
   }
 
-  constructor(session: MMOSession, config: MMOConfig) {
+  constructor(session: MMOSession, config: MMOConfig, connection?: IConnection) {
     super();
-    this.Connection = new MMOConnection(config, this);
+    this.Connection = connection ?? new MMOConnection(config, this);
 
     this.Config = config;
     this.Session = session;
@@ -97,7 +97,7 @@ export default class GameClient extends MMOClient {
     this._gameCrypt.setKey(key);
   }
 
-  sendPacket(gsp: GameServerPacket): Promise<void> {
+  pack(gsp: GameServerPacket): Uint8Array {
     gsp.write();
 
     this._gameCrypt.encrypt(gsp.Buffer, 0, gsp.Position);
@@ -106,6 +106,12 @@ export default class GameClient extends MMOClient {
     sendable[0] = (gsp.Position + 2) & 0xff;
     sendable[1] = (gsp.Position + 2) >>> 8;
     sendable.set(gsp.Buffer.slice(0, gsp.Position), 2);
+
+    return sendable;
+  }
+
+  sendPacket(gsp: GameServerPacket): Promise<void> {
+    const sendable: Uint8Array = this.pack(gsp);
 
     this.logger.debug("Sending ", gsp.constructor.name);
     return this.sendRaw(sendable).then(() => {

@@ -1,6 +1,3 @@
-import SendablePacket from "../../mmocore/SendablePacket";
-import LoginClient from "../LoginClient";
-import RequestAuthLogin from "../clientpackets/RequestAuthLogin";
 import LoginClientPacket from "./LoginClientPacket";
 
 export default class GGAuth extends LoginClientPacket {
@@ -8,6 +5,11 @@ export default class GGAuth extends LoginClientPacket {
   readImpl(): boolean {
     const _id: number = this.readC();
     const _response = this.readD();
+
+    const _zero1 = this.readD();
+    const _zero2 = this.readD();
+    const _zero3 = this.readD();
+    const _zero4 = this.readD();
 
     return true;
   }

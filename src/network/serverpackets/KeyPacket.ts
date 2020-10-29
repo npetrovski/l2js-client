@@ -1,7 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import GameClient from "../GameClient";
-import AuthLogin from "../clientpackets/AuthLogin";
-import SendablePacket from "../../mmocore/SendablePacket";
 
 export default class KeyPacket extends GameClientPacket {
   // @Override

@@ -22,6 +22,8 @@ export default abstract class MMOClient implements IProcessable {
 
   abstract sendPacket(packet: SendablePacket<this>): void;
 
+  abstract pack(packet: SendablePacket<this>): Uint8Array;
+
   get Session(): MMOSession {
     return this._session;
   }
@@ -52,48 +54,55 @@ export default abstract class MMOClient implements IProcessable {
     return this._connection.connect();
   }
 
-  process(raw: Uint8Array): void {
-    let data: Uint8Array = new Uint8Array(raw);
-    if (this._buffer.byteLength > 0) {
-      data = new Uint8Array(raw.byteLength + this._buffer.byteLength);
-      data.set(this._buffer, 0);
-      data.set(raw, this._buffer.byteLength);
-      this._buffer = new Uint8Array();
-    }
+  process(raw: Uint8Array): Promise<ReceivablePacket<MMOClient>> {
 
-    let i = 0;
-    while (i < data.byteLength) {
-      const packetLength = data[i] + (data[i + 1] << 8);
+    return new Promise((resolve, reject) => {
 
-      if (packetLength <= 2) {
-        break;
+      let data: Uint8Array = new Uint8Array(raw);
+      if (this._buffer.byteLength > 0) {
+        data = new Uint8Array(raw.byteLength + this._buffer.byteLength);
+        data.set(this._buffer, 0);
+        data.set(raw, this._buffer.byteLength);
+        this._buffer = new Uint8Array();
       }
 
-      if (i + packetLength > data.byteLength) {
-        this._buffer = data.slice(i);
-        break;
+      let i = 0;
+      while (i < data.byteLength) {
+        const packetLength = data[i] + (data[i + 1] << 8);
+
+        if (packetLength <= 2) {
+          break;
+        }
+
+        if (i + packetLength > data.byteLength) {
+          this._buffer = data.slice(i);
+          reject("incomplete packet");
+          break;
+        }
+
+        ((n, ctx) => {
+          const packetData = new Uint8Array(data.slice(n + 2, n + packetLength)); // +2 is for skipping the packet size
+          ctx.decrypt(packetData, 0, packetData.byteLength);
+
+          setTimeout(() => {
+            const rcp: ReceivablePacket<MMOClient> = ctx._packetHandler.handlePacket(packetData, ctx);
+            if (!rcp) {
+              reject("Cannot find the required packet handler");
+              return; // We cannot find the required packet handler. Most probably the game packet is not yet implemented.
+            }
+
+            if (rcp.read()) {
+              this.logger.debug("Receive", rcp.constructor.name);
+              GlobalEvents.fire(`PacketReceived:${rcp.constructor.name}`, { packet: rcp });
+              resolve(rcp);
+              rcp.run();
+            }
+          }, 0);
+        })(i, this);
+
+        i += packetLength;
       }
-
-      ((n, ctx) => {
-        const packetData = new Uint8Array(data.slice(n + 2, n + packetLength)); // +2 is for skipping the packet size
-        ctx.decrypt(packetData, 0, packetData.byteLength);
-
-        setTimeout(() => {
-          const rcp: ReceivablePacket<MMOClient> = ctx._packetHandler.handlePacket(packetData, ctx);
-          if (!rcp) {
-            return; // We cannot find the required packet handler. Most probably the game packet is not yet implemented.
-          }
-
-          if (rcp.read()) {
-            this.logger.debug("Receive", rcp.constructor.name);
-            GlobalEvents.fire(`PacketReceived:${rcp.constructor.name}`, { packet: rcp });
-            rcp.run();
-          }
-        }, 0);
-      })(i, this);
-
-      i += packetLength;
-    }
+    });
   }
 
   sendRaw(raw: Uint8Array): Promise<void> {

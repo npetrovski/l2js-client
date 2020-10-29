@@ -3,18 +3,8 @@ import NewCrypt from "./NewCrypt";
 export default class LoginCrypt {
   // prettier-ignore
   static readonly STATIC_BLOWFISH_KEY: Uint8Array = Uint8Array.from([0x6b, 0x60, 0xcb, 0x5b, 0x82, 0xce, 0x90, 0xb1, 0xcc, 0x2b, 0x6c, 0x55, 0x6c, 0x6c, 0x6c, 0x6c]);
+  private _crypt: NewCrypt = new NewCrypt(LoginCrypt.STATIC_BLOWFISH_KEY);
 
-  static _STATIC_CRYPT: NewCrypt = new NewCrypt(LoginCrypt.STATIC_BLOWFISH_KEY);
-
-  private _crypt!: NewCrypt;
-
-  private _static: boolean = true;
-
-  constructor(key?: Uint8Array) {
-    if (key) {
-      this.setKey(key);
-    }
-  }
 
   setKey(key: Uint8Array) {
     this._crypt = new NewCrypt(key);
@@ -33,10 +23,10 @@ export default class LoginCrypt {
     return NewCrypt.verifyChecksum(raw, offset, size);
   }
 
-  encrypt(raw: Uint8Array, offset: number, size: number): number {
+  encrypt(raw: Uint8Array, offset: number, size: number): void {
+    size += 8 - (size % 8);
     NewCrypt.appendChecksum(raw, offset, size - 12);
     this._crypt.crypt(raw, offset, size);
 
-    return 0;
   }
 }

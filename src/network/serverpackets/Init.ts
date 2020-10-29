@@ -1,5 +1,4 @@
 import LoginClientPacket from "./LoginClientPacket";
-import AuthGameGuard from "../clientpackets/AuthGameGuard";
 import NewCrypt from "../../security/crypt/NewCrypt";
 
 export default class Init extends LoginClientPacket {
@@ -13,7 +12,9 @@ export default class Init extends LoginClientPacket {
 
     const _id: number = this.readC();
     this.Client.Session.sessionId = this.readD();
-    const _protocolVersion = this.readD();
+
+    const _protocolRevision = this.readD();
+    this.logger.debug("ProtocolRevision", _protocolRevision);
     this.Client.Session.publicKey = this.unscrambleModulus(this.readB(128));
 
     // unk GG related?

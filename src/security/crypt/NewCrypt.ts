@@ -86,6 +86,30 @@ export default class NewCrypt {
     }
   }
 
+  static encXORPass(raw: Uint8Array, offset: number, size: number, key: number) {
+    const stop = size - 8;
+    let pos: number = 4 + offset;
+
+    let edx: number;
+    let ecx: number;
+    for (ecx = key; pos < stop; raw[pos++] = (edx >>> 24 & 0xff)) {
+      edx = raw[pos] & 0xff;
+      edx |= (raw[pos + 1] & 0xff) << 8;
+      edx |= (raw[pos + 2] & 0xff) << 16;
+      edx |= (raw[pos + 3] & 0xff) << 24;
+      ecx += edx;
+      edx ^= ecx;
+      raw[pos++] = edx & 0xff;
+      raw[pos++] = (edx >>> 8 & 0xff);
+      raw[pos++] = (edx >>> 16 & 0xff);
+    }
+
+    raw[pos++] = ecx & 0xff;
+    raw[pos++] = (ecx >>> 8 & 0xff);
+    raw[pos++] = (ecx >>> 16 & 0xff);
+    raw[pos] = (ecx >>> 24 & 0xff);
+  }
+
   decrypt(raw: Uint8Array, offset: number, size: number): void {
     for (let i = 0; i < offset + size; i += BlowfishEngine.BLOCK_SIZE) {
       this._cipher.decryptBlock(raw, offset + i, raw, offset + i);
