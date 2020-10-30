@@ -88,6 +88,31 @@ import ChangeWaitType from "./serverpackets/ChangeWaitType";
 import ShowBoard from "./serverpackets/ShowBoard";
 import ShortCutRegister from "./serverpackets/ShortCutRegister";
 import InventoryUpdate from "./serverpackets/InventoryUpdate";
+import RestartResponse from "./serverpackets/RestartResponse";
+import WareHouseDepositList from "./serverpackets/WareHouseDepositList";
+import WareHouseWithdrawalList from "./serverpackets/WareHouseWithdrawalList";
+import VehicleStarted from "./serverpackets/VehicleStarted";
+import VehicleInfo from "./serverpackets/VehicleInfo";
+import VehicleDeparture from "./serverpackets/VehicleDeparture";
+import VehicleCheckLocation from "./serverpackets/VehicleCheckLocation";
+import ValidateLocationInVehicle from "./serverpackets/ValidateLocationInVehicle";
+import TutorialShowHtml from "./serverpackets/TutorialShowHtml";
+import TutorialCloseHtml from "./serverpackets/TutorialCloseHtml";
+import TradeStart from "./serverpackets/TradeStart";
+import TradeOwnAdd from "./serverpackets/TradeOwnAdd";
+import TradeOtherDone from "./serverpackets/TradeOtherDone";
+import TradeDone from "./serverpackets/TradeDone";
+import SurrenderPledgeWar from "./serverpackets/SurrenderPledgeWar";
+import StopPledgeWar from "./serverpackets/StopPledgeWar";
+import StopMoveInVehicle from "./serverpackets/StopMoveInVehicle";
+import StartRotation from "./serverpackets/StartRotation";
+import StartPledgeWar from "./serverpackets/StartPledgeWar";
+import SpecialCamera from "./serverpackets/SpecialCamera";
+import HennaEquipList from "./serverpackets/HennaEquipList";
+import HennaInfo from "./serverpackets/HennaInfo";
+import HennaItemDrawInfo from "./serverpackets/HennaItemDrawInfo";
+import HennaItemRemoveInfo from "./serverpackets/HennaItemRemoveInfo";
+import HennaRemoveList from "./serverpackets/HennaRemoveList";
 
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
@@ -137,6 +162,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x13:
           rpk = new SunSet();
           break;
+        case 0x14:
+          rpk = new TradeStart();
+          break;
         case 0x16:
           rpk = new DropItem();
           break;
@@ -148,6 +176,15 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x19:
           rpk = new NpcHtmlMessage();
+          break;
+        case 0x1a:
+          rpk = new TradeOwnAdd();
+          break;
+        case 0x1b:
+          rpk = new TradeOtherDone();
+          break;
+        case 0x1c:
+          rpk = new TradeDone();
           break;
         case 0x1f:
           rpk = new ActionFailed();
@@ -203,6 +240,12 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x3a:
           rpk = new JoinParty();
           break;
+        case 0x41:
+          rpk = new WareHouseDepositList();
+          break;
+        case 0x42:
+          rpk = new WareHouseWithdrawalList();
+          break;
         case 0x44:
           rpk = new ShortCutRegister();
           break;
@@ -242,11 +285,32 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x5f:
           rpk = new SkillList();
           break;
+        case 0x60:
+          rpk = new VehicleInfo();
+          break;
         case 0x61:
           rpk = new StopRotation();
           break;
         case 0x62:
           rpk = new SystemMessage();
+          break;
+        case 0x63:
+          rpk = new StartPledgeWar();
+          break;
+        case 0x65:
+          rpk = new StopPledgeWar();
+          break;
+        case 0x67:
+          rpk = new SurrenderPledgeWar();
+          break;
+        case 0x6C:
+          rpk = new VehicleDeparture();
+          break;
+        case 0x6d:
+          rpk = new VehicleCheckLocation();
+          break;
+        case 0x71:
+          rpk = new RestartResponse();
           break;
         case 0x72:
           rpk = new MoveToPawn();
@@ -260,8 +324,20 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x79:
           rpk = new ValidateLocation();
           break;
-        case 0x7B:
+        case 0x7a:
+          rpk = new StartRotation();
+          break;
+        case 0x7b:
           rpk = new ShowBoard();
+          break;
+        case 0x7f:
+          rpk = new StopMoveInVehicle();
+          break;
+        case 0x80:
+          rpk = new ValidateLocationInVehicle();
+          break;
+        case 0x82:
+          rpk = new TradeOtherDone();
           break;
         case 0x84:
           rpk = new LeaveWorld();
@@ -278,11 +354,17 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xa1:
           rpk = new PrivateStoreListSell();
           break;
+        case 0xa6:
+          rpk = new TutorialShowHtml();
+          break;
         case 0xa7:
           rpk = new TutorialShowQuestionMark();
           break;
         case 0xa8:
           rpk = new TutorialEnableClientEvent();
+          break;
+        case 0xa9:
+          rpk = new TutorialCloseHtml();
           break;
         case 0xb7:
           rpk = new PetDelete();
@@ -293,6 +375,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xba:
           rpk = new PartyMemberPosition();
           break;
+        case 0xc0:
+          rpk = new VehicleStarted();
+          break;
         case 0xc7:
           rpk = new SkillCoolTime();
           break;
@@ -301,6 +386,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0xce:
           rpk = new RelationChanged();
+          break;
+        case 0xd6:
+          rpk = new SpecialCamera();
           break;
         case 0xd7:
           rpk = new NormalCamera();
@@ -313,6 +401,21 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0xdd:
           rpk = new RecipeItemMakeInfo();
+          break;
+        case 0xe4:
+          rpk = new HennaItemDrawInfo();
+          break;
+        case 0xe5:
+          rpk = new HennaInfo();
+          break;
+        case 0xe6:
+          rpk = new HennaRemoveList();
+          break;
+        case 0xe7:
+          rpk = new HennaItemRemoveInfo();
+          break;
+        case 0xee:
+          rpk = new HennaEquipList();
           break;
         case 0xf9:
           rpk = new EtcStatusUpdate();
