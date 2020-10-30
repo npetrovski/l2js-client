@@ -1,13 +1,12 @@
 import GameClientPacket from "./GameClientPacket";
 
-export default class SocialAction extends GameClientPacket {
-  static readonly LEVEL_UP: number = 2122;
-
+export default class ExNevitAdventPointInfoPacket extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _charObjId = this.readD();
-    const _actionId = this.readD();
+    const _sub = this.readH();
+
+    const _points = this.readD(); // 72 = 1%, max 7200 = 100%
 
     return true;
   }

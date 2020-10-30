@@ -1,13 +1,14 @@
 import GameClientPacket from "./GameClientPacket";
 
-export default class SocialAction extends GameClientPacket {
-  static readonly LEVEL_UP: number = 2122;
+export default class NpcHtmlMessage extends GameClientPacket {
 
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _charObjId = this.readD();
-    const _actionId = this.readD();
+
+    const _npcObjId = this.readD();
+    const _html = this.readS();
+    const _itemId = this.readD();
 
     return true;
   }

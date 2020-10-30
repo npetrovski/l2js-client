@@ -1,13 +1,14 @@
 import GameClientPacket from "./GameClientPacket";
 
-export default class SocialAction extends GameClientPacket {
-  static readonly LEVEL_UP: number = 2122;
-
+export default class GetItem extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _charObjId = this.readD();
-    const _actionId = this.readD();
+
+    const _playerId = this.readD();
+    const _objId = this.readD();
+
+    const [x, y, z] = this.readLoc();
 
     return true;
   }

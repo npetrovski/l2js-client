@@ -69,6 +69,21 @@ import TempBan from "./serverpackets/TempBan";
 import Logger from "../mmocore/Logger";
 import PlayerInGame from "./serverpackets/PlayerInGame";
 import ExSendManorList from "./serverpackets/ExSendManorList";
+import ExUISetting from "./serverpackets/ExUISetting";
+import ExSetCompassZoneCode from "./serverpackets/ExSetCompassZoneCode";
+import ExStorageMaxCount from "./serverpackets/ExStorageMaxCount";
+import FriendList from "./serverpackets/FriendList";
+import ExShowContactList from "./serverpackets/ExShowContactList";
+import ExNevitAdventPointInfoPacket from "./serverpackets/ExNevitAdventPointInfoPacket";
+import ExNevitAdventTimeChange from "./serverpackets/ExNevitAdventTimeChange";
+import ExShowScreenMessage from "./serverpackets/ExShowScreenMessage";
+import PledgeInfo from "./serverpackets/PledgeInfo";
+import PrivateStoreListSell from "./serverpackets/PrivateStoreListSell";
+import NpcHtmlMessage from "./serverpackets/NpcHtmlMessage";
+import LeaveWorld from "./serverpackets/LeaveWorld";
+import GetItem from "./serverpackets/GetItem";
+import NormalCamera from "./serverpackets/NormalCamera";
+import NicknameChanged from "./serverpackets/NicknameChanged";
 
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
@@ -121,8 +136,14 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x16:
           rpk = new DropItem();
           break;
+        case 0x17:
+          rpk = new GetItem();
+          break;
         case 0x18:
           rpk = new StatusUpdate();
+          break;
+        case 0x19:
+          rpk = new NpcHtmlMessage();
           break;
         case 0x1f:
           rpk = new ActionFailed();
@@ -220,14 +241,26 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x73:
           rpk = new SSQInfo();
           break;
+        case 0x75:
+          rpk = new FriendList();
+          break;
         case 0x79:
           rpk = new ValidateLocation();
+          break;
+        case 0x84:
+          rpk = new LeaveWorld();
           break;
         case 0x85:
           rpk = new AbnormalStatusUpdate();
           break;
+        case 0x89:
+          rpk = new PledgeInfo();
+          break;
         case 0x9f:
           rpk = new StaticObject();
+          break;
+        case 0xa1:
+          rpk = new PrivateStoreListSell();
           break;
         case 0xa7:
           rpk = new TutorialShowQuestionMark();
@@ -247,8 +280,14 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xc7:
           rpk = new SkillCoolTime();
           break;
+        case 0xcc:
+          rpk = new NicknameChanged();
+          break;
         case 0xce:
           rpk = new RelationChanged();
+          break;
+        case 0xd7:
+          rpk = new NormalCamera();
           break;
         case 0xdb:
           rpk = new Snoop();
@@ -268,11 +307,23 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
             case 0x22:
               rpk = new ExSendManorList();
               break;
+            case 0x2f:
+              rpk = new ExStorageMaxCount();
+              break;
+            case 0x33:
+              rpk = new ExSetCompassZoneCode();
+              break;
+            case 0x39:
+              rpk = new ExShowScreenMessage();
+              break;
             case 0x41:
               rpk = new ExRedSky();
               break;
             case 0x4c:
               rpk = new ExDuelAskStart();
+              break;
+            case 0x70:
+              rpk = new ExUISetting();
               break;
             case 0x8d:
               rpk = new NpcQuestHtmlMessage();
@@ -283,8 +334,17 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
             case 0xc9:
               rpk = new ExVoteSystemInfo();
               break;
+            case 0xd3:
+              rpk = new ExShowContactList();
+              break;
             case 0xda:
               rpk = new ExBrExtraUserInfo();
+              break;
+            case 0xdf:
+              rpk = new ExNevitAdventPointInfoPacket();
+              break;
+            case 0xe1:
+              rpk = new ExNevitAdventTimeChange();
               break;
 
             default:

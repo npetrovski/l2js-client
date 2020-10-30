@@ -13,6 +13,7 @@ export default abstract class GameClientPacket extends ReceivablePacket<GameClie
     }
   }
 
+
   readItem(): L2Item {
     const item = new L2Item();
     item.ObjectId = this.readD();

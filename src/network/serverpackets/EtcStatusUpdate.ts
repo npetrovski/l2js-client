@@ -27,7 +27,7 @@ export default class EtcStatusUpdate extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    for (let id of EtcStatusUpdate.ETC_BUFFS) {
+    for (const id of EtcStatusUpdate.ETC_BUFFS) {
       this.Client.BuffsList.removeById(id);
     }
 

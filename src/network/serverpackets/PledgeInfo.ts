@@ -1,13 +1,12 @@
 import GameClientPacket from "./GameClientPacket";
 
-export default class SocialAction extends GameClientPacket {
-  static readonly LEVEL_UP: number = 2122;
-
+export default class PledgeInfo extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _charObjId = this.readD();
-    const _actionId = this.readD();
+    const _clanId = this.readD();
+    const _clanName = this.readS();
+    const _allyName = this.readS();
 
     return true;
   }

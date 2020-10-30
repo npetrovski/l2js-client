@@ -8,7 +8,7 @@ export default class StopRotation extends GameClientPacket {
     const _degree = this.readD();
     const _speed = this.readD();
 
-    const _unkn1 = this.readD();
+    const _unkn1 = this.readD(); // bluff effect related ?
 
     return true;
   }
