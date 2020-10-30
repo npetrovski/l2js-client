@@ -84,6 +84,10 @@ import LeaveWorld from "./serverpackets/LeaveWorld";
 import GetItem from "./serverpackets/GetItem";
 import NormalCamera from "./serverpackets/NormalCamera";
 import NicknameChanged from "./serverpackets/NicknameChanged";
+import ChangeWaitType from "./serverpackets/ChangeWaitType";
+import ShowBoard from "./serverpackets/ShowBoard";
+import ShortCutRegister from "./serverpackets/ShortCutRegister";
+import InventoryUpdate from "./serverpackets/InventoryUpdate";
 
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
@@ -148,6 +152,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x1f:
           rpk = new ActionFailed();
           break;
+        case 0x21:
+          rpk = new InventoryUpdate();
+          break;
         case 0x22:
           rpk = new TeleportToLocation();
           break;
@@ -168,6 +175,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x28:
           rpk = new ChangeMoveType();
+          break;
+        case 0x29:
+          rpk = new ChangeWaitType();
           break;
         case 0x2e:
           rpk = new KeyPacket();
@@ -192,6 +202,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x3a:
           rpk = new JoinParty();
+          break;
+        case 0x44:
+          rpk = new ShortCutRegister();
           break;
         case 0x45:
           rpk = new ShortCutInit();
@@ -246,6 +259,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x79:
           rpk = new ValidateLocation();
+          break;
+        case 0x7B:
+          rpk = new ShowBoard();
           break;
         case 0x84:
           rpk = new LeaveWorld();

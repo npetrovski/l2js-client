@@ -1,5 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import Appearing from "../clientpackets/Appearing";
 
 export default class TeleportToLocation extends GameClientPacket {
   // @Override
@@ -25,6 +24,6 @@ export default class TeleportToLocation extends GameClientPacket {
 
   // @Override
   run(): void {
-    this.Client.sendPacket(new Appearing());
+    // no-op
   }
 }

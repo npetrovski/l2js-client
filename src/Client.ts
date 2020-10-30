@@ -53,6 +53,7 @@ import EnterWorld from "./network/clientpackets/EnterWorld";
 import ProtocolVersion from "./network/clientpackets/ProtocolVersion";
 import AuthLogin from "./network/clientpackets/AuthLogin";
 import CharacterSelect from "./network/clientpackets/CharacterSelect";
+import Appearing from "./network/clientpackets/Appearing";
 
 export default interface Client {
   /**
@@ -334,6 +335,7 @@ export default class Client {
             })
             .catch(() => reject("Enter world fail."));
         });
+        GlobalEvents.once("PacketReceived:TeleportToLocation", () => this._gc.sendPacket(new Appearing()));
       });
     });
   }
