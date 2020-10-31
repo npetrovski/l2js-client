@@ -57,12 +57,12 @@ npm install l2js-client
 ### Logging in
 
 ```ts
-import Client from "l2js-client";
+import Client from "l2js-client/Client";
 
 const l2 = new Client();
 l2.enter({
-  /* required */ Username: "l2js",
-  /* required */ Password: "passwd",
+  /* required */ Username: "admin",
+  /* required */ Password: "admin",
   /* required */ Ip: "127.0.0.1",
   /* optional */ ServerId: 1, //Bartz
   /* optional */ CharSlotIndex: 0,
@@ -97,7 +97,7 @@ l2.on("LoggedIn", () => {
 ### Fight back
 
 ```ts
-import { EAttacked } from "l2js-client/dist/events/EventTypes";
+import { EAttacked } from "l2js-client/events/EventTypes";
 
 l2.on("Attacked", (e: EAttacked) => {
   if (Array.from(e.data.subjects).indexOf(l2.Me.ObjectId) !== -1) {
@@ -110,7 +110,7 @@ l2.on("Attacked", (e: EAttacked) => {
 ### Follow a character
 
 ```ts
-import { EStartMoving } from "l2js-client/dist/events/EventTypes";
+import { EStartMoving } from "l2js-client/events/EventTypes";
 
 l2.on("StartMoving", (e: EStartMoving) => {
   if (e.data.creature.Name === "Adm") {
@@ -122,9 +122,9 @@ l2.on("StartMoving", (e: EStartMoving) => {
 ### Simple bot (auto-target and auto-close-combat-hit)
 
 ```ts
-import L2Creature from "l2js-client/dist/entities/L2Creature";
-import { ShotsType } from "l2js-client/dist/enums/ShotsType";
-import { EDie, EMyTargetSelected, EPartyRequest, EAttacked } from "l2js-client/dist/events/EventTypes";
+import L2Creature from "l2js-client/entities/L2Creature";
+import { ShotsType } from "l2js-client/enums/ShotsType";
+import { EDie, EMyTargetSelected, EPartyRequest, EAttacked } from "l2js-client/events/EventTypes";
 
 l2.on("LoggedIn", () => {
   l2.cancelTarget();
@@ -171,8 +171,8 @@ l2.on("LoggedIn", () => {
 ### Add a custom command
 
 ```ts
-import AbstractGameCommand from "l2js-client/dist/commands/AbstractGameCommand";
-import GameClient from "l2js-client/dist/network/GameClient";
+import AbstractGameCommand from "l2js-client/commands/AbstractGameCommand";
+import GameClient from "l2js-client/network/GameClient";
 
 l2.registerCommand("sayHello", {
   execute: function (): void {
@@ -188,8 +188,8 @@ l2.on("LoggedIn", () => {
 ### Simple craft (Soulshot S-Grade)
 
 ```ts
-import { ERecipeBook, ECraftResult } from "l2js-client/dist/events/EventTypes";
-import L2Recipe from "l2js-client/dist/entities/L2Recipe";
+import { ERecipeBook, ECraftResult } from "l2js-client/events/EventTypes";
+import L2Recipe from "l2js-client/entities/L2Recipe";
 
 const RECIPE_SSS = 0x18;
 var craftIntervalId: ReturnType<typeof setInterval>;

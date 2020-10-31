@@ -297,7 +297,7 @@ export default class Client {
     }
 
     return new Promise((resolve, reject) => {
-      this._lc = new LoginClient(this._config);
+      this._lc = (new LoginClient()).init(this._config);
       this._lc.connect().then(() => {
         GlobalEvents.once("PacketReceived:Init", () => this._lc.sendPacket(new AuthGameGuard(this._lc.Session.sessionId)));
         GlobalEvents.once("PacketReceived:GGAuth", () => this._lc.sendPacket(new RequestAuthLogin(
@@ -318,7 +318,7 @@ export default class Client {
               Port: this._lc.Session.selectedServer.Port
             }
           };
-          this._gc = new GameClient(this._lc.Session, gameConfig as MMOConfig);
+          this._gc = (new GameClient()).init(this._lc.Session, gameConfig as MMOConfig);
           this._gc.connect().then(() => this._gc.sendPacket(new ProtocolVersion()));
         });
         GlobalEvents.once("PacketReceived:KeyPacket", () => this._gc.sendPacket(new AuthLogin(this._gc.Session)));

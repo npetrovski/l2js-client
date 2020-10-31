@@ -78,15 +78,20 @@ export default class GameClient extends MMOClient {
     this._activeChar = char;
   }
 
-  constructor(session: MMOSession, config: MMOConfig, connection?: IConnection) {
+  constructor() {
     super();
+    this.PacketHandler = new GamePacketHandler();
+  }
+
+  init(session: MMOSession, config: MMOConfig, connection?: IConnection): this {
     this.Connection = connection ?? new MMOConnection(config, this);
 
     this.Config = config;
     this.Session = session;
 
-    this.PacketHandler = new GamePacketHandler();
+    return this;
   }
+
   encrypt(buf: Uint8Array, offset: number, size: number): void {
     this._gameCrypt.encrypt(buf, offset, size);
   }

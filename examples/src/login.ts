@@ -1,4 +1,4 @@
-import Client from "l2js-client";
+import Client from "l2js-client/Client";
 
 const l2 = new Client();
 l2.enter({

@@ -13,7 +13,7 @@ export default class LoginClient extends MMOClient {
   private _loginCrypt: LoginCrypt = new LoginCrypt();
   private _blowfishKey!: Uint8Array;
   private _servers: ServerData[] = [];
-  private _serverId!: number;
+  private _serverId: number = 1;
   private _config!: MMOConfig;
 
   get ServerId(): number {
@@ -49,19 +49,23 @@ export default class LoginClient extends MMOClient {
     this._config = config;
   }
 
-  constructor(config: MMOConfig, connection?: IConnection) {
+  constructor() {
     super();
+    this.PacketHandler = new LoginPacketHandler();
+  }
+
+  init(config: MMOConfig, connection?: IConnection): this {
     this.Connection = connection ?? new MMOConnection(config, this);
 
     this.Config = config;
-
-    this.PacketHandler = new LoginPacketHandler();
 
     this.Session.username = config.Username;
 
     if (config.ServerId) {
       this._serverId = config.ServerId;
     }
+
+    return this;
   }
 
   pack(lsp: LoginServerPacket): Uint8Array {
