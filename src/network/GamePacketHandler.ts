@@ -113,6 +113,7 @@ import HennaInfo from "./serverpackets/HennaInfo";
 import HennaItemDrawInfo from "./serverpackets/HennaItemDrawInfo";
 import HennaItemRemoveInfo from "./serverpackets/HennaItemRemoveInfo";
 import HennaRemoveList from "./serverpackets/HennaRemoveList";
+import TradeOtherAdd from "./serverpackets/TradeOtherAdd";
 
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
@@ -181,7 +182,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new TradeOwnAdd();
           break;
         case 0x1b:
-          rpk = new TradeOtherDone();
+          rpk = new TradeOtherAdd();
           break;
         case 0x1c:
           rpk = new TradeDone();
