@@ -1,8 +1,12 @@
 import NewCrypt from "./NewCrypt";
 
 export default class LoginCrypt {
+  private _isInit: boolean = true;
+
   // prettier-ignore
-  static readonly STATIC_BLOWFISH_KEY: Uint8Array = Uint8Array.from([0x6b, 0x60, 0xcb, 0x5b, 0x82, 0xce, 0x90, 0xb1, 0xcc, 0x2b, 0x6c, 0x55, 0x6c, 0x6c, 0x6c, 0x6c]);
+  static readonly STATIC_BLOWFISH_KEY: Uint8Array = Uint8Array.from(
+    [0x5F, 0x3B, 0x35, 0x2E, 0x5D, 0x39, 0x34, 0x2D, 0x33, 0x31, 0x3D, 0x3D, 0x2D, 0x25, 0x78, 0x54, 0x21, 0x5E, 0x5B, 0x24, 0x00]
+  );
   private _crypt: NewCrypt = new NewCrypt(LoginCrypt.STATIC_BLOWFISH_KEY);
 
 
@@ -16,6 +20,11 @@ export default class LoginCrypt {
     // }
     if (offset + size > raw.length) {
       throw Error("raw array too short for size starting from offset");
+    }
+
+    if (this._isInit) {
+      this._isInit = false;
+      return true;
     }
 
     this._crypt.decrypt(raw, offset, size);
