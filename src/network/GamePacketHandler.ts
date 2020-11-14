@@ -123,8 +123,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
   handlePacket(data: Uint8Array, client: GameClient): ReceivablePacket<GameClient> {
     const opcode: number = data[0] & 0xff;
 
-    console.log(Logger.hex(data));
-
     let rpk!: ReceivablePacket<GameClient>;
 
     try {
