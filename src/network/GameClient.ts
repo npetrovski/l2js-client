@@ -98,7 +98,7 @@ export default class GameClient extends MMOClient {
   decrypt(buf: Uint8Array, offset: number, size: number): void {
     this._gameCrypt.decrypt(buf, offset, size);
   }
-  setCryptInitialKey(key: Uint8Array): void {
+  setCryptInitialKey(key: number): void {
     this._gameCrypt.setKey(key);
   }
 

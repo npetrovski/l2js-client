@@ -1,7 +1,4 @@
 import L2User from "../../entities/L2User";
-import EnterWorld from "../clientpackets/EnterWorld";
-import RequestKeyMapping from "../clientpackets/RequestKeyMapping";
-import RequestManorList from "../clientpackets/RequestManorList";
 import GameClientPacket from "./GameClientPacket";
 
 export default class CharSelected extends GameClientPacket {
@@ -24,10 +21,12 @@ export default class CharSelected extends GameClientPacket {
     user.Y = this.readD();
     user.Z = this.readD();
 
-    user.Hp = this.readD();
-    user.Mp = this.readD();
+    user.Hp = this.readQ();
+    user.Mp = this.readQ();
 
     this.Client.ActiveChar = user;
+
+    this.logger.debug("Char selected", user.Name);
     return true;
   }
 

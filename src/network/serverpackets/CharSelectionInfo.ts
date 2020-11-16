@@ -5,15 +5,14 @@ import L2User from "../../entities/L2User";
 import L2ObjectCollection from "../../entities/L2ObjectCollection";
 
 export default class CharSelectionInfo extends GameClientPacket {
+
+
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
     const _characterPackages: L2ObjectCollection<L2User> = new L2ObjectCollection();
 
     const _characterPackagesSize = this.readD();
-    const _charMaxNumber = this.readD();
-    const _pad = this.readC();
-
     for (let i = 0; i < _characterPackagesSize; i++) {
       const char: L2User = new L2User();
 
@@ -39,13 +38,9 @@ export default class CharSelectionInfo extends GameClientPacket {
       char.Mp = this.readF();
 
       char.Sp = this.readD();
-      char.Exp = this.readQ();
-      char.ExpPercent = this.readF();
-
+      char.Exp = this.readD();
       char.Level = this.readD();
       char.Karma = this.readD();
-      char.PkKills = this.readD();
-      char.PvpKills = this.readD();
 
       const _unknD1 = this.readD();
       const _unknD2 = this.readD();
@@ -54,10 +49,17 @@ export default class CharSelectionInfo extends GameClientPacket {
       const _unknD5 = this.readD();
       const _unknD6 = this.readD();
       const _unknD7 = this.readD();
+      const _unknD8 = this.readD();
+      const _unknD9 = this.readD();
 
-      const _paperdoll = [];
+      const _paperdollObjIds = [];
       GameServerPacket.PAPERDOLL_ORDER.forEach(() => {
-        _paperdoll.push(this.readD());
+        _paperdollObjIds.push(this.readD());
+      });
+
+      const _paperdollIds = [];
+      GameServerPacket.PAPERDOLL_ORDER.forEach(() => {
+        _paperdollIds.push(this.readD());
       });
 
       const hairStyle = this.readD();
@@ -69,21 +71,9 @@ export default class CharSelectionInfo extends GameClientPacket {
 
       const _daysLeftBeforeDelete = this.readD();
       char.ClassId = this.readD();
-      const _c3AutoSelectChar = this.readD(); // is this char active - the last one used
 
+      const _lastUsed = this.readD();
       const _enchantEffect = this.readC();
-      const augmentationId = this.readD();
-
-      const _hideTransformation = this.readD();
-
-      const _notImplementedPetId = this.readD();
-      const _notImplementedPetLevel = this.readD();
-      const _notImplementedPetMaxFood = this.readD();
-      const _notImplementedPetCurrentFood = this.readD();
-      const _notImplementedPetMaxHP = this.readF();
-      const _notImplementedPetMaxMP = this.readF();
-
-      char.Vitality = this.readD();
 
       _characterPackages.add(char);
     }

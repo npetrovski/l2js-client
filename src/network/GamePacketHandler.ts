@@ -114,6 +114,7 @@ import HennaItemDrawInfo from "./serverpackets/HennaItemDrawInfo";
 import HennaItemRemoveInfo from "./serverpackets/HennaItemRemoveInfo";
 import HennaRemoveList from "./serverpackets/HennaRemoveList";
 import TradeOtherAdd from "./serverpackets/TradeOtherAdd";
+import CryptInit from "./serverpackets/CryptInit";
 
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
@@ -128,7 +129,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
     try {
       switch (opcode) {
         case 0x00:
-          rpk = new Die();
+          rpk = new CryptInit();
           break;
         case 0x01:
           rpk = new Revive();
@@ -143,13 +144,13 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new DeleteObject();
           break;
         case 0x09:
-          rpk = new CharSelectionInfo();
+          // rpk = new CharSelectionInfo();
           break;
         case 0x0a:
           rpk = new TempBan();
           break;
         case 0x0b:
-          rpk = new CharSelected();
+          // rpk = new CharSelected();
           break;
         case 0x0c:
           rpk = new NpcInfo();
@@ -161,10 +162,13 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new SunRise();
           break;
         case 0x13:
-          rpk = new SunSet();
+          rpk = new CharSelectionInfo();
           break;
         case 0x14:
           rpk = new TradeStart();
+          break;
+        case 0x15:
+          rpk = new CharSelected();
           break;
         case 0x16:
           rpk = new DropItem();

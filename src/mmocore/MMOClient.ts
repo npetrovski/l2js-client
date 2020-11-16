@@ -91,8 +91,8 @@ export default abstract class MMOClient implements IProcessable {
               return; // We cannot find the required packet handler. Most probably the game packet is not yet implemented.
             }
 
+            this.logger.debug("Receive", rcp.constructor.name);
             if (rcp.read()) {
-              this.logger.debug("Receive", rcp.constructor.name);
               GlobalEvents.fire(`PacketReceived:${rcp.constructor.name}`, { packet: rcp });
               resolve(rcp);
               rcp.run();
@@ -108,27 +108,5 @@ export default abstract class MMOClient implements IProcessable {
   sendRaw(raw: Uint8Array): Promise<void> {
     return this._connection.write(raw)
       .catch((error) => this.logger.error(error));
-  }
-
-  hexString(data: Uint8Array): string {
-    return (
-      " ".repeat(7) +
-      Array.from(new Array(16), (n, v) => ("0" + (v & 0xff).toString(16)).slice(-2).toUpperCase()).join(" ") +
-      "\r\n" +
-      "=".repeat(54) +
-      "\r\n" +
-      Array.from(Array.from(data), (byte, k) => {
-        return (
-          (k % 16 === 0
-            ? ("00000" + ((Math.ceil(k / 16) * 16) & 0xffff).toString(16)).slice(-5).toUpperCase() + "  "
-            : "") +
-          ("0" + (byte & 0xff).toString(16)).slice(-2) +
-          ((k + 1) % 16 === 0 ? "\r\n" : " ")
-        );
-      })
-        .join("")
-        .toUpperCase() +
-      "\r\n"
-    );
   }
 }

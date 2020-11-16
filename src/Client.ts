@@ -321,7 +321,7 @@ export default class Client {
           this._gc = (new GameClient()).init(this._lc.Session, gameConfig as MMOConfig);
           this._gc.connect().then(() => this._gc.sendPacket(new ProtocolVersion()));
         });
-        GlobalEvents.once("PacketReceived:KeyPacket", () => this._gc.sendPacket(new AuthLogin(this._gc.Session)));
+        GlobalEvents.once("PacketReceived:CryptInit", () => this._gc.sendPacket(new AuthLogin(this._gc.Session)));
         GlobalEvents.once("PacketReceived:CharSelectionInfo", () => this._gc.sendPacket(
           new CharacterSelect(this._gc.Config.CharSlotIndex ?? 0)
         ));

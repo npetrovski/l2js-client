@@ -9,9 +9,8 @@ export default class CharacterSelect extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x12);
+    this.writeC(0x0D);
     this.writeD(this._charSlotIndex);
-    this.writeH(0);
     this.writeD(0);
     this.writeD(0);
     this.writeD(0);
