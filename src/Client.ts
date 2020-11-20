@@ -48,7 +48,6 @@ import RequestServerList from "./network/clientpackets/RequestServerList";
 import RequestServerLogin from "./network/clientpackets/RequestServerLogin";
 import ServerList from "./network/serverpackets/ServerList";
 import RequestManorList from "./network/clientpackets/RequestManorList";
-import RequestKeyMapping from "./network/clientpackets/RequestKeyMapping";
 import EnterWorld from "./network/clientpackets/EnterWorld";
 import ProtocolVersion from "./network/clientpackets/ProtocolVersion";
 import AuthLogin from "./network/clientpackets/AuthLogin";
@@ -327,7 +326,6 @@ export default class Client {
         ));
         GlobalEvents.once("PacketReceived:CharSelected", () => {
           this._gc.sendPacket(new RequestManorList())
-            .then(() => this._gc.sendPacket(new RequestKeyMapping()))
             .then(() => this._gc.sendPacket(new EnterWorld()))
             .then(() => {
               GlobalEvents.fire("LoggedIn");

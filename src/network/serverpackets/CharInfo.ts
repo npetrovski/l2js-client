@@ -12,34 +12,26 @@ export default class CharInfo extends GameClientPacket {
     GameServerPacket.PAPERDOLL_CHEST,
     GameServerPacket.PAPERDOLL_LEGS,
     GameServerPacket.PAPERDOLL_FEET,
-    GameServerPacket.PAPERDOLL_CLOAK,
     GameServerPacket.PAPERDOLL_RHAND,
-    GameServerPacket.PAPERDOLL_HAIR,
-    GameServerPacket.PAPERDOLL_HAIR2,
-    GameServerPacket.PAPERDOLL_RBRACELET,
-    GameServerPacket.PAPERDOLL_LBRACELET,
-    GameServerPacket.PAPERDOLL_DECO1,
-    GameServerPacket.PAPERDOLL_DECO2,
-    GameServerPacket.PAPERDOLL_DECO3,
-    GameServerPacket.PAPERDOLL_DECO4,
-    GameServerPacket.PAPERDOLL_DECO5,
-    GameServerPacket.PAPERDOLL_DECO6,
-    GameServerPacket.PAPERDOLL_BELT,
+    GameServerPacket.PAPERDOLL_HAIR
   ];
   // @Override
   readImpl(): boolean {
     const _id: number = this.readC();
     const [_x, _y, _z] = this.readLoc();
-    const _vehicleId = this.readD();
+
+    const _heading = this.readD();
     const _objId = this.readD();
 
     let char = this.Client.CreaturesList.getEntryByObjectId(_objId);
+    
     if (!char) {
       char = new L2Character();
 
       char.ObjectId = _objId;
       this.Client.CreaturesList.add(char);
     }
+
     char.X = _x;
     char.Y = _y;
     char.Z = _z;
@@ -50,111 +42,92 @@ export default class CharInfo extends GameClientPacket {
     char.Sex = this.readD();
     char.BaseClassId = this.readD();
 
-    CharInfo.PAPERDOLL_ORDER.forEach(() => {
-      const _slotItemDisplayId = this.readD();
-    });
+    const _dhair = this.readD();
+    const _head = this.readD();
+    const _rhand = this.readD();
+    const _lhand = this.readD();
+    const _gloves = this.readD();
+    const _chest = this.readD();
+    const _legs = this.readD();
+    const _feet = this.readD();
+    const _back = this.readD();
+    const _lrhand = this.readD();
+    const _hair = this.readD();
 
-    CharInfo.PAPERDOLL_ORDER.forEach(() => {
-      const _slotItemAugmentationId = this.readD();
-    });
-
-    const _talismanSlots = this.readD();
-    const _canEquipCloak = this.readD() === 1;
-
-    const _pvpFlag = this.readD();
+    const _pvpflag = this.readD();
     const _karma = this.readD();
-
-    const _MAtkSpd = this.readD();
-    const _PAtkSpd = this.readD();
-
-    const _pad0 = this.readD();
+    const _mspeed = this.readD();
+    const _pspeed = this.readD();
+    const _pvpflag1 = this.readD();
+    const _karma1 = this.readD();
 
     char.RunSpeed = this.readD();
     char.WalkSpeed = this.readD();
-    const _swimRunSpd = this.readD();
-    const _swimWalkSpd = this.readD();
-    const _flyRunSpd = this.readD();
-    const _flyWalkSpd = this.readD();
-    const _flyRunSpd1 = this.readD();
-    const _flyWalkSpd1 = this.readD();
+
+    const _swimrspd = this.readD();
+    const _swimwspd = this.readD();
+    const _flrunspd = this.readD();
+    const _flwalkspd = this.readD();
+    const _flyrspd = this.readD();
+    const _flywspd = this.readD();
 
     char.SpeedMultiplier = this.readF();
-    const _atkSpdMultiplier = this.readF();
 
-    const _collisionRadius = this.readF();
-    const _collisionHeight = this.readF();
-
-    const _hairStyle = this.readD();
-    const _hairColor = this.readD();
+    const _aspdmul = this.readF();
+    const _collisradius = this.readF();
+    const _collisheight = this.readF();
+    const _hairstyle = this.readD();
+    const _haircolor = this.readD();
     const _face = this.readD();
 
     char.Title = this.readS();
 
-    const _clanId = this.readD();
-    const _clanCrestId = this.readD();
-    const _clanAllyId = this.readD();
-    const _clanAllyCrestId = this.readD();
+    const _clanid = this.readD();
+    const _clancrest = this.readD();
+    const _allyid = this.readD();
+    const _allycrest = this.readD();
+    const _siegeflag = this.readD();
 
     const _isSitting = this.readC() === 0; // standing = 1 sitting = 0
     char.IsRunning = this.readC() === 1; // running = 1 walking = 0
     char.IsInCombat = this.readC() === 1;
 
-    const _deadInOlympiad = this.readC() === 1;
-    const _invisible = this.readC() === 1;
+    const _isalikedead = this.readC();
+    const _invis = this.readC();
+    const _mount = this.readC();
+    const _shop = this.readC();
 
-    const _mountType = this.readC(); // 1-on Strider, 2-on Wyvern, 3-on Great Wolf, 0-no mount
+  
+    const _cubics = this.readH();
 
-    const _privateStoreType = this.readC();
-
-    const _cubicsSize = this.readH();
-    for (let i = 0; i < _cubicsSize; i++) {
-      const _cubicId = this.readH();
+    for (let i = 0; i < _cubics; i++) {
+      const _cubid = this.readH();
     }
 
-    const _isInPartyMatchRoom = this.readC();
-    const _abnormalVisualEffects = this.readD();
+    const _findparty = this.readC();
+    const _abneffects = this.readD();
+    const _recomleft = this.readC();
+    const _recomhave = this.readH();
 
-    const _isFlyingOrSwimming = this.readC(); // 1 - in water, 2 = fly, else 0
-
-    const _recomHave = this.readH();
-    const _mountNpcId = this.readD() - 1000000;
     char.ClassId = this.readD();
 
-    const _pad1 = this.readD();
-
-    char.calculateDistance(this.Client.ActiveChar);
-
-    const _enchantEffect = this.readC();
-
-    const _teamId = this.readC();
-    const _clanCrestLargeId = this.readD();
+    const _maxcp = this.readD();
+    const _curcp = this.readD();
+    const _ismounted = this.readC();
+    const _team = this.readC();
+    const _clanbigcrestid = this.readD();
 
     char.IsNoble = this.readC() === 1;
     char.IsHero = this.readC() === 1;
-    const _isFishing = this.readC() === 1;
 
-    const _fishX = this.readD();
-    const _fishY = this.readD();
-    const _fishZ = this.readD();
+    const _isfishing = this.readC();
+    const _fishx = this.readD();
+    const _fishy = this.readD();
+    const _fishz = this.readD();
+    const _namecolor = this.readD();
 
-    const _nameColor = this.readD();
-
-    char.Heading = this.readD();
-
-    const _pledgeClass = this.readD();
-    const _pledgeType = this.readD();
-
-    const _titleColor = this.readD();
-
-    const _cursedWeaponLevel = this.readD();
-
-    const _reputationScore = this.readD();
-    const _transformationDisplayId = this.readD();
-    const _agathionId = this.readD();
-
-    const _pad3 = this.readD();
-
-    const _abnormalVisualEffectSpecial = this.readD();
+    //char.Heading = this.readD(); // FAIL
+    char.calculateDistance(this.Client.ActiveChar);
 
     return true;
   }
