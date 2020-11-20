@@ -73,7 +73,7 @@ If you are interested in other L2 versions, please leave a comment / open an iss
 | 449      | Tauti Update 1                |
 | 448      | Tauti                         |
 | 410      | Harmony                       |
-| 415      | Goddess Of Destruction        | WIP    |
+| 415      | Goddess Of Destruction        |
 | 273      | High Five Update 3            | WIP    |
 | 271      | High Five Update 2            | WIP    |
 | 268      | High Five Update 1            | WIP    |
