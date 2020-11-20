@@ -44,6 +44,68 @@ For now the library supports only Lineage 2 HighFive:
 
 If you are interested in other L2 versions, please leave a comment / open an issue.
 
+### Other protocols
+
+- protocol version 110 - Grand Crusade: Update 1
+- protocol version 109 - Grand Crusade
+- protocol version 64 - Helios
+- protocol version 28 - Underground
+- protocol version 24 - Infinite Odyssey
+- protocol version 610 - Ertheia Update 3
+- protocol version 607 - Ertheia Update 2
+- protocol version 606 - Ertheia Update 1
+- protocol version 603 - Ertheia
+- protocol version 583 - Valiance Update 4
+- protocol version 581 - Valiance Update 3
+- protocol version 580 - Valiance Update 2
+- protocol version 578 - Valiance Update 1
+- protocol version 575 - Valiance
+- protocol version 558 - Lindvior Update 4
+- protocol version 557 - Lindvior Update 3
+- protocol version 533 - Lindvior Update 2
+- protocol version 532 - Lindvior Update 1
+- protocol version 531 - Lindvior
+- protocol version 488 - Glory Days Update 2
+- protocol version 480 - Glory Days Update 1
+- protocol version 479 - Glory Days
+- protocol version 449 - Tauti Update 1
+- protocol version 448 - Tauti
+- protocol version 410 - Harmony
+- protocol version 415 - Goddess Of Destruction
+- protocol version 273 - High Five Update 3
+- protocol version 271 - High Five Update 2
+- protocol version 268 - High Five Update 1
+- protocol version 267 - High Five
+- protocol version 216 - Freya
+- protocol version 152 - Gracia Epilogue Update 1
+- protocol version 148 - Gracia Epilogue
+- protocol version 87 - Gracia Final Update 1
+- protocol version 83 - Gracia Final
+- protocol version 17 - Gracia Part 2 Update 1
+- protocol version 12 - Gracia Part 2
+- protocol version 851 - Gracia Part 1
+- protocol version 831 - Hellbound
+- protocol version 828 - The Kamael
+- protocol version 746 - Interlude Update 3
+- protocol version 744 - Interlude Update 2
+- protocol version 740 - Interlude Update 1
+- protocol version 737 - Interlude
+- protocol version 709 - C5 Oath Of Blood Update 2
+- protocol version 694 - C5 Oath Of Blood Update 1
+- protocol version 693 - C5 Oath Of Blood
+- protocol version 660 - C4 Scions Of Destiny Update 1
+- protocol version 656 - C4 Scions Of Destiny  **<-- work in progress in a separate project branch**
+- protocol version 560 - C3 Rise Of Darkness Update 3
+- protocol version 557 - C3 Rise Of Darkness Update 2
+- protocol version 555 - C3 Rise Of Darkness Update 1
+- protocol version 530 - C3 Rise Of Darkness
+- protocol version 485 - C2 Age Of Splendor Update 1
+- protocol version 478 - C2 Age Of Splendor
+- protocol version 419 - C1 Harbingers Of War
+- protocol version 377 - Prelude
+- protocol version 336 - Prelude PTS
+
+
 ## Installation
 
 ```js
