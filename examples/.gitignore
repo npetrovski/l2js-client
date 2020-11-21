@@ -1,0 +1,5 @@
+.vs
+browser
+dist
+node_modules
+.env
