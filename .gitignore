@@ -2,3 +2,4 @@
 browser
 dist
 node_modules
+examples/.env
