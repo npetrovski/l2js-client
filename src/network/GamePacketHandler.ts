@@ -132,359 +132,130 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new CryptInit();
           break;
         case 0x01:
-          rpk = new Revive();
+          rpk = new MoveToLocation();
           break;
         case 0x02:
-          rpk = new PlayerInGame();
+          rpk = new NpcSay();
+          break;
+        case 0x03:
+          rpk = new CharInfo();
+          break;
+        case 0x04:
+          rpk = new UserInfo();
           break;
         case 0x05:
+          rpk = new Attack();
+          break;
+        case 0x06:
+          rpk = new Die();
+          break;
+        case 0x07:
+          rpk = new Revive();
+          break;
+        case 0x0B:
           rpk = new SpawnItem();
           break;
-        case 0x08:
-          rpk = new DeleteObject();
+        case 0x0C:
+          rpk = new DropItem();
           break;
-        case 0x09:
-          // rpk = new CharSelectionInfo();
+        case 0x0D:
+          rpk = new GetItem();
           break;
-        case 0x0a:
-          rpk = new TempBan();
+        case 0x0E:
+          rpk = new StatusUpdate();
           break;
-        case 0x0b:
-          // rpk = new CharSelected();
-          break;
-        case 0x0c:
-          rpk = new NpcInfo();
-          break;
-        case 0x11:
-          rpk = new ItemList();
+        case 0x0F:
+          rpk = new NpcHtmlMessage();
           break;
         case 0x12:
-          rpk = new SunRise();
+          rpk = new DeleteObject();
           break;
         case 0x13:
           rpk = new CharSelectionInfo();
-          break;
-        case 0x14:
-          rpk = new TradeStart();
           break;
         case 0x15:
           rpk = new CharSelected();
           break;
         case 0x16:
-          rpk = new DropItem();
+          rpk = new NpcInfo();
           break;
-        case 0x17:
-          rpk = new GetItem();
+        case 0x7F:
+          rpk = new TutorialShowHtml();
           break;
-        case 0x18:
-          rpk = new StatusUpdate();
+        case 0xA1:
+          rpk = new TutorialShowQuestionMark();
           break;
-        case 0x19:
-          rpk = new NpcHtmlMessage();
+        case 0xA2:
+          rpk = new TutorialEnableClientEvent();
           break;
-        case 0x1a:
-          rpk = new TradeOwnAdd();
+        case 0xA3:
+          rpk = new TutorialCloseHtml();
           break;
-        case 0x1b:
-          rpk = new TradeOtherAdd();
+        case 0xA6:
+          rpk = new MyTargetSelected();
           break;
-        case 0x1c:
-          rpk = new TradeDone();
+        case 0xA7:
+          rpk = new PartyMemberPosition();
           break;
-        case 0x1f:
-          rpk = new ActionFailed();
+        case 0xB6:
+          rpk = new PetDelete();
           break;
-        case 0x21:
-          rpk = new InventoryUpdate();
+        case 0xBA:
+          rpk = new VehicleStarted();
           break;
-        case 0x22:
-          rpk = new TeleportToLocation();
+        case 0xF8:
+          rpk = new SSQInfo();
           break;
-        case 0x23:
-          rpk = new TargetSelected();
+        case 0xE4:
+          rpk = new HennaInfo();
           break;
-        case 0x24:
-          rpk = new TargetUnselected();
+        case 0x1B:
+          rpk = new ItemList();
           break;
-        case 0x25:
-          rpk = new AutoAttackStart();
-          break;
-        case 0x26:
-          rpk = new AutoAttackStop();
-          break;
-        case 0x27:
-          rpk = new SocialAction();
-          break;
-        case 0x28:
-          rpk = new ChangeMoveType();
-          break;
-        case 0x29:
-          rpk = new ChangeWaitType();
-          break;
-        case 0x2e:
-          rpk = new KeyPacket();
-          break;
-        case 0x2f:
-          rpk = new MoveToLocation();
-          break;
-        case 0x30:
-          rpk = new NpcSay();
-          break;
-        case 0x31:
-          rpk = new CharInfo();
-          break;
-        case 0x32:
-          rpk = new UserInfo();
-          break;
-        case 0x33:
-          rpk = new Attack();
+        case 0x4A:
+          rpk = new CreatureSay();
           break;
         case 0x39:
           rpk = new AskJoinParty();
           break;
-        case 0x3a:
+        case 0x3A:
           rpk = new JoinParty();
           break;
-        case 0x41:
-          rpk = new WareHouseDepositList();
+        case 0x64:
+          rpk = new SystemMessage();
           break;
-        case 0x42:
-          rpk = new WareHouseWithdrawalList();
-          break;
-        case 0x44:
-          rpk = new ShortCutRegister();
-          break;
-        case 0x45:
-          rpk = new ShortCutInit();
-          break;
-        case 0x47:
-          rpk = new StopMove();
+        case 0x76:
+          rpk = new MagicSkillLaunched();
           break;
         case 0x48:
           rpk = new MagicSkillUse();
           break;
-        case 0x4a:
-          rpk = new CreatureSay();
-          break;
-        case 0x4b:
-          rpk = new EquipUpdate();
-          break;
-        case 0x4e:
-          rpk = new PartySmallWindowAll();
-          break;
-        case 0x4f:
-          rpk = new PartySmallWindowAdd();
-          break;
-        case 0x50:
-          rpk = new PartySmallWindowDeleteAll();
-          break;
-        case 0x51:
-          rpk = new PartySmallWindowDelete();
-          break;
-        case 0x52:
-          rpk = new PartySmallWindowUpdate();
-          break;
-        case 0x54:
-          rpk = new MagicSkillLaunched();
-          break;
-        case 0x5f:
-          rpk = new SkillList();
-          break;
         case 0x60:
-          rpk = new VehicleInfo();
-          break;
-        case 0x61:
-          rpk = new StopRotation();
-          break;
-        case 0x62:
-          rpk = new SystemMessage();
-          break;
-        case 0x63:
-          rpk = new StartPledgeWar();
-          break;
-        case 0x65:
-          rpk = new StopPledgeWar();
-          break;
-        case 0x67:
-          rpk = new SurrenderPledgeWar();
-          break;
-        case 0x6C:
-          rpk = new VehicleDeparture();
-          break;
-        case 0x6d:
-          rpk = new VehicleCheckLocation();
-          break;
-        case 0x71:
-          rpk = new RestartResponse();
-          break;
-        case 0x72:
           rpk = new MoveToPawn();
           break;
-        case 0x73:
-          rpk = new SSQInfo();
-          break;
-        case 0x75:
-          rpk = new FriendList();
-          break;
-        case 0x79:
-          rpk = new ValidateLocation();
-          break;
-        case 0x7a:
-          rpk = new StartRotation();
-          break;
-        case 0x7b:
-          rpk = new ShowBoard();
-          break;
-        case 0x7f:
-          rpk = new StopMoveInVehicle();
-          break;
-        case 0x80:
-          rpk = new ValidateLocationInVehicle();
-          break;
-        case 0x82:
-          rpk = new TradeOtherDone();
-          break;
-        case 0x84:
-          rpk = new LeaveWorld();
-          break;
-        case 0x85:
-          rpk = new AbnormalStatusUpdate();
-          break;
-        case 0x89:
-          rpk = new PledgeInfo();
-          break;
-        case 0x9f:
-          rpk = new StaticObject();
-          break;
-        case 0xa1:
-          rpk = new PrivateStoreListSell();
-          break;
-        case 0xa6:
-          rpk = new TutorialShowHtml();
-          break;
-        case 0xa7:
-          rpk = new TutorialShowQuestionMark();
-          break;
-        case 0xa8:
-          rpk = new TutorialEnableClientEvent();
-          break;
-        case 0xa9:
-          rpk = new TutorialCloseHtml();
-          break;
-        case 0xb7:
-          rpk = new PetDelete();
-          break;
-        case 0xb9:
-          rpk = new MyTargetSelected();
-          break;
-        case 0xba:
-          rpk = new PartyMemberPosition();
-          break;
-        case 0xc0:
-          rpk = new VehicleStarted();
-          break;
-        case 0xc7:
-          rpk = new SkillCoolTime();
-          break;
-        case 0xcc:
-          rpk = new NicknameChanged();
-          break;
-        case 0xce:
+        case 0xCE:
           rpk = new RelationChanged();
           break;
-        case 0xd6:
-          rpk = new SpecialCamera();
+        case 0x2D:
+          rpk = new SocialAction();
           break;
-        case 0xd7:
-          rpk = new NormalCamera();
+        case 0x29:
+          rpk = new TargetSelected();
           break;
-        case 0xdb:
-          rpk = new Snoop();
+        case 0x2A:
+          rpk = new TargetUnselected();
           break;
-        case 0xdc:
-          rpk = new RecipeBookItemList();
+        case 0x2B:
+          rpk = new AutoAttackStart();
           break;
-        case 0xdd:
-          rpk = new RecipeItemMakeInfo();
+        case 0x2C:
+          rpk = new AutoAttackStop();
           break;
-        case 0xe4:
-          rpk = new HennaItemDrawInfo();
-          break;
-        case 0xe5:
-          rpk = new HennaInfo();
-          break;
-        case 0xe6:
-          rpk = new HennaRemoveList();
-          break;
-        case 0xe7:
-          rpk = new HennaItemRemoveInfo();
-          break;
-        case 0xee:
-          rpk = new HennaEquipList();
-          break;
-        case 0xf9:
+        case 0xf3:
           rpk = new EtcStatusUpdate();
           break;
-        case 0xfe:
-          const sub = data[1] + (data[2] << 8);
-          switch (sub) {
-            case 0x22:
-              rpk = new ExSendManorList();
-              break;
-            case 0x2f:
-              rpk = new ExStorageMaxCount();
-              break;
-            case 0x33:
-              rpk = new ExSetCompassZoneCode();
-              break;
-            case 0x39:
-              rpk = new ExShowScreenMessage();
-              break;
-            case 0x41:
-              rpk = new ExRedSky();
-              break;
-            case 0x4c:
-              rpk = new ExDuelAskStart();
-              break;
-            case 0x70:
-              rpk = new ExUISetting();
-              break;
-            case 0x8d:
-              rpk = new NpcQuestHtmlMessage();
-              break;
-            case 0xc6:
-              rpk = new ExQuestItemList();
-              break;
-            case 0xc9:
-              rpk = new ExVoteSystemInfo();
-              break;
-            case 0xd3:
-              rpk = new ExShowContactList();
-              break;
-            case 0xda:
-              rpk = new ExBrExtraUserInfo();
-              break;
-            case 0xdf:
-              rpk = new ExNevitAdventPointInfoPacket();
-              break;
-            case 0xe1:
-              rpk = new ExNevitAdventTimeChange();
-              break;
-
-            default:
-              if (data.byteLength > 2) {
-                this.logger.debug(
-                  "Unknown game packet received. [0x" +
-                  opcode.toString(16) +
-                  " 0x" +
-                  data[1].toString(16) +
-                  "] len=" +
-                  data.byteLength
-                );
-              }
-
-              return rpk;
-          }
+        case 0x61:
+          rpk = new ValidateLocation();
           break;
         default:
           if (data.byteLength > 2) {
