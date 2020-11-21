@@ -212,8 +212,50 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x1B:
           rpk = new ItemList();
           break;
-        case 0x4a:
+        case 0x4A:
           rpk = new CreatureSay();
+          break;
+        case 0x39:
+          rpk = new AskJoinParty();
+          break;
+        case 0x3A:
+          rpk = new JoinParty();
+          break;
+        case 0x64:
+          rpk = new SystemMessage();
+          break;
+        case 0x76:
+          rpk = new MagicSkillLaunched();
+          break;
+        case 0x48:
+          rpk = new MagicSkillUse();
+          break;
+        case 0x60:
+          rpk = new MoveToPawn();
+          break;
+        case 0xCE:
+          rpk = new RelationChanged();
+          break;
+        case 0x2D:
+          rpk = new SocialAction();
+          break;
+        case 0x29:
+          rpk = new TargetSelected();
+          break;
+        case 0x2A:
+          rpk = new TargetUnselected();
+          break;
+        case 0x2B:
+          rpk = new AutoAttackStart();
+          break;
+        case 0x2C:
+          rpk = new AutoAttackStop();
+          break;
+        case 0xf3:
+          rpk = new EtcStatusUpdate();
+          break;
+        case 0x61:
+          rpk = new ValidateLocation();
           break;
         default:
           if (data.byteLength > 2) {

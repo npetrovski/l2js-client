@@ -27,6 +27,7 @@ export default class EtcStatusUpdate extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
+
     for (const id of EtcStatusUpdate.ETC_BUFFS) {
       this.Client.BuffsList.removeById(id);
     }
@@ -54,25 +55,6 @@ export default class EtcStatusUpdate extends GameClientPacket {
       this.Client.BuffsList.add(new L2Buff(EtcStatusUpdate.ETC_WEAPON_GRADE_PENALTY, _expertiseWeaponPenalty));
     }
 
-    const _expertiseArmorPenalty = this.readD(); // Armor Grade Penalty [1-4]
-    if (_expertiseArmorPenalty > 0) {
-      this.Client.BuffsList.add(new L2Buff(EtcStatusUpdate.ETC_ARMOR_GRADE_PENALTY, _expertiseArmorPenalty));
-    }
-
-    const _hasCharmOfCourage = this.readD(); // 1 = charm of courage (allows resurrection on the same spot upon death on the siege battlefield)
-    if (_hasCharmOfCourage > 0) {
-      this.Client.BuffsList.add(new L2Buff(EtcStatusUpdate.ETC_CHARM_OF_COURAGE, _hasCharmOfCourage));
-    }
-
-    const _deathPenaltyBuffLevel = this.readD(); // 1-15 death penalty, lvl (combat ability decreased due to death)
-    if (_deathPenaltyBuffLevel > 0) {
-      this.Client.BuffsList.add(new L2Buff(EtcStatusUpdate.ETC_DEATH_PENALTY, _deathPenaltyBuffLevel));
-    }
-
-    const _chargedSouls = this.readD();
-    if (_chargedSouls > 0) {
-      this.Client.BuffsList.add(new L2Buff(EtcStatusUpdate.ETC_SOUL_EXPANSION, _chargedSouls));
-    }
 
     return true;
   }
