@@ -22,6 +22,7 @@
   "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "l2js-client": "file:../dist/"
   },
   "devDependencies": {
