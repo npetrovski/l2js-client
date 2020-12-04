@@ -1,5 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 import CharSelected from "./CharSelected";
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class PartyMemberPosition extends GameClientPacket {
   // @Override
@@ -14,6 +15,7 @@ export default class PartyMemberPosition extends GameClientPacket {
       if (char) {
         char.setLocation(_x, _y, _z);
         char.calculateDistance(this.Client.ActiveChar);
+        GlobalEvents.fire("PartyMemberPosition", { member: char });
       }
     }
 

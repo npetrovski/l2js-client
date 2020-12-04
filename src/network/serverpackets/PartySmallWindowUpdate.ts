@@ -1,5 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 import L2PartyMember from "../../entities/L2PartyMember";
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class PartySmallWindowUpdate extends GameClientPacket {
   // @Override
@@ -20,7 +21,9 @@ export default class PartySmallWindowUpdate extends GameClientPacket {
       char.MaxMp = this.readD();
       char.Level = this.readD();
       char.ClassId = this.readD();
-      char.IsDead = char.Hp === 0;
+      char.IsDead = char.Hp <= 0;
+
+      GlobalEvents.fire("PartySmallWindow", { member: char, action: "update" });
     }
 
     return true;

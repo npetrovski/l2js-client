@@ -8,12 +8,14 @@ export default class L2Skill extends L2Object {
   private _isDebuff!: boolean;
   private _isRunning!: boolean;
   private _isEnchanted!: boolean;
-  private _isReady!: boolean;
+  private _isReady: boolean = true;
   private _haveItems!: boolean;
   private _progress!: number;
   private _level!: number;
   private _max!: number;
   private _reuseDelay!: number;
+  private _elapsed!: number;
+  private _remaining!: number;
   private _operateType!: SkillOperateType;
   private _mp!: number;
   private _range!: number;
@@ -73,6 +75,14 @@ export default class L2Skill extends L2Object {
 
   public get ReuseDelay(): number {
     return this._reuseDelay;
+  }
+
+  public get Elapsed(): number {
+    return this._elapsed;
+  }
+
+  public get Remaining(): number {
+    return this._remaining;
   }
 
   public get Mp(): number {
@@ -135,8 +145,26 @@ export default class L2Skill extends L2Object {
     this._max = value;
   }
 
+  public th!: ReturnType<typeof setTimeout>;
+
   public set ReuseDelay(value: number) {
+    this.IsReady = false;
     this._reuseDelay = value;
+    if (this.th) {
+      clearTimeout(this.th);
+    }
+    const t = value - this.Elapsed;
+    this.th = setTimeout(() => {
+      this.IsReady = true;
+    }, this.Remaining);
+  }
+
+  public set Elapsed(value: number) {
+    this._elapsed = value;
+  }
+
+  public set Remaining(value: number) {
+    this._remaining = value;
   }
 
   public set Mp(value: number) {

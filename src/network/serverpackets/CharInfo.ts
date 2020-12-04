@@ -1,6 +1,8 @@
 import L2Character from "../../entities/L2Character";
 import GameClientPacket from "./GameClientPacket";
 import GameServerPacket from "../clientpackets/GameServerPacket";
+import L2Creature from "../../entities/L2Creature";
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class CharInfo extends GameClientPacket {
   static readonly PAPERDOLL_ORDER: number[] = [
@@ -26,6 +28,7 @@ export default class CharInfo extends GameClientPacket {
     GameServerPacket.PAPERDOLL_DECO6,
     GameServerPacket.PAPERDOLL_BELT,
   ];
+
   // @Override
   readImpl(): boolean {
     const _id: number = this.readC();
@@ -156,6 +159,7 @@ export default class CharInfo extends GameClientPacket {
 
     const _abnormalVisualEffectSpecial = this.readD();
 
+    GlobalEvents.fire("CharInfo", { creature: char });
     return true;
   }
 

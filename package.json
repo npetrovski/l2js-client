@@ -1,39 +1,39 @@
 {
-  "name": "l2js-client",
-  "version": "1.0.0",
-  "description": "Lineage 2 Client Library",
-  "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
-  "license": "MIT",
-  "main": "dist/Client.js",
-  "types": "dist/Client.d.ts",
-  "scripts": {
-    "compile": "tsc",
-    "clean": "rm -rf dist",
-    "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
-    "buildpackage": "cd dist && npm pack",
-    "lint": "eslint ./src/**",
-    "publish": "npm publish --access public"
-  },
-  "keywords": [
-    "lineage2",
-    "nodejs",
-    "typescript",
-    "packets",
-    "bot",
-    "l2js"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/npetrovski/l2js-client"
-  },
-  "dependencies": {},
-  "bugs": {
-    "url": "https://github.com/npetrovski/l2js-client/issues"
-  },
-  "homepage": "https://github.com/npetrovski/l2js-client",
-  "devDependencies": {
-    "@types/node": "^13.13.2",
-    "@types/node-rsa": "^1.0.0",
-    "typescript": "^3.8.3"
-  }
+	"name": "l2js-client",
+	"version": "1.0.1",
+	"description": "Lineage 2 Client Library",
+	"author": "Nikolay Petrovski <to.petrovski@gmail.com>",
+	"license": "MIT",
+	"main": "dist/Client.js",
+	"types": "dist/Client.d.ts",
+	"scripts": {
+		"compile": "tsc",
+		"clean": "rm -rf dist",
+		"prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
+		"buildpackage": "cd dist && npm pack",
+		"lint": "eslint ./src/**",
+		"publish": "npm publish --access public"
+	},
+	"keywords": [
+		"lineage2",
+		"nodejs",
+		"typescript",
+		"packets",
+		"bot",
+		"l2js"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/npetrovski/l2js-client"
+	},
+	"dependencies": {},
+	"bugs": {
+		"url": "https://github.com/npetrovski/l2js-client/issues"
+	},
+	"homepage": "https://github.com/npetrovski/l2js-client",
+	"devDependencies": {
+		"@types/node": "^13.13.2",
+		"@types/node-rsa": "^1.0.0",
+		"typescript": "^3.8.3"
+	}
 }

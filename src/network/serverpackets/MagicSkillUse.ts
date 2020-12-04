@@ -26,6 +26,17 @@ export default class MagicSkillUse extends GameClientPacket {
 
     const [_xTarget, _yTarget, _zTarget] = this.readLoc();
 
+    const skill = this.Client.SkillsList.getEntryById(_skillId);
+    if (skill) {
+      skill.Remaining = _reuseDelay;
+      skill.ReuseDelay = _reuseDelay;
+    }
+
+    const creature = this.Client.CreaturesList.getEntryByObjectId(_activeChar);
+    if (creature) {
+      creature.HiTime = _hitTime;
+    }
+
     return true;
   }
 

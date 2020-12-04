@@ -287,22 +287,24 @@ export default class Client {
   }
 
   setConfig(config: MMOConfig | object): this {
-    this._config = { ... new MMOConfig(), ...config as MMOConfig };
+    this._config = { ...new MMOConfig(), ...(config as MMOConfig) };
     return this;
   }
 
-  enter(config?: object): Promise<void> {
+  enter(config?: object): Promise<{ login: LoginClient; game: GameClient }> {
     if (config) {
       this.setConfig(config);
     }
 
     return new Promise((resolve, reject) => {
-      this._lc = (new LoginClient()).init(this._config);
+      this._lc = new LoginClient().init(this._config);
       this._lc.connect().then(() => {
-        GlobalEvents.once("PacketReceived:Init", () => this._lc.sendPacket(new AuthGameGuard(this._lc.Session.sessionId)));
-        GlobalEvents.once("PacketReceived:GGAuth", () => this._lc.sendPacket(new RequestAuthLogin(
-          this._config.Username, this._config.Password, this._lc.Session
-        )));
+        GlobalEvents.once("PacketReceived:Init", () =>
+          this._lc.sendPacket(new AuthGameGuard(this._lc.Session.sessionId))
+        );
+        GlobalEvents.once("PacketReceived:GGAuth", () =>
+          this._lc.sendPacket(new RequestAuthLogin(this._config.Username, this._config.Password, this._lc.Session))
+        );
         GlobalEvents.once("PacketReceived:LoginOk", () => this._lc.sendPacket(new RequestServerList(this._lc.Session)));
         GlobalEvents.once("PacketReceived:ServerList", (e: EPacketReceived) => {
           this._lc.sendPacket(
@@ -313,25 +315,26 @@ export default class Client {
           this._lc.Connection.close();
           const gameConfig = {
             ...this._config,
-            ... {
+            ...{
               Ip: this._lc.Session.selectedServer.Ipv4(),
-              Port: this._lc.Session.selectedServer.Port
-            }
+              Port: this._lc.Session.selectedServer.Port,
+            },
           };
-          this._gc = (new GameClient()).init(this._lc.Session, gameConfig as MMOConfig);
+          this._gc = new GameClient().init(this._lc.Session, gameConfig as MMOConfig);
           this._gc.connect().then(() => this._gc.sendPacket(new ProtocolVersion()));
         });
         GlobalEvents.once("PacketReceived:KeyPacket", () => this._gc.sendPacket(new AuthLogin(this._gc.Session)));
-        GlobalEvents.once("PacketReceived:CharSelectionInfo", () => this._gc.sendPacket(
-          new CharacterSelect(this._gc.Config.CharSlotIndex ?? 0)
-        ));
+        GlobalEvents.once("PacketReceived:CharSelectionInfo", () =>
+          this._gc.sendPacket(new CharacterSelect(this._gc.Config.CharSlotIndex ?? 0))
+        );
         GlobalEvents.once("PacketReceived:CharSelected", () => {
-          this._gc.sendPacket(new RequestManorList())
+          this._gc
+            .sendPacket(new RequestManorList())
             .then(() => this._gc.sendPacket(new RequestKeyMapping()))
             .then(() => this._gc.sendPacket(new EnterWorld()))
             .then(() => {
               GlobalEvents.fire("LoggedIn");
-              resolve();
+              resolve({ login: this._lc, game: this._gc });
             })
             .catch(() => reject("Enter world fail."));
         });

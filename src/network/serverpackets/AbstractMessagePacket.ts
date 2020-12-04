@@ -1,6 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 
-export default abstract class AbstractMessagePacket<T extends AbstractMessagePacket<any>> extends GameClientPacket {
+export default abstract class AbstractMessagePacket extends GameClientPacket {
   // 15 exists in goddess of destruction but also may works in h5 needs to be verified!
   // private static final byte TYPE_CLASS_ID = 15;
   // id 14 unknown
@@ -19,21 +19,24 @@ export default abstract class AbstractMessagePacket<T extends AbstractMessagePac
   static readonly TYPE_INT_NUMBER: number = 1;
   static readonly TYPE_TEXT: number = 0;
 
+  protected messageId!: number;
+
+  protected messageParams = new Array<any>();
+
   readMe(): void {
-    const _id = this.readC();
-    const _messageId = this.readD();
+    this.messageId = this.readD();
     const _paramsLength = this.readD();
-    const _params = [];
+
     for (let i = 0; i < _paramsLength; i++) {
       const _paramType = this.readD();
       switch (_paramType) {
         case AbstractMessagePacket.TYPE_TEXT:
         case AbstractMessagePacket.TYPE_PLAYER_NAME:
-          _params.push(this.readS());
+          this.messageParams.push(this.readS());
           break;
 
         case AbstractMessagePacket.TYPE_LONG_NUMBER:
-          _params.push(this.readQ());
+          this.messageParams.push(this.readQ());
           break;
 
         case AbstractMessagePacket.TYPE_ITEM_NAME:
@@ -44,22 +47,20 @@ export default abstract class AbstractMessagePacket<T extends AbstractMessagePac
         case AbstractMessagePacket.TYPE_SYSTEM_STRING:
         case AbstractMessagePacket.TYPE_INSTANCE_NAME:
         case AbstractMessagePacket.TYPE_DOOR_NAME:
-          _params.push(this.readD());
+          this.messageParams.push(this.readD());
           break;
 
         case AbstractMessagePacket.TYPE_SKILL_NAME:
-          _params.push([/** SkillId*/ this.readD(), /** SkillLevel */ this.readD()]);
+          this.messageParams.push([/** SkillId*/ this.readD(), /** SkillLevel */ this.readD()]);
           break;
 
         case AbstractMessagePacket.TYPE_ZONE_NAME:
-          _params.push([/** x*/ this.readD(), /** y */ this.readD(), /** z */ this.readD()]);
+          this.messageParams.push([/** x*/ this.readD(), /** y */ this.readD(), /** z */ this.readD()]);
           break;
         default:
           this.logger.warn("Unknown message packet type: " + _paramType.toString(16));
           return;
       }
     }
-
-    this.logger.info(`System msg #${_messageId}`, _params);
   }
 }

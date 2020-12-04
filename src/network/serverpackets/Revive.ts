@@ -1,3 +1,4 @@
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 import GameClientPacket from "./GameClientPacket";
 
 export default class Revive extends GameClientPacket {
@@ -14,6 +15,8 @@ export default class Revive extends GameClientPacket {
     if (creature) {
       creature.IsDead = false;
     }
+
+    GlobalEvents.fire("Revive", { creature });
 
     return true;
   }

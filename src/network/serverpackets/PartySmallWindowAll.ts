@@ -1,7 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
-import { GlobalEvents } from "../../mmocore/EventEmitter";
-import L2Character from "../../entities/L2Character";
 import L2PartyMember from "../../entities/L2PartyMember";
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class PartySmallWindowAll extends GameClientPacket {
   // @Override
@@ -46,8 +45,11 @@ export default class PartySmallWindowAll extends GameClientPacket {
         const _summonLevel = this.readD();
       }
       char.IsPartyLeader = char.ObjectId === _leaderObjectId;
+      char.IsDead = char.Hp <= 0;
 
       this.Client.PartyList.add(char);
+
+      GlobalEvents.fire("PartySmallWindow", { member: char, action: "add-all" });
     }
 
     return true;

@@ -114,7 +114,7 @@ import HennaItemDrawInfo from "./serverpackets/HennaItemDrawInfo";
 import HennaItemRemoveInfo from "./serverpackets/HennaItemRemoveInfo";
 import HennaRemoveList from "./serverpackets/HennaRemoveList";
 import TradeOtherAdd from "./serverpackets/TradeOtherAdd";
-
+import ConfirmDlg from "./serverpackets/ConfirmDlg";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
@@ -304,7 +304,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x67:
           rpk = new SurrenderPledgeWar();
           break;
-        case 0x6C:
+        case 0x6c:
           rpk = new VehicleDeparture();
           break;
         case 0x6d:
@@ -418,6 +418,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xee:
           rpk = new HennaEquipList();
           break;
+        case 0xf3:
+          rpk = new ConfirmDlg();
+          break;
         case 0xf9:
           rpk = new EtcStatusUpdate();
           break;
@@ -471,11 +474,11 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               if (data.byteLength > 2) {
                 this.logger.debug(
                   "Unknown game packet received. [0x" +
-                  opcode.toString(16) +
-                  " 0x" +
-                  data[1].toString(16) +
-                  "] len=" +
-                  data.byteLength
+                    opcode.toString(16) +
+                    " 0x" +
+                    data[1].toString(16) +
+                    "] len=" +
+                    data.byteLength
                 );
               }
 
@@ -486,11 +489,11 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           if (data.byteLength > 2) {
             this.logger.debug(
               "Unknown game packet received. [0x" +
-              opcode.toString(16) +
-              " 0x" +
-              data[1].toString(16) +
-              "] len=" +
-              data.byteLength
+                opcode.toString(16) +
+                " 0x" +
+                data[1].toString(16) +
+                "] len=" +
+                data.byteLength
             );
           }
 

@@ -47,6 +47,8 @@ export default abstract class L2Creature extends L2Object {
   private _isMoving: boolean = false;
   private _movingVector!: Vector;
 
+  private _isReady: boolean = true;
+
   public get Race(): Race {
     return this._race;
   }
@@ -77,6 +79,13 @@ export default abstract class L2Creature extends L2Object {
 
   public get ClassName(): string {
     return this._className;
+  }
+
+  public get IsReady(): boolean {
+    return this._isReady;
+  }
+  public set IsReady(value: boolean) {
+    this._isReady = value;
   }
 
   public set ClassId(value: number) {
@@ -229,18 +238,23 @@ export default abstract class L2Creature extends L2Object {
 
   public set Hp(value: number) {
     this._hp = value;
+    this._hpPercent = (100 * this._hp) / this._maxHp;
+    this._isDead = value === 0;
   }
 
   public set Mp(value: number) {
     this._mp = value;
+    this._mpPercent = (100 * this._mp) / this._maxMp;
   }
 
   public set MaxHp(value: number) {
     this._maxHp = value;
+    this._hpPercent = (100 * this._hp) / this._maxHp;
   }
 
   public set MaxMp(value: number) {
     this._maxMp = value;
+    this._mpPercent = (100 * this._mp) / this._maxMp;
   }
 
   public set IsRunning(value: boolean) {
@@ -346,5 +360,18 @@ export default abstract class L2Creature extends L2Object {
         this.Y = this.Dy;
       }
     }, 100);
+  }
+
+  public th!: ReturnType<typeof setTimeout>;
+
+  public set HiTime(value: number) {
+    this.IsReady = false;
+    if (this.th) {
+      clearTimeout(this.th);
+    }
+
+    this.th = setTimeout(() => {
+      this.IsReady = true;
+    }, value);
   }
 }
