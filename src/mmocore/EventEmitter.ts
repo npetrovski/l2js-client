@@ -15,6 +15,11 @@ export default class EventEmitter {
     let handlers = this._eventHandlers[type];
     if (!handlers) handlers = this._eventHandlers[type] = [];
 
+    if (handlers.length > 10)
+      console.warn(
+        `Possible EventEmitter memory leak detected. There are registered ${handlers.length} events for "${type}"`
+      );
+
     if (handlers.indexOf(handler) >= 0) return false;
 
     handler._once = false;

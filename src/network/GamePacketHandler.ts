@@ -115,6 +115,7 @@ import HennaItemRemoveInfo from "./serverpackets/HennaItemRemoveInfo";
 import HennaRemoveList from "./serverpackets/HennaRemoveList";
 import TradeOtherAdd from "./serverpackets/TradeOtherAdd";
 import ConfirmDlg from "./serverpackets/ConfirmDlg";
+import ServerClose from "./serverpackets/ServerClose";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
@@ -177,6 +178,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x19:
           rpk = new NpcHtmlMessage();
+          break;
+        case 0x20:
+          rpk = new ServerClose();
           break;
         case 0x1a:
           rpk = new TradeOwnAdd();

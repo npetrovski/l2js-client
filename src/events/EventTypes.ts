@@ -3,7 +3,10 @@ import ReceivablePacket from "../mmocore/ReceivablePacket";
 import MMOClient from "../mmocore/MMOClient";
 import SendablePacket from "../mmocore/SendablePacket";
 import L2PartyMember from "../entities/L2PartyMember";
+import LoginClient from "../network/LoginClient";
+import GameClient from "../network/GameClient";
 
+export declare type ELoggedIn = { type: string; data: { login: LoginClient; game: GameClient }; once: boolean };
 export declare type EPacketReceived = { type: string; data: { packet: ReceivablePacket<MMOClient> }; once: boolean };
 export declare type EPacketSent = { type: string; data: { packet: SendablePacket<MMOClient> }; once: boolean };
 export declare type EPartyRequest = {
@@ -38,8 +41,24 @@ export declare type EConfirmDlg = {
   once: boolean;
 };
 export declare type ESystemMessage = { type: string; data: { messageId: number; params: [] }; once: boolean };
+export declare type ECreatureSay = {
+  type: string;
+  data: { objectId: number; type: number; charName: string; npcStringId: number; messages: [] };
+  once: boolean;
+};
+export declare type ENpcHtmlMessage = {
+  type: string;
+  data: { npcObjectId: number; html: string; itemId: number };
+  once: boolean;
+};
+export declare type ENpcQuestHtmlMessage = {
+  type: string;
+  data: { npcObjectId: number; html: string; questId: number };
+  once: boolean;
+};
 
 // Events
+export declare type OnLoggedIn = ["LoggedIn", (e: ELoggedIn) => void];
 export declare type OnPlayOk = ["PlayOk", () => void];
 export declare type OnLoggedInEvent = ["LoggedIn", () => void];
 export declare type OnPacketReceivedEvent = ["PacketReceived", string, (e: EPacketReceived) => void];
@@ -60,10 +79,14 @@ export declare type OnCharInfo = ["CharInfo", (e: ECharInfo) => void];
 export declare type OnRevive = ["Revive", (e: ERevive) => void];
 export declare type OnConfirmDlg = ["ConfirmDlg", (e: EConfirmDlg) => void];
 export declare type OnSystemMessage = ["SystemMessage", (e: ESystemMessage) => void];
+export declare type OnCreatureSay = ["CreatureSay", (e: ECreatureSay) => void];
+export declare type OnNpcHtmlMessage = ["NpcHtmlMessage", (e: ENpcHtmlMessage) => void];
+export declare type OnNpcQuestHtmlMessage = ["NpcQuestHtmlMessage", (e: ENpcQuestHtmlMessage) => void];
 
 // prettier-ignore
 export declare type EventHandlerType =
-  OnLoggedInEvent
+  OnLoggedIn
+  | OnLoggedInEvent
   | OnPacketReceivedEvent
   | OnPacketSentEvent
   | OnPartyRequestEvent
@@ -81,4 +104,7 @@ export declare type EventHandlerType =
   | OnRevive
   | OnConfirmDlg
   | OnSystemMessage
-  | OnRecipeBookEvent;
+  | OnCreatureSay
+  | OnRecipeBookEvent
+  | OnNpcHtmlMessage
+  | OnNpcQuestHtmlMessage;

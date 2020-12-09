@@ -355,6 +355,7 @@ export default abstract class L2Creature extends L2Object {
       if (moveCnt > 0) {
         this.MovingVector = new Vector(dx - this.X, dy - this.Y);
       } else {
+        clearInterval(this._moveInterval);
         this.IsMoving = false;
         this.X = this.Dx;
         this.Y = this.Dy;

@@ -1,3 +1,4 @@
+import { GlobalEvents } from "../../mmocore/EventEmitter";
 import GameClientPacket from "./GameClientPacket";
 
 export default class CreatureSay extends GameClientPacket {
@@ -15,7 +16,13 @@ export default class CreatureSay extends GameClientPacket {
       _messages.push(this.readS());
     }
 
-    this.logger.info(`CreatureSay: type=${_textType} obj=${_objectId} ${_charName}: `, _messages);
+    GlobalEvents.fire("CreatureSay", {
+      objectId: _objectId,
+      type: _textType,
+      charName: _charName,
+      npcStringId: _npcStringId,
+      messages: _messages,
+    });
     return true;
   }
 

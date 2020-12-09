@@ -76,7 +76,7 @@ export default abstract class MMOClient implements IProcessable {
 
         if (i + packetLength > data.byteLength) {
           this._buffer = data.slice(i);
-          reject("incomplete packet");
+          reject("Incomplete packet");
           break;
         }
 

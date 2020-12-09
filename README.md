@@ -96,170 +96,163 @@ npm install l2js-client
 ### Logging in
 
 ```ts
-import Client from 'l2js-client/Client';
+import Client from "l2js-client/Client";
 
 const l2 = new Client();
 l2.enter({
-	/* required */ Username: 'admin',
-	/* required */ Password: 'admin',
-	/* required */ Ip: '127.0.0.1',
-	/* optional */ ServerId: 1, //Bartz
-	/* optional */ CharSlotIndex: 0,
+  /* required */ Username: "admin",
+  /* required */ Password: "admin",
+  /* required */ Ip: "127.0.0.1",
+  /* optional */ ServerId: 1, //Bartz
+  /* optional */ CharSlotIndex: 0,
 }); // return a Promise, a.k.a. you can use .then() after "enter()"
 ```
 
 ### Chat
 
 ```ts
-l2.on('LoggedIn', () => {
-	l2.say('Hello from ' + l2.Me.Name);
-	l2.shout('Hello world !!!');
-	l2.tell('hi there', 'myMainCharName');
-	l2.sayToParty('Hello party');
-	l2.sayToClan('Hello clan');
-	l2.sayToTrade('Hello traders');
-	l2.sayToAlly('Hello ppls');
+l2.on("LoggedIn", () => {
+  l2.say("Hello from " + l2.Me.Name);
+  l2.shout("Hello world !!!");
+  l2.tell("hi there", "myMainCharName");
+  l2.sayToParty("Hello party");
+  l2.sayToClan("Hello clan");
+  l2.sayToTrade("Hello traders");
+  l2.sayToAlly("Hello ppls");
 });
 ```
 
 ### Move to location
 
 ```ts
-l2.on('LoggedIn', () => {
-	let x = 50 + Math.floor(Math.random() * 50) + l2.Me.X;
-	let y = 50 + Math.floor(Math.random() * 50) + l2.Me.Y;
-	let z = l2.Me.Z;
-	l2.moveTo(x, y, z);
+l2.on("LoggedIn", () => {
+  let x = 50 + Math.floor(Math.random() * 50) + l2.Me.X;
+  let y = 50 + Math.floor(Math.random() * 50) + l2.Me.Y;
+  let z = l2.Me.Z;
+  l2.moveTo(x, y, z);
 });
 ```
 
 ### Fight back
 
 ```ts
-import { EAttacked } from 'l2js-client/events/EventTypes';
+import { EAttacked } from "l2js-client/events/EventTypes";
 
-l2.on('Attacked', (e: EAttacked) => {
-	if (Array.from(e.data.subjects).indexOf(l2.Me.ObjectId) !== -1) {
-		l2.hit(e.data.object);
-		l2.hit(e.data.object);
-	}
+l2.on("Attacked", (e: EAttacked) => {
+  if (Array.from(e.data.subjects).indexOf(l2.Me.ObjectId) !== -1) {
+    l2.hit(e.data.object);
+    l2.hit(e.data.object);
+  }
 });
 ```
 
 ### Follow a character
 
 ```ts
-import { EStartMoving } from 'l2js-client/events/EventTypes';
+import { EStartMoving } from "l2js-client/events/EventTypes";
 
-l2.on('StartMoving', (e: EStartMoving) => {
-	if (e.data.creature.Name === 'Adm') {
-		l2.moveTo(e.data.creature.Dx, e.data.creature.Dy, e.data.creature.Dz);
-	}
+l2.on("StartMoving", (e: EStartMoving) => {
+  if (e.data.creature.Name === "Adm") {
+    l2.moveTo(e.data.creature.Dx, e.data.creature.Dy, e.data.creature.Dz);
+  }
 });
 ```
 
 ### Simple bot (auto-target and auto-close-combat-hit)
 
 ```ts
-import L2Creature from 'l2js-client/entities/L2Creature';
-import { ShotsType } from 'l2js-client/enums/ShotsType';
-import {
-	EDie,
-	EMyTargetSelected,
-	EPartyRequest,
-	EAttacked,
-} from 'l2js-client/events/EventTypes';
+import L2Creature from "l2js-client/entities/L2Creature";
+import { ShotsType } from "l2js-client/enums/ShotsType";
+import { EDie, EMyTargetSelected, EPartyRequest, EAttacked } from "l2js-client/events/EventTypes";
 
-l2.on('LoggedIn', () => {
-	l2.cancelTarget();
-	l2.validatePosition();
-	l2.moveTo(l2.Me.X + 1, l2.Me.Y + 1, l2.Me.Z);
-	l2.autoShots(ShotsType.SSS, true); // enable SSS
+l2.on("LoggedIn", () => {
+  l2.cancelTarget();
+  l2.validatePosition();
+  l2.moveTo(l2.Me.X + 1, l2.Me.Y + 1, l2.Me.Z);
+  l2.autoShots(ShotsType.SSS, true); // enable SSS
 
-	setInterval(() => {
-		if (l2.DroppedItems.size > 0) {
-			l2.hit(Array.from(l2.DroppedItems)[0]);
-		} else if (!l2.Me.Target || l2.Me.Target.ObjectId === l2.Me.ObjectId) {
-			let creature: L2Creature | undefined = l2.nextTarget();
-			if (creature instanceof L2Creature) {
-				l2.hit(creature);
-			}
-		}
-	}, 500);
+  setInterval(() => {
+    if (l2.DroppedItems.size > 0) {
+      l2.hit(Array.from(l2.DroppedItems)[0]);
+    } else if (!l2.Me.Target || l2.Me.Target.ObjectId === l2.Me.ObjectId) {
+      let creature: L2Creature | undefined = l2.nextTarget();
+      if (creature instanceof L2Creature) {
+        l2.hit(creature);
+      }
+    }
+  }, 500);
 })
-	.on('MyTargetSelected', (e: EMyTargetSelected) => {
-		if (l2.Me.Target) {
-			l2.hit(l2.Me.Target);
-			l2.attack(l2.Me.Target);
-		}
-	})
-	.on('Die', (e: EDie) => {
-		if (l2.Me.Target && e.data.creature.ObjectId === l2.Me.Target.ObjectId) {
-			l2.cancelTarget();
-			l2.CreaturesList.forEach((c) => {
-				c.calculateDistance(l2.Me);
-			});
-		}
-	})
-	.on('PartyRequest', (e: EPartyRequest) => {
-		l2.acceptJoinParty();
-	})
-	.on('Attacked', (e: EAttacked) => {
-		if (Array.from(e.data.subjects).indexOf(l2.Me.ObjectId) !== -1) {
-			l2.hit(e.data.object);
-			l2.hit(e.data.object);
-		}
-	});
+  .on("MyTargetSelected", (e: EMyTargetSelected) => {
+    if (l2.Me.Target) {
+      l2.hit(l2.Me.Target);
+      l2.attack(l2.Me.Target);
+    }
+  })
+  .on("Die", (e: EDie) => {
+    if (l2.Me.Target && e.data.creature.ObjectId === l2.Me.Target.ObjectId) {
+      l2.cancelTarget();
+      l2.CreaturesList.forEach((c) => {
+        c.calculateDistance(l2.Me);
+      });
+    }
+  })
+  .on("PartyRequest", (e: EPartyRequest) => {
+    l2.acceptJoinParty();
+  })
+  .on("Attacked", (e: EAttacked) => {
+    if (Array.from(e.data.subjects).indexOf(l2.Me.ObjectId) !== -1) {
+      l2.hit(e.data.object);
+      l2.hit(e.data.object);
+    }
+  });
 ```
 
 ### Add a custom command
 
 ```ts
-import AbstractGameCommand from 'l2js-client/commands/AbstractGameCommand';
-import GameClient from 'l2js-client/network/GameClient';
+import AbstractGameCommand from "l2js-client/commands/AbstractGameCommand";
+import GameClient from "l2js-client/network/GameClient";
 
-l2.registerCommand('sayHello', {
-	execute: function (): void {
-		console.log('Hello. I am  ' + this.Client.ActiveChar.Name);
-	},
+l2.registerCommand("sayHello", {
+  execute: function (): void {
+    console.log("Hello. I am  " + this.Client.ActiveChar.Name);
+  },
 } as AbstractGameCommand<GameClient>);
 
-l2.on('LoggedIn', () => {
-	(l2 as any).sayHello();
+l2.on("LoggedIn", () => {
+  (l2 as any).sayHello();
 });
 ```
 
 ### Simple craft (Soulshot S-Grade)
 
 ```ts
-import { ERecipeBook, ECraftResult } from 'l2js-client/events/EventTypes';
-import L2Recipe from 'l2js-client/entities/L2Recipe';
+import { ERecipeBook, ECraftResult } from "l2js-client/events/EventTypes";
+import L2Recipe from "l2js-client/entities/L2Recipe";
 
 const RECIPE_SSS = 0x18;
 var craftIntervalId: ReturnType<typeof setInterval>;
 
-l2.on('LoggedIn', () => {
-	l2.dwarvenCraftRecipes();
+l2.on("LoggedIn", () => {
+  l2.dwarvenCraftRecipes();
 })
-	.on('RecipeBook', (e: ERecipeBook) => {
-		if (e.data.isDwarven) {
-			let recipeSSS = Array.from(l2.DwarfRecipeBook).find(
-				(r: L2Recipe) => r.Id === RECIPE_SSS
-			);
-			if (recipeSSS) {
-				clearInterval(craftIntervalId);
+  .on("RecipeBook", (e: ERecipeBook) => {
+    if (e.data.isDwarven) {
+      let recipeSSS = Array.from(l2.DwarfRecipeBook).find((r: L2Recipe) => r.Id === RECIPE_SSS);
+      if (recipeSSS) {
+        clearInterval(craftIntervalId);
 
-				craftIntervalId = setInterval(() => {
-					l2.craft(RECIPE_SSS);
-				}, 500);
-			}
-		}
-	})
-	.on('CraftResult', (e: ECraftResult) => {
-		if (!e.data.success) {
-			clearInterval(craftIntervalId);
-		}
-	});
+        craftIntervalId = setInterval(() => {
+          l2.craft(RECIPE_SSS);
+        }, 500);
+      }
+    }
+  })
+  .on("CraftResult", (e: ECraftResult) => {
+    if (!e.data.success) {
+      clearInterval(craftIntervalId);
+    }
+  });
 ```
 
 ## API
@@ -315,21 +308,30 @@ L2Object
 
 ### Events
 
-| Event Type       | Event Data Type                                                                                         | When?                                |
-| ---------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| LoggedIn         | void                                                                                                    | logged in to Game server             |
-| PacketReceived   | [EPacketReceived](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L6)    | a packet is received                 |
-| PacketSent       | [EPacketSent](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L7)        | a packet is sent                     |
-| PartyRequest     | [EPartyRequest](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L8)      | receive a party request              |
-| Die              | [EDie](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L13)              | L2Creature is dead                   |
-| TargetSelected   | [ETargetSelected](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L14)   | L2Creature is selected by L2Creature |
-| MyTargetSelected | [EMyTargetSelected](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L19) | L2Creature is selected by L2User     |
-| Attacked         | [EAttacked](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L20)         | L2User is beings attacked            |
-| RequestedDuel    | [ERequestedDuel](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L21)    | receive a duel request               |
-| StartMoving      | [EStartMoving](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L22)      | L2Creature starts moving             |
-| StopMoving       | [EStopMoving](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L23)       | L2Creature stops moving              |
-| CraftResult      | [ECraftResult](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L24)      | A result from crafting an item       |
-| RecipeBook       | [ERecipeBook](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L25)       | A receipt book is received           |
+| Event Type          | Event Data Type                                                                                            | When?                                |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| LoggedIn            | void                                                                                                       | logged in to Game server             |
+| PacketReceived      | [EPacketReceived](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L6)       | a packet is received                 |
+| PacketSent          | [EPacketSent](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L7)           | a packet is sent                     |
+| PartyRequest        | [EPartyRequest](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L8)         | receive a party request              |
+| Die                 | [EDie](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L13)                 | L2Creature is dead                   |
+| TargetSelected      | [ETargetSelected](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L14)      | L2Creature is selected by L2Creature |
+| MyTargetSelected    | [EMyTargetSelected](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L19)    | L2Creature is selected by L2User     |
+| Attacked            | [EAttacked](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L20)            | L2User is beings attacked            |
+| RequestedDuel       | [ERequestedDuel](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L21)       | receive a duel request               |
+| StartMoving         | [EStartMoving](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L22)         | L2Creature starts moving             |
+| StopMoving          | [EStopMoving](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L23)          | L2Creature stops moving              |
+| CraftResult         | [ECraftResult](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L24)         | A result from crafting an item       |
+| RecipeBook          | [ERecipeBook](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L25)          | A receipt book is received           |
+| PartySmallWindow    | [EPartySmallWindow](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L30)    | The party small window updated       |
+| PartyMemberPosition | [EPartyMemberPosition](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L35) | A party member position is updated   |
+| CharInfo            | [ECharInfo](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L36)            | character info                       |
+| Revive              | [ERevive](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L37)              | creature is revived                  |
+| ConfirmDlg          | [EConfirmDlg](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L38)          | confirm dialog                       |
+| SystemMessage       | [ESystemMessage](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L43)       | server system message                |
+| CreatureSay         | [ECreatureSay](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L44)         | creature says                        |
+| NpcHtmlMessage      | [ENpcHtmlMessage](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L49)      | receiving HTML from an NPC           |
+| NpcQuestHtmlMessage | [ENpcQuestHtmlMessage](https://github.com/npetrovski/l2js-client/blob/master/src/events/EventTypes.ts#L54) | receiving a quest HTML from an NPC   |
 
 ///@todo
 

@@ -1,16 +1,13 @@
 import LoginServerPacket from "./LoginServerPacket";
 
 export default class AuthGameGuard extends LoginServerPacket {
-  _sessionId: number = 0;
-
-  constructor(sessionId: number) {
+  constructor(public sessionId: number) {
     super();
-    this._sessionId = sessionId;
   }
 
   write(): void {
     this.writeC(0x07);
-    this.writeD(this._sessionId);
+    this.writeD(this.sessionId);
 
     this.writeD(0x00000123); // data1
     this.writeD(0x00004567); // data2

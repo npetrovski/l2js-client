@@ -6,6 +6,9 @@ import RequestSecurityCard from "../clientpackets/RequestSecurityCard";
 
 export default class LoginFail extends LoginClientPacket {
   _securityCard: boolean = false;
+
+  public FailReason!: LoginFailReason;
+
   // @Override
   readImpl(): boolean {
     const _id: number = this.readC();
@@ -13,7 +16,7 @@ export default class LoginFail extends LoginClientPacket {
     if (_reason === 0x1f) {
       this._securityCard = true;
     } else {
-      throw Error("Login fail. Reason: " + LoginFailReason[_reason]);
+      this.FailReason = (LoginFailReason as any)[_reason];
     }
 
     return true;

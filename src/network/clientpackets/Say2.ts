@@ -26,26 +26,16 @@ export default class Say2 extends GameServerPacket {
   static readonly NPC_ALL: number = 22;
   static readonly NPC_SHOUT: number = 23;
 
-  private _type: number = 0;
-  private _text: string = "";
-
-  private _target!: string;
-
-  constructor(type: number, text: string, target?: string) {
+  constructor(public type: number, public text: string, public target?: string) {
     super();
-    this._type = type;
-    this._text = text;
-    if (target) {
-      this._target = target;
-    }
   }
 
   write(): void {
     this.writeC(0x49);
-    this.writeS(this._text);
-    this.writeD(this._type);
-    if (this._target) {
-      this.writeS(this._target);
+    this.writeS(this.text);
+    this.writeD(this.type);
+    if (this.target) {
+      this.writeS(this.target);
     }
   }
 }
