@@ -26,7 +26,9 @@
 		"type": "git",
 		"url": "https://github.com/npetrovski/l2js-client"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"big-integer": "^1.6.48"
+	},
 	"bugs": {
 		"url": "https://github.com/npetrovski/l2js-client/issues"
 	},

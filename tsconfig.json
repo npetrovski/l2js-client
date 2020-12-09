@@ -3,11 +3,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "lib": [
-      "es5",
-      "es6",
-      "dom"
-    ],
+    "lib": ["es5", "es6", "dom"],
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
@@ -17,14 +13,6 @@
     "esModuleInterop": true,
     "experimentalDecorators": true
   },
-  "include": [
-    "**/*"
-  ],
-  "exclude": [
-    "**/dist/**/*.d.ts",
-    "dist",
-    "node_modules",
-    "examples",
-    "proxy",
-  ]
+  "include": ["**/*"],
+  "exclude": ["**/dist/**/*.d.ts", "dist", "node_modules", "examples", "proxy"]
 }

@@ -1,9 +1,8 @@
 import MMOSession from "../../mmocore/MMOSession";
-import BigInteger from "../../security/crypt/BigInteger";
 import LoginServerPacket from "./LoginServerPacket";
+import BigInteger from "big-integer";
 
 export default class RequestAuthLogin extends LoginServerPacket {
-
   private _username!: string;
   private _password!: string;
   private _session!: MMOSession;
@@ -27,23 +26,23 @@ export default class RequestAuthLogin extends LoginServerPacket {
     const loginInfo: Uint8Array = new Uint8Array(128);
 
     loginInfo[0x5b] = 0x24;
-    [...this._username].forEach((k, i) => loginInfo[0x5e + i] = k.charCodeAt(0));
-    [...this._password].forEach((k, i) => loginInfo[0x6c + i] = k.charCodeAt(0));
+    [...this._username].forEach((k, i) => (loginInfo[0x5e + i] = k.charCodeAt(0)));
+    [...this._password].forEach((k, i) => (loginInfo[0x6c + i] = k.charCodeAt(0)));
 
-    const e = new BigInteger("65537", 10);
-    const modulus = new BigInteger(this._hexStr(this._session.publicKey), 16);
-    const input = new BigInteger(this._hexStr(loginInfo), 16);
-    const encryptedLoginInfo: Uint8Array = Uint8Array.from(input.modPow(e, modulus).toByteArray(false));
+    const e = BigInteger("65537", 10);
+    const modulus = BigInteger(this._hexStr(this._session.publicKey), 16);
+    const input = BigInteger(this._hexStr(loginInfo), 16);
+    const encryptedLoginInfo: Uint8Array = Uint8Array.from(input.modPow(e, modulus).toArray(256).value);
 
     this.writeC(0);
     this.writeB(encryptedLoginInfo);
     this.writeD(this._session.sessionId);
 
     /**
-     * GameGuard special 
+     * GameGuard special
      * The rest 43 bytes are based on the GG protection algorithm, and depends on the server setup.
      * If no GG is enabled (bots are allowed), I think you can replace the code below with simply:
-     * 
+     *
      * this.writeB(Uint8Array.from(Array(43).fill(0)));
      */
 
