@@ -116,6 +116,8 @@ import HennaRemoveList from "./serverpackets/HennaRemoveList";
 import TradeOtherAdd from "./serverpackets/TradeOtherAdd";
 import ConfirmDlg from "./serverpackets/ConfirmDlg";
 import ServerClose from "./serverpackets/ServerClose";
+import PartySpelled from "./serverpackets/PartySpelled";
+import SendTradeRequest from "./serverpackets/SendTradeRequest";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
@@ -314,6 +316,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x6d:
           rpk = new VehicleCheckLocation();
           break;
+        case 0x70:
+          rpk = new SendTradeRequest();
+          break;
         case 0x71:
           rpk = new RestartResponse();
           break;
@@ -424,6 +429,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0xf3:
           rpk = new ConfirmDlg();
+          break;
+        case 0xf4:
+          rpk = new PartySpelled();
           break;
         case 0xf9:
           rpk = new EtcStatusUpdate();

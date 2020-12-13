@@ -25,7 +25,6 @@ export default class GameClient extends MMOClient {
   private _party: L2ObjectCollection<L2PartyMember> = new L2ObjectCollection();
   private _droppedItems: L2ObjectCollection<L2DroppedItem> = new L2ObjectCollection();
   private _items: L2ObjectCollection<L2Item> = new L2ObjectCollection();
-  private _buffs: L2ObjectCollection<L2Buff> = new L2ObjectCollection();
   private _skills: L2ObjectCollection<L2Skill> = new L2ObjectCollection();
   private _dwarfRecipeBook: L2ObjectCollection<L2Recipe> = new L2ObjectCollection();
   private _commonRecipeBook: L2ObjectCollection<L2Recipe> = new L2ObjectCollection();
@@ -47,7 +46,7 @@ export default class GameClient extends MMOClient {
   }
 
   get BuffsList(): L2ObjectCollection<L2Buff> {
-    return this._buffs;
+    return this._activeChar.Buffs;
   }
 
   get SkillsList(): L2ObjectCollection<L2Skill> {
@@ -123,5 +122,4 @@ export default class GameClient extends MMOClient {
       GlobalEvents.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
     });
   }
-
 }

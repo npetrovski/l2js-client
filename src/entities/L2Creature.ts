@@ -3,6 +3,8 @@ import { Sex } from "../enums/Sex";
 import { Race } from "../enums/Race";
 import Vector from "../mmocore/Vector";
 import { GlobalEvents } from "../mmocore/EventEmitter";
+import L2ObjectCollection from "./L2ObjectCollection";
+import L2Buff from "./L2Buff";
 
 export default abstract class L2Creature extends L2Object {
   private _hp!: number;
@@ -48,6 +50,15 @@ export default abstract class L2Creature extends L2Object {
   private _movingVector!: Vector;
 
   private _isReady: boolean = true;
+
+  private _buffs: L2ObjectCollection<L2Buff> = new L2ObjectCollection();
+
+  public get Buffs(): L2ObjectCollection<L2Buff> {
+    return this._buffs;
+  }
+  public set Buffs(value: L2ObjectCollection<L2Buff>) {
+    this._buffs = value;
+  }
 
   public get Race(): Race {
     return this._race;

@@ -56,6 +56,7 @@ export declare type ENpcQuestHtmlMessage = {
   data: { npcObjectId: number; html: string; questId: number };
   once: boolean;
 };
+export declare type EPartySpelled = { type: string; data: { creature: L2Creature }; once: boolean };
 
 // Events
 export declare type OnLoggedIn = ["LoggedIn", (e: ELoggedIn) => void];
@@ -82,6 +83,7 @@ export declare type OnSystemMessage = ["SystemMessage", (e: ESystemMessage) => v
 export declare type OnCreatureSay = ["CreatureSay", (e: ECreatureSay) => void];
 export declare type OnNpcHtmlMessage = ["NpcHtmlMessage", (e: ENpcHtmlMessage) => void];
 export declare type OnNpcQuestHtmlMessage = ["NpcQuestHtmlMessage", (e: ENpcQuestHtmlMessage) => void];
+export declare type OnPartySpelled = ["PartySpelled", (e: EPartySpelled) => void];
 
 // prettier-ignore
 export declare type EventHandlerType =
@@ -107,4 +109,5 @@ export declare type EventHandlerType =
   | OnCreatureSay
   | OnRecipeBookEvent
   | OnNpcHtmlMessage
-  | OnNpcQuestHtmlMessage;
+  | OnNpcQuestHtmlMessage
+  | OnPartySpelled;
