@@ -25,6 +25,7 @@
     "l2js-client": "file:../dist/"
   },
   "devDependencies": {
-    "@types/node": "^13.13.4"
+    "@types/node": "^13.13.4",
+    "typescript": "^3.8.3"
   }
 }
