@@ -13,7 +13,7 @@ export default class L2Skill extends L2Object {
   private _progress!: number;
   private _level!: number;
   private _max!: number;
-  private _reuseDelay!: number;
+  private _reuseDelay: number = 0;
   private _elapsed!: number;
   private _remaining!: number;
   private _operateType!: SkillOperateType;

@@ -8,7 +8,7 @@ export default class PartySmallWindowDeleteAll extends GameClientPacket {
 
     this.Client.PartyList.clear();
 
-    GlobalEvents.fire("PartySmallWindow", { member: null, action: "del-all" });
+    GlobalEvents.fire("PartySmallWindow", { member: null, action: "delete-all" });
 
     return true;
   }

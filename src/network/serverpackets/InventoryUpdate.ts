@@ -10,7 +10,11 @@ export default class InventoryUpdate extends GameClientPacket {
       const _updateType = this.readH(); // Update type : 01-add, 02-modify, 03-remove
       const _item = this.readItem();
 
-      this.Client.InventoryItems.delete(_item);
+      const currentItem = this.Client.InventoryItems.getEntryById(_item.Id);
+      if (currentItem) {
+        this.Client.InventoryItems.delete(currentItem);
+      }
+
       this.Client.InventoryItems.add(_item);
     }
 
