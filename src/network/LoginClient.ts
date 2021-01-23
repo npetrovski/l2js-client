@@ -13,7 +13,7 @@ export default class LoginClient extends MMOClient {
   private _loginCrypt: LoginCrypt = new LoginCrypt();
   private _blowfishKey!: Uint8Array;
   private _servers: ServerData[] = [];
-  private _serverId: number = 1;
+  private _serverId = 1;
   private _config!: MMOConfig;
 
   get ServerId(): number {

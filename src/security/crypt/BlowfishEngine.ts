@@ -214,7 +214,7 @@ export default class BlowfishEngine {
     this.workingKey = new Uint8Array(16);
   }
 
-  init(key: Uint8Array) {
+  init(key: Uint8Array): void {
     this.workingKey = key;
     this.setKey(this.workingKey);
   }

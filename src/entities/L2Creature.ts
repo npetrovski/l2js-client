@@ -20,7 +20,7 @@ export default abstract class L2Creature extends L2Object {
   private _dy!: number;
   private _dz!: number;
 
-  private _isDead: boolean = false;
+  private _isDead = false;
   private _runSpeed!: number;
   private _walkSpeed!: number;
   private _speedMultiplier!: number;
@@ -46,10 +46,10 @@ export default abstract class L2Creature extends L2Object {
   private _baseClassName!: string;
 
   private _race!: Race;
-  private _isMoving: boolean = false;
+  private _isMoving = false;
   private _movingVector!: Vector;
 
-  private _isReady: boolean = true;
+  private _isReady = true;
 
   private _buffs: L2ObjectCollection<L2Buff> = new L2ObjectCollection();
 
@@ -88,8 +88,16 @@ export default abstract class L2Creature extends L2Object {
     return this._classId;
   }
 
+  public set ClassId(value: number) {
+    this._classId = value;
+  }
+
   public get ClassName(): string {
     return this._className;
+  }
+
+  public set ClassName(value: string) {
+    this._className = value;
   }
 
   public get IsReady(): boolean {
@@ -97,14 +105,6 @@ export default abstract class L2Creature extends L2Object {
   }
   public set IsReady(value: boolean) {
     this._isReady = value;
-  }
-
-  public set ClassId(value: number) {
-    this._classId = value;
-  }
-
-  public set ClassName(value: string) {
-    this._className = value;
   }
 
   public get Sex(): Sex {
@@ -183,74 +183,14 @@ export default abstract class L2Creature extends L2Object {
     return this._hp;
   }
 
-  public get Mp(): number {
-    return this._mp;
-  }
-
-  public get MaxHp(): number {
-    return this._maxHp;
-  }
-
-  public get MaxMp(): number {
-    return this._maxMp;
-  }
-
-  public get IsRunning(): boolean {
-    return this._isRunning;
-  }
-
-  public get HpPercent(): number {
-    return this._hpPercent;
-  }
-
-  public get MpPercent(): number {
-    return this._mpPercent;
-  }
-
-  public get Dx(): number {
-    return this._dx;
-  }
-
-  public get Dy(): number {
-    return this._dy;
-  }
-
-  public get Dz(): number {
-    return this._dz;
-  }
-
-  public get IsDead(): boolean {
-    return this._isDead;
-  }
-
-  public get RunSpeed(): number {
-    return this._runSpeed;
-  }
-
-  public get WalkSpeed(): number {
-    return this._walkSpeed;
-  }
-
-  public get SpeedMultiplier(): number {
-    return this._speedMultiplier;
-  }
-
-  public get IsInCombat(): boolean {
-    return this._isInCombat;
-  }
-
-  public get IsNoble(): boolean {
-    return this._isNoble;
-  }
-
-  public get IsHero(): boolean {
-    return this._isHero;
-  }
-
   public set Hp(value: number) {
     this._hp = value;
     this._hpPercent = (100 * this._hp) / this._maxHp;
     this._isDead = value === 0;
+  }
+
+  public get Mp(): number {
+    return this._mp;
   }
 
   public set Mp(value: number) {
@@ -258,9 +198,17 @@ export default abstract class L2Creature extends L2Object {
     this._mpPercent = (100 * this._mp) / this._maxMp;
   }
 
+  public get MaxHp(): number {
+    return this._maxHp;
+  }
+
   public set MaxHp(value: number) {
     this._maxHp = value;
     this._hpPercent = (100 * this._hp) / this._maxHp;
+  }
+
+  public get MaxMp(): number {
+    return this._maxMp;
   }
 
   public set MaxMp(value: number) {
@@ -268,52 +216,104 @@ export default abstract class L2Creature extends L2Object {
     this._mpPercent = (100 * this._mp) / this._maxMp;
   }
 
+  public get IsRunning(): boolean {
+    return this._isRunning;
+  }
+
   public set IsRunning(value: boolean) {
     this._isRunning = value;
+  }
+
+  public get HpPercent(): number {
+    return this._hpPercent;
   }
 
   public set HpPercent(value: number) {
     this._hpPercent = value;
   }
 
+  public get MpPercent(): number {
+    return this._mpPercent;
+  }
+
   public set MpPercent(value: number) {
     this._mpPercent = value;
+  }
+
+  public get Dx(): number {
+    return this._dx;
   }
 
   public set Dx(value: number) {
     this._dx = value;
   }
 
+  public get Dy(): number {
+    return this._dy;
+  }
+
   public set Dy(value: number) {
     this._dy = value;
+  }
+
+  public get Dz(): number {
+    return this._dz;
   }
 
   public set Dz(value: number) {
     this._dz = value;
   }
 
+  public get IsDead(): boolean {
+    return this._isDead;
+  }
+
   public set IsDead(value: boolean) {
     this._isDead = value;
+  }
+
+  public get RunSpeed(): number {
+    return this._runSpeed;
   }
 
   public set RunSpeed(value: number) {
     this._runSpeed = value;
   }
 
+  public get WalkSpeed(): number {
+    return this._walkSpeed;
+  }
+
   public set WalkSpeed(value: number) {
     this._walkSpeed = value;
+  }
+
+  public get SpeedMultiplier(): number {
+    return this._speedMultiplier;
   }
 
   public set SpeedMultiplier(value: number) {
     this._speedMultiplier = value;
   }
 
+  public get IsInCombat(): boolean {
+    return this._isInCombat;
+  }
+
   public set IsInCombat(value: boolean) {
     this._isInCombat = value;
   }
 
+  public get IsNoble(): boolean {
+    return this._isNoble;
+  }
+
   public set IsNoble(value: boolean) {
     this._isNoble = value;
+  }
+
+  public get IsHero(): boolean {
+    return this._isHero;
   }
 
   public set IsHero(value: boolean) {
@@ -348,7 +348,7 @@ export default abstract class L2Creature extends L2Object {
 
   private _moveInterval!: ReturnType<typeof setInterval>;
 
-  public setMovingTo(dx: number, dy: number, dz: number, heading?: number) {
+  public setMovingTo(dx: number, dy: number, dz: number, heading?: number): void {
     this.Dx = dx;
     this.Dy = dy;
     this.Dz = dz;

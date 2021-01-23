@@ -5,7 +5,7 @@ import { LoginFailReason } from "../../enums/LoginFailReason";
 import RequestSecurityCard from "../clientpackets/RequestSecurityCard";
 
 export default class LoginFail extends LoginClientPacket {
-  _securityCard: boolean = false;
+  _securityCard = false;
 
   public FailReason!: LoginFailReason;
 

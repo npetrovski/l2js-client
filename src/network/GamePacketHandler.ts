@@ -436,7 +436,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xf9:
           rpk = new EtcStatusUpdate();
           break;
-        case 0xfe:
+        case 0xfe: {
           const sub = data[1] + (data[2] << 8);
           switch (sub) {
             case 0x22:
@@ -497,6 +497,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               return rpk;
           }
           break;
+        }  
         default:
           if (data.byteLength > 2) {
             this.logger.debug(

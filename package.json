@@ -11,7 +11,7 @@
     "clean": "rm -rf dist",
     "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
     "buildpackage": "cd dist && npm pack",
-    "lint": "eslint ./src/**",
+    "lint": "eslint ./src/**/*.ts",
     "publish": "npm publish --access public"
   },
   "keywords": [
@@ -26,16 +26,19 @@
     "type": "git",
     "url": "https://github.com/npetrovski/l2js-client"
   },
-  "dependencies": {
-    "big-integer": "^1.6.48"
-  },
   "bugs": {
     "url": "https://github.com/npetrovski/l2js-client/issues"
   },
   "homepage": "https://github.com/npetrovski/l2js-client",
+  "dependencies": {
+    "big-integer": "^1.6.48"
+  },
   "devDependencies": {
     "@types/node": "^13.13.2",
     "@types/node-rsa": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
+    "eslint": "^7.18.0",
     "typescript": "^3.8.3"
   }
 }

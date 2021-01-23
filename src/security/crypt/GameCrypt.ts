@@ -2,9 +2,9 @@ export default class GameCrypt {
   private _inKey!: Int8Array;
   private _outKey!: Int8Array;
 
-  private _istEnabled: boolean = false;
+  private _istEnabled = false;
 
-  setKey(key: Uint8Array) {
+  setKey(key: Uint8Array): void {
     this._inKey = new Int8Array(key);
     this._outKey = new Int8Array(key);
   }
@@ -41,7 +41,7 @@ export default class GameCrypt {
 
     let temp = 0;
     for (let i = 0; i < size; i++) {
-      let temp2 = raw[offset + i] & 0xff;
+      const temp2 = raw[offset + i] & 0xff;
       temp = temp2 ^ this._outKey[i & 15] ^ temp;
       raw[offset + i] = temp & 0xff;
     }

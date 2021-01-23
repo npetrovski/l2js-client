@@ -288,12 +288,12 @@ export default class Client {
     return this;
   }
 
-  setConfig(config: MMOConfig | object): this {
+  setConfig(config: MMOConfig | Record<string, unknown>): this {
     this._config = { ...new MMOConfig(), ...(config as MMOConfig) };
     return this;
   }
 
-  enter(config?: object): Promise<{ login: LoginClient; game: GameClient }> {
+  enter(config?: Record<string, unknown>): Promise<{ login: LoginClient; game: GameClient }> {
     if (config) {
       this.setConfig(config);
     }

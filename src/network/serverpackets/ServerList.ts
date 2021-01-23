@@ -2,7 +2,7 @@ import ServerData from "../ServerData";
 import LoginClientPacket from "./LoginClientPacket";
 
 export default class ServerList extends LoginClientPacket {
-  _lastServerId: number = 0;
+  _lastServerId = 0;
 
   // @Override
   readImpl(): boolean {

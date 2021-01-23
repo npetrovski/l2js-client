@@ -28,61 +28,61 @@ export default abstract class L2Object {
     return this._id;
   }
 
-  public get ObjectId(): number {
-    return this._objectId;
-  }
-
-  public get Name(): string {
-    return this._name;
-  }
-
-  public get X(): number {
-    return this._x;
-  }
-
-  public get Y(): number {
-    return this._y;
-  }
-
-  public get Z(): number {
-    return this._z;
-  }
-
   public set Id(value: number) {
     this._id = value;
+  }
+
+  public get ObjectId(): number {
+    return this._objectId;
   }
 
   public set ObjectId(value: number) {
     this._objectId = value;
   }
 
+  public get Name(): string {
+    return this._name;
+  }
+
   public set Name(value: string) {
     this._name = value;
+  }
+
+  public get X(): number {
+    return this._x;
   }
 
   public set X(value: number) {
     this._x = value;
   }
 
+  public get Y(): number {
+    return this._y;
+  }
+
   public set Y(value: number) {
     this._y = value;
+  }
+
+  public get Z(): number {
+    return this._z;
   }
 
   public set Z(value: number) {
     this._z = value;
   }
 
-  public setLocation(x: number, y: number, z: number, heading?: number) {
+  public getLocation(): number[] {
+    return Array.from([this._x, this._y, this._z, this._heading]);
+  }
+
+  public setLocation(x: number, y: number, z: number, heading?: number): void {
     this._x = x;
     this._y = y;
     this._z = z;
     if (heading) {
       this._heading = heading;
     }
-  }
-
-  public getLocation(): number[] {
-    return Array.from([this._x, this._y, this._z, this._heading]);
   }
 
   public calculateDistance(obj: L2Object): number {

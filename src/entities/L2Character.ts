@@ -5,15 +5,19 @@ export default class L2Character extends L2Creature {
   private _cp!: number;
   private _maxCp!: number;
   private _level!: number;
+
   public get Cp(): number {
     return this._cp;
   }
-  public get MaxCp(): number {
-    return this._maxCp;
-  }
+
   public set Cp(value: number) {
     this._cp = value;
   }
+
+  public get MaxCp(): number {
+    return this._maxCp;
+  }
+
   public set MaxCp(value: number) {
     this._maxCp = value;
   }
