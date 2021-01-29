@@ -3,6 +3,7 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   parserOptions: {
     project: "./tsconfig.json",
+    createDefaultProgram: true
   },
   extends: [
     "eslint:recommended",

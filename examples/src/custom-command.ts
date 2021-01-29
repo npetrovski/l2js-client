@@ -4,7 +4,7 @@ import AbstractGameCommand from "l2js-client/commands/AbstractGameCommand";
 import GameClient from "l2js-client/network/GameClient";
 
 l2.registerCommand("sayHello", {
-  execute: function (): void {
+  execute (): void {
     console.log("Hello. I am  " + this.Client.ActiveChar.Name);
   },
 } as AbstractGameCommand<GameClient>);

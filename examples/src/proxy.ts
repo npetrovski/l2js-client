@@ -33,9 +33,13 @@ const config: ProxyConfig[] = [
 const proxy = (cfg: ProxyConfig) => {
 
     const server = createServer((client) => {
-        let remote: Socket;
+
+        const connectOption: NetConnectOpts = { port: cfg.remotePort, host: cfg.remoteIp };
+        // Proxy client
+        const remote: Socket = connect(connectOption);
 
         client.on("end", () => remote.destroy());
+
         client.on("error", () => remote.destroy());
 
         client.on("data", (data: Uint8Array) => {
@@ -44,16 +48,11 @@ const proxy = (cfg: ProxyConfig) => {
             client.resume();
         });
 
-        const connectOption: NetConnectOpts = { port: cfg.remotePort, host: cfg.remoteIp };
-
-        // Proxy client
-        remote = connect(connectOption);
-
-
         remote.on("data", (data: Uint8Array) => {
             remote.pause();
 
-            cfg.mmoClient.process(data).then((packet: ReceivablePacket<MMOClient>) => {
+            cfg.mmoClient.process(data)
+            .then((packet: ReceivablePacket<MMOClient>) => {
 
                 if (packet != null && packet instanceof ServerList) {
                     const list = (cfg.mmoClient as LoginClient).Servers;
@@ -85,13 +84,13 @@ const proxy = (cfg: ProxyConfig) => {
 
                 client.write(data);
                 remote.resume();
-            }).catch(() => {
+            })
+            .catch(() => {
 
                 client.write(data);
                 remote.resume();
             });
         });
-
 
         remote.on("end", () => client.destroy());
         remote.on("error", () => client.destroy());

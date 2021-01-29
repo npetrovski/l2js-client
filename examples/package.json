@@ -21,6 +21,10 @@
   ],
   "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npetrovski/l2js-client"
+  },
   "dependencies": {
     "l2js-client": "file:../dist/"
   },
