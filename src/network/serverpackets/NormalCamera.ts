@@ -5,6 +5,8 @@ export default class NormalCamera extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
+
+
     return true;
   }
 

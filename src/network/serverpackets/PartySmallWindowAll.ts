@@ -7,8 +7,6 @@ export default class PartySmallWindowAll extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    const _leaderObjectId = this.readD();
-    const _distributionType = this.readD();
     const _memberCount = this.readD();
 
     this.Client.PartyList.clear();
@@ -19,6 +17,7 @@ export default class PartySmallWindowAll extends GameClientPacket {
 
       char.ObjectId = _objectId;
       char.Name = this.readS();
+
       char.Cp = this.readD();
       char.MaxCp = this.readD();
       char.Hp = this.readD();
@@ -27,25 +26,8 @@ export default class PartySmallWindowAll extends GameClientPacket {
       char.MaxMp = this.readD();
       char.Level = this.readD();
       char.ClassId = this.readD();
-      const _pad1 = this.readD();
+      char.Sex = this.readD();
       char.Race = this.readD();
-
-      const _pad2 = this.readD();
-      const _pad3 = this.readD();
-
-      const _summonObjId = this.readD();
-      if (_summonObjId > 0) {
-        const _summonId = this.readD();
-        const _summonType = this.readD();
-        const _summonName = this.readS();
-        const _summonHp = this.readD();
-        const _summonMaxHp = this.readD();
-        const _summonMp = this.readD();
-        const _summonMaxMp = this.readD();
-        const _summonLevel = this.readD();
-      }
-      char.IsPartyLeader = char.ObjectId === _leaderObjectId;
-      char.IsDead = char.Hp <= 0;
 
       this.Client.PartyList.add(char);
 

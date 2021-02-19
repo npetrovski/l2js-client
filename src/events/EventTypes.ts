@@ -11,13 +11,13 @@ export declare type EPacketReceived = { type: string; data: { packet: Receivable
 export declare type EPacketSent = { type: string; data: { packet: SendablePacket<MMOClient> }; once: boolean };
 export declare type EPartyRequest = {
   type: string;
-  data: { requestorName: string; partyDistributionType: number };
+  data: { invitorObjId: number };
   once: boolean;
 };
 export declare type EDie = { type: string; data: { creature: L2Creature; isSpoiled: boolean }; once: boolean };
 export declare type ETargetSelected = {
   type: string;
-  data: { objectId: number; targetObjectId: number; targetLocation: number[] };
+  data: { objectId: number; targetObjectId: number };
   once: boolean;
 };
 export declare type EMyTargetSelected = { type: string; data: { objectId: number }; once: boolean };
@@ -43,12 +43,12 @@ export declare type EConfirmDlg = {
 export declare type ESystemMessage = { type: string; data: { messageId: number; params: [] }; once: boolean };
 export declare type ECreatureSay = {
   type: string;
-  data: { objectId: number; type: number; charName: string; npcStringId: number; messages: [] };
+  data: { objectId: number; type: number; charName: string; message: string };
   once: boolean;
 };
 export declare type ENpcHtmlMessage = {
   type: string;
-  data: { npcObjectId: number; html: string; itemId: number };
+  data: { npcObjectId: number; html: string };
   once: boolean;
 };
 export declare type ENpcQuestHtmlMessage = {

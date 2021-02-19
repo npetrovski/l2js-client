@@ -2,7 +2,11 @@ import ServerData from "../network/ServerData";
 
 export default class MMOSession {
     sessionId!: number;
-    publicKey!: Uint8Array;
+    accountId!: number;
+    authKey!: number;
+    gsSessionId!: number;
+    gsAccountId!: number;
+
     playOk1!: number;
     playOk2!: number;
     loginOk1!: number;

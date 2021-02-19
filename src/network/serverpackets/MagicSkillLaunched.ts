@@ -9,9 +9,9 @@ export default class MagicSkillLaunched extends GameClientPacket {
     const _skillId = this.readD();
     const _skillLevel = this.readD();
 
-    const _targetsNum = this.readD();
+    const _affectedNum = this.readD();
 
-    for (let i = 0; i < _targetsNum; i++) {
+    for (let i = 0; i < _affectedNum; i++) {
       const _targetId = this.readD();
     }
 

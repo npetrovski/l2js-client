@@ -6,7 +6,7 @@ export default class ValidateLocationInVehicle extends GameClientPacket {
     const _id = this.readC();
 
     const _charObjId = this.readD();
-    const _boatObjId = this.readD();
+    const _vehicleObjId = this.readD();
 
     const [_x, _y, _z] = this.readLoc();
     const _heading = this.readD();

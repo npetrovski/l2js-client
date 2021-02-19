@@ -8,12 +8,10 @@ export default class NpcHtmlMessage extends GameClientPacket {
 
     const _npcObjId = this.readD();
     const _html = this.readS();
-    const _itemId = this.readD();
 
     GlobalEvents.fire("NpcHtmlMessage", {
       npcObjectId: _npcObjId,
-      html: _html,
-      itemId: _itemId,
+      html: _html
     });
 
     return true;

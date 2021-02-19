@@ -9,6 +9,7 @@ export default class SocialAction extends GameClientPacket {
     const _charObjId = this.readD();
     const _actionId = this.readD();
 
+
     return true;
   }
 

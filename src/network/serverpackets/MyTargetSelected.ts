@@ -6,9 +6,7 @@ export default class MyTargetSelected extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
     const _objId = this.readD();
-    const _color = this.readH();
-
-    const _pad = this.readD();
+    const _levelDifference = this.readH();
 
     const npc = this.Client.CreaturesList.getEntryByObjectId(_objId);
     if (npc) {

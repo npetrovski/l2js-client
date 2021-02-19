@@ -7,6 +7,8 @@ export default class SystemMessage extends AbstractMessagePacket {
     const _id = this.readC();
     this.readMe();
 
+
+
     GlobalEvents.fire("SystemMessage", { messageId: this.messageId, params: this.messageParams });
     return true;
   }

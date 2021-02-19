@@ -6,6 +6,7 @@ export default class AutoAttackStop extends GameClientPacket {
     const _id = this.readC();
     const _targetObjId = this.readD();
 
+
     return true;
   }
 

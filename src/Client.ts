@@ -56,6 +56,7 @@ import CharacterSelect from "./network/clientpackets/CharacterSelect";
 import Appearing from "./network/clientpackets/Appearing";
 import PlayFail from "./network/serverpackets/PlayFail";
 import LoginFail from "./network/serverpackets/LoginFail";
+import RequestQuestList from "./network/clientpackets/RequestQuestList";
 
 export default interface Client {
   /**
@@ -303,18 +304,17 @@ export default class Client {
       this._lc
         .connect()
         .then(() => {
+          /*
           GlobalEvents.once("PacketReceived:PlayFail", (e: EPacketReceived) => {
             reject((e.data.packet as PlayFail).FailReason);
-          });
+          });*/
           GlobalEvents.once("PacketReceived:LoginFail", (e: EPacketReceived) => {
             reject((e.data.packet as LoginFail).FailReason);
           });
           GlobalEvents.once("PacketReceived:Init", () =>
-            this._lc.sendPacket(new AuthGameGuard(this._lc.Session.sessionId))
+            this._lc.sendPacket(new RequestAuthLogin(this._config.Username, this._config.Password))
           );
-          GlobalEvents.once("PacketReceived:GGAuth", () =>
-            this._lc.sendPacket(new RequestAuthLogin(this._config.Username, this._config.Password, this._lc.Session))
-          );
+
           GlobalEvents.once("PacketReceived:LoginOk", () =>
             this._lc.sendPacket(new RequestServerList(this._lc.Session))
           );
@@ -338,14 +338,17 @@ export default class Client {
               .then(() => this._gc.sendPacket(new ProtocolVersion()))
               .catch((e) => reject(e));
           });
-          GlobalEvents.once("PacketReceived:KeyPacket", () => this._gc.sendPacket(new AuthLogin(this._gc.Session)));
-          GlobalEvents.once("PacketReceived:CharSelectionInfo", () =>
+          GlobalEvents.once("PacketReceived:VersionCheck", () => this._gc.sendPacket(new AuthLogin(this._gc.Session)));
+          GlobalEvents.once("PacketReceived:ServerClose", (e: EPacketReceived) => {
+            reject("Connection closed by the server");
+          });
+
+          GlobalEvents.once("PacketReceived:CharacterSelectionInfo", () =>
             this._gc.sendPacket(new CharacterSelect(this._gc.Config.CharSlotIndex ?? 0))
           );
-          GlobalEvents.once("PacketReceived:CharSelected", () => {
+          GlobalEvents.once("PacketReceived:CharacterSelected", () => {
             this._gc
-              .sendPacket(new RequestManorList())
-              .then(() => this._gc.sendPacket(new RequestKeyMapping()))
+              .sendPacket(new RequestQuestList())
               .then(() => this._gc.sendPacket(new EnterWorld()))
               .then(() => {
                 GlobalEvents.fire("LoggedIn", { login: this._lc, game: this._gc });

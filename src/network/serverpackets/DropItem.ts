@@ -16,7 +16,7 @@ export default class DropItem extends GameClientPacket {
 
     const _isStackable = this.readD() === 1;
 
-    item.Count = this.readQ();
+    item.Count = this.readD();
     const _unkn1 = this.readD();
 
     if (!this.Client.DroppedItems.containsObjectId(item.ObjectId)) {

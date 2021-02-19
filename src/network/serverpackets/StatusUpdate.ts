@@ -41,13 +41,13 @@ export default class StatusUpdate extends GameClientPacket {
     const _id = this.readC();
     const _objectId = this.readD();
 
-    const _attributeSize = this.readD();
-
     const char = this.Client.CreaturesList.getEntryByObjectId(_objectId);
 
     if (!char) {
       return true;
     }
+
+    const _attributeSize = this.readD();
 
     for (let i = 0; i < _attributeSize; i++) {
       const status = this.readD();

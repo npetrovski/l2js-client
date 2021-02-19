@@ -5,8 +5,8 @@ export default class InventoryUpdate extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    const _size = this.readH();
-    for (let i = 0; i < _size; i++) {
+    const _itemCount = this.readH();
+    for (let i = 0; i < _itemCount; i++) {
       const _updateType = this.readH(); // Update type : 01-add, 02-modify, 03-remove
       const _item = this.readItem();
 

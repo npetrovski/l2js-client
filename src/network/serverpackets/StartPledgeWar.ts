@@ -4,8 +4,8 @@ export default class StartPledgeWar extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _playerName = this.readS();
-    const _pledgeName = this.readS();
+    const _attackingClanName = this.readS();
+    const _attackerLeaderName = this.readS();
 
     return true;
   }

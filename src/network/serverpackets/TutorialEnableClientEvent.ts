@@ -4,7 +4,8 @@ export default class TutorialEnableClientEvent extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _eventId = this.readD();
+
+    const _notifications = this.readD();
 
     return true;
   }

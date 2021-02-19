@@ -4,11 +4,12 @@ export default class ValidateLocation extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _charObjId = this.readD();
+
+    const _objId = this.readD();
     const [_x, _y, _z] = this.readLoc();
     const _heading = this.readD();
 
-    const creature = this.Client.CreaturesList.getEntryByObjectId(_charObjId);
+    const creature = this.Client.CreaturesList.getEntryByObjectId(_objId);
     if (creature) {
       creature.setLocation(_x, _y, _z, _heading);
     }

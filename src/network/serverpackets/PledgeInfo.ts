@@ -4,9 +4,10 @@ export default class PledgeInfo extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
+
     const _clanId = this.readD();
     const _clanName = this.readS();
-    const _allyName = this.readS();
+    const _allianceName = this.readS();
 
     return true;
   }

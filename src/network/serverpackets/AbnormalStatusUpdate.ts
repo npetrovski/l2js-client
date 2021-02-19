@@ -5,8 +5,10 @@ export default class AbnormalStatusUpdate extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _size = this.readH();
-    for (let i = 0; i < _size; i++) {
+
+    const _effectCount = this.readH();
+    for (let i = 0; i < _effectCount; i++) {
+
       const buff = new L2Buff();
       buff.Id = this.readD();
       buff.SkillLevel = this.readH();

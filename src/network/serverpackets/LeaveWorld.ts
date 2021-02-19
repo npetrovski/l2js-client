@@ -5,6 +5,7 @@ export default class LeaveWorld extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
+
     return true;
   }
 

@@ -21,12 +21,12 @@ export default class ServerList extends LoginClientPacket {
       server.MaxPlayers = this.readH();
       server.Status = this.readC();
       server.ServerType = this.readD();
-      server.Brackets = this.readC();
+      // server.Brackets = this.readC(); //??
 
       this.Client.Servers.push(server);
     }
 
-    const _unkn = this.readH();
+    // const _unkn = this.readH();
     // ...
 
     this.Client.Session.selectedServer =

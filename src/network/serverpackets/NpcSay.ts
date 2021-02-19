@@ -6,15 +6,10 @@ export default class NpcSay extends GameClientPacket {
     const _id = this.readC();
     const _charObjId = this.readD();
     const _textType = this.readD();
-    const _npcId = this.readD() - 1000000;
-    const _npcString = this.readD();
+    const _npcId = this.readD();
+    const _message = this.readS();
 
-    const _messages = [];
-    while (this._offset + 1 < this._buffer.byteLength) {
-      _messages.push(this.readS());
-    }
-
-    this.logger.info("NpcSay", _messages);
+    this.logger.info("NpcSay", _message);
 
     return true;
   }

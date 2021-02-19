@@ -9,7 +9,6 @@ export default class ChangeMoveType extends GameClientPacket {
 
     const _charObjId = this.readD();
     const _running = this.readD() === ChangeMoveType.RUN;
-    const _pad1 = this.readD();
 
     return true;
   }

@@ -16,6 +16,7 @@ import GameServerPacket from "./clientpackets/GameServerPacket";
 import L2Recipe from "../entities/L2Recipe";
 import MMOSession from "../mmocore/MMOSession";
 import IConnection from "../mmocore/IConnection";
+import Logger from "../mmocore/Logger";
 
 export default class GameClient extends MMOClient {
   private _gameCrypt: GameCrypt = new GameCrypt();
@@ -97,12 +98,14 @@ export default class GameClient extends MMOClient {
   decrypt(buf: Uint8Array, offset: number, size: number): void {
     this._gameCrypt.decrypt(buf, offset, size);
   }
-  setCryptInitialKey(key: Uint8Array): void {
+  setCryptInitialKey(key: number): void {
     this._gameCrypt.setKey(key);
   }
 
   pack(gsp: GameServerPacket): Uint8Array {
     gsp.write();
+
+    // console.log(Logger.hexString(gsp.Buffer.slice(0, gsp.Position)));
 
     this._gameCrypt.encrypt(gsp.Buffer, 0, gsp.Position);
 

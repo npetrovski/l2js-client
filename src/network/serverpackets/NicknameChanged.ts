@@ -6,6 +6,7 @@ export default class NicknameChanged extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
+
     const _objId = this.readD();
     const _title = this.readS();
 

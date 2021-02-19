@@ -10,6 +10,7 @@ export default class PartySmallWindowDelete extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
+
     const _memberObjId = this.readD();
     const _memberName = this.readS();
 

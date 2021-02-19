@@ -55,7 +55,6 @@ export default abstract class MMOClient implements IProcessable {
   }
 
   process(raw: Uint8Array): Promise<ReceivablePacket<MMOClient>> {
-
     return new Promise((resolve, reject) => {
 
       let data: Uint8Array = new Uint8Array(raw);
@@ -84,6 +83,8 @@ export default abstract class MMOClient implements IProcessable {
           const packetData = new Uint8Array(data.slice(n + 2, n + packetLength)); // +2 is for skipping the packet size
           ctx.decrypt(packetData, 0, packetData.byteLength);
 
+          // console.log(Logger.hexString(packetData.slice(0, packetData.byteLength)));
+
           setTimeout(() => {
             const rcp: ReceivablePacket<MMOClient> = ctx._packetHandler.handlePacket(packetData, ctx);
             if (!rcp) {
@@ -110,25 +111,4 @@ export default abstract class MMOClient implements IProcessable {
       .catch((error) => this.logger.error(error));
   }
 
-  hexString(data: Uint8Array): string {
-    return (
-      " ".repeat(7) +
-      Array.from(new Array(16), (n, v) => ("0" + (v & 0xff).toString(16)).slice(-2).toUpperCase()).join(" ") +
-      "\r\n" +
-      "=".repeat(54) +
-      "\r\n" +
-      Array.from(Array.from(data), (byte, k) => {
-        return (
-          (k % 16 === 0
-            ? ("00000" + ((Math.ceil(k / 16) * 16) & 0xffff).toString(16)).slice(-5).toUpperCase() + "  "
-            : "") +
-          ("0" + (byte & 0xff).toString(16)).slice(-2) +
-          ((k + 1) % 16 === 0 ? "\r\n" : " ")
-        );
-      })
-        .join("")
-        .toUpperCase() +
-      "\r\n"
-    );
-  }
 }

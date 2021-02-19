@@ -7,6 +7,8 @@ import ServerData from "./ServerData";
 import LoginServerPacket from "./clientpackets/LoginServerPacket";
 import { GlobalEvents } from "../mmocore/EventEmitter";
 import IConnection from "../mmocore/IConnection";
+import Logger from "../mmocore/Logger";
+import NewCrypt from "../security/crypt/NewCrypt";
 
 export default class LoginClient extends MMOClient {
 
@@ -71,7 +73,11 @@ export default class LoginClient extends MMOClient {
   pack(lsp: LoginServerPacket): Uint8Array {
     lsp.write();
 
-    const count = lsp.Position % 8 === 0 ? lsp.Position : lsp.Position + (8 - (lsp.Position % 8));
+    let count = lsp.Position % 8 === 0 ? lsp.Position : lsp.Position + (8 - (lsp.Position % 8));
+    NewCrypt.appendChecksum(lsp.Buffer, 0, count + 4);
+    count += 8;
+    // console.log(Logger.hexString(lsp.Buffer.slice(0, count)));
+
     this._loginCrypt.encrypt(lsp.Buffer, 0, count);
 
     const sendable: Uint8Array = new Uint8Array(count + 2);

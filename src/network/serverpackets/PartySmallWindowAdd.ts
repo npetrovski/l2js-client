@@ -7,8 +7,6 @@ export default class PartySmallWindowAdd extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    const _leaderObjectId = this.readD();
-    const _distributionType = this.readD();
 
     const char = new L2PartyMember();
     char.ObjectId = this.readD();
@@ -21,11 +19,8 @@ export default class PartySmallWindowAdd extends GameClientPacket {
     char.MaxMp = this.readD();
     char.Level = this.readD();
     char.ClassId = this.readD();
-    char.IsPartyLeader = char.ObjectId === _leaderObjectId;
-    char.IsDead = char.Hp <= 0;
-
-    const _pad1 = this.readD();
-    const _pad2 = this.readD();
+    char.Sex = this.readD();
+    char.Race = this.readD();
 
     this.Client.PartyList.add(char);
 

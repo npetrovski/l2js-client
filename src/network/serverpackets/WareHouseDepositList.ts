@@ -11,8 +11,7 @@ export default class WareHouseDepositList extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    const _whType = this.readH();
-    const _playerAdena = this.readQ();
+    const _playerAdena = this.readD();
 
     const _size = this.readH();
 

@@ -53,4 +53,26 @@ export default class Logger implements ILogger {
       console.log(msg);
     }
   }
+
+  static hexString(data: Uint8Array): string {
+    return (
+      " ".repeat(7) +
+      Array.from(new Array(16), (n, v) => ("0" + (v & 0xff).toString(16)).slice(-2).toUpperCase()).join(" ") +
+      "\r\n" +
+      "=".repeat(54) +
+      "\r\n" +
+      Array.from(Array.from(data), (byte, k) => {
+        return (
+          (k % 16 === 0
+            ? ("00000" + ((Math.ceil(k / 16) * 16) & 0xffff).toString(16)).slice(-5).toUpperCase() + "  "
+            : "") +
+          ("0" + (byte & 0xff).toString(16)).slice(-2) +
+          ((k + 1) % 16 === 0 ? "\r\n" : " ")
+        );
+      })
+        .join("")
+        .toUpperCase() +
+      "\r\n"
+    );
+  }
 }

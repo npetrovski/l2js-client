@@ -37,11 +37,12 @@ export default class NpcInfo extends AbstractNpcInfo {
     npc.WalkSpeed = this.readD();
     npc.SwimRunSpeed = this.readD();
     npc.SwimWalkSpeed = this.readD();
+    const _mountedRunSpd = this.readD();
+    const _mountedWalkSpd = this.readD();
     npc.FlyRunSpeed = this.readD();
     npc.FlyWalkSpeed = this.readD();
 
-    const _flyRunSpd1 = this.readD();
-    const _flyWalkSpd1 = this.readD();
+
 
     npc.SpeedMultiplier = this.readF();
     const AttackSpeedMultiplier = this.readF();
@@ -60,40 +61,6 @@ export default class NpcInfo extends AbstractNpcInfo {
     npc.IsInCombat = this.readC() === 1;
     npc.IsDead = this.readC() === 1;
     const _isSummoned = this.readC() === 2; // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
-
-    const _unkn2 = this.readD();
-    npc.Name = this.readS();
-    const _unkn3 = this.readD();
-    npc.Title = this.readS();
-
-    const _pad2 = this.readD();
-    const _pad3 = this.readD();
-    const _pad4 = this.readD();
-
-    // let _titleColor = this.readD(); // Title color 0=client default
-    // let _pvpFlag = this.readD(); // pvp flag
-    // let _karma = this.readD(); // karma
-
-    const _invisibleVisualEffect = this.readD();
-    const _clanId = this.readD();
-    const _clanCrest = this.readD();
-    const _allyId = this.readD();
-    const _allyCrest = this.readD();
-
-    const _insideZone = this.readC(); // 1=water, 2=flying
-    const _teamId = this.readC();
-
-    const _collisionRadius1 = this.readF();
-    const _collisionHeight2 = this.readF();
-    const _enchantEffect = this.readD(); // C4
-    const _isFlying = this.readD() === 1; // C6
-    const _pad5 = this.readD();
-    const _colorEffect = this.readD(); // CT1.5 Pet form and skills, Color effect
-
-    npc.IsTargetable = this.readC() === 1;
-    const _isShowName = this.readC() === 1;
-    const _abnormalVisualEffectSpecial = this.readD();
-    const _displayEffect = this.readD();
 
     npc.calculateDistance(this.Client.ActiveChar);
 

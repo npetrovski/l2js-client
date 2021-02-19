@@ -20,8 +20,8 @@ export default class UserInfo extends GameClientPacket {
 
     user.BaseClassId = this.readD();
     user.Level = this.readD();
-    user.Exp = this.readQ();
-    const _percentFromCurrentLevel = this.readF();
+    user.Exp = this.readD();
+
     user.STR = this.readD();
     user.DEX = this.readD();
     user.CON = this.readD();
@@ -47,13 +47,6 @@ export default class UserInfo extends GameClientPacket {
       const _slot2 = this.readD();
     });
 
-    GameServerPacket.PAPERDOLL_ORDER.forEach((value) => {
-      const _slot3 = this.readD();
-    });
-
-    const _talismanSlots = this.readD();
-    const _canEquipCloak = this.readD() === 1;
-
     user.PAtk = this.readD();
     user.PAtkSpd = this.readD();
     user.PDef = this.readD();
@@ -72,6 +65,8 @@ export default class UserInfo extends GameClientPacket {
     user.WalkSpeed = this.readD();
     user.SwimRunSpeed = this.readD();
     user.SwimWalkSpeed = this.readD();
+    const _mountedRunSpeed = this.readD();
+    const _mountedWalkSpeed  = this.readD();
     user.FlyRunSpeed = this.readD();
     user.FlyWalkSpeed = this.readD();
 
@@ -84,7 +79,7 @@ export default class UserInfo extends GameClientPacket {
     const HairColor = this.readD();
     const Face = this.readD();
 
-    const _isGM = this.readD();
+    const _builderLevel = this.readD();
 
     user.Title = this.readS();
     const ClanId = this.readD();
@@ -107,6 +102,8 @@ export default class UserInfo extends GameClientPacket {
     for (let j = 0; j < _cubicsNum; j++) {
       const _cubicId = this.readH();
     }
+
+    const _lookingForParty = this.readC();
 
     this.Client.CreaturesList.add(user);
 

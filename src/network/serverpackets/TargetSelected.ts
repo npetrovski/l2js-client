@@ -9,10 +9,6 @@ export default class TargetSelected extends GameClientPacket {
     const _objectId = this.readD();
     const _targetObjectId = this.readD();
 
-    const [_x, _y, _z] = this.readLoc();
-
-    const _unkn1 = this.readD();
-
     const char = this.Client.CreaturesList.getEntryByObjectId(_objectId);
     if (char) {
       const target = this.Client.CreaturesList.getEntryByObjectId(_targetObjectId);
@@ -23,8 +19,7 @@ export default class TargetSelected extends GameClientPacket {
 
     GlobalEvents.fire("TargetSelected", {
       objectId: _objectId,
-      targetObjectId: _targetObjectId,
-      targetLocation: [_x, _y, _z],
+      targetObjectId: _targetObjectId
     });
 
     return true;

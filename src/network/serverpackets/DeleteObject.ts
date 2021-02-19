@@ -5,7 +5,6 @@ export default class DeleteObject extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
     const _objectId = this.readD();
-    const _unkn1 = this.readD();
 
     this.Client.CreaturesList.removeByObjectId(_objectId);
     this.Client.DroppedItems.removeByObjectId(_objectId);

@@ -4,8 +4,9 @@ export default class StopMoveInVehicle extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
+
     const _charObjId = this.readD();
-    const _boatId = this.readD();
+    const _vehicleId = this.readD();
     const [_x, _y, _z] = this.readLoc();
 
     const _heading = this.readD();

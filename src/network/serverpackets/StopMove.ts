@@ -9,6 +9,7 @@ export default class StopMove extends GameClientPacket {
 
     const _heading = this.readD();
 
+    
     const creature = this.Client.CreaturesList.getEntryByObjectId(_objectId);
     if (creature) {
       creature.setLocation(_x, _y, _z, _heading);

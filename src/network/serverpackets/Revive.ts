@@ -11,6 +11,7 @@ export default class Revive extends GameClientPacket {
       this.Client.ActiveChar.IsDead = false;
     }
 
+
     const creature = this.Client.CreaturesList.getEntryByObjectId(_objectId);
     if (creature) {
       creature.IsDead = false;

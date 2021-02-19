@@ -5,6 +5,7 @@ export default class VehicleDeparture extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
+
     const _objId = this.readD();
     const _moveSpeed = this.readD();
     const _rotationSpeed = this.readD();

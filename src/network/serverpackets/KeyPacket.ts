@@ -18,7 +18,7 @@ export default class KeyPacket extends GameClientPacket {
     _blowfishKey.set(key, 0);
     _blowfishKey.set(Uint8Array.from([0xc8, 0x27, 0x93, 0x01, 0xa1, 0x6c, 0x31, 0x97]), 8); // the last 8 bytes are static
 
-    this.Client.setCryptInitialKey(_blowfishKey);
+    // this.Client.setCryptInitialKey(_blowfishKey);
     return true;
   }
 

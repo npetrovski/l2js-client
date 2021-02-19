@@ -1,5 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import CharSelected from "./CharSelected";
 import { GlobalEvents } from "../../mmocore/EventEmitter";
 
 export default class PartyMemberPosition extends GameClientPacket {
@@ -7,8 +6,8 @@ export default class PartyMemberPosition extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    const _size = this.readD();
-    for (let i = 0; i < _size; i++) {
+    const _memberCount = this.readD();
+    for (let i = 0; i < _memberCount; i++) {
       const _objId = this.readD();
       const [_x, _y, _z] = this.readLoc();
       const char = this.Client.PartyList.getEntryByObjectId(_objId);

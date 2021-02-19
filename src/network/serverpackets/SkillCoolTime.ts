@@ -4,9 +4,10 @@ export default class SkillCoolTime extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _skillReuseTimeStampsSize = this.readD();
 
-    for (let i = 0; i < _skillReuseTimeStampsSize; i++) {
+    const _affectedSkillCount = this.readD();
+
+    for (let i = 0; i < _affectedSkillCount; i++) {
       const _skillId = this.readD();
       const _skillLvl = this.readD();
       const _reuse = this.readD();

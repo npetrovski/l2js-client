@@ -6,9 +6,7 @@ export default class ChangeWaitType extends GameClientPacket {
     const _id = this.readC();
 
     const _charObjId = this.readD();
-    const _moveType = this.readD();
-
-    const [x, y, z] = this.readLoc();
+    const _waitType = this.readD();
 
     return true;
   }

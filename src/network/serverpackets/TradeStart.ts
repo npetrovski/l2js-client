@@ -10,6 +10,7 @@ export default class TradeStart extends GameClientPacket {
       const _item = this.readItem();
     }
 
+
     return true;
   }
 

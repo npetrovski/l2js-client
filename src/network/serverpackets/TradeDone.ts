@@ -4,7 +4,7 @@ export default class TradeDone extends GameClientPacket {
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _num = this.readD();
+    const _result = this.readD();
 
     return true;
   }
