@@ -1,0 +1,18 @@
+name: Build Docs
+
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Build and Deploy
+      uses: jenkey2011/vuepress-deploy@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        TARGET_REPO: gromov-io/l2js-client
+        TARGET_BRANCH: master
+        BUILD_SCRIPT: npm i && npm run build
+        BUILD_DIR: docs/src/.vuepress/dist/
