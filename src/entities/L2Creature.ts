@@ -5,6 +5,7 @@ import Vector from "../mmocore/Vector";
 import { GlobalEvents } from "../mmocore/EventEmitter";
 import L2ObjectCollection from "./L2ObjectCollection";
 import L2Buff from "./L2Buff";
+import Vector3D from "../mmocore/Vector3D";
 
 export default abstract class L2Creature extends L2Object {
   private _hp!: number;
@@ -47,7 +48,7 @@ export default abstract class L2Creature extends L2Object {
 
   private _race!: Race;
   private _isMoving = false;
-  private _movingVector!: Vector;
+  private _movingVector!: Vector3D;
 
   private _isReady = true;
 
@@ -334,11 +335,11 @@ export default abstract class L2Creature extends L2Object {
     this._isMoving = value;
   }
 
-  public get MovingVector(): Vector {
+  public get MovingVector(): Vector3D {
     return this._movingVector;
   }
 
-  public set MovingVector(value: Vector) {
+  public set MovingVector(value: Vector3D) {
     this._movingVector = value;
   }
 
@@ -352,24 +353,26 @@ export default abstract class L2Creature extends L2Object {
     this.Dx = dx;
     this.Dy = dy;
     this.Dz = dz;
-    this.MovingVector = new Vector(dx - this.X, dy - this.Y);
+    this.MovingVector = new Vector3D(dx - this.X, dy - this.Y, dz - this.Z);
 
-    let moveCnt = Math.ceil(this.MovingVector.length() / (this.CurrentSpeed / 10));
+    let moveCnt = Math.ceil(this.MovingVector.length / (this.CurrentSpeed / 10));
     this.IsMoving = true;
 
     this._moveInterval = setInterval(() => {
       this.MovingVector.normalize();
       this.X += Math.floor(this.MovingVector.X * (this.CurrentSpeed / 10));
       this.Y += Math.floor(this.MovingVector.Y * (this.CurrentSpeed / 10));
+      this.Z += Math.floor(this.MovingVector.Z * (this.CurrentSpeed / 10));
 
       moveCnt--;
       if (moveCnt > 0) {
-        this.MovingVector = new Vector(dx - this.X, dy - this.Y);
+        this.MovingVector = new Vector3D(dx - this.X, dy - this.Y, dz - this.Z);
       } else {
         clearInterval(this._moveInterval);
         this.IsMoving = false;
         this.X = this.Dx;
         this.Y = this.Dy;
+        this.Z = this.Dz;
       }
     }, 100);
   }
