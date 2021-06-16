@@ -14,7 +14,9 @@
     "clean": "rm -rf dist",
     "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
     "buildpackage": "cd dist && npm pack",
-    "lint": "eslint ./src/**/*.ts",
+    "lint": "eslint ./src/**",
+    "dev:docs": "vuepress dev vuePress",
+    "build:docs": "vuepress build vuePress",
     "publish": "npm publish --access public"
   },
   "keywords": [
@@ -43,5 +45,6 @@
     "@typescript-eslint/parser": "^4.14.0",
     "eslint": "^7.18.0",
     "typescript": "^3.8.3"
+    "vuepress": "^1.5.3"
   }
 }
