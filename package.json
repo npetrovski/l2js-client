@@ -12,7 +12,6 @@
     "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
     "buildpackage": "cd dist && npm pack",
     "lint": "eslint ./src/**",
-    "build:docs": "cd ./docs && npm i && npm run build && cp -r ./src/.vuepress/dist/* ../public",
     "publish": "npm publish --access public"
   },
   "keywords": [
