@@ -15,4 +15,4 @@ jobs:
         TARGET_REPO: gromov-io/l2js-client
         TARGET_BRANCH: master
         BUILD_SCRIPT: cd docs && npm i && npm run build
-        BUILD_DIR: ./src/.vuepress/dist/
+        # BUILD_DIR: ./docs/src/.vuepress/dist/
