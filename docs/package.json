@@ -1,0 +1,19 @@
+{
+  "name": "l2js-client_fork",
+  "version": "0.0.1",
+  "description": "This project was made while experimenting with TypeScript and es6. The idea is to have an NCSoft Lineage 2 client library, that allows other projects to build L2 client functionalities (like bots, game helpers, etc.) on top of it. It can be also used as a framework for building Lineage2 automated tests for L2 private servers.",
+  "main": "index.js",
+  "authors": {
+    "name": "asd",
+    "email": "das"
+  },
+  "repository": "/l2js-client_fork",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
