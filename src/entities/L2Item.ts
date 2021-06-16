@@ -64,116 +64,104 @@ export default class L2Item extends L2Object {
     return this._attackElementVal;
   }
 
-  public get DefAttFire(): number {
-    return this._defAttFire;
-  }
-
-  public get DefAttWater(): number {
-    return this._defAttWater;
-  }
-
-  public get DefAttWind(): number {
-    return this._defAttWind;
-  }
-
-  public get DefAttEarth(): number {
-    return this._defAttEarth;
-  }
-
-  public get DefAttHolly(): number {
-    return this._defAttHolly;
-  }
-
-  public get DefAttUnholly(): number {
-    return this._defAttUnholly;
-  }
-
-  public get AugmentBonus(): number {
-    return this._augmentBonus;
-  }
-
-  public get IsEquipped(): boolean {
-    return this._isEquipped;
-  }
-
-  public get IsQuest(): boolean {
-    return this._isQuest;
-  }
-
-  public get IsCrystalizable(): boolean {
-    return this._isCrystalizable;
-  }
-
-  public get IsStackable(): boolean {
-    return this._isStackable;
-  }
-
-  public get Price(): number {
-    return this._price;
-  }
-
-  public get EnchantLevel(): number {
-    return this._enchantLevel;
-  }
-
-  public get Count(): number {
-    return this._count;
-  }
-
   public set AttackElementVal(value: number) {
     this._attackElementVal = value;
+  }
+
+  public get DefAttFire(): number {
+    return this._defAttFire;
   }
 
   public set DefAttFire(value: number) {
     this._defAttFire = value;
   }
 
+  public get DefAttWater(): number {
+    return this._defAttWater;
+  }
+
   public set DefAttWater(value: number) {
     this._defAttWater = value;
+  }
+  public get DefAttWind(): number {
+    return this._defAttWind;
   }
 
   public set DefAttWind(value: number) {
     this._defAttWind = value;
   }
+  public get DefAttEarth(): number {
+    return this._defAttEarth;
+  }
 
   public set DefAttEarth(value: number) {
     this._defAttEarth = value;
+  }
+  public get DefAttHolly(): number {
+    return this._defAttHolly;
   }
 
   public set DefAttHolly(value: number) {
     this._defAttHolly = value;
   }
+  public get DefAttUnholly(): number {
+    return this._defAttUnholly;
+  }
 
   public set DefAttUnholly(value: number) {
     this._defAttUnholly = value;
+  }
+  public get AugmentBonus(): number {
+    return this._augmentBonus;
   }
 
   public set AugmentBonus(value: number) {
     this._augmentBonus = value;
   }
+  public get IsEquipped(): boolean {
+    return this._isEquipped;
+  }
 
   public set IsEquipped(value: boolean) {
     this._isEquipped = value;
+  }
+  public get IsQuest(): boolean {
+    return this._isQuest;
   }
 
   public set IsQuest(value: boolean) {
     this._isQuest = value;
   }
+  public get IsCrystalizable(): boolean {
+    return this._isCrystalizable;
+  }
 
   public set IsCrystalizable(value: boolean) {
     this._isCrystalizable = value;
+  }
+  public get IsStackable(): boolean {
+    return this._isStackable;
   }
 
   public set IsStackable(value: boolean) {
     this._isStackable = value;
   }
+  public get Price(): number {
+    return this._price;
+  }
 
   public set Price(value: number) {
     this._price = value;
   }
+  public get EnchantLevel(): number {
+    return this._enchantLevel;
+  }
 
   public set EnchantLevel(value: number) {
     this._enchantLevel = value;
+  }
+  public get Count(): number {
+    return this._count;
   }
 
   public set Count(value: number) {

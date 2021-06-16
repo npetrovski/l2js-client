@@ -29,7 +29,7 @@ export declare type ECraftResult = { type: string; data: { recipeId: number; suc
 export declare type ERecipeBook = { type: string; data: { isDwarven: boolean }; once: boolean };
 export declare type EPartySmallWindow = {
   type: string;
-  data: { member: L2PartyMember; action: string };
+  data: { member: L2PartyMember; action: "add" | "add-all" | "delete" | "delete-all" | "update" };
   once: boolean;
 };
 export declare type EPartyMemberPosition = { type: string; data: { member: L2PartyMember }; once: boolean };

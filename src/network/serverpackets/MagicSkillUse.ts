@@ -28,6 +28,7 @@ export default class MagicSkillUse extends GameClientPacket {
 
     const skill = this.Client.SkillsList.getEntryById(_skillId);
     if (skill) {
+      skill.Level = _skillLevel;
       skill.Remaining = _reuseDelay;
       skill.ReuseDelay = _reuseDelay;
     }

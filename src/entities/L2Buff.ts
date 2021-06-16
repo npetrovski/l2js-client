@@ -53,7 +53,7 @@ export default class L2Buff extends L2Object {
   }
 
   public autoCountDown(callback?: () => void): void {
-    let interval = setInterval(() => {
+    const interval = setInterval(() => {
       this.RemainingTime = this.RemainingTime - 1;
       if (this.RemainingTime <= 0) {
         this.RemainingTime = 0;

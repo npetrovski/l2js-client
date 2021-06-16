@@ -4,7 +4,7 @@ export default class UseItem extends GameServerPacket {
   private _objectId: number;
   private _ctrlPressed: boolean;
 
-  constructor(objectId: number, ctrlPress: boolean = false) {
+  constructor(objectId: number, ctrlPress = false) {
     super();
     this._objectId = objectId;
     this._ctrlPressed = ctrlPress;

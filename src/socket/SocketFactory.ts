@@ -17,7 +17,7 @@ export default class SocketFactory {
         }
         if (typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
           throw new Error("Not yet implemented");
-          //return new FireFox();
+          // return new FireFox();
         }
         break;
     }
@@ -25,7 +25,4 @@ export default class SocketFactory {
     throw new Error("Cannot find appropriate socket adapter");
   }
 
-  static async loadModule(mod: string) {
-    return module;
-  }
 }

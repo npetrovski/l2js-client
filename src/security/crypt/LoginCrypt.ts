@@ -6,7 +6,7 @@ export default class LoginCrypt {
   private _crypt: NewCrypt = new NewCrypt(LoginCrypt.STATIC_BLOWFISH_KEY);
 
 
-  setKey(key: Uint8Array) {
+  setKey(key: Uint8Array): void {
     this._crypt = new NewCrypt(key);
   }
 
