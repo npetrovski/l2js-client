@@ -14,5 +14,5 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: gromov-io/l2js-client
         TARGET_BRANCH: master
-        BUILD_SCRIPT: npm i && npm run build
+        BUILD_SCRIPT: cd docs && npm i && npm run build
         BUILD_DIR: docs/src/.vuepress/dist/
