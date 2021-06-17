@@ -12,6 +12,7 @@
     "follow-advanced": "node dist/follow-advanced.js",
     "bot": "node dist/bot.js",
     "craft": "node dist/craft.js",
+    "revive": "node dist/revive.js",
     "proxy": "node dist/proxy.js",
     "respond-to-attack": "node dist/respond-to-attack.js",
     "custom-command": "node dist/custom-command.js",

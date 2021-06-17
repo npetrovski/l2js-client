@@ -36,7 +36,11 @@ import GameClient from "./network/GameClient";
 import LoginClient from "./network/LoginClient";
 import CommandValidatePosition from "./commands/CommandValidatePosition";
 import CommandAttack from "./commands/CommandAttack";
-import { ELoggedIn, EPacketReceived, EventHandlerType } from "./events/EventTypes";
+import {
+  ELoggedIn,
+  EPacketReceived,
+  EventHandlerType
+} from "./events/EventTypes";
 import CommandCast from "./commands/CommandCast";
 import CommandDwarvenCraftRecipes from "./commands/CommandDwarvenCraftRecipes";
 import CommandCraft from "./commands/CommandCraft";
@@ -56,6 +60,8 @@ import CharacterSelect from "./network/clientpackets/CharacterSelect";
 import Appearing from "./network/clientpackets/Appearing";
 import PlayFail from "./network/serverpackets/PlayFail";
 import LoginFail from "./network/serverpackets/LoginFail";
+import CommandRevive from "./commands/CommandRevive";
+import { RestartPoint } from "./enums/RestartPoint";
 
 export default interface Client {
   /**
@@ -155,7 +161,11 @@ export default interface Client {
    * @param buff
    * @param level
    */
-  cancelBuff(object: L2Character | number, buff: L2Buff | number, level?: number): void;
+  cancelBuff(
+    object: L2Character | number,
+    buff: L2Buff | number,
+    level?: number
+  ): void;
   /**
    * Sit or stand
    */
@@ -180,6 +190,11 @@ export default interface Client {
    * @param recipeId
    */
   craft(recipeId: number): void;
+  /**
+   * Revive to location
+   * @param where
+   */
+  revive(where: RestartPoint): void;
 }
 
 /**
@@ -229,6 +244,8 @@ export default class Client {
     dwarvenCraftRecipes: CommandDwarvenCraftRecipes.prototype,
 
     craft: CommandCraft.prototype,
+
+    revive: CommandRevive.prototype
   };
 
   get Me(): L2User {
@@ -270,13 +287,15 @@ export default class Client {
           return Reflect.get(target, propertyKey, receiver);
         }
         if (propertyKey in target._commands) {
-          const cmd = Object.create(target._commands[propertyKey] as AbstractGameCommand<MMOClient>);
+          const cmd = Object.create(
+            target._commands[propertyKey] as AbstractGameCommand<MMOClient>
+          );
           cmd.Client = target._gc;
           return (...args: any) => {
             return cmd.execute(...args);
           };
         }
-      },
+      }
     });
   }
 
@@ -293,7 +312,9 @@ export default class Client {
     return this;
   }
 
-  enter(config?: Record<string, unknown>): Promise<{ login: LoginClient; game: GameClient }> {
+  enter(
+    config?: Record<string, unknown>
+  ): Promise<{ login: LoginClient; game: GameClient }> {
     if (config) {
       this.setConfig(config);
     }
@@ -306,41 +327,64 @@ export default class Client {
           GlobalEvents.once("PacketReceived:PlayFail", (e: EPacketReceived) => {
             reject((e.data.packet as PlayFail).FailReason);
           });
-          GlobalEvents.once("PacketReceived:LoginFail", (e: EPacketReceived) => {
-            reject((e.data.packet as LoginFail).FailReason);
-          });
+          GlobalEvents.once(
+            "PacketReceived:LoginFail",
+            (e: EPacketReceived) => {
+              reject((e.data.packet as LoginFail).FailReason);
+            }
+          );
           GlobalEvents.once("PacketReceived:Init", () =>
             this._lc.sendPacket(new AuthGameGuard(this._lc.Session.sessionId))
           );
           GlobalEvents.once("PacketReceived:GGAuth", () =>
-            this._lc.sendPacket(new RequestAuthLogin(this._config.Username, this._config.Password, this._lc.Session))
+            this._lc.sendPacket(
+              new RequestAuthLogin(
+                this._config.Username,
+                this._config.Password,
+                this._lc.Session
+              )
+            )
           );
           GlobalEvents.once("PacketReceived:LoginOk", () =>
             this._lc.sendPacket(new RequestServerList(this._lc.Session))
           );
-          GlobalEvents.once("PacketReceived:ServerList", (e: EPacketReceived) => {
-            this._lc.sendPacket(
-              new RequestServerLogin(this._lc.Session, this._lc.ServerId ?? (e.data.packet as ServerList)._lastServerId)
-            );
-          });
+          GlobalEvents.once(
+            "PacketReceived:ServerList",
+            (e: EPacketReceived) => {
+              this._lc.sendPacket(
+                new RequestServerLogin(
+                  this._lc.Session,
+                  this._lc.ServerId ??
+                    (e.data.packet as ServerList)._lastServerId
+                )
+              );
+            }
+          );
           GlobalEvents.once("PacketReceived:PlayOk", () => {
             this._lc.Connection.close();
             const gameConfig = {
               ...this._config,
               ...{
                 Ip: this._lc.Session.selectedServer.Ipv4(),
-                Port: this._lc.Session.selectedServer.Port,
-              },
+                Port: this._lc.Session.selectedServer.Port
+              }
             };
-            this._gc = new GameClient().init(this._lc.Session, gameConfig as MMOConfig);
+            this._gc = new GameClient().init(
+              this._lc.Session,
+              gameConfig as MMOConfig
+            );
             this._gc
               .connect()
               .then(() => this._gc.sendPacket(new ProtocolVersion()))
-              .catch((e) => reject(e));
+              .catch(e => reject(e));
           });
-          GlobalEvents.once("PacketReceived:KeyPacket", () => this._gc.sendPacket(new AuthLogin(this._gc.Session)));
+          GlobalEvents.once("PacketReceived:KeyPacket", () =>
+            this._gc.sendPacket(new AuthLogin(this._gc.Session))
+          );
           GlobalEvents.once("PacketReceived:CharSelectionInfo", () =>
-            this._gc.sendPacket(new CharacterSelect(this._gc.Config.CharSlotIndex ?? 0))
+            this._gc.sendPacket(
+              new CharacterSelect(this._gc.Config.CharSlotIndex ?? 0)
+            )
           );
           GlobalEvents.once("PacketReceived:CharSelected", () => {
             this._gc
@@ -348,14 +392,19 @@ export default class Client {
               .then(() => this._gc.sendPacket(new RequestKeyMapping()))
               .then(() => this._gc.sendPacket(new EnterWorld()))
               .then(() => {
-                GlobalEvents.fire("LoggedIn", { login: this._lc, game: this._gc });
+                GlobalEvents.fire("LoggedIn", {
+                  login: this._lc,
+                  game: this._gc
+                });
                 resolve({ login: this._lc, game: this._gc });
               })
               .catch(() => reject("Enter world fail."));
           });
-          GlobalEvents.on("PacketReceived:TeleportToLocation", () => this._gc.sendPacket(new Appearing()));
+          GlobalEvents.on("PacketReceived:TeleportToLocation", () =>
+            this._gc.sendPacket(new Appearing())
+          );
         })
-        .catch((e) => reject(e));
+        .catch(e => reject(e));
     });
   }
 
