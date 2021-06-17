@@ -2,7 +2,11 @@
   "name": "l2js-client",
   "version": "1.0.3",
   "chronicle": "High Five",
-  "protocols": [268, 271, 273],
+  "protocols": [
+    268,
+    271,
+    273
+  ],
   "description": "Lineage 2 Client Library",
   "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
   "funding": "https://www.paypal.com/donate?hosted_button_id=9HF7J3CLAXDBG",
@@ -44,7 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
     "eslint": "^7.18.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
     "vuepress": "^1.5.3"
   }
 }

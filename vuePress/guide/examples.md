@@ -12,7 +12,7 @@ l2.enter({
   /* required */ Ip: "127.0.0.1",
   /* optional */ ServerId: 1, //Bartz
   /* optional */ CharSlotIndex: 0,
-}); // return a Promise, a.k.a. you can use .then() after "enter()"
+}); // return a Promise, so you can use .then() after "enter()"
 ```
 
 ## Chat
@@ -25,7 +25,7 @@ l2.on("LoggedIn", () => {
   l2.sayToParty("Hello party");
   l2.sayToClan("Hello clan");
   l2.sayToTrade("Hello traders");
-  l2.sayToAlly("Hello ppls");
+  l2.sayToAlly("Hello ally");
 });
 ```
 
