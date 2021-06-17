@@ -41,6 +41,9 @@ export default class L2User extends L2Character {
   private _load!: number;
   private _maxLoad!: number;
 
+  private _gauge = 0;
+  private _gaugeInterval!: ReturnType<typeof setInterval>;
+
   public get AtkSpdMultiplier(): number {
     return this._atkSpdMultiplier;
   }
@@ -311,5 +314,26 @@ export default class L2User extends L2Character {
 
   public set MaxLoad(value: number) {
     this._maxLoad = value;
+  }
+
+  public get Gauge(): number {
+    return this._gauge;
+  }
+
+  public set Gauge(value: number) {
+    this._gauge = value;
+    if (value > 0) {
+      this.IsReady = false;
+
+      this._gaugeInterval = setInterval(() => {
+        this._gauge -= 100;
+        if (this._gauge <= 0) {
+          clearInterval(this._gaugeInterval);
+          this.IsReady = true;
+        }
+      }, 100);
+    } else {
+      this.IsReady = true;
+    }
   }
 }

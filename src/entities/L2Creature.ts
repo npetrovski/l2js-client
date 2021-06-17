@@ -343,18 +343,28 @@ export default abstract class L2Creature extends L2Object {
   }
 
   public get CurrentSpeed(): number {
-    return this.IsRunning ? this.RunSpeed * this.SpeedMultiplier : this.WalkSpeed * this.SpeedMultiplier;
+    return this.IsRunning
+      ? this.RunSpeed * this.SpeedMultiplier
+      : this.WalkSpeed * this.SpeedMultiplier;
   }
 
   private _moveInterval!: ReturnType<typeof setInterval>;
 
-  public setMovingTo(dx: number, dy: number, dz: number, heading?: number): void {
+  public setMovingTo(
+    dx: number,
+    dy: number,
+    dz: number,
+    heading?: number
+  ): void {
     this.Dx = dx;
     this.Dy = dy;
     this.Dz = dz;
     this.MovingVector = new Vector(dx - this.X, dy - this.Y);
 
-    let moveCnt = Math.ceil(this.MovingVector.length() / (this.CurrentSpeed / 10));
+    let moveCnt = Math.ceil(
+      this.MovingVector.length() / (this.CurrentSpeed / 10)
+    );
+
     this.IsMoving = true;
 
     this._moveInterval = setInterval(() => {

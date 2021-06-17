@@ -48,6 +48,7 @@ L2Object
 | validatePosition    | Sync position with server                                                                       |
 | dwarvenCraftRecipes | Dwarven craft recipe book                                                                       |
 | craft               | Craft an item                                                                                   |
+| revive              | Revive to a location (Town, Castle, Clan Hall)                                                  |
 
 ## Events
 

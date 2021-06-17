@@ -11,8 +11,8 @@ l2.enter({
   /* required */ Password: "admin",
   /* required */ Ip: "127.0.0.1",
   /* optional */ ServerId: 1, //Bartz
-  /* optional */ CharSlotIndex: 0,
-}); // return a Promise, a.k.a. you can use .then() after "enter()"
+  /* optional */ CharSlotIndex: 0
+}); // return a Promise, so you can use .then() after "enter()"
 ```
 
 ## Chat
@@ -25,7 +25,7 @@ l2.on("LoggedIn", () => {
   l2.sayToParty("Hello party");
   l2.sayToClan("Hello clan");
   l2.sayToTrade("Hello traders");
-  l2.sayToAlly("Hello ppls");
+  l2.sayToAlly("Hello ally");
 });
 ```
 
@@ -37,6 +37,19 @@ l2.on("LoggedIn", () => {
   let y = 50 + Math.floor(Math.random() * 50) + l2.Me.Y;
   let z = l2.Me.Z;
   l2.moveTo(x, y, z);
+});
+```
+
+## Revive
+
+```ts
+import { EDie } from "l2js-client/events/EventTypes";
+import { RestartPoint } from "l2js-client/enums/RestartPoint";
+
+l2.on("Die", (e: EDie) => {
+  if (e.data.creature.ObjectId === l2.Me.ObjectId) {
+    l2.revive(RestartPoint.TOWN);
+  }
 });
 ```
 
@@ -65,12 +78,53 @@ l2.on("StartMoving", (e: EStartMoving) => {
 });
 ```
 
+## Follow a character (Advanced)
+
+```ts
+const FOLLOW_NAME = "Adm";
+const FOLLOW_DIST = 100;
+
+l2.on("LoggedIn", () => {
+  const followLoop = setInterval(() => {
+    if (!l2.Me.IsDead && l2.Me.IsReady) {
+      const creature = l2.CreaturesList.getEntryByName(FOLLOW_NAME);
+      if (creature) {
+        if (l2.Me.calculateDistance(creature) > FOLLOW_DIST + 1) {
+          const x2 = creature.X;
+          const y2 = creature.Y;
+          const dx =
+            x2 -
+            (FOLLOW_DIST * (x2 - l2.Me.X)) /
+              Math.sqrt(
+                (x2 - l2.Me.X) * (x2 - l2.Me.X) +
+                  (y2 - l2.Me.Y) * (y2 - l2.Me.Y)
+              );
+          const dy =
+            y2 -
+            (FOLLOW_DIST * (y2 - l2.Me.Y)) /
+              Math.sqrt(
+                (x2 - l2.Me.X) * (x2 - l2.Me.X) +
+                  (y2 - l2.Me.Y) * (y2 - l2.Me.Y)
+              );
+          l2.moveTo(dx, dy, creature.Z);
+        }
+      }
+    }
+  }, 500);
+});
+```
+
 ## Simple bot (auto-target and auto-close-combat-hit)
 
 ```ts
 import L2Creature from "l2js-client/entities/L2Creature";
 import { ShotsType } from "l2js-client/enums/ShotsType";
-import { EDie, EMyTargetSelected, EPartyRequest, EAttacked } from "l2js-client/events/EventTypes";
+import {
+  EDie,
+  EMyTargetSelected,
+  EPartyRequest,
+  EAttacked
+} from "l2js-client/events/EventTypes";
 
 l2.on("LoggedIn", () => {
   l2.cancelTarget();
@@ -98,7 +152,7 @@ l2.on("LoggedIn", () => {
   .on("Die", (e: EDie) => {
     if (l2.Me.Target && e.data.creature.ObjectId === l2.Me.Target.ObjectId) {
       l2.cancelTarget();
-      l2.CreaturesList.forEach((c) => {
+      l2.CreaturesList.forEach(c => {
         c.calculateDistance(l2.Me);
       });
     }
@@ -121,9 +175,9 @@ import AbstractGameCommand from "l2js-client/commands/AbstractGameCommand";
 import GameClient from "l2js-client/network/GameClient";
 
 l2.registerCommand("sayHello", {
-  execute: function (): void {
+  execute: function(): void {
     console.log("Hello. I am  " + this.Client.ActiveChar.Name);
-  },
+  }
 } as AbstractGameCommand<GameClient>);
 
 l2.on("LoggedIn", () => {
@@ -145,7 +199,9 @@ l2.on("LoggedIn", () => {
 })
   .on("RecipeBook", (e: ERecipeBook) => {
     if (e.data.isDwarven) {
-      let recipeSSS = Array.from(l2.DwarfRecipeBook).find((r: L2Recipe) => r.Id === RECIPE_SSS);
+      let recipeSSS = Array.from(l2.DwarfRecipeBook).find(
+        (r: L2Recipe) => r.Id === RECIPE_SSS
+      );
       if (recipeSSS) {
         clearInterval(craftIntervalId);
 

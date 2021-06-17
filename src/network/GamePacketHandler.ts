@@ -118,12 +118,16 @@ import ConfirmDlg from "./serverpackets/ConfirmDlg";
 import ServerClose from "./serverpackets/ServerClose";
 import PartySpelled from "./serverpackets/PartySpelled";
 import SendTradeRequest from "./serverpackets/SendTradeRequest";
+import SetupGauge from "./serverpackets/SetupGauge";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
   // @Override
-  handlePacket(data: Uint8Array, client: GameClient): ReceivablePacket<GameClient> {
+  handlePacket(
+    data: Uint8Array,
+    client: GameClient
+  ): ReceivablePacket<GameClient> {
     const opcode: number = data[0] & 0xff;
 
     let rpk!: ReceivablePacket<GameClient>;
@@ -309,6 +313,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x67:
           rpk = new SurrenderPledgeWar();
+          break;
+        case 0x6b:
+          rpk = new SetupGauge();
           break;
         case 0x6c:
           rpk = new VehicleDeparture();
@@ -497,7 +504,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               return rpk;
           }
           break;
-        }  
+        }
         default:
           if (data.byteLength > 2) {
             this.logger.debug(
