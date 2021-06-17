@@ -39,7 +39,7 @@ export default class NetSocket implements IStream {
 
   recv(): Promise<Uint8Array> {
     this._socket.resume();
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       // this._socket.once("error", err => reject(err));
       this._socket.once("data", (data: Uint8Array) => {
         resolve(data);

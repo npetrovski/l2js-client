@@ -9,7 +9,7 @@ export enum LogLevel {
 }
 
 export default class Logger implements ILogger {
-  private _context: string = "";
+  private _context = "";
 
   private _logLevel: LogLevel = 1;
 

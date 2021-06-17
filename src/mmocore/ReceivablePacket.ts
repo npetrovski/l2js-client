@@ -3,7 +3,7 @@ import MMOClient from "./MMOClient";
 
 export default abstract class ReceivablePacket<T extends MMOClient> extends AbstractPacket<T> {
   _buffer!: Uint8Array;
-  _offset: number = 0;
+  _offset = 0;
   _view!: DataView;
 
   set Buffer(buffer: Uint8Array) {

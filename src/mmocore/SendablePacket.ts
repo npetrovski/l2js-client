@@ -4,7 +4,7 @@ import MMOClient from "./MMOClient";
 export default abstract class SendablePacket<T extends MMOClient> extends AbstractPacket<T> {
   static readonly PACKET_MAX_SIZE: number = 4096;
   _buffer: Uint8Array = new Uint8Array(SendablePacket.PACKET_MAX_SIZE);
-  _offset: number = 0;
+  _offset = 0;
   _view: DataView = new DataView(this._buffer.buffer);
 
   get Buffer(): Uint8Array {
@@ -21,31 +21,31 @@ export default abstract class SendablePacket<T extends MMOClient> extends Abstra
 
   abstract write(): void;
 
-  writeD(val: number) {
+  writeD(val: number): this {
     this._view.setInt32(this._offset, val, true);
     this._offset += 4;
     return this;
   }
 
-  writeH(val: number) {
+  writeH(val: number): this {
     this._view.setInt16(this._offset, val, true);
     this._offset += 2;
     return this;
   }
 
-  writeC(val: number) {
+  writeC(val: number): this {
     this._view.setInt8(this._offset, val);
     this._offset += 1;
     return this;
   }
 
-  writeF(val: number) {
+  writeF(val: number): this {
     this._view.setFloat64(this._offset, val);
     this._offset += 1;
     return this;
   }
 
-  writeQ(val: number) {
+  writeQ(val: number): this {
     const hi = Math.floor(val / this.pow2(32));
     const lo = val - hi * this.pow2(32);
 
@@ -55,7 +55,7 @@ export default abstract class SendablePacket<T extends MMOClient> extends Abstra
     return this;
   }
 
-  writeS(txt: string) {
+  writeS(txt: string): this {
     if (txt.length > 0) {
       for (let i = 0; i < txt.length; ++i) {
         const c = txt.charCodeAt(i);
@@ -67,7 +67,7 @@ export default abstract class SendablePacket<T extends MMOClient> extends Abstra
     return this;
   }
 
-  writeB(buf: Uint8Array) {
+  writeB(buf: Uint8Array): this {
     this._buffer.set(buf, this._offset);
     this._offset += buf.byteLength;
     return this;

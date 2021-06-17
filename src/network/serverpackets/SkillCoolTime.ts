@@ -9,16 +9,13 @@ export default class SkillCoolTime extends GameClientPacket {
     for (let i = 0; i < _skillReuseTimeStampsSize; i++) {
       const _skillId = this.readD();
       const _skillLvl = this.readD();
-      const _reuse = this.readD() * 1000;
-      const _remaining = this.readD() * 1000;
+      const _reuse = this.readD();
+      const _remaining = this.readD();
 
-      const skill = this.Client.SkillsList.getEntryById(_skillId);
-      if (skill) {
-        skill.Level = _skillLvl;
-        skill.Remaining = _remaining * 1000;
-        skill.Elapsed = (_reuse - _remaining) * 1000;
-        skill.Progress = skill.Elapsed;
-        skill.ReuseDelay = _reuse * 1000;
+      const buff = this.Client.BuffsList.getEntryById(_skillId);
+      if (buff) {
+        buff.RemainingTime = _remaining * 1000;
+        buff.SkillLevel = _skillLvl;
       }
     }
     return true;

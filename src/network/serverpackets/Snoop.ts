@@ -1,11 +1,11 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class Snoop extends GameClientPacket {
-  private _convoId: number = 0;
-  private _name: string = "";
-  private _type: number = 0;
-  private _speaker: string = "";
-  private _msg: string = "";
+  private _convoId = 0;
+  private _name = "";
+  private _type = 0;
+  private _speaker = "";
+  private _msg = "";
 
   // @Override
   readImpl(): boolean {

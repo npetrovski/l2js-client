@@ -32,83 +32,19 @@ export default class ServerData {
   }
 
   /**
-   * Getter ip
-   * @return {number}
-   */
-  public get Ip(): number {
-    return this._ip;
-  }
-
-  /**
-   * Getter port
-   * @return {number}
-   */
-  public get Port(): number {
-    return this._port;
-  }
-
-  /**
-   * Getter ageLimit
-   * @return {ServerAges}
-   */
-  public get AgeLimit(): ServerAges {
-    return this._ageLimit;
-  }
-
-  /**
-   * Getter pvp
-   * @return {number}
-   */
-  public get Pvp(): number {
-    return this._pvp;
-  }
-
-  /**
-   * Getter currentPlayers
-   * @return {number}
-   */
-  public get CurrentPlayers(): number {
-    return this._currentPlayers;
-  }
-
-  /**
-   * Getter maxPlayers
-   * @return {number}
-   */
-  public get MaxPlayers(): number {
-    return this._maxPlayers;
-  }
-
-  /**
-   * Getter status
-   * @return {ServerStatus}
-   */
-  public get Status(): ServerStatus {
-    return this._status;
-  }
-
-  /**
-   * Getter serverType
-   * @return {ServerTypes}
-   */
-  public get ServerType(): ServerTypes {
-    return this._serverType;
-  }
-
-  /**
-   * Getter brackets
-   * @return {number}
-   */
-  public get Brackets(): number {
-    return this._brackets;
-  }
-
-  /**
    * Setter id
    * @param {number} value
    */
   public set Id(value: number) {
     this._id = value;
+  }
+
+  /**
+   * Getter ip
+   * @return {number}
+   */
+  public get Ip(): number {
+    return this._ip;
   }
 
   /**
@@ -120,11 +56,27 @@ export default class ServerData {
   }
 
   /**
+   * Getter port
+   * @return {number}
+   */
+  public get Port(): number {
+    return this._port;
+  }
+
+  /**
    * Setter port
    * @param {number} value
    */
   public set Port(value: number) {
     this._port = value;
+  }
+
+  /**
+   * Getter ageLimit
+   * @return {ServerAges}
+   */
+  public get AgeLimit(): ServerAges {
+    return this._ageLimit;
   }
 
   /**
@@ -136,11 +88,27 @@ export default class ServerData {
   }
 
   /**
+   * Getter pvp
+   * @return {number}
+   */
+  public get Pvp(): number {
+    return this._pvp;
+  }
+
+  /**
    * Setter pvp
    * @param {number} value
    */
   public set Pvp(value: number) {
     this._pvp = value;
+  }
+
+  /**
+   * Getter currentPlayers
+   * @return {number}
+   */
+  public get CurrentPlayers(): number {
+    return this._currentPlayers;
   }
 
   /**
@@ -152,11 +120,27 @@ export default class ServerData {
   }
 
   /**
+   * Getter maxPlayers
+   * @return {number}
+   */
+  public get MaxPlayers(): number {
+    return this._maxPlayers;
+  }
+
+  /**
    * Setter maxPlayers
    * @param {number} value
    */
   public set MaxPlayers(value: number) {
     this._maxPlayers = value;
+  }
+
+  /**
+   * Getter status
+   * @return {ServerStatus}
+   */
+  public get Status(): ServerStatus {
+    return this._status;
   }
 
   /**
@@ -168,11 +152,27 @@ export default class ServerData {
   }
 
   /**
+   * Getter serverType
+   * @return {ServerTypes}
+   */
+  public get ServerType(): ServerTypes {
+    return this._serverType;
+  }
+
+  /**
    * Setter serverType
    * @param {ServerTypes} value
    */
   public set ServerType(value: ServerTypes) {
     this._serverType = value;
+  }
+
+  /**
+   * Getter brackets
+   * @return {number}
+   */
+  public get Brackets(): number {
+    return this._brackets;
   }
 
   /**
@@ -183,7 +183,7 @@ export default class ServerData {
     this._brackets = value;
   }
 
-  public Ipv4() {
+  public Ipv4(): string {
     const p1 = this._ip & 255;
     const p2 = (this._ip >> 8) & 255;
     const p3 = (this._ip >> 16) & 255;

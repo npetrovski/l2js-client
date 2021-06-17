@@ -15,7 +15,7 @@ export default class NewCrypt {
       return false;
     }
 
-    let chksum: number = 0;
+    let chksum = 0;
     const count: number = size - 4;
     let check: number = Number.MAX_VALUE;
     let i: number;
@@ -37,8 +37,8 @@ export default class NewCrypt {
     return check === chksum;
   }
 
-  static appendChecksum(raw: Uint8Array, offset: number, size: number) {
-    let chksum: number = 0;
+  static appendChecksum(raw: Uint8Array, offset: number, size: number): void {
+    let chksum = 0;
     let ecx: number;
     let i: number;
 
@@ -63,7 +63,7 @@ export default class NewCrypt {
     raw[i + 3] = (chksum >>> 0x18) & 0xff;
   }
 
-  static decXORPass(raw: Uint8Array, offset: number, size: number, key: number) {
+  static decXORPass(raw: Uint8Array, offset: number, size: number, key: number): void {
     const stop: number = 4 + offset;
     let pos: number = size - 12;
     let edx: number;
@@ -86,7 +86,7 @@ export default class NewCrypt {
     }
   }
 
-  static encXORPass(raw: Uint8Array, offset: number, size: number, key: number) {
+  static encXORPass(raw: Uint8Array, offset: number, size: number, key: number): void {
     const stop = size - 8;
     let pos: number = 4 + offset;
 

@@ -9,7 +9,7 @@ export default class L2PartyPet extends L2Creature {
 
   private _summonType!: number;
 
-  private _displayName: string = "";
+  private _displayName = "";
 
   public get DisplayName(): string {
     return this._displayName;
@@ -23,28 +23,28 @@ export default class L2PartyPet extends L2Creature {
     return this._masterObjectId;
   }
 
-  public get CurrentFed(): number {
-    return this._currentFed;
-  }
-
-  public get MaxFed(): number {
-    return this._maxFed;
-  }
-
-  public get SummonType(): number {
-    return this._summonType;
-  }
-
   public set MasterObjectId(value: number) {
     this._masterObjectId = value;
+  }
+
+  public get CurrentFed(): number {
+    return this._currentFed;
   }
 
   public set CurrentFed(value: number) {
     this._currentFed = value;
   }
 
+  public get MaxFed(): number {
+    return this._maxFed;
+  }
+
   public set MaxFed(value: number) {
     this._maxFed = value;
+  }
+
+  public get SummonType(): number {
+    return this._summonType;
   }
 
   public set SummonType(value: number) {
