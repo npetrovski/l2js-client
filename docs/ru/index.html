@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lineage 2 JavaScript клиент</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Идея состоит в том, чтобы иметь клиентскую библиотеку Lineage 2, которая позволяет другим проектам создавать клиентские функции L2, ботов, игровых помощников или тесты">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/l2js-client/assets/css/0.styles.eddc6afd.css" as="style"><link rel="preload" href="/l2js-client/assets/js/app.6dac1ba3.js" as="script"><link rel="preload" href="/l2js-client/assets/js/3.f1fc7c25.js" as="script"><link rel="preload" href="/l2js-client/assets/js/24.2d1743b4.js" as="script"><link rel="prefetch" href="/l2js-client/assets/js/10.6dd7fef1.js"><link rel="prefetch" href="/l2js-client/assets/js/11.182671de.js"><link rel="prefetch" href="/l2js-client/assets/js/12.2afdec62.js"><link rel="prefetch" href="/l2js-client/assets/js/13.dc011bae.js"><link rel="prefetch" href="/l2js-client/assets/js/14.7629d790.js"><link rel="prefetch" href="/l2js-client/assets/js/15.1cd97ea7.js"><link rel="prefetch" href="/l2js-client/assets/js/16.00e67e06.js"><link rel="prefetch" href="/l2js-client/assets/js/17.982c44c2.js"><link rel="prefetch" href="/l2js-client/assets/js/18.0e024685.js"><link rel="prefetch" href="/l2js-client/assets/js/19.092a4f50.js"><link rel="prefetch" href="/l2js-client/assets/js/20.6eceaffa.js"><link rel="prefetch" href="/l2js-client/assets/js/21.1f790337.js"><link rel="prefetch" href="/l2js-client/assets/js/22.0e360b41.js"><link rel="prefetch" href="/l2js-client/assets/js/23.c7df84c2.js"><link rel="prefetch" href="/l2js-client/assets/js/25.5a5ef1aa.js"><link rel="prefetch" href="/l2js-client/assets/js/26.a1d86a36.js"><link rel="prefetch" href="/l2js-client/assets/js/27.2d338b92.js"><link rel="prefetch" href="/l2js-client/assets/js/28.254337c1.js"><link rel="prefetch" href="/l2js-client/assets/js/29.d3b1ff95.js"><link rel="prefetch" href="/l2js-client/assets/js/30.a3b86910.js"><link rel="prefetch" href="/l2js-client/assets/js/31.7bc72c5c.js"><link rel="prefetch" href="/l2js-client/assets/js/32.98e0fefa.js"><link rel="prefetch" href="/l2js-client/assets/js/33.4cc35594.js"><link rel="prefetch" href="/l2js-client/assets/js/34.c9d67777.js"><link rel="prefetch" href="/l2js-client/assets/js/35.18c65810.js"><link rel="prefetch" href="/l2js-client/assets/js/36.d81c8935.js"><link rel="prefetch" href="/l2js-client/assets/js/4.aa09bcd1.js"><link rel="prefetch" href="/l2js-client/assets/js/5.31b7fe5c.js"><link rel="prefetch" href="/l2js-client/assets/js/6.e4164729.js"><link rel="prefetch" href="/l2js-client/assets/js/7.a3cfb53c.js"><link rel="prefetch" href="/l2js-client/assets/js/8.03ce522f.js"><link rel="prefetch" href="/l2js-client/assets/js/9.7d0ddb08.js"><link rel="prefetch" href="/l2js-client/assets/js/vendors~docsearch.4a8594da.js">
+    <link rel="stylesheet" href="/l2js-client/assets/css/0.styles.eddc6afd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/l2js-client/ru/" aria-current="page" class="home-link router-link-exact-active router-link-active"><!----> <span class="site-name">Lineage 2 JavaScript клиент</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/l2js-client/ru/guide/" class="nav-link">
+  Документация
+</a></div><div class="nav-item"><a href="https://github.com/npetrovski/l2js-client" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">Язык</span> <span class="arrow down"></span></button> <button type="button" aria-label="Select language" class="mobile-dropdown-title"><span class="title">Язык</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/l2js-client/" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/l2js-client/ru/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Русский
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/l2js-client/ru/guide/" class="nav-link">
+  Документация
+</a></div><div class="nav-item"><a href="https://github.com/npetrovski/l2js-client" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">Язык</span> <span class="arrow down"></span></button> <button type="button" aria-label="Select language" class="mobile-dropdown-title"><span class="title">Язык</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/l2js-client/" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/l2js-client/ru/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Русский
+</a></li></ul></div></div> <!----></nav>  <!----> </aside> <main aria-labelledby="main-title" class="home"><header class="hero"><img src="https://sun9-25.userapi.com/c5529/u167131263/-6/x_0bc872b7.jpg" alt="hero"> <h1 id="main-title">
+      Lineage 2 JavaScript клиент
+    </h1> <p class="description">
+      Идея состоит в том, чтобы иметь клиентскую библиотеку Lineage 2, которая позволяет другим проектам создавать клиентские функции L2, ботов, игровых помощников или тесты
+    </p> <p class="action"><a href="/l2js-client/ru/guide/" class="nav-link action-button">
+  Быстрый старт →
+</a></p></header> <div class="features"><div class="feature"><h2>TypeScript</h2> <p>Использование новейших языковых функций обеспечивает структуру для создания сложных приложений, но достаточно гибко, чтобы не мешать.</p></div><div class="feature"><h2>Прогрессивный</h2> <p>Использует преимущества новейших функций JavaScript, привнося шаблоны проектирования и зрелые решения в Node.js мир.</p></div><div class="feature"><h2>Разносторонний</h2> <p>Адаптируемая экосистема, которая является полноценной основой для всех видов серверных приложений.</p></div></div> <div class="theme-default-content custom content__default"></div> <div class="footer">
+    Made by Nikolay Petrovski
+  </div></main></div><div class="global-ui"></div></div>
+    <script src="/l2js-client/assets/js/app.6dac1ba3.js" defer></script><script src="/l2js-client/assets/js/3.f1fc7c25.js" defer></script><script src="/l2js-client/assets/js/24.2d1743b4.js" defer></script>
+  </body>
+</html>

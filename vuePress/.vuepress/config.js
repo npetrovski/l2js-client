@@ -10,7 +10,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
-  description: 'This project was made while experimenting with TypeScript and es6. The idea is to have an NCSoft Lineage 2 client library, that allows other projects to build L2 client functionalities (like bots, game helpers, etc.) on top of it. It can be also used as a framework for building Lineage2 automated tests for L2 private servers.',
+  description: 'The idea is to have an Lineage 2 client library, that allows other projects to build L2 client functionalities, bots, game helpers or tests',
 
   /**
    * Extra tags to be injected to the page HTML `<head>`
@@ -29,41 +29,100 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
+    locales: {
+      '/': {
+        selectText: 'Languages',
+        label: 'English',
+        ariaLabel: 'Languages',
+        editLinkText: 'Edit this page on GitHub',
+        serviceWorker: {
+          updatePopup: {
+            message: "New content is available.",
+            buttonText: "Refresh"
+          }
+        },
+        algolia: {},
+        nav: [
+          { text: 'Docs', link: '/guide/',},
+          { text: 'GitHub', link: 'https://github.com/npetrovski/l2js-client'}
+        ],
+        sidebar: {
+          '/guide/': [
+            {
+              title: 'Guide',
+              collapsable: false,
+              children: [
+                '',
+                'installation',
+                'examples',
+                'api',
+                'authorizationProcedure',
+                'protocolOverview',
+                'loginProtocol',
+                'gameProtocol',
+                'todo',
+                'contributing',
+                'community',
+              ]
+            }
+          ],
+        },
+      },
+      '/ru/': {
+        selectText: 'Язык',
+        label: 'Русский',
+        editLinkText: 'Редактировать на GitHub',
+        serviceWorker: {
+          updatePopup: {
+            message: "Доступен новый контент.",
+            buttonText: "Обновить"
+          }
+        },
+        nav: [
+          { text: 'Документация', link: '/ru/guide/',},
+          { text: 'GitHub', link: 'https://github.com/npetrovski/l2js-client'}
+        ],
+        algolia: {},
+        sidebar: {
+          '/ru/guide/': [
+            {
+              title: 'Гайд',
+              collapsable: false,
+              children: [
+                '',
+                'installation',
+                'examples',
+                'api',
+                'authorizationProcedure',
+                'protocolOverview',
+                'loginProtocol',
+                'gameProtocol',
+                'todo',
+                'contributing',
+                'community',
+              ]
+            }
+          ],
+        },
+      }
+    },
     repo: '',
     editLinks: false,
     docsDir: '',
     editLinkText: '',
-    lastUpdated: false,
-    nav: [
-      {
-        text: 'Docs',
-        link: '/guide/',
-      },
-      {
-        text: 'GitHub',
-        link: 'https://github.com/npetrovski/l2js-client'
-      }
-    ],
-    sidebar: {
-      '/guide/': [
-        {
-          title: 'Guide',
-          collapsable: false,
-          children: [
-            '',
-            'installation',
-            'examples',
-            'api',
-            'authorizationProcedure',
-            'protocolOverview',
-            'loginProtocol',
-            'gameProtocol',
-            'todo',
-            'contributing',
-            'community',
-          ]
-        }
-      ],
+    lastUpdated: false
+  },
+
+  locales: {
+    '/': {
+      lang: 'en-US',
+      title: 'Lineage 2 JavaScript Client',
+      description: 'The idea is to have an Lineage 2 client library, that allows other projects to build L2 client functionalities, bots, game helpers or tests'
+    },
+    '/ru/': {
+      lang: 'ru-RU',
+      title: 'Lineage 2 JavaScript клиент',
+      description: 'Идея состоит в том, чтобы иметь клиентскую библиотеку Lineage 2, которая позволяет другим проектам создавать клиентские функции L2, ботов, игровых помощников или тесты'
     }
   },
 
