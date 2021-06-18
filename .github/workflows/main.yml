@@ -9,3 +9,5 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@${{ env.GITHUB_REF }}
+    - name: Build Docs
+      run: npm run build:docs
