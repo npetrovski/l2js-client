@@ -1,0 +1,11 @@
+name: Build Documentation
+on:
+  push:
+    paths:
+      - vuePress/**
+jobs:
+  build-documentation:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@${{ env.GITHUB_REF }}
