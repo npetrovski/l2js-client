@@ -2,8 +2,9 @@
 
 This project was made while experimenting with TypeScript and es6. The idea is to have an NCSoft Lineage 2 client library, that allows other projects to build L2 client functionalities (like bots, game helpers, etc.) on top of it. It can be also used as a framework for building Lineage2 automated tests for L2 private servers.
 
-[![book](https://gromov-io.github.io/l2js-client/book.png) Documentation in English ![en](https://gromov-io.github.io/l2js-client/us.png)](https://npetrovski.github.io/l2js-client/)   
-[![book](https://gromov-io.github.io/l2js-client/book.png) Документация на Русском ![en](https://gromov-io.github.io/l2js-client/ru.png)](https://npetrovski.github.io/l2js-client/ru/)   
+[🕮 🇺🇸 Documentation in English](https://npetrovski.github.io/l2js-client/)
+
+[🕮 🇷🇺 Документация на Русском](https://npetrovski.github.io/l2js-client/ru/)
 
 
 ## Documentation
