@@ -4,7 +4,7 @@ const FOLLOW_NAME = "Adm";
 const FOLLOW_DIST = 100;
 
 l2.on("LoggedIn", () => {
-  const followLoop = setInterval(() => {
+  setInterval(() => {
     if (!l2.Me.IsDead && l2.Me.IsReady) {
       const creature = l2.CreaturesList.getEntryByName(FOLLOW_NAME);
       if (creature) {

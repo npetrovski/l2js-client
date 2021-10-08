@@ -10,12 +10,14 @@
     "move": "node dist/move.js",
     "follow": "node dist/follow.js",
     "follow-advanced": "node dist/follow-advanced.js",
+    "follow-vector": "node dist/follow-vector.js",
     "bot": "node dist/bot.js",
     "craft": "node dist/craft.js",
     "revive": "node dist/revive.js",
     "proxy": "node dist/proxy.js",
     "respond-to-attack": "node dist/respond-to-attack.js",
     "custom-command": "node dist/custom-command.js",
+    "fisherman": "node dist/fisherman.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
