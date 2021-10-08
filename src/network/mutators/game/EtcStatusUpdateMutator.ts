@@ -9,74 +9,78 @@ export default class EtcStatusUpdateMutator extends IMMOClientMutator<
   EtcStatusUpdate
 > {
   update(packet: EtcStatusUpdate): void {
-    for (const id of EtcStatusUpdate.ETC_BUFFS) {
-      this.Client.BuffsList.removeById(id);
-    }
+    const list = this.Client.BuffsList;
 
-    if (packet.Charges > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(EtcStatusUpdate.ETC_INCREASE_FORCE, packet.Charges)
-      );
-    }
+    if (list) {
+      for (const id of EtcStatusUpdate.ETC_BUFFS) {
+        list.removeById(id);
+      }
 
-    if (packet.WeightPenalty > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(EtcStatusUpdate.ETC_WEIGHT_PENALTY, packet.WeightPenalty)
-      );
-    }
+      if (packet.Charges > 0) {
+        list.add(
+          new L2Buff(EtcStatusUpdate.ETC_INCREASE_FORCE, packet.Charges)
+        );
+      }
 
-    if (packet.MessageRefusal > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(EtcStatusUpdate.ETC_BLOCK_ALL_CHAT, packet.MessageRefusal)
-      );
-    }
+      if (packet.WeightPenalty > 0) {
+        list.add(
+          new L2Buff(EtcStatusUpdate.ETC_WEIGHT_PENALTY, packet.WeightPenalty)
+        );
+      }
 
-    if (packet.InsideDangerZone > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(EtcStatusUpdate.ETC_DANGER_AREA, packet.InsideDangerZone)
-      );
-    }
+      if (packet.MessageRefusal > 0) {
+        list.add(
+          new L2Buff(EtcStatusUpdate.ETC_BLOCK_ALL_CHAT, packet.MessageRefusal)
+        );
+      }
 
-    if (packet.ExpertiseWeaponPenalty > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(
-          EtcStatusUpdate.ETC_WEAPON_GRADE_PENALTY,
-          packet.ExpertiseWeaponPenalty
-        )
-      );
-    }
+      if (packet.InsideDangerZone > 0) {
+        list.add(
+          new L2Buff(EtcStatusUpdate.ETC_DANGER_AREA, packet.InsideDangerZone)
+        );
+      }
 
-    if (packet.ExpertiseArmorPenalty > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(
-          EtcStatusUpdate.ETC_ARMOR_GRADE_PENALTY,
-          packet.ExpertiseArmorPenalty
-        )
-      );
-    }
+      if (packet.ExpertiseWeaponPenalty > 0) {
+        list.add(
+          new L2Buff(
+            EtcStatusUpdate.ETC_WEAPON_GRADE_PENALTY,
+            packet.ExpertiseWeaponPenalty
+          )
+        );
+      }
 
-    if (packet.HasCharmOfCourage > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(
-          EtcStatusUpdate.ETC_CHARM_OF_COURAGE,
-          packet.HasCharmOfCourage
-        )
-      );
-    }
+      if (packet.ExpertiseArmorPenalty > 0) {
+        list.add(
+          new L2Buff(
+            EtcStatusUpdate.ETC_ARMOR_GRADE_PENALTY,
+            packet.ExpertiseArmorPenalty
+          )
+        );
+      }
 
-    if (packet.DeathPenaltyBuffLevel > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(
-          EtcStatusUpdate.ETC_DEATH_PENALTY,
-          packet.DeathPenaltyBuffLevel
-        )
-      );
-    }
+      if (packet.HasCharmOfCourage > 0) {
+        list.add(
+          new L2Buff(
+            EtcStatusUpdate.ETC_CHARM_OF_COURAGE,
+            packet.HasCharmOfCourage
+          )
+        );
+      }
 
-    if (packet.ChargedSouls > 0) {
-      this.Client.BuffsList.add(
-        new L2Buff(EtcStatusUpdate.ETC_SOUL_EXPANSION, packet.ChargedSouls)
-      );
+      if (packet.DeathPenaltyBuffLevel > 0) {
+        list.add(
+          new L2Buff(
+            EtcStatusUpdate.ETC_DEATH_PENALTY,
+            packet.DeathPenaltyBuffLevel
+          )
+        );
+      }
+
+      if (packet.ChargedSouls > 0) {
+        list.add(
+          new L2Buff(EtcStatusUpdate.ETC_SOUL_EXPANSION, packet.ChargedSouls)
+        );
+      }
     }
   }
 }

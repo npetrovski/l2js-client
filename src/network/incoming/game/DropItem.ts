@@ -4,11 +4,13 @@ import L2DroppedItem from "../../../entities/L2DroppedItem";
 export default class DropItem extends GameClientPacket {
   Item: L2DroppedItem = new L2DroppedItem();
 
+  CharObjectId!: number;
+
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
 
-    const _charObjectId = this.readD();
+    this.CharObjectId = this.readD();
     this.Item.ObjectId = this.readD();
     this.Item.Id = this.readD();
 

@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "tsc",
     "login": "node dist/login.js",
+    "adena-painter": "node dist/adena-painter.js",
     "chat": "node dist/chat.js",
     "move": "node dist/move.js",
     "follow": "node dist/follow.js",

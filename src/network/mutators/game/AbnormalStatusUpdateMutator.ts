@@ -7,14 +7,17 @@ export default class AbnormalStatusUpdateMutator extends IMMOClientMutator<
   AbnormalStatusUpdate
 > {
   update(packet: AbnormalStatusUpdate): void {
-    packet.AbnormalBuffs.forEach(buff => {
-      this.Client.BuffsList.removeById(buff.Id);
-      this.Client.BuffsList.add(buff);
-      if (buff.RemainingTime > 0) {
-        buff.autoCountDown(() => {
-          this.Client.BuffsList.removeById(buff.Id);
-        });
-      }
-    });
+    const list = this.Client.BuffsList;
+    if (list) {
+      packet.AbnormalBuffs.forEach(buff => {
+        list.removeById(buff.Id);
+        list.add(buff);
+        if (buff.RemainingTime > 0) {
+          buff.autoCountDown(() => {
+            list.removeById(buff.Id);
+          });
+        }
+      });
+    }
   }
 }

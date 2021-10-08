@@ -30,7 +30,7 @@ import L2ObjectCollection from "./entities/L2ObjectCollection";
 import L2Skill from "./entities/L2Skill";
 import L2User from "./entities/L2User";
 import { ShotsType } from "./enums/ShotsType";
-import { GlobalEvents } from "./mmocore/EventEmitter";
+import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
 import MMOClient from "./mmocore/MMOClient";
 import MMOConfig from "./mmocore/MMOConfig";
 import GameClient from "./network/GameClient";
@@ -420,7 +420,9 @@ export default class Client {
     });
   }
 
-  on(...params: EventHandlerType): this {
+  private ___event_params(
+    ...params: EventHandlerType
+  ): { type: string; handler: EventHandler } {
     let type: string;
     let handler: any;
     if (params.length >= 3) {
@@ -430,7 +432,19 @@ export default class Client {
       type = params[0];
       handler = params[1];
     }
-    GlobalEvents.on(type, handler as any);
+
+    return { type, handler };
+  }
+
+  on(...params: EventHandlerType): this {
+    const c = this.___event_params(...params);
+    GlobalEvents.on(c.type, c.handler);
+    return this;
+  }
+
+  off(...params: EventHandlerType): this {
+    const c = this.___event_params(...params);
+    GlobalEvents.off(c.type, c.handler);
     return this;
   }
 }
