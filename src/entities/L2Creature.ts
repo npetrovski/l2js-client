@@ -5,6 +5,7 @@ import Vector from "../mmocore/Vector";
 import { GlobalEvents } from "../mmocore/EventEmitter";
 import L2ObjectCollection from "./L2ObjectCollection";
 import L2Buff from "./L2Buff";
+import { Console } from "console";
 
 export default abstract class L2Creature extends L2Object {
   private _hp!: number;
@@ -12,6 +13,8 @@ export default abstract class L2Creature extends L2Object {
   private _maxHp!: number;
   private _maxMp!: number;
   private _isRunning!: boolean;
+  private _isSitting!: boolean;
+  private _isFishing!: boolean;
 
   private _hpPercent!: number;
   private _mpPercent!: number;
@@ -19,11 +22,15 @@ export default abstract class L2Creature extends L2Object {
   private _dx!: number;
   private _dy!: number;
   private _dz!: number;
-
+  private _pAtk!: number;
+  private _pAtkSpd!: number;
+  private _mAtk!: number;
+  private _mAtkSpd!: number;
   private _isDead = false;
   private _runSpeed!: number;
   private _walkSpeed!: number;
   private _speedMultiplier!: number;
+  private _atkSpdMultiplier!: number;
   private _swimRunSpeed!: number;
   private _swimWalkSpeed!: number;
   private _flyRunSpeed!: number;
@@ -36,20 +43,15 @@ export default abstract class L2Creature extends L2Object {
   private _isTargetable!: boolean;
   private _target!: L2Object | null;
   private _sex!: Sex;
-
+  private _recommHave!: number;
   private _classId!: number;
-
   private _className!: string;
-
   private _baseClassId!: number;
-
   private _baseClassName!: string;
-
   private _race!: Race;
   private _isMoving = false;
-  private _movingVector!: Vector;
-
   private _isReady = true;
+  private _karma!: number;
 
   private _buffs: L2ObjectCollection<L2Buff> = new L2ObjectCollection();
 
@@ -224,6 +226,22 @@ export default abstract class L2Creature extends L2Object {
     this._isRunning = value;
   }
 
+  public get IsSitting(): boolean {
+    return this._isSitting;
+  }
+
+  public set IsSitting(value: boolean) {
+    this._isSitting = value;
+  }
+
+  public get IsFishing(): boolean {
+    return this._isFishing;
+  }
+
+  public set IsFishing(value: boolean) {
+    this._isFishing = value;
+  }
+
   public get HpPercent(): number {
     return this._hpPercent;
   }
@@ -296,6 +314,60 @@ export default abstract class L2Creature extends L2Object {
     this._speedMultiplier = value;
   }
 
+  public get AtkSpdMultiplier(): number {
+    return this._atkSpdMultiplier;
+  }
+
+  public set AtkSpdMultiplier(value: number) {
+    this._atkSpdMultiplier = value;
+  }
+
+  public get PAtk(): number {
+    return this._pAtk;
+  }
+
+  public set PAtk(value: number) {
+    this._pAtk = value;
+  }
+
+  public get PAtkSpd(): number {
+    return this._pAtkSpd;
+  }
+
+  public set PAtkSpd(value: number) {
+    this._pAtkSpd = value;
+  }
+  public get MAtk(): number {
+    return this._mAtk;
+  }
+
+  public set MAtk(value: number) {
+    this._mAtk = value;
+  }
+
+  public get MAtkSpd(): number {
+    return this._mAtkSpd;
+  }
+
+  public set MAtkSpd(value: number) {
+    this._mAtkSpd = value;
+  }
+  public get RecommHave(): number {
+    return this._recommHave;
+  }
+
+  public set RecommHave(value: number) {
+    this._recommHave = value;
+  }
+
+  public get Karma(): number {
+    return this._karma;
+  }
+
+  public set Karma(value: number) {
+    this._karma = value;
+  }
+
   public get IsInCombat(): boolean {
     return this._isInCombat;
   }
@@ -325,61 +397,58 @@ export default abstract class L2Creature extends L2Object {
   }
 
   public set IsMoving(value: boolean) {
+    this._isMoving = value;
     if (value) {
       GlobalEvents.fire("StartMoving", { creature: this });
     } else {
       GlobalEvents.fire("StopMoving", { creature: this });
     }
-    clearInterval(this._moveInterval);
-    this._isMoving = value;
-  }
-
-  public get MovingVector(): Vector {
-    return this._movingVector;
-  }
-
-  public set MovingVector(value: Vector) {
-    this._movingVector = value;
   }
 
   public get CurrentSpeed(): number {
     return this.IsRunning
-      ? this.RunSpeed * this.SpeedMultiplier
-      : this.WalkSpeed * this.SpeedMultiplier;
+      ? this.RunSpeed * (this.SpeedMultiplier > 0 ? this.SpeedMultiplier : 1)
+      : this.WalkSpeed * (this.SpeedMultiplier > 0 ? this.SpeedMultiplier : 1);
   }
 
   private _moveInterval!: ReturnType<typeof setInterval>;
 
   public setMovingTo(
+    x: number,
+    y: number,
+    z: number,
     dx: number,
     dy: number,
     dz: number,
     heading?: number
   ): void {
+    clearInterval(this._moveInterval);
+
     this.Dx = dx;
     this.Dy = dy;
     this.Dz = dz;
-    this.MovingVector = new Vector(dx - this.X, dy - this.Y);
 
-    let moveCnt = Math.ceil(
-      this.MovingVector.length() / (this.CurrentSpeed / 10)
-    );
+    this.X = x;
+    this.Y = y;
+    this.Z = z;
 
-    this.IsMoving = true;
+    const movingVector: Vector = new Vector(dx - this.X, dy - this.Y);
+
+    let ticks = Math.ceil(movingVector.length() / (this.CurrentSpeed / 10));
+    movingVector.normalize();
 
     this._moveInterval = setInterval(() => {
-      this.MovingVector.normalize();
-      this.X += Math.floor(this.MovingVector.X * (this.CurrentSpeed / 10));
-      this.Y += Math.floor(this.MovingVector.Y * (this.CurrentSpeed / 10));
+      this.IsMoving = true;
+      this.X += Math.floor(movingVector.X * (this.CurrentSpeed / 10));
+      this.Y += Math.floor(movingVector.Y * (this.CurrentSpeed / 10));
 
-      moveCnt--;
-      if (moveCnt > 0) {
-        this.MovingVector = new Vector(dx - this.X, dy - this.Y);
-      } else {
-        clearInterval(this._moveInterval);
+      ticks--;
+      if (ticks <= 0) {
         this.IsMoving = false;
         this.X = this.Dx;
         this.Y = this.Dy;
+
+        clearInterval(this._moveInterval);
       }
     }, 100);
   }

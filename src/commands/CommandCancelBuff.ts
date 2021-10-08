@@ -1,11 +1,15 @@
 import L2Buff from "../entities/L2Buff";
 import L2Character from "../entities/L2Character";
 import GameClient from "../network/GameClient";
-import RequestDispel from "../network/clientpackets/RequestDispel";
+import RequestDispel from "../network/outgoing/game/RequestDispel";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandCancelBuff extends AbstractGameCommand<GameClient> {
-  execute(object: L2Character | number, buff: L2Buff | number, level?: number): void {
+  execute(
+    object: L2Character | number,
+    buff: L2Buff | number,
+    level?: number
+  ): void {
     if (object instanceof L2Character) {
       object = object.ObjectId;
     }

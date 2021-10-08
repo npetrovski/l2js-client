@@ -6,7 +6,6 @@ This project was made while experimenting with TypeScript and es6. The idea is t
 
 [🕮 🇷🇺 Документация на Русском](https://npetrovski.github.io/l2js-client/ru/)
 
-
 ## Documentation
 
 The [l2js-client documentation](https://npetrovski.github.io/l2js-client/) are loaded with awesome stuff and tell you every thing you need to know about using and configuring l2js-client.

@@ -1,136 +1,135 @@
 import IPacketHandler from "../mmocore/IPacketHandler";
 import ReceivablePacket from "../mmocore/ReceivablePacket";
-import AbnormalStatusUpdate from "./serverpackets/AbnormalStatusUpdate";
-import AskJoinParty from "./serverpackets/AskJoinParty";
-import Attack from "./serverpackets/Attack";
-import AutoAttackStart from "./serverpackets/AutoAttackStart";
-import AutoAttackStop from "./serverpackets/AutoAttackStop";
-import ChangeMoveType from "./serverpackets/ChangeMoveType";
-import CharInfo from "./serverpackets/CharInfo";
-import CharSelected from "./serverpackets/CharSelected";
-import CharSelectionInfo from "./serverpackets/CharSelectionInfo";
-import CreatureSay from "./serverpackets/CreatureSay";
-import DeleteObject from "./serverpackets/DeleteObject";
-import Die from "./serverpackets/Die";
-import DropItem from "./serverpackets/DropItem";
-import EquipUpdate from "./serverpackets/EquipUpdate";
-import EtcStatusUpdate from "./serverpackets/EtcStatusUpdate";
-import ExBrExtraUserInfo from "./serverpackets/ExBrExtraUserInfo";
-import ExDuelAskStart from "./serverpackets/ExDuelAskStart";
-import ExQuestItemList from "./serverpackets/ExQuestItemList";
-import ExRedSky from "./serverpackets/ExRedSky";
-import ExVoteSystemInfo from "./serverpackets/ExVoteSystemInfo";
-import ItemList from "./serverpackets/ItemList";
-import JoinParty from "./serverpackets/JoinParty";
-import KeyPacket from "./serverpackets/KeyPacket";
-import MoveToLocation from "./serverpackets/MoveToLocation";
-import MoveToPawn from "./serverpackets/MoveToPawn";
-import MyTargetSelected from "./serverpackets/MyTargetSelected";
-import NpcInfo from "./serverpackets/NpcInfo";
-import NpcQuestHtmlMessage from "./serverpackets/NpcQuestHtmlMessage";
-import NpcSay from "./serverpackets/NpcSay";
-import PartyMemberPosition from "./serverpackets/PartyMemberPosition";
-import PartySmallWindowAdd from "./serverpackets/PartySmallWindowAdd";
-import PartySmallWindowAll from "./serverpackets/PartySmallWindowAll";
-import PartySmallWindowDelete from "./serverpackets/PartySmallWindowDelete";
-import PartySmallWindowDeleteAll from "./serverpackets/PartySmallWindowDeleteAll";
-import PartySmallWindowUpdate from "./serverpackets/PartySmallWindowUpdate";
-import PetDelete from "./serverpackets/PetDelete";
-import RelationChanged from "./serverpackets/RelationChanged";
-import Revive from "./serverpackets/Revive";
-import ShortCutInit from "./serverpackets/ShortCutInit";
-import SkillCoolTime from "./serverpackets/SkillCoolTime";
-import SkillList from "./serverpackets/SkillList";
-import Snoop from "./serverpackets/Snoop";
-import SocialAction from "./serverpackets/SocialAction";
-import SpawnItem from "./serverpackets/SpawnItem";
-import SSQInfo from "./serverpackets/SSQInfo";
-import StaticObject from "./serverpackets/StaticObject";
-import StatusUpdate from "./serverpackets/StatusUpdate";
-import StopMove from "./serverpackets/StopMove";
-import StopRotation from "./serverpackets/StopRotation";
-import SunRise from "./serverpackets/SunRise";
-import SunSet from "./serverpackets/SunSet";
-import SystemMessage from "./serverpackets/SystemMessage";
-import TargetSelected from "./serverpackets/TargetSelected";
-import TargetUnselected from "./serverpackets/TargetUnselected";
-import TeleportToLocation from "./serverpackets/TeleportToLocation";
-import TutorialEnableClientEvent from "./serverpackets/TutorialEnableClientEvent";
-import TutorialShowQuestionMark from "./serverpackets/TutorialShowQuestionMark";
-import UserInfo from "./serverpackets/UserInfo";
-import ValidateLocation from "./serverpackets/ValidateLocation";
+import AbnormalStatusUpdate from "./incoming/game/AbnormalStatusUpdate";
+import AskJoinParty from "./incoming/game/AskJoinParty";
+import Attack from "./incoming/game/Attack";
+import AutoAttackStart from "./incoming/game/AutoAttackStart";
+import AutoAttackStop from "./incoming/game/AutoAttackStop";
+import ChangeMoveType from "./incoming/game/ChangeMoveType";
+import CharInfo from "./incoming/game/CharInfo";
+import CharSelected from "./incoming/game/CharSelected";
+import CharSelectionInfo from "./incoming/game/CharSelectionInfo";
+import CreatureSay from "./incoming/game/CreatureSay";
+import DeleteObject from "./incoming/game/DeleteObject";
+import Die from "./incoming/game/Die";
+import DropItem from "./incoming/game/DropItem";
+import EquipUpdate from "./incoming/game/EquipUpdate";
+import EtcStatusUpdate from "./incoming/game/EtcStatusUpdate";
+import ExBrExtraUserInfo from "./incoming/game/ExBrExtraUserInfo";
+import ExDuelAskStart from "./incoming/game/ExDuelAskStart";
+import ExQuestItemList from "./incoming/game/ExQuestItemList";
+import ExRedSky from "./incoming/game/ExRedSky";
+import ExVoteSystemInfo from "./incoming/game/ExVoteSystemInfo";
+import ItemList from "./incoming/game/ItemList";
+import JoinParty from "./incoming/game/JoinParty";
+import KeyPacket from "./incoming/game/KeyPacket";
+import MoveToLocation from "./incoming/game/MoveToLocation";
+import MoveToPawn from "./incoming/game/MoveToPawn";
+import MyTargetSelected from "./incoming/game/MyTargetSelected";
+import NpcInfo from "./incoming/game/NpcInfo";
+import NpcQuestHtmlMessage from "./incoming/game/NpcQuestHtmlMessage";
+import NpcSay from "./incoming/game/NpcSay";
+import PartyMemberPosition from "./incoming/game/PartyMemberPosition";
+import PartySmallWindowAdd from "./incoming/game/PartySmallWindowAdd";
+import PartySmallWindowAll from "./incoming/game/PartySmallWindowAll";
+import PartySmallWindowDelete from "./incoming/game/PartySmallWindowDelete";
+import PartySmallWindowDeleteAll from "./incoming/game/PartySmallWindowDeleteAll";
+import PartySmallWindowUpdate from "./incoming/game/PartySmallWindowUpdate";
+import PetDelete from "./incoming/game/PetDelete";
+import RelationChanged from "./incoming/game/RelationChanged";
+import Revive from "./incoming/game/Revive";
+import ShortCutInit from "./incoming/game/ShortCutInit";
+import SkillCoolTime from "./incoming/game/SkillCoolTime";
+import SkillList from "./incoming/game/SkillList";
+import Snoop from "./incoming/game/Snoop";
+import SocialAction from "./incoming/game/SocialAction";
+import SpawnItem from "./incoming/game/SpawnItem";
+import SSQInfo from "./incoming/game/SSQInfo";
+import StaticObject from "./incoming/game/StaticObject";
+import StatusUpdate from "./incoming/game/StatusUpdate";
+import StopMove from "./incoming/game/StopMove";
+import StopRotation from "./incoming/game/StopRotation";
+import SunRise from "./incoming/game/SunRise";
+import SunSet from "./incoming/game/SunSet";
+import SystemMessage from "./incoming/game/SystemMessage";
+import TargetSelected from "./incoming/game/TargetSelected";
+import TargetUnselected from "./incoming/game/TargetUnselected";
+import TeleportToLocation from "./incoming/game/TeleportToLocation";
+import TutorialEnableClientEvent from "./incoming/game/TutorialEnableClientEvent";
+import TutorialShowQuestionMark from "./incoming/game/TutorialShowQuestionMark";
+import UserInfo from "./incoming/game/UserInfo";
+import ValidateLocation from "./incoming/game/ValidateLocation";
 import GameClient from "./GameClient";
-import ActionFailed from "./serverpackets/ActionFailed";
-import RecipeItemMakeInfo from "./serverpackets/RecipeItemMakeInfo";
-import RecipeBookItemList from "./serverpackets/RecipeBookItemList";
-import MagicSkillLaunched from "./serverpackets/MagicSkillLaunched";
-import MagicSkillUse from "./serverpackets/MagicSkillUse";
-import TempBan from "./serverpackets/TempBan";
+import ActionFailed from "./incoming/game/ActionFailed";
+import RecipeItemMakeInfo from "./incoming/game/RecipeItemMakeInfo";
+import RecipeBookItemList from "./incoming/game/RecipeBookItemList";
+import MagicSkillLaunched from "./incoming/game/MagicSkillLaunched";
+import MagicSkillUse from "./incoming/game/MagicSkillUse";
+import TempBan from "./incoming/game/TempBan";
 import Logger from "../mmocore/Logger";
-import PlayerInGame from "./serverpackets/PlayerInGame";
-import ExSendManorList from "./serverpackets/ExSendManorList";
-import ExUISetting from "./serverpackets/ExUISetting";
-import ExSetCompassZoneCode from "./serverpackets/ExSetCompassZoneCode";
-import ExStorageMaxCount from "./serverpackets/ExStorageMaxCount";
-import FriendList from "./serverpackets/FriendList";
-import ExShowContactList from "./serverpackets/ExShowContactList";
-import ExNevitAdventPointInfoPacket from "./serverpackets/ExNevitAdventPointInfoPacket";
-import ExNevitAdventTimeChange from "./serverpackets/ExNevitAdventTimeChange";
-import ExShowScreenMessage from "./serverpackets/ExShowScreenMessage";
-import PledgeInfo from "./serverpackets/PledgeInfo";
-import PrivateStoreListSell from "./serverpackets/PrivateStoreListSell";
-import NpcHtmlMessage from "./serverpackets/NpcHtmlMessage";
-import LeaveWorld from "./serverpackets/LeaveWorld";
-import GetItem from "./serverpackets/GetItem";
-import NormalCamera from "./serverpackets/NormalCamera";
-import NicknameChanged from "./serverpackets/NicknameChanged";
-import ChangeWaitType from "./serverpackets/ChangeWaitType";
-import ShowBoard from "./serverpackets/ShowBoard";
-import ShortCutRegister from "./serverpackets/ShortCutRegister";
-import InventoryUpdate from "./serverpackets/InventoryUpdate";
-import RestartResponse from "./serverpackets/RestartResponse";
-import WareHouseDepositList from "./serverpackets/WareHouseDepositList";
-import WareHouseWithdrawalList from "./serverpackets/WareHouseWithdrawalList";
-import VehicleStarted from "./serverpackets/VehicleStarted";
-import VehicleInfo from "./serverpackets/VehicleInfo";
-import VehicleDeparture from "./serverpackets/VehicleDeparture";
-import VehicleCheckLocation from "./serverpackets/VehicleCheckLocation";
-import ValidateLocationInVehicle from "./serverpackets/ValidateLocationInVehicle";
-import TutorialShowHtml from "./serverpackets/TutorialShowHtml";
-import TutorialCloseHtml from "./serverpackets/TutorialCloseHtml";
-import TradeStart from "./serverpackets/TradeStart";
-import TradeOwnAdd from "./serverpackets/TradeOwnAdd";
-import TradeOtherDone from "./serverpackets/TradeOtherDone";
-import TradeDone from "./serverpackets/TradeDone";
-import SurrenderPledgeWar from "./serverpackets/SurrenderPledgeWar";
-import StopPledgeWar from "./serverpackets/StopPledgeWar";
-import StopMoveInVehicle from "./serverpackets/StopMoveInVehicle";
-import StartRotation from "./serverpackets/StartRotation";
-import StartPledgeWar from "./serverpackets/StartPledgeWar";
-import SpecialCamera from "./serverpackets/SpecialCamera";
-import HennaEquipList from "./serverpackets/HennaEquipList";
-import HennaInfo from "./serverpackets/HennaInfo";
-import HennaItemDrawInfo from "./serverpackets/HennaItemDrawInfo";
-import HennaItemRemoveInfo from "./serverpackets/HennaItemRemoveInfo";
-import HennaRemoveList from "./serverpackets/HennaRemoveList";
-import TradeOtherAdd from "./serverpackets/TradeOtherAdd";
-import ConfirmDlg from "./serverpackets/ConfirmDlg";
-import ServerClose from "./serverpackets/ServerClose";
-import PartySpelled from "./serverpackets/PartySpelled";
-import SendTradeRequest from "./serverpackets/SendTradeRequest";
-import SetupGauge from "./serverpackets/SetupGauge";
+import PlayerInGame from "./incoming/game/PlayerInGame";
+import ExSendManorList from "./incoming/game/ExSendManorList";
+import ExUISetting from "./incoming/game/ExUISetting";
+import ExSetCompassZoneCode from "./incoming/game/ExSetCompassZoneCode";
+import ExStorageMaxCount from "./incoming/game/ExStorageMaxCount";
+import FriendList from "./incoming/game/FriendList";
+import ExShowContactList from "./incoming/game/ExShowContactList";
+import ExNevitAdventPointInfoPacket from "./incoming/game/ExNevitAdventPointInfoPacket";
+import ExNevitAdventTimeChange from "./incoming/game/ExNevitAdventTimeChange";
+import ExShowScreenMessage from "./incoming/game/ExShowScreenMessage";
+import PledgeInfo from "./incoming/game/PledgeInfo";
+import PrivateStoreListSell from "./incoming/game/PrivateStoreListSell";
+import NpcHtmlMessage from "./incoming/game/NpcHtmlMessage";
+import LeaveWorld from "./incoming/game/LeaveWorld";
+import GetItem from "./incoming/game/GetItem";
+import NormalCamera from "./incoming/game/NormalCamera";
+import NicknameChanged from "./incoming/game/NicknameChanged";
+import ChangeWaitType from "./incoming/game/ChangeWaitType";
+import ShowBoard from "./incoming/game/ShowBoard";
+import ShortCutRegister from "./incoming/game/ShortCutRegister";
+import InventoryUpdate from "./incoming/game/InventoryUpdate";
+import RestartResponse from "./incoming/game/RestartResponse";
+import WareHouseDepositList from "./incoming/game/WareHouseDepositList";
+import WareHouseWithdrawalList from "./incoming/game/WareHouseWithdrawalList";
+import VehicleStarted from "./incoming/game/VehicleStarted";
+import VehicleInfo from "./incoming/game/VehicleInfo";
+import VehicleDeparture from "./incoming/game/VehicleDeparture";
+import VehicleCheckLocation from "./incoming/game/VehicleCheckLocation";
+import ValidateLocationInVehicle from "./incoming/game/ValidateLocationInVehicle";
+import TutorialShowHtml from "./incoming/game/TutorialShowHtml";
+import TutorialCloseHtml from "./incoming/game/TutorialCloseHtml";
+import TradeStart from "./incoming/game/TradeStart";
+import TradeOwnAdd from "./incoming/game/TradeOwnAdd";
+import TradeOtherDone from "./incoming/game/TradeOtherDone";
+import TradeDone from "./incoming/game/TradeDone";
+import SurrenderPledgeWar from "./incoming/game/SurrenderPledgeWar";
+import StopPledgeWar from "./incoming/game/StopPledgeWar";
+import StopMoveInVehicle from "./incoming/game/StopMoveInVehicle";
+import StartRotation from "./incoming/game/StartRotation";
+import StartPledgeWar from "./incoming/game/StartPledgeWar";
+import SpecialCamera from "./incoming/game/SpecialCamera";
+import HennaEquipList from "./incoming/game/HennaEquipList";
+import HennaInfo from "./incoming/game/HennaInfo";
+import HennaItemDrawInfo from "./incoming/game/HennaItemDrawInfo";
+import HennaItemRemoveInfo from "./incoming/game/HennaItemRemoveInfo";
+import HennaRemoveList from "./incoming/game/HennaRemoveList";
+import TradeOtherAdd from "./incoming/game/TradeOtherAdd";
+import ConfirmDlg from "./incoming/game/ConfirmDlg";
+import ServerClose from "./incoming/game/ServerClose";
+import PartySpelled from "./incoming/game/PartySpelled";
+import SendTradeRequest from "./incoming/game/SendTradeRequest";
+import SetupGauge from "./incoming/game/SetupGauge";
+import ExFishingEnd from "./incoming/game/ExFishingEnd";
+import ExFishingHpRegen from "./incoming/game/ExFishingHpRegen";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
   // @Override
-  handlePacket(
-    data: Uint8Array,
-    client: GameClient
-  ): ReceivablePacket<GameClient> {
+  handlePacket(data: Uint8Array, client: GameClient): ReceivablePacket {
     const opcode: number = data[0] & 0xff;
 
-    let rpk!: ReceivablePacket<GameClient>;
+    let rpk!: ReceivablePacket;
 
     try {
       switch (opcode) {
@@ -446,8 +445,14 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xfe: {
           const sub = data[1] + (data[2] << 8);
           switch (sub) {
+            case 0x1f:
+              rpk = new ExFishingEnd();
+              break;
             case 0x22:
               rpk = new ExSendManorList();
+              break;
+            case 0x28:
+              rpk = new ExFishingHpRegen();
               break;
             case 0x2f:
               rpk = new ExStorageMaxCount();
@@ -490,38 +495,31 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               break;
 
             default:
-              if (data.byteLength > 2) {
-                this.logger.debug(
-                  "Unknown game packet received. [0x" +
-                    opcode.toString(16) +
-                    " 0x" +
-                    data[1].toString(16) +
-                    "] len=" +
-                    data.byteLength
-                );
-              }
-
-              return rpk;
+              // no-op
+              break;
           }
           break;
         }
         default:
-          if (data.byteLength > 2) {
-            this.logger.debug(
-              "Unknown game packet received. [0x" +
-                opcode.toString(16) +
-                " 0x" +
-                data[1].toString(16) +
-                "] len=" +
-                data.byteLength
-            );
-          }
-
-          return rpk;
+          // no-op
+          break;
       }
 
-      rpk.Client = client;
-      rpk.Buffer = data;
+      if (!rpk) {
+        if (data.byteLength > 2) {
+          this.logger.debug(
+            "Unknown game packet received. [0x" +
+              opcode.toString(16) +
+              " 0x" +
+              data[1].toString(16) +
+              "] len=" +
+              data.byteLength
+          );
+        }
+      } else {
+        // rpk.Client = client;
+        rpk.Buffer = data;
+      }
     } catch (err) {
       this.logger.error(err);
     }

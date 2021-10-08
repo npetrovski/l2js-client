@@ -1,9 +1,13 @@
 import AbstractGameCommand from "./AbstractGameCommand";
 import GameClient from "../network/GameClient";
-import RequestAnswerJoinParty from "../network/clientpackets/RequestAnswerJoinParty";
+import RequestAnswerJoinParty from "../network/outgoing/game/RequestAnswerJoinParty";
 
-export default class CommandAcceptJoinParty extends AbstractGameCommand<GameClient> {
+export default class CommandAcceptJoinParty extends AbstractGameCommand<
+  GameClient
+> {
   execute(): void {
-    this.Client?.sendPacket(new RequestAnswerJoinParty(RequestAnswerJoinParty.ANSWER_ACCEPT));
+    this.Client?.sendPacket(
+      new RequestAnswerJoinParty(RequestAnswerJoinParty.ANSWER_ACCEPT)
+    );
   }
 }

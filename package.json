@@ -1,6 +1,6 @@
 {
   "name": "l2js-client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "chronicle": "High Five",
   "protocols": [
     268,
@@ -40,15 +40,15 @@
   },
   "homepage": "https://github.com/npetrovski/l2js-client",
   "dependencies": {
-    "big-integer": "^1.6.48"
+    "big-integer": "^1.6.49"
   },
   "devDependencies": {
-    "@types/node": "^13.13.2",
-    "@types/node-rsa": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.0",
-    "@typescript-eslint/parser": "^4.14.0",
-    "eslint": "^7.18.0",
-    "typescript": "^3.8.3",
+    "@types/node": "^13.13.52",
+    "@types/node-rsa": "^1.1.1",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "typescript": "^3.9.10",
     "vuepress": "^1.5.3"
   }
 }

@@ -1,7 +1,7 @@
 import AbstractPacket from "./AbstractPacket";
 import MMOClient from "./MMOClient";
 
-export default abstract class SendablePacket<T extends MMOClient> extends AbstractPacket<T> {
+export default abstract class SendablePacket extends AbstractPacket {
   static readonly PACKET_MAX_SIZE: number = 4096;
   _buffer: Uint8Array = new Uint8Array(SendablePacket.PACKET_MAX_SIZE);
   _offset = 0;

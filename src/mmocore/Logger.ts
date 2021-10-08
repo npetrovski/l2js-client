@@ -5,7 +5,7 @@ export enum LogLevel {
   INFO = 1,
   WARNING = 2,
   ERROR = 4,
-  DEBUG = 8,
+  DEBUG = 8
 }
 
 export default class Logger implements ILogger {
@@ -26,27 +26,59 @@ export default class Logger implements ILogger {
     return new Logger(ctx);
   }
 
-  debug(message: string, ...data: any[]): void {
+  debug(message: string | any, ...data: any[]): void {
     if (this._logLevel >= LogLevel.DEBUG) {
-      this._log("\x1b[36m[" + new Date().toLocaleString() + "]\x1b[m DEBUG " + this._context + " " + message, data);
+      this._log(
+        "\x1b[36m[" +
+          new Date().toLocaleString() +
+          "]\x1b[m DEBUG " +
+          this._context +
+          " " +
+          message,
+        data
+      );
     }
   }
-  error(message: string, ...data: any[]): void {
+  error(message: string | any, ...data: any[]): void {
     if (this._logLevel >= LogLevel.ERROR) {
-      this._log("\x1b[31m[" + new Date().toLocaleString() + "]\x1b[m ERROR " + this._context + " " + message, data);
+      this._log(
+        "\x1b[31m[" +
+          new Date().toLocaleString() +
+          "]\x1b[m ERROR " +
+          this._context +
+          " " +
+          message,
+        data
+      );
     }
   }
-  warn(message: string, ...data: any[]): void {
+  warn(message: string | any, ...data: any[]): void {
     if (this._logLevel >= LogLevel.WARNING) {
-      this._log("\x1b[33m[" + new Date().toLocaleString() + "]\x1b[m WARN " + this._context + " " + message, data);
+      this._log(
+        "\x1b[33m[" +
+          new Date().toLocaleString() +
+          "]\x1b[m WARN " +
+          this._context +
+          " " +
+          message,
+        data
+      );
     }
   }
-  info(message: string, ...data: any[]): void {
+  info(message: string | any, ...data: any[]): void {
     if (this._logLevel >= LogLevel.INFO) {
-      this._log("\x1b[32m[" + new Date().toLocaleString() + "]\x1b[m INFO " + this._context + " " + message, data);
+      this._log(
+        "\x1b[32m[" +
+          new Date().toLocaleString() +
+          "]\x1b[m INFO " +
+          this._context +
+          " " +
+          message,
+        data
+      );
     }
   }
-  private _log(msg: string, data: any[]): void {
+  private _log(msg: string | any, data: any[]): void {
     if (data.length > 0) {
       console.log(msg, data);
     } else {

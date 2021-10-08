@@ -7,19 +7,13 @@ export default class L2User extends L2Character {
   private _INT!: number;
   private _WIT!: number;
   private _MEN!: number;
-  private _pAtk!: number;
-  private _pAtkSpd!: number;
-  private _atkSpdMultiplier!: number;
   private _pDef!: number;
   private _evasionRate!: number;
   private _accuracy!: number;
   private _crit!: number;
-  private _mAtk!: number;
-  private _mAtkSpd!: number;
   private _mDef!: number;
   private _pvpKills!: number;
   private _pkKills!: number;
-  private _karma!: number;
   private _atkElementPower!: number;
   private _defFire!: number;
   private _defWater!: number;
@@ -28,29 +22,15 @@ export default class L2User extends L2Character {
   private _defHoly!: number;
   private _defUnholy!: number;
   private _recommLeft!: number;
-  private _recommHave!: number;
   private _fame!: number;
-
   private _vitality!: number;
-  private _isSitting!: boolean;
-
   private _exp!: number;
   private _expPercent!: number;
   private _sp!: number;
-
   private _load!: number;
   private _maxLoad!: number;
-
   private _gauge = 0;
   private _gaugeInterval!: ReturnType<typeof setInterval>;
-
-  public get AtkSpdMultiplier(): number {
-    return this._atkSpdMultiplier;
-  }
-
-  public set AtkSpdMultiplier(value: number) {
-    this._atkSpdMultiplier = value;
-  }
 
   public get STR(): number {
     return this._STR;
@@ -99,21 +79,6 @@ export default class L2User extends L2Character {
     this._MEN = value;
   }
 
-  public get PAtk(): number {
-    return this._pAtk;
-  }
-
-  public set PAtk(value: number) {
-    this._pAtk = value;
-  }
-
-  public get PAtkSpd(): number {
-    return this._pAtkSpd;
-  }
-
-  public set PAtkSpd(value: number) {
-    this._pAtkSpd = value;
-  }
   public get PDef(): number {
     return this._pDef;
   }
@@ -143,21 +108,7 @@ export default class L2User extends L2Character {
   public set Crit(value: number) {
     this._crit = value;
   }
-  public get MAtk(): number {
-    return this._mAtk;
-  }
 
-  public set MAtk(value: number) {
-    this._mAtk = value;
-  }
-
-  public get MAtkSpd(): number {
-    return this._mAtkSpd;
-  }
-
-  public set MAtkSpd(value: number) {
-    this._mAtkSpd = value;
-  }
   public get MDef(): number {
     return this._mDef;
   }
@@ -179,13 +130,7 @@ export default class L2User extends L2Character {
   public set PkKills(value: number) {
     this._pkKills = value;
   }
-  public get Karma(): number {
-    return this._karma;
-  }
 
-  public set Karma(value: number) {
-    this._karma = value;
-  }
   public get AtkElementPower(): number {
     return this._atkElementPower;
   }
@@ -246,13 +191,7 @@ export default class L2User extends L2Character {
   public set RecommLeft(value: number) {
     this._recommLeft = value;
   }
-  public get RecommHave(): number {
-    return this._recommHave;
-  }
 
-  public set RecommHave(value: number) {
-    this._recommHave = value;
-  }
   public get Fame(): number {
     return this._fame;
   }
@@ -267,14 +206,6 @@ export default class L2User extends L2Character {
 
   public set Vitality(value: number) {
     this._vitality = value;
-  }
-
-  public get IsSitting(): boolean {
-    return this._isSitting;
-  }
-
-  public set IsSitting(value: boolean) {
-    this._isSitting = value;
   }
 
   public get Exp(): number {

@@ -13,12 +13,12 @@ export default class NetSocket implements IStream {
 
   connect(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this._socket.setTimeout(10000);
+      this._socket.setTimeout(0);
       this._socket.on("timeout", () => {
         reject("Socket timeout");
         this._socket.end();
       });
-      this._socket.on("error", (err) => reject(err));
+      this._socket.on("error", err => reject(err));
       this._socket.connect(this._remotePort, this._remoteAddress, () => {
         resolve();
       });
@@ -39,7 +39,7 @@ export default class NetSocket implements IStream {
 
   recv(): Promise<Uint8Array> {
     this._socket.resume();
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       // this._socket.once("error", err => reject(err));
       this._socket.once("data", (data: Uint8Array) => {
         resolve(data);
@@ -51,7 +51,7 @@ export default class NetSocket implements IStream {
   close(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this._socket.destroyed) {
-        this._socket.once("close", (err) => {
+        this._socket.once("close", err => {
           if (err) {
             reject();
           } else {

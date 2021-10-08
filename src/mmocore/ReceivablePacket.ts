@@ -1,7 +1,6 @@
 import AbstractPacket from "./AbstractPacket";
-import MMOClient from "./MMOClient";
 
-export default abstract class ReceivablePacket<T extends MMOClient> extends AbstractPacket<T> {
+export default abstract class ReceivablePacket extends AbstractPacket {
   _buffer!: Uint8Array;
   _offset = 0;
   _view!: DataView;
@@ -10,8 +9,6 @@ export default abstract class ReceivablePacket<T extends MMOClient> extends Abst
     this._buffer = buffer;
     this._view = new DataView(this._buffer.buffer);
   }
-
-  abstract run(): void;
 
   abstract read(): boolean;
 

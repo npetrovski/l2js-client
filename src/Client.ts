@@ -4,6 +4,7 @@ import CommandAutoShots from "./commands/CommandAutoShots";
 import CommandCancelBuff from "./commands/CommandCancelBuff";
 import CommandCancelTarget from "./commands/CommandCancelTarget";
 import CommandDeclineJoinParty from "./commands/CommandDeclineJoinParty";
+import CommandDropItem from "./commands/CommandDropItem";
 import CommandHit from "./commands/CommandHit";
 import CommandInventory from "./commands/CommandInventory";
 import CommandMoveTo from "./commands/CommandMoveTo";
@@ -45,21 +46,20 @@ import CommandCast from "./commands/CommandCast";
 import CommandDwarvenCraftRecipes from "./commands/CommandDwarvenCraftRecipes";
 import CommandCraft from "./commands/CommandCraft";
 import L2Recipe from "./entities/L2Recipe";
-import AuthGameGuard from "./network/clientpackets/AuthGameGuard";
-import SendablePacket from "./mmocore/SendablePacket";
-import RequestAuthLogin from "./network/clientpackets/RequestAuthLogin";
-import RequestServerList from "./network/clientpackets/RequestServerList";
-import RequestServerLogin from "./network/clientpackets/RequestServerLogin";
-import ServerList from "./network/serverpackets/ServerList";
-import RequestManorList from "./network/clientpackets/RequestManorList";
-import RequestKeyMapping from "./network/clientpackets/RequestKeyMapping";
-import EnterWorld from "./network/clientpackets/EnterWorld";
-import ProtocolVersion from "./network/clientpackets/ProtocolVersion";
-import AuthLogin from "./network/clientpackets/AuthLogin";
-import CharacterSelect from "./network/clientpackets/CharacterSelect";
-import Appearing from "./network/clientpackets/Appearing";
-import PlayFail from "./network/serverpackets/PlayFail";
-import LoginFail from "./network/serverpackets/LoginFail";
+import AuthGameGuard from "./network/outgoing/login/AuthGameGuard";
+import RequestAuthLogin from "./network/outgoing/login/RequestAuthLogin";
+import RequestServerList from "./network/outgoing/login/RequestServerList";
+import RequestServerLogin from "./network/outgoing/login/RequestServerLogin";
+import ServerList from "./network/incoming/login/ServerList";
+import RequestManorList from "./network/outgoing/game/RequestManorList";
+import RequestKeyMapping from "./network/outgoing/game/RequestKeyMapping";
+import EnterWorld from "./network/outgoing/game/EnterWorld";
+import ProtocolVersion from "./network/outgoing/game/ProtocolVersion";
+import AuthLogin from "./network/outgoing/game/AuthLogin";
+import CharacterSelect from "./network/outgoing/game/CharacterSelect";
+import Appearing from "./network/outgoing/game/Appearing";
+import PlayFail from "./network/incoming/login/PlayFail";
+import LoginFail from "./network/incoming/login/LoginFail";
 import CommandRevive from "./commands/CommandRevive";
 import { RestartPoint } from "./enums/RestartPoint";
 
@@ -107,6 +107,19 @@ export default interface Client {
    * @param z
    */
   moveTo(x: number, y: number, z: number): void;
+  /**
+   * MDrop an item at location
+   * @param x
+   * @param y
+   * @param z
+   */
+  dropItem(
+    objectId: number,
+    count: number,
+    x?: number,
+    y?: number,
+    z?: number
+  ): void;
   /**
    * Hit on target. Accepts L2Object object or ObjectId
    * @param object
@@ -219,7 +232,7 @@ export default class Client {
     moveTo: CommandMoveTo.prototype,
     hit: CommandHit.prototype,
     attack: CommandAttack.prototype,
-
+    dropItem: CommandDropItem.prototype,
     cancelTarget: CommandCancelTarget.prototype,
 
     acceptJoinParty: CommandAcceptJoinParty.prototype,
@@ -355,7 +368,7 @@ export default class Client {
                 new RequestServerLogin(
                   this._lc.Session,
                   this._lc.ServerId ??
-                    (e.data.packet as ServerList)._lastServerId
+                    (e.data.packet as ServerList).LastServerId
                 )
               );
             }
@@ -365,14 +378,13 @@ export default class Client {
             const gameConfig = {
               ...this._config,
               ...{
-                Ip: this._lc.Session.selectedServer.Ipv4(),
-                Port: this._lc.Session.selectedServer.Port
+                Ip: this._lc.Session.server.host,
+                Port: this._lc.Session.server.port
               }
             };
-            this._gc = new GameClient().init(
-              this._lc.Session,
-              gameConfig as MMOConfig
-            );
+            this._gc = new GameClient();
+            this._gc.Session = this._lc.Session;
+            this._gc.init(gameConfig as MMOConfig);
             this._gc
               .connect()
               .then(() => this._gc.sendPacket(new ProtocolVersion()))
@@ -398,7 +410,7 @@ export default class Client {
                 });
                 resolve({ login: this._lc, game: this._gc });
               })
-              .catch(() => reject("Enter world fail."));
+              .catch(e => reject("Enter world fail." + e));
           });
           GlobalEvents.on("PacketReceived:TeleportToLocation", () =>
             this._gc.sendPacket(new Appearing())

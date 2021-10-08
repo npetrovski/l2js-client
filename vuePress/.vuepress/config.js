@@ -53,7 +53,7 @@ module.exports = {
               collapsable: false,
               children: [
                 '',
-                'installation',
+                'supportedChronicles',
                 'examples',
                 'api',
                 'authorizationProcedure',

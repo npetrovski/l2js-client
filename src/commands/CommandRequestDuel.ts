@@ -1,9 +1,11 @@
 import AbstractGameCommand from "./AbstractGameCommand";
 import GameClient from "../network/GameClient";
 import L2Character from "../entities/L2Character";
-import RequestDuelStart from "../network/clientpackets/RequestDuelStart";
+import RequestDuelStart from "../network/outgoing/game/RequestDuelStart";
 
-export default class CommandRequestDuel extends AbstractGameCommand<GameClient> {
+export default class CommandRequestDuel extends AbstractGameCommand<
+  GameClient
+> {
   execute(char?: L2Character | string, partyDuel = false): void {
     if (char && char instanceof L2Character) {
       char = char.Name;

@@ -3,16 +3,23 @@ import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
 import LoginCrypt from "../security/crypt/LoginCrypt";
 import LoginPacketHandler from "./LoginPacketHandler";
-import ServerData from "./ServerData";
-import LoginServerPacket from "./clientpackets/LoginServerPacket";
+import L2Server from "../entities/L2Server";
+import LoginServerPacket from "./outgoing/login/LoginServerPacket";
 import { GlobalEvents } from "../mmocore/EventEmitter";
 import IConnection from "../mmocore/IConnection";
+import Init from "./incoming/login/Init";
+import InitPacketMutator from "./mutators/login/InitPacketMutator";
+import ServerList from "./incoming/login/ServerList";
+import ServerListMutator from "./mutators/login/ServerListMutator";
+import PlayOkMutator from "./mutators/login/PlayOkMutator";
+import PlayOk from "./incoming/login/PlayOk";
+import LoginOkMutator from "./mutators/login/LoginOkMutator";
+import LoginOk from "./incoming/login/LoginOk";
 
 export default class LoginClient extends MMOClient {
-
   private _loginCrypt: LoginCrypt = new LoginCrypt();
   private _blowfishKey!: Uint8Array;
-  private _servers: ServerData[] = [];
+  private _servers: L2Server[] = [];
   private _serverId = 1;
   private _config!: MMOConfig;
 
@@ -33,11 +40,11 @@ export default class LoginClient extends MMOClient {
     this._loginCrypt.setKey(blowfishKey);
   }
 
-  get Servers(): ServerData[] {
+  get Servers(): L2Server[] {
     return this._servers;
   }
 
-  set Servers(servers: ServerData[]) {
+  set Servers(servers: L2Server[]) {
     this._servers = servers;
   }
 
@@ -65,13 +72,21 @@ export default class LoginClient extends MMOClient {
       this._serverId = config.ServerId;
     }
 
+    this.registerMutator(new InitPacketMutator(this, Init));
+    this.registerMutator(new ServerListMutator(this, ServerList));
+    this.registerMutator(new PlayOkMutator(this, PlayOk));
+    this.registerMutator(new LoginOkMutator(this, LoginOk));
+
     return this;
   }
 
   pack(lsp: LoginServerPacket): Uint8Array {
     lsp.write();
 
-    const count = lsp.Position % 8 === 0 ? lsp.Position : lsp.Position + (8 - (lsp.Position % 8));
+    const count =
+      lsp.Position % 8 === 0
+        ? lsp.Position
+        : lsp.Position + (8 - (lsp.Position % 8));
     this._loginCrypt.encrypt(lsp.Buffer, 0, count);
 
     const sendable: Uint8Array = new Uint8Array(count + 2);
