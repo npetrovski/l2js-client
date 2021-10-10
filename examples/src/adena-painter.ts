@@ -73,12 +73,13 @@ l2.on("LoggedIn", () => {
 
     try {
       (async () => {
-        for (let n = 0; n < lines.length; n++) {
-          const item = l2.InventoryItems.getEntryById(57) ?? null;
-          if (!item || ascii.replace(/\s/g, "").length > item.Count) {
-            throw new Error("Not enough adena.");
-          }
+        const item = l2.InventoryItems.getEntryById(57) ?? null;
 
+        if (!item || ascii.replace(/\s/g, "").length > item.Count) {
+          throw new Error("Not enough adena.");
+        }
+
+        for (let n = 0; n < lines.length; n++) {
           const line = lines[n];
 
           for (let i = 0; i < line.length; i++) {
