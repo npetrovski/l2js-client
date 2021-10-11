@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "tsc",
     "login": "node dist/login.js",
+    "accept-resurrect": "node dist/accept-resurrect.js",
     "adena-painter": "node dist/adena-painter.js",
     "chat": "node dist/chat.js",
     "move": "node dist/move.js",
@@ -14,7 +15,7 @@
     "follow-vector": "node dist/follow-vector.js",
     "bot": "node dist/bot.js",
     "craft": "node dist/craft.js",
-    "revive": "node dist/revive.js",
+    "revive-town": "node dist/revive-town.js",
     "proxy": "node dist/proxy.js",
     "respond-to-attack": "node dist/respond-to-attack.js",
     "custom-command": "node dist/custom-command.js",

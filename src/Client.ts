@@ -62,6 +62,7 @@ import PlayFail from "./network/incoming/login/PlayFail";
 import LoginFail from "./network/incoming/login/LoginFail";
 import CommandRevive from "./commands/CommandRevive";
 import { RestartPoint } from "./enums/RestartPoint";
+import SystemMessage from "./network/incoming/game/SystemMessage";
 
 export default interface Client {
   /**
@@ -216,9 +217,9 @@ export default interface Client {
 export default class Client {
   private _config: MMOConfig = new MMOConfig();
 
-  private _lc!: LoginClient;
+  private _lc: LoginClient = new LoginClient();
 
-  private _gc!: GameClient;
+  private _gc: GameClient = new GameClient();
 
   private _commands: Record<string, ICommand> = {
     say: CommandSay.prototype,
@@ -260,6 +261,14 @@ export default class Client {
 
     revive: CommandRevive.prototype
   };
+
+  get LoginClient(): LoginClient {
+    return this._lc;
+  }
+
+  get GameClient(): GameClient {
+    return this._gc;
+  }
 
   get Me(): L2User {
     return this._gc?.ActiveChar;
@@ -333,7 +342,7 @@ export default class Client {
     }
 
     return new Promise((resolve, reject) => {
-      this._lc = new LoginClient().init(this._config);
+      this._lc.init(this._config);
       this._lc
         .connect()
         .then(() => {
@@ -382,7 +391,6 @@ export default class Client {
                 Port: this._lc.Session.server.port
               }
             };
-            this._gc = new GameClient();
             this._gc.Session = this._lc.Session;
             this._gc.init(gameConfig as MMOConfig);
             this._gc
@@ -403,15 +411,25 @@ export default class Client {
               .sendPacket(new RequestManorList())
               .then(() => this._gc.sendPacket(new RequestKeyMapping()))
               .then(() => this._gc.sendPacket(new EnterWorld()))
-              .then(() => {
+              .catch(e => reject("Enter world fail." + e));
+          });
+
+          GlobalEvents.on(
+            "PacketReceived:SystemMessage",
+            (e: EPacketReceived) => {
+              if (
+                (e.data.packet as SystemMessage).messageId ===
+                34 /** WELCOME_TO_LINEAGE */
+              ) {
                 GlobalEvents.fire("LoggedIn", {
                   login: this._lc,
                   game: this._gc
                 });
                 resolve({ login: this._lc, game: this._gc });
-              })
-              .catch(e => reject("Enter world fail." + e));
-          });
+              }
+            }
+          );
+
           GlobalEvents.on("PacketReceived:TeleportToLocation", () =>
             this._gc.sendPacket(new Appearing())
           );

@@ -1,7 +1,12 @@
 import l2 from "./login";
 import L2Creature from "l2js-client/entities/L2Creature";
 import { ShotsType } from "l2js-client/enums/ShotsType";
-import { EDie, EMyTargetSelected, EPartyRequest, EAttacked } from "l2js-client/events/EventTypes";
+import {
+  EDie,
+  EMyTargetSelected,
+  EPartyRequest,
+  EAttacked
+} from "l2js-client/events/EventTypes";
 
 l2.on("LoggedIn", () => {
   l2.cancelTarget();
@@ -29,7 +34,7 @@ l2.on("LoggedIn", () => {
   .on("Die", (e: EDie) => {
     if (l2.Me.Target && e.data.creature.ObjectId === l2.Me.Target.ObjectId) {
       l2.cancelTarget();
-      l2.CreaturesList.forEach((c) => {
+      l2.CreaturesList.forEach(c => {
         c.calculateDistance(l2.Me);
       });
     }

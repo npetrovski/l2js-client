@@ -19,9 +19,9 @@ export default abstract class AbstractMessagePacket extends GameClientPacket {
   static readonly TYPE_INT_NUMBER: number = 1;
   static readonly TYPE_TEXT: number = 0;
 
-  protected messageId!: number;
+  messageId!: number;
 
-  protected messageParams = new Array<any>();
+  messageParams = new Array<any>();
 
   readMe(): void {
     this.messageId = this.readD();
