@@ -8,6 +8,7 @@
     "login": "node dist/login.js",
     "accept-resurrect": "node dist/accept-resurrect.js",
     "adena-painter": "node dist/adena-painter.js",
+    "adena-painter-optimized": "node dist/adena-painter-optimized.js",
     "chat": "node dist/chat.js",
     "move": "node dist/move.js",
     "follow": "node dist/follow.js",
