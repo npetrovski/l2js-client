@@ -1,9 +1,8 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import GameClient from "../network/GameClient";
 import Say2 from "../network/outgoing/game/Say2";
 
-export default class CommandSay extends AbstractGameCommand<GameClient> {
+export default class CommandSay extends AbstractGameCommand {
   execute(text: string): void {
-    this.Client?.sendPacket(new Say2(Say2.ALL, text));
+    this.GameClient?.sendPacket(new Say2(Say2.ALL, text));
   }
 }

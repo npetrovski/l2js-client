@@ -1,15 +1,18 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import GameClient from "../network/GameClient";
 import Action from "../network/outgoing/game/Action";
 import L2Object from "../entities/L2Object";
 
-export default class CommandHit extends AbstractGameCommand<GameClient> {
+export default class CommandHit extends AbstractGameCommand {
   execute(object: L2Object | number, shift?: boolean): void {
     if (object instanceof L2Object) {
       object = object.ObjectId;
     }
-    const me = this.Client.ActiveChar;
-    const forceShift = shift ?? false;
-    this.Client?.sendPacket(new Action(object, me.X, me.Y, me.Z, forceShift));
+    const me = this.GameClient?.ActiveChar;
+    if (me) {
+      const forceShift = shift ?? false;
+      this.GameClient?.sendPacket(
+        new Action(object, me.X, me.Y, me.Z, forceShift)
+      );
+    }
   }
 }

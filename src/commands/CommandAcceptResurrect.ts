@@ -1,20 +1,17 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import GameClient from "../network/GameClient";
 import DlgAnswer from "../network/outgoing/game/DlgAnswer";
 
-export default class CommandAcceptResurrect extends AbstractGameCommand<
-  GameClient
-> {
+export default class CommandAcceptResurrect extends AbstractGameCommand {
   execute(): void {
     if (
-      typeof this.Client?.LastConfirmMessageId != "undefined" &&
-      typeof this.Client?.LastConfirmMessageRequesterId != "undefined"
+      typeof this.GameClient?.LastConfirmMessageId !== "undefined" &&
+      typeof this.GameClient?.LastConfirmMessageRequesterId !== "undefined"
     ) {
-      this.Client?.sendPacket(
+      this.GameClient?.sendPacket(
         new DlgAnswer(
-          this.Client.LastConfirmMessageId,
+          this.GameClient.LastConfirmMessageId,
           1,
-          this.Client.LastConfirmMessageRequesterId
+          this.GameClient.LastConfirmMessageRequesterId
         )
       );
     }

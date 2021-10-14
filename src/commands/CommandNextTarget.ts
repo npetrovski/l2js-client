@@ -1,12 +1,11 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import GameClient from "../network/GameClient";
 import L2Creature from "../entities/L2Creature";
 import Action from "../network/outgoing/game/Action";
 
-export default class CommandNextTarget extends AbstractGameCommand<GameClient> {
+export default class CommandNextTarget extends AbstractGameCommand {
   execute(): L2Creature | undefined {
-    let mobs = Array.from(this.Client.CreaturesList);
-    const me = this.Client.ActiveChar;
+    let mobs = Array.from(this.GameClient.CreaturesList);
+    const me = this.GameClient?.ActiveChar;
 
     mobs = mobs.filter(
       (p: L2Creature) =>
@@ -20,7 +19,7 @@ export default class CommandNextTarget extends AbstractGameCommand<GameClient> {
       mobs[0]
     );
     if (result) {
-      this.Client?.sendPacket(
+      this.GameClient?.sendPacket(
         new Action(result.ObjectId, me.X, me.Y, me.Z, false)
       );
       return result;

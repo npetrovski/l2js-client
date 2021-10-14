@@ -1,9 +1,7 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import GameClient from "../network/GameClient";
-import MoveBackwardToLocation from "../network/outgoing/game/MoveBackwardToLocation";
 import RequestDropItem from "../network/outgoing/game/RequestDropItem";
 
-export default class CommandDropItem extends AbstractGameCommand<GameClient> {
+export default class CommandDropItem extends AbstractGameCommand {
   execute(
     objectId: number,
     count: number,
@@ -11,9 +9,15 @@ export default class CommandDropItem extends AbstractGameCommand<GameClient> {
     y?: number,
     z?: number
   ): void {
-    const xp = x || this.Client.ActiveChar.X;
-    const yp = y || this.Client.ActiveChar.Y;
-    const zp = z || this.Client.ActiveChar.Z;
-    this.Client?.sendPacket(new RequestDropItem(objectId, count, xp, yp, zp));
+    const char = this.GameClient?.ActiveChar;
+    if (char) {
+      const xp = x || char.X;
+      const yp = y || char.Y;
+      const zp = z || char.Z;
+
+      this.GameClient?.sendPacket(
+        new RequestDropItem(objectId, count, xp, yp, zp)
+      );
+    }
   }
 }

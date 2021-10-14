@@ -1,10 +1,9 @@
 import L2Buff from "../entities/L2Buff";
 import L2Character from "../entities/L2Character";
-import GameClient from "../network/GameClient";
 import RequestDispel from "../network/outgoing/game/RequestDispel";
 import AbstractGameCommand from "./AbstractGameCommand";
 
-export default class CommandCancelBuff extends AbstractGameCommand<GameClient> {
+export default class CommandCancelBuff extends AbstractGameCommand {
   execute(
     object: L2Character | number,
     buff: L2Buff | number,
@@ -23,6 +22,6 @@ export default class CommandCancelBuff extends AbstractGameCommand<GameClient> {
       return;
     }
 
-    this.Client?.sendPacket(new RequestDispel(object, buff, level));
+    this.GameClient?.sendPacket(new RequestDispel(object, buff, level));
   }
 }
