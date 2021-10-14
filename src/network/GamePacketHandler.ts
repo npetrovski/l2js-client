@@ -1,127 +1,8 @@
 import IPacketHandler from "../mmocore/IPacketHandler";
 import ReceivablePacket from "../mmocore/ReceivablePacket";
-import AbnormalStatusUpdate from "./incoming/game/AbnormalStatusUpdate";
-import AskJoinParty from "./incoming/game/AskJoinParty";
-import Attack from "./incoming/game/Attack";
-import AutoAttackStart from "./incoming/game/AutoAttackStart";
-import AutoAttackStop from "./incoming/game/AutoAttackStop";
-import ChangeMoveType from "./incoming/game/ChangeMoveType";
-import CharInfo from "./incoming/game/CharInfo";
-import CharSelected from "./incoming/game/CharSelected";
-import CharSelectionInfo from "./incoming/game/CharSelectionInfo";
-import CreatureSay from "./incoming/game/CreatureSay";
-import DeleteObject from "./incoming/game/DeleteObject";
-import Die from "./incoming/game/Die";
-import DropItem from "./incoming/game/DropItem";
-import EquipUpdate from "./incoming/game/EquipUpdate";
-import EtcStatusUpdate from "./incoming/game/EtcStatusUpdate";
-import ExBrExtraUserInfo from "./incoming/game/ExBrExtraUserInfo";
-import ExDuelAskStart from "./incoming/game/ExDuelAskStart";
-import ExQuestItemList from "./incoming/game/ExQuestItemList";
-import ExRedSky from "./incoming/game/ExRedSky";
-import ExVoteSystemInfo from "./incoming/game/ExVoteSystemInfo";
-import ItemList from "./incoming/game/ItemList";
-import JoinParty from "./incoming/game/JoinParty";
-import KeyPacket from "./incoming/game/KeyPacket";
-import MoveToLocation from "./incoming/game/MoveToLocation";
-import MoveToPawn from "./incoming/game/MoveToPawn";
-import MyTargetSelected from "./incoming/game/MyTargetSelected";
-import NpcInfo from "./incoming/game/NpcInfo";
-import NpcQuestHtmlMessage from "./incoming/game/NpcQuestHtmlMessage";
-import NpcSay from "./incoming/game/NpcSay";
-import PartyMemberPosition from "./incoming/game/PartyMemberPosition";
-import PartySmallWindowAdd from "./incoming/game/PartySmallWindowAdd";
-import PartySmallWindowAll from "./incoming/game/PartySmallWindowAll";
-import PartySmallWindowDelete from "./incoming/game/PartySmallWindowDelete";
-import PartySmallWindowDeleteAll from "./incoming/game/PartySmallWindowDeleteAll";
-import PartySmallWindowUpdate from "./incoming/game/PartySmallWindowUpdate";
-import PetDelete from "./incoming/game/PetDelete";
-import RelationChanged from "./incoming/game/RelationChanged";
-import Revive from "./incoming/game/Revive";
-import ShortCutInit from "./incoming/game/ShortCutInit";
-import SkillCoolTime from "./incoming/game/SkillCoolTime";
-import SkillList from "./incoming/game/SkillList";
-import Snoop from "./incoming/game/Snoop";
-import SocialAction from "./incoming/game/SocialAction";
-import SpawnItem from "./incoming/game/SpawnItem";
-import SSQInfo from "./incoming/game/SSQInfo";
-import StaticObject from "./incoming/game/StaticObject";
-import StatusUpdate from "./incoming/game/StatusUpdate";
-import StopMove from "./incoming/game/StopMove";
-import StopRotation from "./incoming/game/StopRotation";
-import SunRise from "./incoming/game/SunRise";
-import SunSet from "./incoming/game/SunSet";
-import SystemMessage from "./incoming/game/SystemMessage";
-import TargetSelected from "./incoming/game/TargetSelected";
-import TargetUnselected from "./incoming/game/TargetUnselected";
-import TeleportToLocation from "./incoming/game/TeleportToLocation";
-import TutorialEnableClientEvent from "./incoming/game/TutorialEnableClientEvent";
-import TutorialShowQuestionMark from "./incoming/game/TutorialShowQuestionMark";
-import UserInfo from "./incoming/game/UserInfo";
-import ValidateLocation from "./incoming/game/ValidateLocation";
-import GameClient from "./GameClient";
-import ActionFailed from "./incoming/game/ActionFailed";
-import RecipeItemMakeInfo from "./incoming/game/RecipeItemMakeInfo";
-import RecipeBookItemList from "./incoming/game/RecipeBookItemList";
-import MagicSkillLaunched from "./incoming/game/MagicSkillLaunched";
-import MagicSkillUse from "./incoming/game/MagicSkillUse";
-import TempBan from "./incoming/game/TempBan";
 import Logger from "../mmocore/Logger";
-import PlayerInGame from "./incoming/game/PlayerInGame";
-import ExSendManorList from "./incoming/game/ExSendManorList";
-import ExUISetting from "./incoming/game/ExUISetting";
-import ExSetCompassZoneCode from "./incoming/game/ExSetCompassZoneCode";
-import ExStorageMaxCount from "./incoming/game/ExStorageMaxCount";
-import FriendList from "./incoming/game/FriendList";
-import ExShowContactList from "./incoming/game/ExShowContactList";
-import ExNevitAdventPointInfoPacket from "./incoming/game/ExNevitAdventPointInfoPacket";
-import ExNevitAdventTimeChange from "./incoming/game/ExNevitAdventTimeChange";
-import ExShowScreenMessage from "./incoming/game/ExShowScreenMessage";
-import PledgeInfo from "./incoming/game/PledgeInfo";
-import PrivateStoreListSell from "./incoming/game/PrivateStoreListSell";
-import NpcHtmlMessage from "./incoming/game/NpcHtmlMessage";
-import LeaveWorld from "./incoming/game/LeaveWorld";
-import GetItem from "./incoming/game/GetItem";
-import NormalCamera from "./incoming/game/NormalCamera";
-import NicknameChanged from "./incoming/game/NicknameChanged";
-import ChangeWaitType from "./incoming/game/ChangeWaitType";
-import ShowBoard from "./incoming/game/ShowBoard";
-import ShortCutRegister from "./incoming/game/ShortCutRegister";
-import InventoryUpdate from "./incoming/game/InventoryUpdate";
-import RestartResponse from "./incoming/game/RestartResponse";
-import WareHouseDepositList from "./incoming/game/WareHouseDepositList";
-import WareHouseWithdrawalList from "./incoming/game/WareHouseWithdrawalList";
-import VehicleStarted from "./incoming/game/VehicleStarted";
-import VehicleInfo from "./incoming/game/VehicleInfo";
-import VehicleDeparture from "./incoming/game/VehicleDeparture";
-import VehicleCheckLocation from "./incoming/game/VehicleCheckLocation";
-import ValidateLocationInVehicle from "./incoming/game/ValidateLocationInVehicle";
-import TutorialShowHtml from "./incoming/game/TutorialShowHtml";
-import TutorialCloseHtml from "./incoming/game/TutorialCloseHtml";
-import TradeStart from "./incoming/game/TradeStart";
-import TradeOwnAdd from "./incoming/game/TradeOwnAdd";
-import TradeOtherDone from "./incoming/game/TradeOtherDone";
-import TradeDone from "./incoming/game/TradeDone";
-import SurrenderPledgeWar from "./incoming/game/SurrenderPledgeWar";
-import StopPledgeWar from "./incoming/game/StopPledgeWar";
-import StopMoveInVehicle from "./incoming/game/StopMoveInVehicle";
-import StartRotation from "./incoming/game/StartRotation";
-import StartPledgeWar from "./incoming/game/StartPledgeWar";
-import SpecialCamera from "./incoming/game/SpecialCamera";
-import HennaEquipList from "./incoming/game/HennaEquipList";
-import HennaInfo from "./incoming/game/HennaInfo";
-import HennaItemDrawInfo from "./incoming/game/HennaItemDrawInfo";
-import HennaItemRemoveInfo from "./incoming/game/HennaItemRemoveInfo";
-import HennaRemoveList from "./incoming/game/HennaRemoveList";
-import TradeOtherAdd from "./incoming/game/TradeOtherAdd";
-import ConfirmDlg from "./incoming/game/ConfirmDlg";
-import ServerClose from "./incoming/game/ServerClose";
-import PartySpelled from "./incoming/game/PartySpelled";
-import SendTradeRequest from "./incoming/game/SendTradeRequest";
-import SetupGauge from "./incoming/game/SetupGauge";
-import ExFishingEnd from "./incoming/game/ExFishingEnd";
-import ExFishingHpRegen from "./incoming/game/ExFishingHpRegen";
-import ExRotation from "./incoming/game/ExRotation";
+import GameClient from "./GameClient";
+import * as Packets from "./incoming/game/index";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
@@ -135,367 +16,367 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
     try {
       switch (opcode) {
         case 0x00:
-          rpk = new Die();
+          rpk = new Packets.Die();
           break;
         case 0x01:
-          rpk = new Revive();
+          rpk = new Packets.Revive();
           break;
         case 0x02:
-          rpk = new PlayerInGame();
+          rpk = new Packets.PlayerInGame();
           break;
         case 0x05:
-          rpk = new SpawnItem();
+          rpk = new Packets.SpawnItem();
           break;
         case 0x08:
-          rpk = new DeleteObject();
+          rpk = new Packets.DeleteObject();
           break;
         case 0x09:
-          rpk = new CharSelectionInfo();
+          rpk = new Packets.CharSelectionInfo();
           break;
         case 0x0a:
-          rpk = new TempBan();
+          rpk = new Packets.TempBan();
           break;
         case 0x0b:
-          rpk = new CharSelected();
+          rpk = new Packets.CharSelected();
           break;
         case 0x0c:
-          rpk = new NpcInfo();
+          rpk = new Packets.NpcInfo();
           break;
         case 0x11:
-          rpk = new ItemList();
+          rpk = new Packets.ItemList();
           break;
         case 0x12:
-          rpk = new SunRise();
+          rpk = new Packets.SunRise();
           break;
         case 0x13:
-          rpk = new SunSet();
+          rpk = new Packets.SunSet();
           break;
         case 0x14:
-          rpk = new TradeStart();
+          rpk = new Packets.TradeStart();
           break;
         case 0x16:
-          rpk = new DropItem();
+          rpk = new Packets.DropItem();
           break;
         case 0x17:
-          rpk = new GetItem();
+          rpk = new Packets.GetItem();
           break;
         case 0x18:
-          rpk = new StatusUpdate();
+          rpk = new Packets.StatusUpdate();
           break;
         case 0x19:
-          rpk = new NpcHtmlMessage();
+          rpk = new Packets.NpcHtmlMessage();
           break;
         case 0x20:
-          rpk = new ServerClose();
+          rpk = new Packets.ServerClose();
           break;
         case 0x1a:
-          rpk = new TradeOwnAdd();
+          rpk = new Packets.TradeOwnAdd();
           break;
         case 0x1b:
-          rpk = new TradeOtherAdd();
+          rpk = new Packets.TradeOtherAdd();
           break;
         case 0x1c:
-          rpk = new TradeDone();
+          rpk = new Packets.TradeDone();
           break;
         case 0x1f:
-          rpk = new ActionFailed();
+          rpk = new Packets.ActionFailed();
           break;
         case 0x21:
-          rpk = new InventoryUpdate();
+          rpk = new Packets.InventoryUpdate();
           break;
         case 0x22:
-          rpk = new TeleportToLocation();
+          rpk = new Packets.TeleportToLocation();
           break;
         case 0x23:
-          rpk = new TargetSelected();
+          rpk = new Packets.TargetSelected();
           break;
         case 0x24:
-          rpk = new TargetUnselected();
+          rpk = new Packets.TargetUnselected();
           break;
         case 0x25:
-          rpk = new AutoAttackStart();
+          rpk = new Packets.AutoAttackStart();
           break;
         case 0x26:
-          rpk = new AutoAttackStop();
+          rpk = new Packets.AutoAttackStop();
           break;
         case 0x27:
-          rpk = new SocialAction();
+          rpk = new Packets.SocialAction();
           break;
         case 0x28:
-          rpk = new ChangeMoveType();
+          rpk = new Packets.ChangeMoveType();
           break;
         case 0x29:
-          rpk = new ChangeWaitType();
+          rpk = new Packets.ChangeWaitType();
           break;
         case 0x2e:
-          rpk = new KeyPacket();
+          rpk = new Packets.KeyPacket();
           break;
         case 0x2f:
-          rpk = new MoveToLocation();
+          rpk = new Packets.MoveToLocation();
           break;
         case 0x30:
-          rpk = new NpcSay();
+          rpk = new Packets.NpcSay();
           break;
         case 0x31:
-          rpk = new CharInfo();
+          rpk = new Packets.CharInfo();
           break;
         case 0x32:
-          rpk = new UserInfo();
+          rpk = new Packets.UserInfo();
           break;
         case 0x33:
-          rpk = new Attack();
+          rpk = new Packets.Attack();
           break;
         case 0x39:
-          rpk = new AskJoinParty();
+          rpk = new Packets.AskJoinParty();
           break;
         case 0x3a:
-          rpk = new JoinParty();
+          rpk = new Packets.JoinParty();
           break;
         case 0x41:
-          rpk = new WareHouseDepositList();
+          rpk = new Packets.WareHouseDepositList();
           break;
         case 0x42:
-          rpk = new WareHouseWithdrawalList();
+          rpk = new Packets.WareHouseWithdrawalList();
           break;
         case 0x44:
-          rpk = new ShortCutRegister();
+          rpk = new Packets.ShortCutRegister();
           break;
         case 0x45:
-          rpk = new ShortCutInit();
+          rpk = new Packets.ShortCutInit();
           break;
         case 0x47:
-          rpk = new StopMove();
+          rpk = new Packets.StopMove();
           break;
         case 0x48:
-          rpk = new MagicSkillUse();
+          rpk = new Packets.MagicSkillUse();
           break;
         case 0x4a:
-          rpk = new CreatureSay();
+          rpk = new Packets.CreatureSay();
           break;
         case 0x4b:
-          rpk = new EquipUpdate();
+          rpk = new Packets.EquipUpdate();
           break;
         case 0x4e:
-          rpk = new PartySmallWindowAll();
+          rpk = new Packets.PartySmallWindowAll();
           break;
         case 0x4f:
-          rpk = new PartySmallWindowAdd();
+          rpk = new Packets.PartySmallWindowAdd();
           break;
         case 0x50:
-          rpk = new PartySmallWindowDeleteAll();
+          rpk = new Packets.PartySmallWindowDeleteAll();
           break;
         case 0x51:
-          rpk = new PartySmallWindowDelete();
+          rpk = new Packets.PartySmallWindowDelete();
           break;
         case 0x52:
-          rpk = new PartySmallWindowUpdate();
+          rpk = new Packets.PartySmallWindowUpdate();
           break;
         case 0x54:
-          rpk = new MagicSkillLaunched();
+          rpk = new Packets.MagicSkillLaunched();
           break;
         case 0x5f:
-          rpk = new SkillList();
+          rpk = new Packets.SkillList();
           break;
         case 0x60:
-          rpk = new VehicleInfo();
+          rpk = new Packets.VehicleInfo();
           break;
         case 0x61:
-          rpk = new StopRotation();
+          rpk = new Packets.StopRotation();
           break;
         case 0x62:
-          rpk = new SystemMessage();
+          rpk = new Packets.SystemMessage();
           break;
         case 0x63:
-          rpk = new StartPledgeWar();
+          rpk = new Packets.StartPledgeWar();
           break;
         case 0x65:
-          rpk = new StopPledgeWar();
+          rpk = new Packets.StopPledgeWar();
           break;
         case 0x67:
-          rpk = new SurrenderPledgeWar();
+          rpk = new Packets.SurrenderPledgeWar();
           break;
         case 0x6b:
-          rpk = new SetupGauge();
+          rpk = new Packets.SetupGauge();
           break;
         case 0x6c:
-          rpk = new VehicleDeparture();
+          rpk = new Packets.VehicleDeparture();
           break;
         case 0x6d:
-          rpk = new VehicleCheckLocation();
+          rpk = new Packets.VehicleCheckLocation();
           break;
         case 0x70:
-          rpk = new SendTradeRequest();
+          rpk = new Packets.SendTradeRequest();
           break;
         case 0x71:
-          rpk = new RestartResponse();
+          rpk = new Packets.RestartResponse();
           break;
         case 0x72:
-          rpk = new MoveToPawn();
+          rpk = new Packets.MoveToPawn();
           break;
         case 0x73:
-          rpk = new SSQInfo();
+          rpk = new Packets.SSQInfo();
           break;
         case 0x75:
-          rpk = new FriendList();
+          rpk = new Packets.FriendList();
           break;
         case 0x79:
-          rpk = new ValidateLocation();
+          rpk = new Packets.ValidateLocation();
           break;
         case 0x7a:
-          rpk = new StartRotation();
+          rpk = new Packets.StartRotation();
           break;
         case 0x7b:
-          rpk = new ShowBoard();
+          rpk = new Packets.ShowBoard();
           break;
         case 0x7f:
-          rpk = new StopMoveInVehicle();
+          rpk = new Packets.StopMoveInVehicle();
           break;
         case 0x80:
-          rpk = new ValidateLocationInVehicle();
+          rpk = new Packets.ValidateLocationInVehicle();
           break;
         case 0x82:
-          rpk = new TradeOtherDone();
+          rpk = new Packets.TradeOtherDone();
           break;
         case 0x84:
-          rpk = new LeaveWorld();
+          rpk = new Packets.LeaveWorld();
           break;
         case 0x85:
-          rpk = new AbnormalStatusUpdate();
+          rpk = new Packets.AbnormalStatusUpdate();
           break;
         case 0x89:
-          rpk = new PledgeInfo();
+          rpk = new Packets.PledgeInfo();
           break;
         case 0x9f:
-          rpk = new StaticObject();
+          rpk = new Packets.StaticObject();
           break;
         case 0xa1:
-          rpk = new PrivateStoreListSell();
+          rpk = new Packets.PrivateStoreListSell();
           break;
         case 0xa6:
-          rpk = new TutorialShowHtml();
+          rpk = new Packets.TutorialShowHtml();
           break;
         case 0xa7:
-          rpk = new TutorialShowQuestionMark();
+          rpk = new Packets.TutorialShowQuestionMark();
           break;
         case 0xa8:
-          rpk = new TutorialEnableClientEvent();
+          rpk = new Packets.TutorialEnableClientEvent();
           break;
         case 0xa9:
-          rpk = new TutorialCloseHtml();
+          rpk = new Packets.TutorialCloseHtml();
           break;
         case 0xb7:
-          rpk = new PetDelete();
+          rpk = new Packets.PetDelete();
           break;
         case 0xb9:
-          rpk = new MyTargetSelected();
+          rpk = new Packets.MyTargetSelected();
           break;
         case 0xba:
-          rpk = new PartyMemberPosition();
+          rpk = new Packets.PartyMemberPosition();
           break;
         case 0xc0:
-          rpk = new VehicleStarted();
+          rpk = new Packets.VehicleStarted();
           break;
         case 0xc7:
-          rpk = new SkillCoolTime();
+          rpk = new Packets.SkillCoolTime();
           break;
         case 0xcc:
-          rpk = new NicknameChanged();
+          rpk = new Packets.NicknameChanged();
           break;
         case 0xce:
-          rpk = new RelationChanged();
+          rpk = new Packets.RelationChanged();
           break;
         case 0xd6:
-          rpk = new SpecialCamera();
+          rpk = new Packets.SpecialCamera();
           break;
         case 0xd7:
-          rpk = new NormalCamera();
+          rpk = new Packets.NormalCamera();
           break;
         case 0xdb:
-          rpk = new Snoop();
+          rpk = new Packets.Snoop();
           break;
         case 0xdc:
-          rpk = new RecipeBookItemList();
+          rpk = new Packets.RecipeBookItemList();
           break;
         case 0xdd:
-          rpk = new RecipeItemMakeInfo();
+          rpk = new Packets.RecipeItemMakeInfo();
           break;
         case 0xe4:
-          rpk = new HennaItemDrawInfo();
+          rpk = new Packets.HennaItemDrawInfo();
           break;
         case 0xe5:
-          rpk = new HennaInfo();
+          rpk = new Packets.HennaInfo();
           break;
         case 0xe6:
-          rpk = new HennaRemoveList();
+          rpk = new Packets.HennaRemoveList();
           break;
         case 0xe7:
-          rpk = new HennaItemRemoveInfo();
+          rpk = new Packets.HennaItemRemoveInfo();
           break;
         case 0xee:
-          rpk = new HennaEquipList();
+          rpk = new Packets.HennaEquipList();
           break;
         case 0xf3:
-          rpk = new ConfirmDlg();
+          rpk = new Packets.ConfirmDlg();
           break;
         case 0xf4:
-          rpk = new PartySpelled();
+          rpk = new Packets.PartySpelled();
           break;
         case 0xf9:
-          rpk = new EtcStatusUpdate();
+          rpk = new Packets.EtcStatusUpdate();
           break;
         case 0xfe: {
           const sub = data[1] + (data[2] << 8);
           switch (sub) {
             case 0x1f:
-              rpk = new ExFishingEnd();
+              rpk = new Packets.ExFishingEnd();
               break;
             case 0x22:
-              rpk = new ExSendManorList();
+              rpk = new Packets.ExSendManorList();
               break;
             case 0x28:
-              rpk = new ExFishingHpRegen();
+              rpk = new Packets.ExFishingHpRegen();
               break;
             case 0x2f:
-              rpk = new ExStorageMaxCount();
+              rpk = new Packets.ExStorageMaxCount();
               break;
             case 0x33:
-              rpk = new ExSetCompassZoneCode();
+              rpk = new Packets.ExSetCompassZoneCode();
               break;
             case 0x39:
-              rpk = new ExShowScreenMessage();
+              rpk = new Packets.ExShowScreenMessage();
               break;
             case 0x41:
-              rpk = new ExRedSky();
+              rpk = new Packets.ExRedSky();
               break;
             case 0x4c:
-              rpk = new ExDuelAskStart();
+              rpk = new Packets.ExDuelAskStart();
               break;
             case 0x70:
-              rpk = new ExUISetting();
+              rpk = new Packets.ExUISetting();
               break;
             case 0x8d:
-              rpk = new NpcQuestHtmlMessage();
+              rpk = new Packets.NpcQuestHtmlMessage();
               break;
             case 0xc1:
-              rpk = new ExRotation();
+              rpk = new Packets.ExRotation();
               break;
             case 0xc6:
-              rpk = new ExQuestItemList();
+              rpk = new Packets.ExQuestItemList();
               break;
             case 0xc9:
-              rpk = new ExVoteSystemInfo();
+              rpk = new Packets.ExVoteSystemInfo();
               break;
             case 0xd3:
-              rpk = new ExShowContactList();
+              rpk = new Packets.ExShowContactList();
               break;
             case 0xda:
-              rpk = new ExBrExtraUserInfo();
+              rpk = new Packets.ExBrExtraUserInfo();
               break;
             case 0xdf:
-              rpk = new ExNevitAdventPointInfoPacket();
+              rpk = new Packets.ExNevitAdventPointInfoPacket();
               break;
             case 0xe1:
-              rpk = new ExNevitAdventTimeChange();
+              rpk = new Packets.ExNevitAdventTimeChange();
               break;
 
             default:

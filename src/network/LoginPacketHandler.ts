@@ -1,15 +1,8 @@
 import IPacketHandler from "../mmocore/IPacketHandler";
 import ReceivablePacket from "../mmocore/ReceivablePacket";
-import AccountKicked from "./incoming/login/AccountKicked";
-import GGAuth from "./incoming/login/GGAuth";
-import Init from "./incoming/login/Init";
-import LoginFail from "./incoming/login/LoginFail";
-import LoginOk from "./incoming/login/LoginOk";
-import PlayFail from "./incoming/login/PlayFail";
-import PlayOk from "./incoming/login/PlayOk";
-import ServerList from "./incoming/login/ServerList";
-import LoginClient from "./LoginClient";
 import Logger from "../mmocore/Logger";
+import LoginClient from "./LoginClient";
+import * as Packets from "./incoming/login/index";
 
 export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
@@ -23,28 +16,28 @@ export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
     try {
       switch (opcode) {
         case 0x00:
-          rpk = new Init();
+          rpk = new Packets.Init();
           break;
         case 0x01:
-          rpk = new LoginFail();
+          rpk = new Packets.LoginFail();
           break;
         case 0x02:
-          rpk = new AccountKicked();
+          rpk = new Packets.AccountKicked();
           break;
         case 0x03:
-          rpk = new LoginOk();
+          rpk = new Packets.LoginOk();
           break;
         case 0x04:
-          rpk = new ServerList();
+          rpk = new Packets.ServerList();
           break;
         case 0x06:
-          rpk = new PlayFail();
+          rpk = new Packets.PlayFail();
           break;
         case 0x07:
-          rpk = new PlayOk();
+          rpk = new Packets.PlayOk();
           break;
         case 0x0b:
-          rpk = new GGAuth();
+          rpk = new Packets.GGAuth();
           break;
         default:
           // no-op
