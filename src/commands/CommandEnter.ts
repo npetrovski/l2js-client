@@ -14,6 +14,7 @@ import EnterWorld from "../network/outgoing/game/EnterWorld";
 import ProtocolVersion from "../network/outgoing/game/ProtocolVersion";
 import RequestKeyMapping from "../network/outgoing/game/RequestKeyMapping";
 import RequestManorList from "../network/outgoing/game/RequestManorList";
+import ValidatePosition from "../network/outgoing/game/ValidatePosition";
 import AuthGameGuard from "../network/outgoing/login/AuthGameGuard";
 import RequestAuthLogin from "../network/outgoing/login/RequestAuthLogin";
 import RequestServerList from "../network/outgoing/login/RequestServerList";
@@ -121,9 +122,18 @@ export default class CommandEnter extends AbstractGameCommand {
             }
           );
 
-          GlobalEvents.on("PacketReceived:TeleportToLocation", () =>
-            this.GameClient.sendPacket(new Appearing())
-          );
+          GlobalEvents.on("PacketReceived:TeleportToLocation", () => {
+            this.GameClient.sendPacket(new Appearing());
+            this.GameClient.sendPacket(
+              new ValidatePosition(
+                this.GameClient.ActiveChar.X,
+                this.GameClient.ActiveChar.Y,
+                this.GameClient.ActiveChar.Z,
+                this.GameClient.ActiveChar.Heading,
+                0
+              )
+            );
+          });
         })
         .catch(e => reject(e));
     });

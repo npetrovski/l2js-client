@@ -196,9 +196,7 @@ export default abstract class ClientCommands {
               GameClient: { value: (target as any).GameClient }
             }
           );
-          return (...args: any) => {
-            return cmd.execute(...args);
-          };
+          return (...args: any) => cmd.execute(...args);
         }
       }
     });
