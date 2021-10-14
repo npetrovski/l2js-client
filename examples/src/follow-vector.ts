@@ -1,7 +1,7 @@
 import Vector from "l2js-client/mmocore/Vector";
 import l2 from "./login";
 
-const FOLLOW_NAME = "Adm";
+const FOLLOW_NAME = "Kz";
 const FOLLOW_DIST = 150;
 
 l2.on("LoggedIn", () => {
