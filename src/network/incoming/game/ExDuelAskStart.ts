@@ -10,7 +10,7 @@ export default class ExDuelAskStart extends GameClientPacket {
     const _requestorName = this.readS();
     const _partyDuel = this.readD();
 
-    GlobalEvents.fire(`RequestedDuel`, { requestorName: _requestorName });
+    GlobalEvents.fire("RequestedDuel", { requestorName: _requestorName });
 
     return true;
   }

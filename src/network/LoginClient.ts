@@ -7,14 +7,7 @@ import L2Server from "../entities/L2Server";
 import LoginServerPacket from "./outgoing/login/LoginServerPacket";
 import { GlobalEvents } from "../mmocore/EventEmitter";
 import IConnection from "../mmocore/IConnection";
-import Init from "./incoming/login/Init";
-import InitPacketMutator from "./mutators/login/InitPacketMutator";
-import ServerList from "./incoming/login/ServerList";
-import ServerListMutator from "./mutators/login/ServerListMutator";
-import PlayOkMutator from "./mutators/login/PlayOkMutator";
-import PlayOk from "./incoming/login/PlayOk";
-import LoginOkMutator from "./mutators/login/LoginOkMutator";
-import LoginOk from "./incoming/login/LoginOk";
+import mutators from "./mutators/login/index";
 
 export default class LoginClient extends MMOClient {
   private _loginCrypt: LoginCrypt = new LoginCrypt();
@@ -72,10 +65,13 @@ export default class LoginClient extends MMOClient {
       this._serverId = config.ServerId;
     }
 
-    this.registerMutator(new InitPacketMutator(this, Init));
-    this.registerMutator(new ServerListMutator(this, ServerList));
-    this.registerMutator(new PlayOkMutator(this, PlayOk));
-    this.registerMutator(new LoginOkMutator(this, LoginOk));
+    mutators.forEach(m => {
+      const mutator = Object.create(m[0], {
+        Client: { value: this },
+        PacketType: { value: (m[1] as any).name }
+      });
+      this.registerMutator(mutator);
+    });
 
     return this;
   }

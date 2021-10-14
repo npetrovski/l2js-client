@@ -121,6 +121,7 @@ import SendTradeRequest from "./incoming/game/SendTradeRequest";
 import SetupGauge from "./incoming/game/SetupGauge";
 import ExFishingEnd from "./incoming/game/ExFishingEnd";
 import ExFishingHpRegen from "./incoming/game/ExFishingHpRegen";
+import ExRotation from "./incoming/game/ExRotation";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
@@ -474,6 +475,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               break;
             case 0x8d:
               rpk = new NpcQuestHtmlMessage();
+              break;
+            case 0xc1:
+              rpk = new ExRotation();
               break;
             case 0xc6:
               rpk = new ExQuestItemList();

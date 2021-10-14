@@ -1,17 +1,16 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class StopRotation extends GameClientPacket {
+  CharObjectId!: number;
+  Degree!: number;
+  Speed!: number;
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
 
-    if (this._buffer.byteLength >= 18) {
-      const _charObjId = this.readD();
-      const _degree = this.readD();
-      const _speed = this.readD();
-
-      const _unkn1 = this.readD(); // bluff effect related ?
-    }
+    this.CharObjectId = this.readD();
+    this.Degree = this.readD();
+    this.Speed = this.readD();
 
     return true;
   }

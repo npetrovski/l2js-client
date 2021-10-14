@@ -63,6 +63,8 @@ import LoginFail from "./network/incoming/login/LoginFail";
 import CommandRevive from "./commands/CommandRevive";
 import { RestartPoint } from "./enums/RestartPoint";
 import SystemMessage from "./network/incoming/game/SystemMessage";
+import CommandAcceptResurrect from "./commands/CommandAcceptResurrect";
+import CommandDeclineResurrect from "./commands/CommandDeclineResurrect";
 
 export default interface Client {
   /**
@@ -109,7 +111,9 @@ export default interface Client {
    */
   moveTo(x: number, y: number, z: number): void;
   /**
-   * MDrop an item at location
+   * Drop an item at location
+   * @param ItemObjectId
+   * @param ItemsCount
    * @param x
    * @param y
    * @param z
@@ -209,6 +213,14 @@ export default interface Client {
    * @param where
    */
   revive(where: RestartPoint): void;
+  /**
+   * Accept resurrect request
+   */
+  acceptResurrect(): void;
+  /**
+   * Decline resurrect request
+   */
+  declineResurrect(): void;
 }
 
 /**
@@ -259,7 +271,10 @@ export default class Client {
 
     craft: CommandCraft.prototype,
 
-    revive: CommandRevive.prototype
+    revive: CommandRevive.prototype,
+
+    acceptResurrect: CommandAcceptResurrect.prototype,
+    declineResurrect: CommandDeclineResurrect.prototype
   };
 
   get LoginClient(): LoginClient {
@@ -342,9 +357,8 @@ export default class Client {
     }
 
     return new Promise((resolve, reject) => {
-      this._lc.init(this._config);
-      this._lc
-        .connect()
+      this.LoginClient.init(this._config);
+      this.LoginClient.connect()
         .then(() => {
           GlobalEvents.once("PacketReceived:PlayFail", (e: EPacketReceived) => {
             reject((e.data.packet as PlayFail).FailReason);
@@ -356,61 +370,63 @@ export default class Client {
             }
           );
           GlobalEvents.once("PacketReceived:Init", () =>
-            this._lc.sendPacket(new AuthGameGuard(this._lc.Session.sessionId))
+            this.LoginClient.sendPacket(
+              new AuthGameGuard(this.LoginClient.Session.sessionId)
+            )
           );
           GlobalEvents.once("PacketReceived:GGAuth", () =>
-            this._lc.sendPacket(
+            this.LoginClient.sendPacket(
               new RequestAuthLogin(
                 this._config.Username,
                 this._config.Password,
-                this._lc.Session
+                this.LoginClient.Session
               )
             )
           );
           GlobalEvents.once("PacketReceived:LoginOk", () =>
-            this._lc.sendPacket(new RequestServerList(this._lc.Session))
+            this.LoginClient.sendPacket(
+              new RequestServerList(this.LoginClient.Session)
+            )
           );
           GlobalEvents.once(
             "PacketReceived:ServerList",
             (e: EPacketReceived) => {
-              this._lc.sendPacket(
+              this.LoginClient.sendPacket(
                 new RequestServerLogin(
-                  this._lc.Session,
-                  this._lc.ServerId ??
+                  this.LoginClient.Session,
+                  this.LoginClient.ServerId ??
                     (e.data.packet as ServerList).LastServerId
                 )
               );
             }
           );
           GlobalEvents.once("PacketReceived:PlayOk", () => {
-            this._lc.Connection.close();
+            this.LoginClient.Connection.close();
             const gameConfig = {
               ...this._config,
               ...{
-                Ip: this._lc.Session.server.host,
-                Port: this._lc.Session.server.port
+                Ip: this.LoginClient.Session.server.host,
+                Port: this.LoginClient.Session.server.port
               }
             };
-            this._gc.Session = this._lc.Session;
-            this._gc.init(gameConfig as MMOConfig);
-            this._gc
-              .connect()
-              .then(() => this._gc.sendPacket(new ProtocolVersion()))
+            this.GameClient.Session = this.LoginClient.Session;
+            this.GameClient.init(gameConfig as MMOConfig);
+            this.GameClient.connect()
+              .then(() => this.GameClient.sendPacket(new ProtocolVersion()))
               .catch(e => reject(e));
           });
           GlobalEvents.once("PacketReceived:KeyPacket", () =>
-            this._gc.sendPacket(new AuthLogin(this._gc.Session))
+            this.GameClient.sendPacket(new AuthLogin(this.GameClient.Session))
           );
           GlobalEvents.once("PacketReceived:CharSelectionInfo", () =>
-            this._gc.sendPacket(
-              new CharacterSelect(this._gc.Config.CharSlotIndex ?? 0)
+            this.GameClient.sendPacket(
+              new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0)
             )
           );
           GlobalEvents.once("PacketReceived:CharSelected", () => {
-            this._gc
-              .sendPacket(new RequestManorList())
-              .then(() => this._gc.sendPacket(new RequestKeyMapping()))
-              .then(() => this._gc.sendPacket(new EnterWorld()))
+            this.GameClient.sendPacket(new RequestManorList())
+              .then(() => this.GameClient.sendPacket(new RequestKeyMapping()))
+              .then(() => this.GameClient.sendPacket(new EnterWorld()))
               .catch(e => reject("Enter world fail." + e));
           });
 
@@ -421,17 +437,18 @@ export default class Client {
                 (e.data.packet as SystemMessage).messageId ===
                 34 /** WELCOME_TO_LINEAGE */
               ) {
-                GlobalEvents.fire("LoggedIn", {
-                  login: this._lc,
-                  game: this._gc
-                });
-                resolve({ login: this._lc, game: this._gc });
+                const param = {
+                  login: this.LoginClient,
+                  game: this.GameClient
+                };
+                GlobalEvents.fire("LoggedIn", param);
+                resolve(param);
               }
             }
           );
 
           GlobalEvents.on("PacketReceived:TeleportToLocation", () =>
-            this._gc.sendPacket(new Appearing())
+            this.GameClient.sendPacket(new Appearing())
           );
         })
         .catch(e => reject(e));
@@ -457,6 +474,12 @@ export default class Client {
   on(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
     GlobalEvents.on(c.type, c.handler);
+    return this;
+  }
+
+  once(...params: EventHandlerType): this {
+    const c = this.___event_params(...params);
+    GlobalEvents.once(c.type, c.handler);
     return this;
   }
 
