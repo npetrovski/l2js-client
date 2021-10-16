@@ -89,12 +89,6 @@ export default class GameClient extends MMOClient {
   constructor() {
     super();
     this.PacketHandler = new GamePacketHandler();
-  }
-
-  init(config: MMOConfig, connection?: IConnection): this {
-    this.Connection = connection ?? new MMOConnection(config, this);
-
-    this.Config = config;
 
     mutators.forEach(m => {
       const mutator = Object.create(m[0], {
@@ -103,6 +97,12 @@ export default class GameClient extends MMOClient {
       });
       this.registerMutator(mutator);
     });
+  }
+
+  init(config: MMOConfig, connection?: IConnection): this {
+    this.Connection = connection ?? new MMOConnection(config, this);
+
+    this.Config = config;
 
     return this;
   }

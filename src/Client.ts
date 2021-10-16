@@ -16,8 +16,8 @@ import ClientCommands from "./commands/ClientCommands";
  * Lineage 2 Client main class
  */
 export default class Client extends ClientCommands {
-  protected LoginClient = new LoginClient();
-  protected GameClient = new GameClient();
+  LoginClient = new LoginClient();
+  GameClient = new GameClient();
 
   get Me(): L2User {
     return this.GameClient.ActiveChar;

@@ -52,6 +52,14 @@ export default class LoginClient extends MMOClient {
   constructor() {
     super();
     this.PacketHandler = new LoginPacketHandler();
+
+    mutators.forEach(m => {
+      const mutator = Object.create(m[0], {
+        Client: { value: this },
+        PacketType: { value: (m[1] as any).name }
+      });
+      this.registerMutator(mutator);
+    });
   }
 
   init(config: MMOConfig, connection?: IConnection): this {
@@ -64,14 +72,6 @@ export default class LoginClient extends MMOClient {
     if (config.ServerId) {
       this._serverId = config.ServerId;
     }
-
-    mutators.forEach(m => {
-      const mutator = Object.create(m[0], {
-        Client: { value: this },
-        PacketType: { value: (m[1] as any).name }
-      });
-      this.registerMutator(mutator);
-    });
 
     return this;
   }
