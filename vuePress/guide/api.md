@@ -33,6 +33,7 @@ L2Object
 | sayToTrade          | Send a trade message                                                                            |
 | sayToAlly           | Send an ally message                                                                            |
 | moveTo              | Move to location                                                                                |
+| dropItem            | Drop an item to location                                                                        |
 | hit                 | Hit on target. Accepts L2Object object or ObjectId                                              |
 | attack              | Attack a target. Accepts L2Object object or ObjectId                                            |
 | cancelTarget        | Cancel the active target                                                                        |

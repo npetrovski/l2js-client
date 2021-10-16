@@ -10,9 +10,9 @@ l2.enter({
   /* required */ Username: "admin",
   /* required */ Password: "admin",
   /* required */ Ip: "127.0.0.1",
-  /* optional */ ServerId: 1, //Bartz
+  /* optional */ ServerId: 1, // Bartz
   /* optional */ CharSlotIndex: 0
-}); // return a Promise, so you can use .then() after "enter()"
+}).catch(e => console.log(e));
 ```
 
 ## Chat
@@ -78,7 +78,7 @@ l2.on("StartMoving", (e: EStartMoving) => {
 });
 ```
 
-## Follow a character (Advanced)
+## Follow a character by keeping a distance
 
 ```ts
 const FOLLOW_NAME = "Adm";
@@ -108,6 +108,33 @@ l2.on("LoggedIn", () => {
               );
           l2.moveTo(dx, dy, creature.Z);
         }
+      }
+    }
+  }, 500);
+});
+```
+
+## Follow a character by keeping a distance (using a Vector)
+
+```ts
+import Vector from "l2js-client/mmocore/Vector";
+
+const FOLLOW_NAME = "Adm";
+const FOLLOW_DIST = 150;
+
+l2.on("LoggedIn", () => {
+  setInterval(() => {
+    if (!l2.Me.IsDead && l2.Me.IsReady) {
+      const creature = l2.CreaturesList.getEntryByName(FOLLOW_NAME);
+      if (creature && l2.Me.calculateDistance(creature) > FOLLOW_DIST) {
+        const v1 = new Vector(creature.X - l2.Me.X, creature.Y - l2.Me.Y);
+        v1.normalize();
+
+        l2.moveTo(
+          creature.X - v1.X * FOLLOW_DIST,
+          creature.Y - v1.Y * FOLLOW_DIST,
+          creature.Z
+        );
       }
     }
   }, 500);
@@ -216,4 +243,65 @@ l2.on("LoggedIn", () => {
       clearInterval(craftIntervalId);
     }
   });
+```
+
+## Catching a fish
+
+```ts
+import { EPacketReceived } from "l2js-client/events/EventTypes";
+import ExFishingHpRegen from "l2js-client/network/incoming/game/ExFishingHpRegen";
+import ExFishingEnd from "l2js-client/network/incoming/game/ExFishingEnd";
+
+const UsePump = () => l2.cast(1313);
+const UseReeling = () => l2.cast(1314);
+const UseFishing = () => {
+  l2.say("Nice day for fishing ain't it? Hua hah!");
+  l2.cast(1312);
+};
+
+l2.on("LoggedIn", () => {
+  setTimeout(UseFishing, 3000);
+})
+  .on("PacketReceived", "ExFishingHpRegen", (e: EPacketReceived) => {
+    const packet = e.data.packet as ExFishingHpRegen;
+    if (packet.ObjectId === l2.Me.ObjectId) {
+      if (packet.Deceptive === 0) {
+        if (packet.HpMode === 0) {
+          UsePump();
+        } else {
+          UseReeling();
+        }
+      } else {
+        if (packet.HpMode === 0) {
+          UseReeling();
+        } else {
+          UsePump();
+        }
+      }
+    }
+  })
+  .on("PacketReceived", "ExFishingEnd", (e: EPacketReceived) => {
+    const packet = e.data.packet as ExFishingEnd;
+    if (packet.ObjectId === l2.Me.ObjectId) {
+      l2.say(packet.IsWin ? "Ya hoooo! Gotcha." : "Next time, maybe..");
+      UseFishing();
+    }
+  });
+```
+
+## Accept resurrect request
+
+```ts
+import { EConfirmDlg } from "l2js-client/events/EventTypes";
+import DlgAnswer from "l2js-client/network/outgoing/DlgAnswer";
+
+const RESURRECTION_REQUEST_BY_C1_FOR_S2_XP = 1510;
+
+l2.on("ConfirmDlg", (e: EConfirmDlg) => {
+  if (e.data.messageId === RESURRECTION_REQUEST_BY_C1_FOR_S2_XP) {
+    l2.GameClient.sendPacket(
+      new DlgAnswer(e.data.messageId, 1, e.data.requesterId)
+    );
+  }
+});
 ```
