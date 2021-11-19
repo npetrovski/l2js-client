@@ -9,6 +9,8 @@ export default class PlayFail extends LoginClientPacket {
     const _reason = this.readC();
 
     this.FailReason = (PlayFailReason as any)[_reason];
+
+    this.logger.info(this.FailReason);
     return true;
   }
 }

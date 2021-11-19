@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/npetrovski/l2js-client",
   "dependencies": {
-    "big-integer": "^1.6.49"
+    "big-integer": "^1.6.51"
   },
   "devDependencies": {
     "@types/node": "^13.13.52",

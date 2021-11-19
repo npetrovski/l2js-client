@@ -10,6 +10,7 @@ export default class PlayOk extends LoginClientPacket {
     this.PlayOk1 = this.readD();
     this.PlayOk2 = this.readD();
 
+    this.logger.info("Play Ok" + _id);
     return true;
   }
 }

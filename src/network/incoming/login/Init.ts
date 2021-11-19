@@ -38,6 +38,8 @@ export default class Init extends LoginClientPacket {
 
     this.BlowfishKey = this.readB(16);
 
+    this.logger.info(this.BlowfishKey);
+
     return true;
   }
 

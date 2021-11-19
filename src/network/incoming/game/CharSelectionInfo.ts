@@ -6,12 +6,11 @@ import L2ObjectCollection from "../../../entities/L2ObjectCollection";
 export default class CharSelectionInfo extends GameClientPacket {
   // @Override
   readImpl(): boolean {
+    this;this.logger.info("CharSelectionInfo");
     const _id = this.readC();
     const _characterPackages: L2ObjectCollection<L2User> = new L2ObjectCollection();
 
     const _characterPackagesSize = this.readD();
-    const _charMaxNumber = this.readD();
-    const _pad = this.readC();
 
     for (let i = 0; i < _characterPackagesSize; i++) {
       const char: L2User = new L2User();
@@ -39,7 +38,6 @@ export default class CharSelectionInfo extends GameClientPacket {
 
       char.Sp = this.readD();
       char.Exp = this.readQ();
-      char.ExpPercent = this.readF();
 
       char.Level = this.readD();
       char.Karma = this.readD();
@@ -72,17 +70,6 @@ export default class CharSelectionInfo extends GameClientPacket {
 
       const _enchantEffect = this.readC();
       const augmentationId = this.readD();
-
-      const _hideTransformation = this.readD();
-
-      const _notImplementedPetId = this.readD();
-      const _notImplementedPetLevel = this.readD();
-      const _notImplementedPetMaxFood = this.readD();
-      const _notImplementedPetCurrentFood = this.readD();
-      const _notImplementedPetMaxHP = this.readF();
-      const _notImplementedPetMaxMP = this.readF();
-
-      char.Vitality = this.readD();
 
       _characterPackages.add(char);
     }

@@ -70,7 +70,7 @@ export default class CommandEnter extends AbstractGameCommand {
                 new RequestServerLogin(
                   this.LoginClient.Session,
                   this.LoginClient.ServerId ??
-                    (e.data.packet as ServerList).LastServerId
+                  (e.data.packet as ServerList).LastServerId
                 )
               );
             }
@@ -93,16 +93,23 @@ export default class CommandEnter extends AbstractGameCommand {
           GlobalEvents.once("PacketReceived:KeyPacket", () =>
             this.GameClient.sendPacket(new AuthLogin(this.GameClient.Session))
           );
-          GlobalEvents.once("PacketReceived:CharSelectionInfo", () =>
-            this.GameClient.sendPacket(
-              new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0)
-            )
+          GlobalEvents.once("PacketReceived:CharSelectionInfo", () => {
+            setTimeout(() => {
+              this.GameClient.sendPacket(
+                new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0)
+              )
+            }, 1000);
+
+          }
+
           );
           GlobalEvents.once("PacketReceived:CharSelected", () => {
-            this.GameClient.sendPacket(new RequestManorList())
-              .then(() => this.GameClient.sendPacket(new RequestKeyMapping()))
-              .then(() => this.GameClient.sendPacket(new EnterWorld()))
-              .catch(e => reject("Enter world fail." + e));
+            setTimeout(() => {
+              this.GameClient.sendPacket(new EnterWorld())
+                .catch(e => reject("Enter world fail." + e))
+            }, 1000);
+
+
           });
 
           GlobalEvents.on(
