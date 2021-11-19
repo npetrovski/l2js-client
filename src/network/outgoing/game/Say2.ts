@@ -35,7 +35,7 @@ export default class Say2 extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x49);
+    this.writeC(0x38);
     this.writeS(this.text);
     this.writeD(this.type);
     if (this.target) {

@@ -25,10 +25,10 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.PlayerInGame();
           break;
         case 0x04:
-            rpk = new Packets.UserInfo();
-            break;
+          rpk = new Packets.UserInfo();
+          break;
         case 0x05:
-          rpk = new Packets.SpawnItem();
+          rpk = new Packets.Attack();
           break;
         case 0x06:
           rpk = new Packets.Die();
@@ -40,7 +40,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.TempBan();
           break;
         case 0x15:
-          this.logger.info("Got char selected packet")
+          this.logger.info("Got char selected packet");
           rpk = new Packets.CharSelected();
           break;
         case 0x0c:
@@ -98,7 +98,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.TargetUnselected();
           break;
         case 0x25:
-          rpk = new Packets.AutoAttackStart();
+          rpk = new Packets.ActionFailed();
           break;
         case 0x26:
           rpk = new Packets.AutoAttackStop();
@@ -113,9 +113,8 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.ChangeWaitType();
           break;
         case 0x2d:
-            //Social action
-            this.logger.info("Social action");
-            break;
+          //Social action
+          break;
         case 0x2e:
           rpk = new Packets.KeyPacket();
           break;
@@ -127,9 +126,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x31:
           rpk = new Packets.CharInfo();
-          break;
-        case 0x33:
-          rpk = new Packets.Attack();
           break;
         case 0x39:
           rpk = new Packets.AskJoinParty();
@@ -176,10 +172,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x52:
           rpk = new Packets.PartySmallWindowUpdate();
           break;
-        case 0x54:
-          rpk = new Packets.MagicSkillLaunched();
-          break;
-        case 0x5f:
+        case 0x58:
           rpk = new Packets.SkillList();
           break;
         case 0x60:
@@ -188,11 +181,11 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x61:
           rpk = new Packets.StopRotation();
           break;
-        case 0x62:
-          rpk = new Packets.SystemMessage();
-          break;
         case 0x63:
           rpk = new Packets.StartPledgeWar();
+          break;
+        case 0x64:
+          rpk = new Packets.SystemMessage();
           break;
         case 0x65:
           rpk = new Packets.StopPledgeWar();
@@ -220,6 +213,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x73:
           rpk = new Packets.SSQInfo();
+          break;
+        case 0x76:
+          rpk = new Packets.MagicSkillLaunched();
           break;
         case 0x75:
           rpk = new Packets.FriendList();
@@ -268,6 +264,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0xa9:
           rpk = new Packets.TutorialCloseHtml();
+          break;
+        case 0xb5:
+          rpk = new Packets.PetUpdate();
           break;
         case 0xb7:
           rpk = new Packets.PetDelete();
@@ -320,7 +319,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xee:
           rpk = new Packets.HennaEquipList();
           break;
-        case 0xf3:
+        case 0xed:
           rpk = new Packets.ConfirmDlg();
           break;
         case 0xf4:

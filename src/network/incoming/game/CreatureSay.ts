@@ -10,17 +10,19 @@ export default class CreatureSay extends GameClientPacket {
 
     const _charName = this.readS(); // or readD() ???
 
-    const _npcStringId = this.readD();
     const _messages = [];
     while (this._offset + 2 < this._buffer.byteLength) {
       _messages.push(this.readS());
+    }
+
+    for (var message of _messages) {
+      this.logger.info("" + _charName + " " + message)
     }
 
     GlobalEvents.fire("CreatureSay", {
       objectId: _objectId,
       type: _textType,
       charName: _charName,
-      npcStringId: _npcStringId,
       messages: _messages
     });
     return true;

@@ -26,7 +26,7 @@ export default class Attack extends GameClientPacket {
       subjects.push(_targetId1);
     }
 
-    const [_targetX, _targetY, _targetZ] = this.readLoc();
+    // const [_targetX, _targetY, _targetZ] = this.readLoc();
 
     GlobalEvents.fire(`Attacked`, {
       object: _attackerObjId,

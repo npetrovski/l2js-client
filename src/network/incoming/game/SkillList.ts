@@ -15,7 +15,6 @@ export default class SkillList extends GameClientPacket {
       skill.Level = this.readD();
       skill.Id = this.readD();
       const _disabled = this.readC() === 1;
-      skill.IsEnchanted = this.readC() === 1;
 
       this.Skills.push(skill);
     }
