@@ -46,14 +46,5 @@ export default abstract class GameServerPacket extends SendablePacket {
     GameServerPacket.PAPERDOLL_RHAND,
     GameServerPacket.PAPERDOLL_HAIR,
     GameServerPacket.PAPERDOLL_HAIR2,
-    GameServerPacket.PAPERDOLL_RBRACELET,
-    GameServerPacket.PAPERDOLL_LBRACELET,
-    GameServerPacket.PAPERDOLL_DECO1,
-    GameServerPacket.PAPERDOLL_DECO2,
-    GameServerPacket.PAPERDOLL_DECO3,
-    GameServerPacket.PAPERDOLL_DECO4,
-    GameServerPacket.PAPERDOLL_DECO5,
-    GameServerPacket.PAPERDOLL_DECO6,
-    GameServerPacket.PAPERDOLL_BELT
   ];
 }

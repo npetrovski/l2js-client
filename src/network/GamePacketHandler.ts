@@ -24,6 +24,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x02:
           rpk = new Packets.PlayerInGame();
           break;
+        case 0x04:
+            rpk = new Packets.UserInfo();
+            break;
         case 0x05:
           rpk = new Packets.SpawnItem();
           break;
@@ -109,6 +112,10 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x29:
           rpk = new Packets.ChangeWaitType();
           break;
+        case 0x2d:
+            //Social action
+            this.logger.info("Social action");
+            break;
         case 0x2e:
           rpk = new Packets.KeyPacket();
           break;
@@ -120,9 +127,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x31:
           rpk = new Packets.CharInfo();
-          break;
-        case 0x32:
-          rpk = new Packets.UserInfo();
           break;
         case 0x33:
           rpk = new Packets.Attack();
