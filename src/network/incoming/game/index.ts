@@ -118,6 +118,7 @@ import SetupGauge from "./SetupGauge";
 import ExFishingEnd from "./ExFishingEnd";
 import ExFishingHpRegen from "./ExFishingHpRegen";
 import ExRotation from "./ExRotation";
+import PetUpdate from "./PetUpdate";
 
 export {
   AbnormalStatusUpdate,
@@ -156,6 +157,7 @@ export {
   PartySmallWindowDeleteAll,
   PartySmallWindowUpdate,
   PetDelete,
+  PetUpdate,
   RelationChanged,
   Revive,
   ShortCutInit,

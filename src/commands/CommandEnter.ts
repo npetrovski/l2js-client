@@ -117,10 +117,8 @@ export default class CommandEnter extends AbstractGameCommand {
           this.GameClient.on(
             "PacketReceived:SystemMessage",
             (e: EPacketReceived) => {
-              if (
-                (e.data.packet as SystemMessage).messageId ===
-                34 /** WELCOME_TO_LINEAGE */
-              ) {
+              /** WELCOME_TO_LINEAGE */
+              if ((e.data.packet as SystemMessage).messageId === 34 ){
                 const param = {
                   login: this.LoginClient,
                   game: this.GameClient,

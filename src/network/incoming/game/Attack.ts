@@ -27,7 +27,7 @@ export default class Attack extends GameClientPacket {
       this.Subjects.push(_targetId1);
     }
 
-    const [_targetX, _targetY, _targetZ] = this.readLoc();
+    // const [_targetX, _targetY, _targetZ] = this.readLoc();
 
     return true;
   }

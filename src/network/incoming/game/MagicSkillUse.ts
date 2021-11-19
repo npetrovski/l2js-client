@@ -22,16 +22,20 @@ export default class MagicSkillUse extends GameClientPacket {
     const [_x, _y, _z] = this.readLoc();
 
     const _unknown = this.readH();
-    for (let i = 0; i < _unknown; i++) {
-      const _unknownH = this.readH();
-    }
+    this.readH();
+    this.readH();
+    this.readH();
 
-    const _groundLocations = this.readH();
-    for (let i = 0; i < _groundLocations; i++) {
-      const [_xGroundLoc, _yGroundLoc, _zGroundLoc] = this.readLoc();
-    }
+    // for (let i = 0; i < _unknown; i++) {
+    //   const _unknownH = this.readH();
+    // }
 
-    const [_xTarget, _yTarget, _zTarget] = this.readLoc();
+    // const _groundLocations = this.readH();
+    // for (let i = 0; i < _groundLocations; i++) {
+    //   const [_xGroundLoc, _yGroundLoc, _zGroundLoc] = this.readLoc();
+    // }
+
+    // const [_xTarget, _yTarget, _zTarget] = this.readLoc();
 
     return true;
   }

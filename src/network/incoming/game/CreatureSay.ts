@@ -15,7 +15,7 @@ export default class CreatureSay extends GameClientPacket {
 
     this.CharName = this.readS(); // or readD() ???
 
-    this.NpcStringId = this.readD();
+    const _messages = [];
     while (this._offset + 2 < this._buffer.byteLength) {
       this.Messages.push(this.readS());
     }
