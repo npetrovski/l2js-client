@@ -24,7 +24,6 @@ export default class UserInfo extends GameClientPacket {
     this.User.BaseClassId = this.readD();
     this.User.Level = this.readD();
     this.User.Exp = this.readQ();
-    const _percentFromCurrentLevel = this.readF();
 
     this.User.STR = this.readD();
     this.User.DEX = this.readD();
@@ -32,6 +31,10 @@ export default class UserInfo extends GameClientPacket {
     this.User.INT = this.readD();
     this.User.WIT = this.readD();
     this.User.MEN = this.readD();
+
+    this.logger.info("User info for " + this.User.Name)
+    this.logger.info("STR " + this.User.STR)
+    this.logger.info("INT " + this.User.INT)
 
     this.User.MaxHp = this.readD();
     this.User.Hp = this.readD();
@@ -52,12 +55,11 @@ export default class UserInfo extends GameClientPacket {
       const _slot2 = this.readD();
     });
 
-    GameServerPacket.PAPERDOLL_ORDER.forEach(value => {
-      const _slot3 = this.readD();
-    });
-
-    const _talismanSlots = this.readD();
-    const _canEquipCloak = this.readD() === 1;
+    this.readB(28);
+    const RHandAugmentation = this.readD();
+    this.readB(24);
+    const LHandAugmentation = this.readD();
+    this.readB(8);
 
     this.User.PAtk = this.readD();
     this.User.PAtkSpd = this.readD();
@@ -70,6 +72,7 @@ export default class UserInfo extends GameClientPacket {
 
     const _pAtkSpd1 = this.readD();
     this.User.MDef = this.readD();
+
     const _pvpFlag = this.readD();
     this.User.Karma = this.readD();
 
@@ -90,10 +93,10 @@ export default class UserInfo extends GameClientPacket {
     const HairStyle = this.readD();
     const HairColor = this.readD();
     const Face = this.readD();
-
-    const _isGM = this.readD();
-
+    const GM = this.readD();
+    
     this.User.Title = this.readS();
+
     const _clanId = this.readD();
     const _clanCrestId = this.readD();
     const _allyId = this.readD();
@@ -104,7 +107,7 @@ export default class UserInfo extends GameClientPacket {
     const _relation = this.readD();
 
     const _mountType = this.readC();
-    const _privateStoreType = this.readC();
+    const _privateStore = this.readC();
     const _dwarvenCraft = this.readC();
 
     this.User.PkKills = this.readD();
@@ -123,12 +126,12 @@ export default class UserInfo extends GameClientPacket {
 
     this.User.RecommLeft = this.readH();
     this.User.RecommHave = this.readH();
-    const _mountNpcId = this.readD() - 1000000;
+
+    this.readD();
     const _inventoryLimit = this.readH();
 
     this.User.ClassId = this.readD();
-
-    const _unk0 = this.readD();
+    this.readD();
 
     this.User.MaxCp = this.readD();
     this.User.Cp = this.readD();
@@ -154,27 +157,12 @@ export default class UserInfo extends GameClientPacket {
     const _pledgeType = this.readD();
 
     const _titleColor = this.readD();
+    const _cursedWeapons = this.readD();
 
-    const _cursedWeaponId = this.readD();
-    const _transformationDisplayId = this.readD();
-
-    const _attackAttribute = this.readH();
-    this.User.AtkElementPower = this.readH();
-    const _atkFire = this.readH();
-    const _atkWater = this.readH();
-    const _atkWind = this.readH();
-    const _atkEarth = this.readH();
-    const _atkHoly = this.readH();
-    const _atkDark = this.readH();
-
-    const _agathionId = this.readD();
-
-    this.User.Fame = this.readD();
-
-    const _isMinimapAllowed = this.readD() === 1;
-    const _vitalityPoints = this.readD();
-    const _abnormalVisualEffectSpecial = this.readD();
-
+    this.logger.info("PAttack " + this.User.PAtk)
+    this.logger.info("User karma " + this.User.Karma)
+    this.logger.info("User class " + this.User.ClassId)
+    this.logger.info("User CP/MAXCP " + this.User.Cp + "/" + this.User.MaxCp)
     return true;
   }
 }
