@@ -17,7 +17,7 @@ export default class ValidatePosition extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x59);
+    this.writeC(0x48);
     this.writeD(this._x);
     this.writeD(this._y);
     this.writeD(this._z);

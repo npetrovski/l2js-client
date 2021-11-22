@@ -13,7 +13,7 @@ export default class MoveBackwardToLocation extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x0f);
+    this.writeC(0x01);
     this.writeD(this.targetX);
     this.writeD(this.targetY);
     this.writeD(this.targetZ);

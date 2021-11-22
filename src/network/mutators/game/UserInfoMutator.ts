@@ -7,18 +7,8 @@ export default class UserInfoMutator extends IMMOClientMutator<
   UserInfo
 > {
   update(packet: UserInfo): void {
-    const user = this.Client.ActiveChar;
-    if (!user) {
-      this.Client.ActiveChar = packet.User;
-    } else {
-      let eventHandlers = this.Client.ActiveChar._eventHandlers;
-      Object.assign(this.Client.ActiveChar, packet.User);
-      // Restore event handlers
-      this.Client.ActiveChar._eventHandlers = eventHandlers;
-    }
-
-    if (!this.Client.CreaturesList.getEntryByObjectId(packet.User.ObjectId)) {
-      this.Client.CreaturesList.add(this.Client.ActiveChar);
-    }
+    console.log("Mutator setting user " + packet.User.X);
+    this.Client.ActiveChar = packet.User;
+    this.Client.CreaturesList.add(packet.User);
   }
 }

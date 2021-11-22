@@ -24,6 +24,9 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x02:
           rpk = new Packets.PlayerInGame();
           break;
+        case 0x03:
+          rpk = new Packets.CharInfo();
+          break;
         case 0x04:
           rpk = new Packets.UserInfo();
           break;
@@ -39,13 +42,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x0a:
           rpk = new Packets.TempBan();
           break;
-        case 0x15:
-          this.logger.info("Got char selected packet");
-          rpk = new Packets.CharSelected();
-          break;
-        case 0x0c:
-          rpk = new Packets.NpcInfo();
-          break;
+
         case 0x11:
           rpk = new Packets.ItemList();
           break;
@@ -58,13 +55,17 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x14:
           rpk = new Packets.TradeStart();
           break;
+        case 0x15:
+          this.logger.info("Got char selected packet");
+          rpk = new Packets.CharSelected();
+          break;
         case 0x16:
-          rpk = new Packets.DropItem();
+          rpk = new Packets.NpcInfo();
           break;
         case 0x17:
           rpk = new Packets.GetItem();
           break;
-        case 0x18:
+        case 0x14:
           rpk = new Packets.StatusUpdate();
           break;
         case 0x19:
@@ -91,9 +92,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x22:
           rpk = new Packets.TeleportToLocation();
           break;
-        case 0x23:
-          rpk = new Packets.TargetSelected();
-          break;
         case 0x24:
           rpk = new Packets.TargetUnselected();
           break;
@@ -110,7 +108,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.ChangeMoveType();
           break;
         case 0x29:
-          rpk = new Packets.ChangeWaitType();
+          rpk = new Packets.TargetSelected();
           break;
         case 0x2d:
           //Social action
@@ -123,9 +121,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x30:
           rpk = new Packets.NpcSay();
-          break;
-        case 0x31:
-          rpk = new Packets.CharInfo();
           break;
         case 0x39:
           rpk = new Packets.AskJoinParty();
@@ -254,7 +249,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.PrivateStoreListSell();
           break;
         case 0xa6:
-          rpk = new Packets.TutorialShowHtml();
+          rpk = new Packets.MyTargetSelected();
           break;
         case 0xa7:
           rpk = new Packets.TutorialShowQuestionMark();
@@ -271,9 +266,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0xb7:
           rpk = new Packets.PetDelete();
           break;
-        case 0xb9:
-          rpk = new Packets.MyTargetSelected();
-          break;
+
         case 0xba:
           rpk = new Packets.PartyMemberPosition();
           break;
@@ -345,9 +338,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               break;
             case 0x33:
               rpk = new Packets.ExSetCompassZoneCode();
-              break;
-            case 0x39:
-              rpk = new Packets.ExShowScreenMessage();
               break;
             case 0x41:
               rpk = new Packets.ExRedSky();

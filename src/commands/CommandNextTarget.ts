@@ -7,6 +7,8 @@ export default class CommandNextTarget extends AbstractGameCommand {
     let mobs = Array.from(this.GameClient.CreaturesList);
     const me = this.GameClient?.ActiveChar;
 
+    console.log(mobs.length);
+    
     mobs = mobs.filter(
       (p: L2Creature) =>
         me.ObjectId !== p.ObjectId &&
@@ -14,6 +16,9 @@ export default class CommandNextTarget extends AbstractGameCommand {
         !p.IsDead &&
         p.IsAttackable
     );
+
+    console.log(mobs.length);
+
     const result = mobs.reduce(
       (m: L2Creature, p: L2Creature) => (p.Distance < m.Distance ? p : m),
       mobs[0]
