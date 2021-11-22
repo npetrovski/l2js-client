@@ -26,7 +26,7 @@ export default class Action extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x1f);
+    this.writeC(0x04);
     this.writeD(this._objectId);
 
     this.writeD(this._originX);

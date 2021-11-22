@@ -9,7 +9,7 @@ export default class RequestAnswerJoinParty extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x43);
+    this.writeC(0x2a);
     this.writeD(this.answer);
   }
 }

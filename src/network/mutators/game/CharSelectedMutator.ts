@@ -4,7 +4,7 @@ import CharSelected from "../../incoming/game/CharSelected";
 
 export default class CharSelectedMutator extends IMMOClientMutator<
   GameClient,
-  CharSelected
+  CharSelected  
 > {
   update(packet: CharSelected): void {
     this.Client.ActiveChar = packet.User;

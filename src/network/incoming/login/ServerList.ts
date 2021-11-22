@@ -30,7 +30,10 @@ export default class ServerList extends LoginClientPacket {
 
     const _unkn = this.readH();
 
-    this.logger.info(this.Servers);
+    this.Servers.forEach((server) => {
+      this.logger.info("Server " + server.Id + " " + server.ServerType + " " + server.Brackets + " " + server.CurrentPlayers) 
+    })
+
     // ...
 
     return true;

@@ -17,15 +17,6 @@ export default class CharInfo extends GameClientPacket {
     GameServerPacket.PAPERDOLL_RHAND,
     GameServerPacket.PAPERDOLL_HAIR,
     GameServerPacket.PAPERDOLL_HAIR2,
-    GameServerPacket.PAPERDOLL_RBRACELET,
-    GameServerPacket.PAPERDOLL_LBRACELET,
-    GameServerPacket.PAPERDOLL_DECO1,
-    GameServerPacket.PAPERDOLL_DECO2,
-    GameServerPacket.PAPERDOLL_DECO3,
-    GameServerPacket.PAPERDOLL_DECO4,
-    GameServerPacket.PAPERDOLL_DECO5,
-    GameServerPacket.PAPERDOLL_DECO6,
-    GameServerPacket.PAPERDOLL_BELT
   ];
 
   Char: L2Character = new L2Character();
@@ -51,12 +42,8 @@ export default class CharInfo extends GameClientPacket {
       const _slotItemDisplayId = this.readD();
     });
 
-    CharInfo.PAPERDOLL_ORDER.forEach(() => {
-      const _slotItemAugmentationId = this.readD();
-    });
 
-    const _talismanSlots = this.readD();
-    const _canEquipCloak = this.readD() === 1;
+   //TODO fiw missing stuff
 
     const _pvpFlag = this.readD();
     this.Char.Karma = this.readD();

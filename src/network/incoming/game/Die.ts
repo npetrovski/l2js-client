@@ -18,8 +18,6 @@ export default class Die extends GameClientPacket {
     this.Sweepable = this.readD() === 1; // blue glow
     const _staticRes = this.readD() === 1; // to Fixed
 
-    const _toFortress = this.readD();
-
     return true;
   }
 }

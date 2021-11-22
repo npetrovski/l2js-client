@@ -64,10 +64,7 @@ export default class NpcInfo extends AbstractNpcInfo {
     this.Creature.IsDead = this.readC() === 1;
     const _isSummoned = this.readC() === 2; // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
 
-    const _unkn2 = this.readD();
-    // this.Creature.Name = this.readS();
     const _name = this.readS();
-    const _unkn3 = this.readD();
     this.Creature.Title = this.readS();
 
     const _pad2 = this.readD();
@@ -91,13 +88,6 @@ export default class NpcInfo extends AbstractNpcInfo {
     const _collisionHeight2 = this.readF();
     const _enchantEffect = this.readD(); // C4
     const _isFlying = this.readD() === 1; // C6
-    const _pad5 = this.readD();
-    const _colorEffect = this.readD(); // CT1.5 Pet form and skills, Color effect
-
-    this.Creature.IsTargetable = this.readC() === 1;
-    const _isShowName = this.readC() === 1;
-    const _abnormalVisualEffectSpecial = this.readD();
-    const _displayEffect = this.readD();
 
     return true;
   }

@@ -9,6 +9,7 @@ export default class NpcInfoMutator extends IMMOClientMutator<
 > {
   update(packet: NpcInfo): void {
     const npc = this.Client.CreaturesList.getEntryByObjectId(packet.ObjectId);
+    console.log(packet.Creature.Name);
     if (!npc) {
       this.Client.CreaturesList.add(packet.Creature);
 

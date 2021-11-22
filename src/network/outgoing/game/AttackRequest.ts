@@ -26,7 +26,7 @@ export default class AttackRequest extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x32);
+    this.writeC(0x0a);
     this.writeD(this._objectId);
 
     this.writeD(this._originX);

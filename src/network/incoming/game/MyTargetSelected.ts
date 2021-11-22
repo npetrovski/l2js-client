@@ -10,8 +10,6 @@ export default class MyTargetSelected extends GameClientPacket {
     this.CreatureObjId = this.readD();
     const _color = this.readH();
 
-    const _pad = this.readD();
-
     return true;
   }
 }

@@ -13,7 +13,9 @@ export default class CharSelected extends GameClientPacket {
     user.ObjectId = this.readD();
     user.Title = this.readS();
     const _sessionId = this.readD();
+    this.User = user;
 
+    this.logger.info("CharSelected " + this.User.Name);
     return true;
   }
 }

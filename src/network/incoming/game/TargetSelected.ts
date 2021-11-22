@@ -15,8 +15,6 @@ export default class TargetSelected extends GameClientPacket {
 
     this.Location = this.readLoc();
 
-    const _unkn1 = this.readD();
-
     return true;
   }
 }
