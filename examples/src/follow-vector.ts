@@ -1,7 +1,7 @@
 import Vector from "l2js-client/mmocore/Vector";
 import l2 from "./login";
 
-const FOLLOW_NAME = "Kz";
+const FOLLOW_NAME = "Bot3";
 const FOLLOW_DIST = 150;
 
 l2.on("LoggedIn", () => {
@@ -12,11 +12,7 @@ l2.on("LoggedIn", () => {
         const v1 = new Vector(creature.X - l2.Me.X, creature.Y - l2.Me.Y);
         v1.normalize();
 
-        l2.moveTo(
-          creature.X - v1.X * FOLLOW_DIST,
-          creature.Y - v1.Y * FOLLOW_DIST,
-          creature.Z
-        );
+        l2.moveTo(creature.X - v1.X * FOLLOW_DIST, creature.Y - v1.Y * FOLLOW_DIST, creature.Z);
       }
     }
   }, 500);

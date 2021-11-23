@@ -1,12 +1,11 @@
 import { EPacketReceived } from "l2js-client/events/EventTypes";
-import DropItem from "l2js-client/network/incoming/game/DropItem";
 import l2 from "./login";
 
 import fs from "fs";
 
 const ascii = fs.readFileSync(__dirname + "/../lineage2.ascii", {
   encoding: "utf8",
-  flag: "r"
+  flag: "r",
 });
 
 const DROP_RADIUS = 150; // maximum allowed radius to drop without moving
@@ -29,23 +28,19 @@ const moveTo = (x: number, y: number, z: number, timeoutSec = 20) => {
   });
 };
 
-const dropItem = (
-  itemId: number,
-  x: number,
-  y: number,
-  z: number,
-  timeoutSec = 3
-) => {
+const dropItem = (itemObjId: number, x: number, y: number, z: number, timeoutSec = 3) => {
   return new Promise((resolve, reject) => {
     let success = false;
     const handler = (e: EPacketReceived) => {
-      if ((e.data.packet as DropItem).CharObjectId === l2.Me.ObjectId) {
-        success = true;
+      if (e.data.packet.Name === "DropItem") {
+        if ((e.data.packet.get("dropper_oid") as number) === l2.Me.ObjectId) {
+          success = true;
+        }
       }
     };
     l2.on("PacketReceived", "DropItem", handler);
 
-    l2.dropItem(itemId, 1, x, y);
+    l2.dropItem(itemObjId, 1, x, y);
     const t = setInterval(() => {
       if (success) {
         resolve(true);
@@ -66,7 +61,7 @@ const dropItem = (
 l2.on("LoggedIn", () => {
   const topLeft = {
     x: l2.Me.X,
-    y: l2.Me.Y
+    y: l2.Me.Y,
   };
   const lines = ascii.split(/(?:\r\n|\r|\n)/g);
 
@@ -86,18 +81,14 @@ l2.on("LoggedIn", () => {
           if (c !== " ") {
             const dx = topLeft.x + i * STEP;
             const dy = topLeft.y + n * STEP;
-            const dist = Math.sqrt(
-              Math.pow(dx - l2.Me.X, 2) + Math.pow(dy - l2.Me.Y, 2)
-            );
+            const dist = Math.sqrt(Math.pow(dx - l2.Me.X, 2) + Math.pow(dy - l2.Me.Y, 2));
 
             if (dist < DROP_RADIUS) {
-              await dropItem(item?.ObjectId ?? 0, dx, dy, l2.Me.Z).catch(e =>
-                console.log(e)
-              );
+              await dropItem(item?.ObjectId ?? 0, dx, dy, l2.Me.Z).catch((e) => console.log(e));
             } else {
               await moveTo(dx, dy, l2.Me.Z)
                 .then(() => dropItem(item?.ObjectId ?? 0, dx, dy, l2.Me.Z))
-                .catch(e => console.log(e));
+                .catch((e) => console.log(e));
             }
           }
         }

@@ -3,18 +3,19 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "lib": ["es5", "es6", "dom"],
+    "lib": ["es6", "es2019", "dom"],
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+
     "strict": true,
     "removeComments": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "resolveJsonModule": true
   },
-  "include": ["**/*"],
-  "exclude": ["**/dist/**/*.d.ts", "./*.js", "dist", "node_modules", "examples", "proxy"]
+  "include": ["src/**/*.ts", "src/**/*.json"],
+  "exclude": ["**/dist/**/*.d.ts", "./*.js", "_backup", "dist", "node_modules", "examples", "proxy"]
 }

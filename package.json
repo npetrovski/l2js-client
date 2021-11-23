@@ -1,6 +1,6 @@
 {
   "name": "l2js-client",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "chronicle": "High Five",
   "protocols": [
     268,
@@ -13,14 +13,20 @@
   "license": "MIT",
   "main": "dist/Client.js",
   "types": "dist/Client.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npetrovski/l2js-client"
+  },
+  "bugs": {
+    "url": "https://github.com/npetrovski/l2js-client/issues"
+  },
+  "homepage": "https://github.com/npetrovski/l2js-client",
   "scripts": {
     "compile": "tsc",
     "clean": "rm -rf dist",
-    "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
-    "buildpackage": "cd dist && npm pack",
+    "prepack": "npm run clean && npm run compile && node SetupPackage.js",
+    "pack": "cd dist && npm pack",
     "lint": "eslint ./src/**",
-    "dev:docs": "vuepress dev vuePress",
-    "build:docs": "vuepress build vuePress",
     "publish": "npm publish --access public"
   },
   "keywords": [
@@ -31,24 +37,13 @@
     "bot",
     "l2js"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/npetrovski/l2js-client"
-  },
-  "bugs": {
-    "url": "https://github.com/npetrovski/l2js-client/issues"
-  },
-  "homepage": "https://github.com/npetrovski/l2js-client",
-  "dependencies": {
-    "big-integer": "^1.6.49"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^13.13.52",
     "@types/node-rsa": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.32.0",
-    "typescript": "^3.9.10",
-    "vuepress": "^1.5.3"
+    "typescript": "^3.9.10"
   }
 }

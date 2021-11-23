@@ -3,7 +3,7 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   parserOptions: {
     project: "./tsconfig.json",
-    createDefaultProgram: true
+    createDefaultProgram: true,
   },
   extends: [
     "eslint:recommended",
@@ -16,6 +16,6 @@ module.exports = {
     "adjacent-overload-signatures": 0,
     "no-trailing-whitespace": 0,
     "@typescript-eslint/no-unused-vars": 0,
-    "@typescript-eslint/no-explicit-any": 0
+    "@typescript-eslint/no-explicit-any": 0,
   },
 };
