@@ -1,0 +1,63 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [222]
+  },
+  "type": {
+    "$type": "dword",
+    "$alias": "Type"
+  },
+  "current_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "maximum_mp": {
+    "$type": "dword",
+    "$alias": "Maximum MP"
+  },
+  "rec_cnt": {
+    "$type": "dword",
+    "$alias": "Recipe count"
+  },
+  "rec_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "rec_cnt"
+    },
+    "$schema": {
+      "recipe": {
+        "$type": "dword",
+        "$alias": "Recipe"
+      },
+      "can_create": {
+        "$type": "dword",
+        "$alias": "Can create"
+      }
+    }
+  },
+  "man_cnt": {
+    "$type": "dword",
+    "$alias": "Offer count"
+  },
+  "man_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "man_cnt"
+    },
+    "$schema": {
+      "recipe": {
+        "$type": "dword",
+        "$alias": "Recipe"
+      },
+      "can_create": {
+        "$type": "dword",
+        "$alias": "Can create"
+      },
+      "price": {
+        "$type": "double",
+        "$alias": "Price"
+      }
+    }
+  }
+}

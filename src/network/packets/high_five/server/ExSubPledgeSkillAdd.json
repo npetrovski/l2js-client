@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 118, 0]
+  },
+  "unit": {
+    "$type": "dword",
+    "$alias": "Unit"
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  }
+}

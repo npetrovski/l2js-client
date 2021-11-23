@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [15]
+  },
+  "destination_x": {
+    "$type": "dword",
+    "$alias": "Destination X"
+  },
+  "destination_y": {
+    "$type": "dword",
+    "$alias": "Destination Y"
+  },
+  "destination_z": {
+    "$type": "dword",
+    "$alias": "Destination Z"
+  },
+  "current_client_x": {
+    "$type": "dword",
+    "$alias": "Current client X"
+  },
+  "current_client_y": {
+    "$type": "dword",
+    "$alias": "Current client Y"
+  },
+  "current_client_z": {
+    "$type": "dword",
+    "$alias": "Current client Z"
+  }
+}

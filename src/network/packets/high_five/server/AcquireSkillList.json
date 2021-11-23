@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [144]
+  },
+  "skill_cnt": {
+    "$type": "dword",
+    "$alias": "Skill count"
+  },
+  "skill_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "skill_cnt"
+    },
+    "$schema": {
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "max_level": {
+        "$type": "dword",
+        "$alias": "Max level"
+      },
+      "required_sp": {
+        "$type": "dword",
+        "$alias": "Required SP"
+      },
+      "requires_items": {
+        "$type": "dword",
+        "$alias": "Requires items"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [97]
+  },
+  "rotator_oid": {
+    "$type": "dword",
+    "$alias": "Rotator OID"
+  },
+  "yaw": {
+    "$type": "dword",
+    "$alias": "Yaw"
+  },
+  "manual_turn": {
+    "$type": "dword",
+    "$alias": "Automatic (forced)"
+  },
+  "manual_turn__branch": {
+    "$type": "branch",
+    "$id": "manual_turn",
+    "$condition": {
+      "$eq": 0
+    },
+    "$schema": {
+      "unk0": {
+        "$type": "dword",
+        "$alias": ""
+      }
+    }
+  }
+}

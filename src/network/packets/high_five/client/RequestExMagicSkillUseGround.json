@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      65,
+      0
+    ]
+  },
+  "target_x": {
+    "$type": "dword",
+    "$alias": "Target X"
+  },
+  "target_y": {
+    "$type": "dword",
+    "$alias": "Target Y"
+  },
+  "target_z": {
+    "$type": "dword",
+    "$alias": "Target Z"
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "ctrl_force_attack_": {
+    "$type": "dword",
+    "$alias": "Ctrl (force attack)"
+  },
+  "shift_do_not_move_": {
+    "$type": "byte",
+    "$alias": "Shift (do not move)"
+  }
+}

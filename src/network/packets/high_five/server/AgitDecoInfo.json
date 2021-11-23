@@ -1,0 +1,64 @@
+{
+  "0": {
+    "$type": "bytes",
+    "$alias": "0",
+    "$length": 20
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [253]
+  },
+  "hideout": {
+    "$type": "dword",
+    "$alias": "Hideout"
+  },
+  "fireplace_level": {
+    "$type": "byte",
+    "$alias": "Fireplace level"
+  },
+  "carpet_level": {
+    "$type": "byte",
+    "$alias": "Carpet level"
+  },
+  "statue_level": {
+    "$type": "byte",
+    "$alias": "Statue level"
+  },
+  "chandelier_level": {
+    "$type": "byte",
+    "$alias": "Chandelier level"
+  },
+  "mirror_level": {
+    "$type": "byte",
+    "$alias": "Mirror level"
+  },
+  "crystal_level": {
+    "$type": "byte",
+    "$alias": "Crystal level"
+  },
+  "curtain_level": {
+    "$type": "byte",
+    "$alias": "Curtain level"
+  },
+  "hanging_level": {
+    "$type": "byte",
+    "$alias": "Hanging level"
+  },
+  "interior_curtain_level": {
+    "$type": "byte",
+    "$alias": "Interior curtain level"
+  },
+  "flag_level": {
+    "$type": "byte",
+    "$alias": "Flag level"
+  },
+  "foyer_level": {
+    "$type": "byte",
+    "$alias": "Foyer level"
+  },
+  "magic_machine_level": {
+    "$type": "byte",
+    "$alias": "Magic Machine level"
+  }
+}

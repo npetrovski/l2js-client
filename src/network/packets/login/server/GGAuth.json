@@ -1,0 +1,32 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [11]
+  },
+  "response": {
+    "$type": "dword",
+    "$alias": "Response",
+    "$default": 0
+  },
+  "unk0": {
+    "$type": "dword",
+    "$alias": "Unknown 0",
+    "$default": 0
+  },
+  "unk1": {
+    "$type": "dword",
+    "$alias": "Unknown 1",
+    "$default": 0
+  },
+  "unk2": {
+    "$type": "dword",
+    "$alias": "Unknown 2",
+    "$default": 0
+  },
+  "unk3": {
+    "$type": "dword",
+    "$alias": "Unknown 3",
+    "$default": 0
+  }
+}

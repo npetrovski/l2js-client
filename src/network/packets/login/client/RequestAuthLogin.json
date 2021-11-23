@@ -1,0 +1,50 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [0]
+  },
+  "encrypted_login_info": {
+    "$type": "bytes",
+    "$alias": "ID",
+    "$length": 128
+  },
+  "session_id": {
+    "$type": "dword",
+    "$alias": "Session Id"
+  },
+  "padding": {
+    "$type": "bytes",
+    "$alias": "Padding[0]",
+    "$length": 27,
+    "$default": [
+      128,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

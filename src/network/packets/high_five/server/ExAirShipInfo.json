@@ -1,0 +1,75 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 96, 0]
+  },
+  "aircraft_oid": {
+    "$type": "dword",
+    "$alias": "Aircraft OID"
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  },
+  "heading": {
+    "$type": "dword",
+    "$alias": "Heading"
+  },
+  "captain_oid": {
+    "$type": "dword",
+    "$alias": "Captain OID"
+  },
+  "movement_speed": {
+    "$type": "dword",
+    "$alias": "Movement speed"
+  },
+  "rotation_speed": {
+    "$type": "dword",
+    "$alias": "Rotation speed"
+  },
+  "control_item_oid": {
+    "$type": "dword",
+    "$alias": "Control item OID"
+  },
+  "controller_x": {
+    "$type": "dword",
+    "$alias": "Controller X"
+  },
+  "controller_y": {
+    "$type": "dword",
+    "$alias": "Controller Y"
+  },
+  "controller_z": {
+    "$type": "dword",
+    "$alias": "Controller Z"
+  },
+  "captain_x": {
+    "$type": "dword",
+    "$alias": "Captain X"
+  },
+  "captain_y": {
+    "$type": "dword",
+    "$alias": "Captain Y"
+  },
+  "captain_z": {
+    "$type": "dword",
+    "$alias": "Captain Z"
+  },
+  "remaining_fuel": {
+    "$type": "dword",
+    "$alias": "Remaining fuel"
+  },
+  "maximum_fuel": {
+    "$type": "dword",
+    "$alias": "Maximum fuel"
+  }
+}

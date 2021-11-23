@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 160, 0]
+  },
+  "vitality": {
+    "$type": "dword",
+    "$alias": "Vitality"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [219]
+  },
+  "player_oid": {
+    "$type": "dword",
+    "$alias": "Player OID"
+  },
+  "player_name": {
+    "$type": "ntstring",
+    "$alias": "Player name"
+  },
+  "talker_oid": {
+    "$type": "dword",
+    "$alias": "Talker OID"
+  },
+  "chat": {
+    "$type": "dword",
+    "$alias": "Chat"
+  },
+  "talker": {
+    "$type": "ntstring",
+    "$alias": "Talker"
+  },
+  "message": {
+    "$type": "ntstring",
+    "$alias": "Message"
+  }
+}

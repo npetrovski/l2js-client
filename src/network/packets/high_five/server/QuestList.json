@@ -1,0 +1,32 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [134]
+  },
+  "cnt": {
+    "$type": "word",
+    "$alias": "Quest count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "quest": {
+        "$type": "dword",
+        "$alias": "Quest"
+      },
+      "state": {
+        "$type": "dword",
+        "$alias": "State"
+      }
+    }
+  },
+  "quest_completion_flags": {
+    "$type": "bytes",
+    "$alias": "Quest completion flags",
+    "$length": 128
+  }
+}

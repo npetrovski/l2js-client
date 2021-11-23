@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [114]
+  },
+  "follower_oid": {
+    "$type": "dword",
+    "$alias": "Follower OID"
+  },
+  "target_oid": {
+    "$type": "dword",
+    "$alias": "Target OID"
+  },
+  "follow_distance": {
+    "$type": "dword",
+    "$alias": "Follow distance"
+  },
+  "current_follower_x": {
+    "$type": "dword",
+    "$alias": "Current follower X"
+  },
+  "current_follower_y": {
+    "$type": "dword",
+    "$alias": "Current follower Y"
+  },
+  "current_follower_z": {
+    "$type": "dword",
+    "$alias": "Current follower Z"
+  },
+  "current_target_x": {
+    "$type": "dword",
+    "$alias": "Current target X"
+  },
+  "current_target_y": {
+    "$type": "dword",
+    "$alias": "Current target Y"
+  },
+  "current_target_z": {
+    "$type": "dword",
+    "$alias": "Current target Z"
+  }
+}

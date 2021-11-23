@@ -1,0 +1,51 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [145]
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "required_sp": {
+    "$type": "dword",
+    "$alias": "Required SP"
+  },
+  "skill_type": {
+    "$type": "dword",
+    "$alias": "Skill type"
+  },
+  "item_cnt": {
+    "$type": "dword",
+    "$alias": "Required items"
+  },
+  "item_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "item_cnt"
+    },
+    "$schema": {
+      "main_item_type": {
+        "$type": "dword",
+        "$alias": "Main item type"
+      },
+      "item": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "amount": {
+        "$type": "double",
+        "$alias": "Amount"
+      },
+      "used_paperdoll_slot_s_": {
+        "$type": "dword",
+        "$alias": "Used paperdoll slot(s)"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [200]
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Character count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "character_pk": {
+        "$type": "dword",
+        "$alias": "Character PK"
+      },
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      }
+    }
+  }
+}

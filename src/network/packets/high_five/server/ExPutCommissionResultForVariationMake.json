@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 85, 0]
+  },
+  "gemstone_oid": {
+    "$type": "dword",
+    "$alias": "Gemstone OID"
+  },
+  "gemstone": {
+    "$type": "dword",
+    "$alias": "Gemstone"
+  },
+  "gemstone_quantity": {
+    "$type": "double",
+    "$alias": "Gemstone quantity"
+  },
+  "difference_from_required_quantity": {
+    "$type": "double",
+    "$alias": "Difference from required quantity"
+  },
+  "gemstone_accepted": {
+    "$type": "dword",
+    "$alias": "Gemstone accepted"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [0]
+  },
+  "deceased_oid": {
+    "$type": "dword",
+    "$alias": "Deceased OID"
+  },
+  "can_revive_in_nearest_town": {
+    "$type": "dword",
+    "$alias": "Can revive in nearest town"
+  },
+  "can_revive_in_hideout": {
+    "$type": "dword",
+    "$alias": "Can revive in hideout"
+  },
+  "can_revive_in_castle": {
+    "$type": "dword",
+    "$alias": "Can revive in castle"
+  },
+  "can_revive_at_headquarters": {
+    "$type": "dword",
+    "$alias": "Can revive at headquarters"
+  },
+  "can_be_sweeped": {
+    "$type": "dword",
+    "$alias": "Can be sweeped"
+  },
+  "can_revive_here": {
+    "$type": "dword",
+    "$alias": "Can revive here"
+  },
+  "can_revive_in_fortress": {
+    "$type": "dword",
+    "$alias": "Can revive in fortress"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [17]
+  },
+  "unk1": {
+    "$type": "bytes",
+    "$length": 32,
+    "$default": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "unk2": {
+    "$type": "dword",
+    "$default": 0
+  },
+  "unk3": {
+    "$type": "dword",
+    "$default": 0
+  },
+  "unk4": {
+    "$type": "dword",
+    "$default": 0
+  },
+  "unk5": {
+    "$type": "dword",
+    "$default": 0
+  },
+  "unk6": {
+    "$type": "bytes",
+    "$length": 32,
+    "$default": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "unk7": {
+    "$type": "dword",
+    "$default": 0
+  },
+  "tracert": {
+    "$type": "array",
+    "$length": 5,
+    "$schema": {
+      "ip": {
+        "$type": "bytes",
+        "$length": 4,
+        "$default": [127, 0, 0, 1]
+      }
+    }
+  }
+}

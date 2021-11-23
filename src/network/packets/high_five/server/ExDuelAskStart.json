@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 76, 0]
+  },
+  "requestor": {
+    "$type": "ntstring",
+    "$alias": "Requestor"
+  },
+  "party": {
+    "$type": "dword",
+    "$alias": "Party"
+  }
+}

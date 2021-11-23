@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [140]
+  },
+  "rider_oid": {
+    "$type": "dword",
+    "$alias": "Rider OID"
+  },
+  "mount": {
+    "$type": "dword",
+    "$alias": "Mount"
+  },
+  "mount_type": {
+    "$type": "dword",
+    "$alias": "Mount type"
+  },
+  "mount_": {
+    "$type": "dword",
+    "$alias": "Mount"
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  }
+}

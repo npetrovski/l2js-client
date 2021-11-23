@@ -1,0 +1,75 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [227]
+  },
+  "actual_race_duration": {
+    "$type": "dword",
+    "$alias": "Actual race duration"
+  },
+  "estimated_race_duration": {
+    "$type": "dword",
+    "$alias": "Estimated race duration"
+  },
+  "lane_cnt": {
+    "$type": "dword",
+    "$alias": "Lane count"
+  },
+  "lane_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "lane_cnt"
+    },
+    "$schema": {
+      "0": {
+        "$type": "dword",
+        "$alias": "0"
+      },
+      "runner_oid": {
+        "$type": "dword",
+        "$alias": "Runner OID"
+      },
+      "runner": {
+        "$type": "dword",
+        "$alias": "Runner"
+      },
+      "lane_start_x": {
+        "$type": "dword",
+        "$alias": "Lane start X"
+      },
+      "lane_start_y": {
+        "$type": "dword",
+        "$alias": "Lane start Y"
+      },
+      "lane_start_z": {
+        "$type": "dword",
+        "$alias": "Lane start Z"
+      },
+      "lane_finish_x": {
+        "$type": "dword",
+        "$alias": "Lane finish X"
+      },
+      "lane_finish_y": {
+        "$type": "dword",
+        "$alias": "Lane finish Y"
+      },
+      "lane_finish_z": {
+        "$type": "dword",
+        "$alias": "Lane finish Z"
+      },
+      "collision_radius": {
+        "$type": "float",
+        "$alias": "Collision radius"
+      },
+      "collision_height": {
+        "$type": "float",
+        "$alias": "Collision height"
+      },
+      "base_movement_speed_ground_": {
+        "$type": "dword",
+        "$alias": "Base movement speed (ground)"
+      }
+    }
+  }
+}

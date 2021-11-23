@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [166]
+  },
+  "text_or_relative_path_to_file": {
+    "$type": "ntstring",
+    "$alias": "Text or relative path to file"
+  }
+}

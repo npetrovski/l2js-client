@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 142, 0]
+  },
+  "target_oid": {
+    "$type": "dword",
+    "$alias": "Target OID"
+  },
+  "hidden": {
+    "$type": "dword",
+    "$alias": "Hidden"
+  },
+  "0_": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "incremental": {
+    "$type": "ntstring",
+    "$alias": "Incremental"
+  },
+  "minute_s_": {
+    "$type": "ntstring",
+    "$alias": "Minute(s)"
+  },
+  "second_s_": {
+    "$type": "ntstring",
+    "$alias": "Second(s)"
+  },
+  "message": {
+    "$type": "ntstring",
+    "$alias": "Message"
+  },
+  "duration_minute_s_": {
+    "$type": "ntstring",
+    "$alias": "Duration minute(s)"
+  },
+  "duration_second_s_": {
+    "$type": "ntstring",
+    "$alias": "Duration second(s)"
+  }
+}

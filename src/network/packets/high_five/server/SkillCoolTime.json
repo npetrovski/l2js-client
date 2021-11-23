@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [199]
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Affected skill count"
+  },
+  "skills": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "cooldown_time": {
+        "$type": "dword",
+        "$alias": "Cooldown time"
+      },
+      "remaining_time": {
+        "$type": "dword",
+        "$alias": "Remaining time"
+      }
+    }
+  }
+}

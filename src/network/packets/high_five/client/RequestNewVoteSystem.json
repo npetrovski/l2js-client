@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      123,
+      0
+    ]
+  },
+  "target_oid": {
+    "$type": "dword",
+    "$alias": "Target OID"
+  }
+}

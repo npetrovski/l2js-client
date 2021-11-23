@@ -1,0 +1,673 @@
+{
+  "0": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      149
+    ]
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  },
+  "vehicle_oid": {
+    "$type": "dword",
+    "$alias": "Vehicle OID"
+  },
+  "my_oid": {
+    "$type": "dword",
+    "$alias": "My OID"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "race": {
+    "$type": "dword",
+    "$alias": "Race"
+  },
+  "sex": {
+    "$type": "dword",
+    "$alias": "Sex"
+  },
+  "starter_class": {
+    "$type": "dword",
+    "$alias": "Starter class"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "xp": {
+    "$type": "double",
+    "$alias": "XP"
+  },
+  "xp_": {
+    "$type": "float",
+    "$alias": "XP %"
+  },
+  "str": {
+    "$type": "dword",
+    "$alias": "STR"
+  },
+  "dex": {
+    "$type": "dword",
+    "$alias": "DEX"
+  },
+  "con": {
+    "$type": "dword",
+    "$alias": "CON"
+  },
+  "int": {
+    "$type": "dword",
+    "$alias": "INT"
+  },
+  "wit": {
+    "$type": "dword",
+    "$alias": "WIT"
+  },
+  "men": {
+    "$type": "dword",
+    "$alias": "MEN"
+  },
+  "maximum_hp": {
+    "$type": "dword",
+    "$alias": "Maximum HP"
+  },
+  "current_hp": {
+    "$type": "dword",
+    "$alias": "Current HP"
+  },
+  "maximum_mp": {
+    "$type": "dword",
+    "$alias": "Maximum MP"
+  },
+  "current_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "sp": {
+    "$type": "dword",
+    "$alias": "SP"
+  },
+  "current_carried_weight": {
+    "$type": "dword",
+    "$alias": "Current carried weight"
+  },
+  "maximum_carried_weight": {
+    "$type": "dword",
+    "$alias": "Maximum carried weight"
+  },
+  "weapon_status": {
+    "$type": "dword",
+    "$alias": "Weapon status"
+  },
+  "shirt_oid": {
+    "$type": "dword",
+    "$alias": "Shirt OID"
+  },
+  "right_earring_oid": {
+    "$type": "dword",
+    "$alias": "Right earring OID"
+  },
+  "left_earring_oid": {
+    "$type": "dword",
+    "$alias": "Left earring OID"
+  },
+  "necklace_oid": {
+    "$type": "dword",
+    "$alias": "Necklace OID"
+  },
+  "right_ring_oid": {
+    "$type": "dword",
+    "$alias": "Right ring OID"
+  },
+  "left_ring_oid": {
+    "$type": "dword",
+    "$alias": "Left ring OID"
+  },
+  "helmet_oid": {
+    "$type": "dword",
+    "$alias": "Helmet OID"
+  },
+  "main_weapon_oid": {
+    "$type": "dword",
+    "$alias": "Main weapon OID"
+  },
+  "shield_support_weapon_oid": {
+    "$type": "dword",
+    "$alias": "Shield/support weapon OID"
+  },
+  "gloves_oid": {
+    "$type": "dword",
+    "$alias": "Gloves OID"
+  },
+  "chest_armor_oid": {
+    "$type": "dword",
+    "$alias": "Chest armor OID"
+  },
+  "leg_armor_oid": {
+    "$type": "dword",
+    "$alias": "Leg armor OID"
+  },
+  "boots_oid": {
+    "$type": "dword",
+    "$alias": "Boots OID"
+  },
+  "cloak_oid": {
+    "$type": "dword",
+    "$alias": "Cloak OID"
+  },
+  "two_handed_weapon_oid": {
+    "$type": "dword",
+    "$alias": "Two-handed weapon OID"
+  },
+  "1st_hair_item_oid": {
+    "$type": "dword",
+    "$alias": "1st hair item OID"
+  },
+  "2nd_hair_item_oid": {
+    "$type": "dword",
+    "$alias": "2nd hair item OID"
+  },
+  "right_bracelet_oid": {
+    "$type": "dword",
+    "$alias": "Right bracelet OID"
+  },
+  "left_bracelet_oid": {
+    "$type": "dword",
+    "$alias": "Left bracelet OID"
+  },
+  "1st_talisman_oid": {
+    "$type": "dword",
+    "$alias": "1st talisman OID"
+  },
+  "2nd_talisman_oid": {
+    "$type": "dword",
+    "$alias": "2nd talisman OID"
+  },
+  "3rd_talisman_oid": {
+    "$type": "dword",
+    "$alias": "3rd talisman OID"
+  },
+  "4th_talisman_oid": {
+    "$type": "dword",
+    "$alias": "4th talisman OID"
+  },
+  "5th_talisman_oid": {
+    "$type": "dword",
+    "$alias": "5th talisman OID"
+  },
+  "6th_talisman_oid": {
+    "$type": "dword",
+    "$alias": "6th talisman OID"
+  },
+  "belt_oid": {
+    "$type": "dword",
+    "$alias": "Belt OID"
+  },
+  "shirt": {
+    "$type": "dword",
+    "$alias": "Shirt"
+  },
+  "right_earring": {
+    "$type": "dword",
+    "$alias": "Right earring"
+  },
+  "left_earring": {
+    "$type": "dword",
+    "$alias": "Left earring"
+  },
+  "necklace": {
+    "$type": "dword",
+    "$alias": "Necklace"
+  },
+  "right_ring": {
+    "$type": "dword",
+    "$alias": "Right ring"
+  },
+  "left_ring": {
+    "$type": "dword",
+    "$alias": "Left ring"
+  },
+  "helmet": {
+    "$type": "dword",
+    "$alias": "Helmet"
+  },
+  "main_weapon": {
+    "$type": "dword",
+    "$alias": "Main weapon"
+  },
+  "shield_support_weapon": {
+    "$type": "dword",
+    "$alias": "Shield/support weapon"
+  },
+  "gloves": {
+    "$type": "dword",
+    "$alias": "Gloves"
+  },
+  "chest_armor": {
+    "$type": "dword",
+    "$alias": "Chest armor"
+  },
+  "leg_armor": {
+    "$type": "dword",
+    "$alias": "Leg armor"
+  },
+  "boots": {
+    "$type": "dword",
+    "$alias": "Boots"
+  },
+  "cloak": {
+    "$type": "dword",
+    "$alias": "Cloak"
+  },
+  "two_handed_weapon": {
+    "$type": "dword",
+    "$alias": "Two-handed weapon"
+  },
+  "1st_hair_item": {
+    "$type": "dword",
+    "$alias": "1st hair item"
+  },
+  "2nd_hair_item": {
+    "$type": "dword",
+    "$alias": "2nd hair item"
+  },
+  "right_bracelet": {
+    "$type": "dword",
+    "$alias": "Right bracelet"
+  },
+  "left_bracelet": {
+    "$type": "dword",
+    "$alias": "Left bracelet"
+  },
+  "1st_talisman": {
+    "$type": "dword",
+    "$alias": "1st talisman"
+  },
+  "2nd_talisman": {
+    "$type": "dword",
+    "$alias": "2nd talisman"
+  },
+  "3rd_talisman": {
+    "$type": "dword",
+    "$alias": "3rd talisman"
+  },
+  "4th_talisman": {
+    "$type": "dword",
+    "$alias": "4th talisman"
+  },
+  "5th_talisman": {
+    "$type": "dword",
+    "$alias": "5th talisman"
+  },
+  "6th_talisman": {
+    "$type": "dword",
+    "$alias": "6th talisman"
+  },
+  "belt": {
+    "$type": "dword",
+    "$alias": "Belt"
+  },
+  "shirt_augmentation": {
+    "$type": "dword",
+    "$alias": "Shirt augmentation"
+  },
+  "right_earring_augmentation": {
+    "$type": "dword",
+    "$alias": "Right earring augmentation"
+  },
+  "left_earring_augmentation": {
+    "$type": "dword",
+    "$alias": "Left earring augmentation"
+  },
+  "necklace_augmentation": {
+    "$type": "dword",
+    "$alias": "Necklace augmentation"
+  },
+  "right_ring_augmentation": {
+    "$type": "dword",
+    "$alias": "Right ring augmentation"
+  },
+  "left_ring_augmentation": {
+    "$type": "dword",
+    "$alias": "Left ring augmentation"
+  },
+  "helmet_augmentation": {
+    "$type": "dword",
+    "$alias": "Helmet augmentation"
+  },
+  "main_weapon_augmentation": {
+    "$type": "dword",
+    "$alias": "Main weapon augmentation"
+  },
+  "shield_support_weapon_augmentation": {
+    "$type": "dword",
+    "$alias": "Shield/support weapon augmentation"
+  },
+  "gloves_augmentation": {
+    "$type": "dword",
+    "$alias": "Gloves augmentation"
+  },
+  "chest_armor_augmentation": {
+    "$type": "dword",
+    "$alias": "Chest armor augmentation"
+  },
+  "leg_armor_augmentation": {
+    "$type": "dword",
+    "$alias": "Leg armor augmentation"
+  },
+  "boots_augmentation": {
+    "$type": "dword",
+    "$alias": "Boots augmentation"
+  },
+  "cloak_augmentation": {
+    "$type": "dword",
+    "$alias": "Cloak augmentation"
+  },
+  "two_handed_weapon_augmentation": {
+    "$type": "dword",
+    "$alias": "Two-handed weapon augmentation"
+  },
+  "1st_hair_item_augmentation": {
+    "$type": "dword",
+    "$alias": "1st hair item augmentation"
+  },
+  "2nd_hair_item_augmentation": {
+    "$type": "dword",
+    "$alias": "2nd hair item augmentation"
+  },
+  "right_bracelet_augmentation": {
+    "$type": "dword",
+    "$alias": "Right bracelet augmentation"
+  },
+  "left_bracelet_augmentation": {
+    "$type": "dword",
+    "$alias": "Left bracelet augmentation"
+  },
+  "1st_talisman_augmentation": {
+    "$type": "dword",
+    "$alias": "1st talisman augmentation"
+  },
+  "2nd_talisman_augmentation": {
+    "$type": "dword",
+    "$alias": "2nd talisman augmentation"
+  },
+  "3rd_talisman_augmentation": {
+    "$type": "dword",
+    "$alias": "3rd talisman augmentation"
+  },
+  "4th_talisman_augmentation": {
+    "$type": "dword",
+    "$alias": "4th talisman augmentation"
+  },
+  "5th_talisman_augmentation": {
+    "$type": "dword",
+    "$alias": "5th talisman augmentation"
+  },
+  "6th_talisman_augmentation": {
+    "$type": "dword",
+    "$alias": "6th talisman augmentation"
+  },
+  "belt_augmentation": {
+    "$type": "dword",
+    "$alias": "Belt augmentation"
+  },
+  "talisman_slots": {
+    "$type": "dword",
+    "$alias": "Talisman slots"
+  },
+  "can_equip_cloak": {
+    "$type": "dword",
+    "$alias": "Can equip cloak"
+  },
+  "p_atk_": {
+    "$type": "dword",
+    "$alias": "P. Atk."
+  },
+  "attack_speed": {
+    "$type": "dword",
+    "$alias": "Attack speed"
+  },
+  "p_def_": {
+    "$type": "dword",
+    "$alias": "P. Def."
+  },
+  "evasion": {
+    "$type": "dword",
+    "$alias": "Evasion"
+  },
+  "accuracy": {
+    "$type": "dword",
+    "$alias": "Accuracy"
+  },
+  "critical": {
+    "$type": "dword",
+    "$alias": "Critical"
+  },
+  "m_atk_": {
+    "$type": "dword",
+    "$alias": "M. Atk."
+  },
+  "casting_speed": {
+    "$type": "dword",
+    "$alias": "Casting speed"
+  },
+  "attack_speed_dupe_": {
+    "$type": "dword",
+    "$alias": "Attack speed (dupe)"
+  },
+  "m_def_": {
+    "$type": "dword",
+    "$alias": "M. Def."
+  },
+  "in_pvp": {
+    "$type": "dword",
+    "$alias": "In PvP"
+  },
+  "karma": {
+    "$type": "dword",
+    "$alias": "Karma"
+  },
+  "running_speed_on_ground_": {
+    "$type": "dword",
+    "$alias": "Running speed (on ground)"
+  },
+  "walking_speed_on_ground_": {
+    "$type": "dword",
+    "$alias": "Walking speed (on ground)"
+  },
+  "running_speed_in_water_": {
+    "$type": "dword",
+    "$alias": "Running speed (in water)"
+  },
+  "walking_speed_in_water_": {
+    "$type": "dword",
+    "$alias": "Walking speed (in water)"
+  },
+  "running_speed_in_air_": {
+    "$type": "dword",
+    "$alias": "Running speed (in air) ???"
+  },
+  "walking_speed_in_air_": {
+    "$type": "dword",
+    "$alias": "Walking speed (in air) ???"
+  },
+  "running_speed_in_air_while_mounted_": {
+    "$type": "dword",
+    "$alias": "Running speed (in air) while mounted?"
+  },
+  "walking_speed_in_air_while_mounted_": {
+    "$type": "dword",
+    "$alias": "Walking speed (in air) while mounted?"
+  },
+  "movement_speed_multiplier": {
+    "$type": "float",
+    "$alias": "Movement speed multiplier"
+  },
+  "attack_speed_multiplier": {
+    "$type": "float",
+    "$alias": "Attack speed multiplier"
+  },
+  "collision_radius": {
+    "$type": "float",
+    "$alias": "Collision radius"
+  },
+  "collision_height": {
+    "$type": "float",
+    "$alias": "Collision height"
+  },
+  "hair_style": {
+    "$type": "dword",
+    "$alias": "Hair style"
+  },
+  "hair_color": {
+    "$type": "dword",
+    "$alias": "Hair color"
+  },
+  "face": {
+    "$type": "dword",
+    "$alias": "Face"
+  },
+  "game_master": {
+    "$type": "dword",
+    "$alias": "Game Master"
+  },
+  "title": {
+    "$type": "ntstring",
+    "$alias": "Title"
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  },
+  "pledge_crest_id": {
+    "$type": "dword",
+    "$alias": "Pledge crest ID"
+  },
+  "alliance_id": {
+    "$type": "dword",
+    "$alias": "Alliance ID"
+  },
+  "mount_type": {
+    "$type": "byte",
+    "$alias": "Mount type"
+  },
+  "private_store": {
+    "$type": "byte",
+    "$alias": "Private store"
+  },
+  "can_use_dwarven_recipes": {
+    "$type": "byte",
+    "$alias": "Can use dwarven recipes"
+  },
+  "pk_count": {
+    "$type": "dword",
+    "$alias": "PK Count"
+  },
+  "pvp_count": {
+    "$type": "dword",
+    "$alias": "PvP Count"
+  },
+  "recomendations": {
+    "$type": "word",
+    "$alias": "Recomendations"
+  },
+  "evaluation_score": {
+    "$type": "word",
+    "$alias": "Evaluation score"
+  },
+  "current_class": {
+    "$type": "dword",
+    "$alias": "Current class"
+  },
+  "maximum_cp": {
+    "$type": "dword",
+    "$alias": "Maximum CP"
+  },
+  "current_cp": {
+    "$type": "dword",
+    "$alias": "Current CP"
+  },
+  "moving": {
+    "$type": "byte",
+    "$alias": "Moving"
+  },
+  "_": {
+    "$type": "byte",
+    "$alias": "???"
+  },
+  "pledge_rank": {
+    "$type": "dword",
+    "$alias": "Pledge rank"
+  },
+  "noble": {
+    "$type": "byte",
+    "$alias": "Noble"
+  },
+  "hero": {
+    "$type": "byte",
+    "$alias": "Hero"
+  },
+  "name_color": {
+    "$type": "dword",
+    "$alias": "Name color"
+  },
+  "title_color": {
+    "$type": "dword",
+    "$alias": "Title color"
+  },
+  "attack_element": {
+    "$type": "word",
+    "$alias": "Attack element"
+  },
+  "attack_element_power": {
+    "$type": "word",
+    "$alias": "Attack element power"
+  },
+  "fire_defense": {
+    "$type": "word",
+    "$alias": "Fire defense"
+  },
+  "water_defense": {
+    "$type": "word",
+    "$alias": "Water defense"
+  },
+  "wind_defense": {
+    "$type": "word",
+    "$alias": "Wind defense"
+  },
+  "earth_defense": {
+    "$type": "word",
+    "$alias": "Earth defense"
+  },
+  "holy_defense": {
+    "$type": "word",
+    "$alias": "Holy defense"
+  },
+  "dark_defense": {
+    "$type": "word",
+    "$alias": "Dark defense"
+  },
+  "fame": {
+    "$type": "dword",
+    "$alias": "Fame"
+  },
+  "vitality": {
+    "$type": "dword",
+    "$alias": "Vitality"
+  }
+}

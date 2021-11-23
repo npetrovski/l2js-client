@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [157]
+  },
+  "player_oid": {
+    "$type": "dword",
+    "$alias": "Player OID"
+  },
+  "show_level": {
+    "$type": "dword",
+    "$alias": "Show level"
+  },
+  "show_occupation": {
+    "$type": "dword",
+    "$alias": "Show occupation"
+  },
+  "item_distribution": {
+    "$type": "dword",
+    "$alias": "Item distribution"
+  },
+  "memo": {
+    "$type": "ntstring",
+    "$alias": "Memo"
+  }
+}

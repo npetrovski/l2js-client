@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [45]
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  }
+}

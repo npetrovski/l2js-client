@@ -1,0 +1,29 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      31
+    ]
+  },
+  "target_oid": {
+    "$type": "dword",
+    "$alias": "Target OID"
+  },
+  "current_client_x": {
+    "$type": "dword",
+    "$alias": "Current client X"
+  },
+  "current_client_y": {
+    "$type": "dword",
+    "$alias": "Current client Y"
+  },
+  "current_client_z": {
+    "$type": "dword",
+    "$alias": "Current client Z"
+  },
+  "shift": {
+    "$type": "byte",
+    "$alias": "Shift key pressed"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 64, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Success"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "unit": {
+        "$type": "dword",
+        "$alias": "Unit"
+      },
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "leader_name": {
+        "$type": "ntstring",
+        "$alias": "Leader name"
+      }
+    }
+  }
+}

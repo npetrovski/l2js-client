@@ -1,0 +1,115 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 198, 0]
+  },
+  "items_count": {
+    "$type": "word",
+    "$alias": "Item count"
+  },
+  "items": {
+    "$type": "array",
+    "$length": {
+      "$id": "items_count"
+    },
+    "$schema": {
+      "item_oid": {
+        "$type": "dword",
+        "$alias": "Item OID"
+      },
+      "item": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "slot_number": {
+        "$type": "dword",
+        "$alias": "Slot number"
+      },
+      "quantity": {
+        "$type": "double",
+        "$alias": "Quantity"
+      },
+      "main_item_type": {
+        "$type": "word",
+        "$alias": "Main item type"
+      },
+      "special_item_type": {
+        "$type": "word",
+        "$alias": "Special item type"
+      },
+      "is_equipped": {
+        "$type": "word",
+        "$alias": "Equipped"
+      },
+      "body_part": {
+        "$type": "dword",
+        "$alias": "Used paperdoll slot(s)"
+      },
+      "enchant_level": {
+        "$type": "word",
+        "$alias": "Enchant level"
+      },
+      "name_exists": {
+        "$type": "word",
+        "$alias": "Name exists"
+      },
+      "augmentation": {
+        "$type": "dword",
+        "$alias": "Augmentation"
+      },
+      "mana_left": {
+        "$type": "dword",
+        "$alias": "Mana left"
+      },
+      "time_remaining": {
+        "$type": "dword",
+        "$alias": "Time remaining"
+      },
+      "attack_element": {
+        "$type": "word",
+        "$alias": "Attack element"
+      },
+      "attack_element_power": {
+        "$type": "word",
+        "$alias": "Attack element power"
+      },
+      "fire_defense": {
+        "$type": "word",
+        "$alias": "Fire defense"
+      },
+      "water_defense": {
+        "$type": "word",
+        "$alias": "Water defense"
+      },
+      "wind_defense": {
+        "$type": "word",
+        "$alias": "Wind defense"
+      },
+      "earth_defense": {
+        "$type": "word",
+        "$alias": "Earth defense"
+      },
+      "holy_defense": {
+        "$type": "word",
+        "$alias": "Holy defense"
+      },
+      "dark_defense": {
+        "$type": "word",
+        "$alias": "Dark defense"
+      },
+      "enchant_option1": {
+        "$type": "word",
+        "$alias": "Enchant option 1"
+      },
+      "enchant_option2": {
+        "$type": "word",
+        "$alias": "Enchant option 2"
+      },
+      "enchant_option3": {
+        "$type": "word",
+        "$alias": "Enchant option 3"
+      }
+    }
+  }
+}

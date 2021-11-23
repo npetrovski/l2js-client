@@ -1,0 +1,89 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      154
+    ]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Offer count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "is_ticket": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "is_ticket_branch": {
+        "$type": "branch",
+        "$id": "is_ticket",
+        "$condition": {
+          "$or": [
+            {
+              "$eq": 4443
+            },
+            {
+              "$eq": 4444
+            }
+          ]
+        },
+        "$schema": {
+          "race_number": {
+            "$type": "word",
+            "$alias": "Race number"
+          },
+          "actual_bet_multiplier_100_number_of_times_owner_set_up_the_store_without_re_adding_the_item_1_": {
+            "$type": "word",
+            "$alias": "Actual bet multiplier / (100^([number of times owner set up the store without re-adding the item] - 1))"
+          }
+        }
+      },
+      "quantity": {
+        "$type": "double",
+        "$alias": "Quantity"
+      },
+      "price_per_single_unit_": {
+        "$type": "double",
+        "$alias": "Price (per single unit)"
+      },
+      "attack_element": {
+        "$type": "word",
+        "$alias": "Attack element"
+      },
+      "attack_element_power": {
+        "$type": "word",
+        "$alias": "Attack element power"
+      },
+      "fire_defense": {
+        "$type": "word",
+        "$alias": "Fire defense"
+      },
+      "water_defense": {
+        "$type": "word",
+        "$alias": "Water defense"
+      },
+      "wind_defense": {
+        "$type": "word",
+        "$alias": "Wind defense"
+      },
+      "earth_defense": {
+        "$type": "word",
+        "$alias": "Earth defense"
+      },
+      "holy_defense": {
+        "$type": "word",
+        "$alias": "Holy defense"
+      },
+      "dark_defense": {
+        "$type": "word",
+        "$alias": "Dark defense"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 201, 0]
+  },
+  "recomendations": {
+    "$type": "dword",
+    "$alias": "Recomendations"
+  },
+  "evaluation_score": {
+    "$type": "dword",
+    "$alias": "Evaluation score"
+  },
+  "xp_bonus_time_left": {
+    "$type": "dword",
+    "$alias": "XP bonus time left"
+  },
+  "xp_increase_percent": {
+    "$type": "dword",
+    "$alias": "XP increase (%)"
+  },
+  "time_paused": {
+    "$type": "dword",
+    "$alias": "Time paused"
+  }
+}

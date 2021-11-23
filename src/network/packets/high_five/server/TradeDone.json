@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [28]
+  },
+  "result": {
+    "$type": "dword",
+    "$alias": "Result"
+  }
+}

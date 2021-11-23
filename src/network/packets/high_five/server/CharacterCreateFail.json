@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [16]
+  },
+  "reason": {
+    "$type": "dword",
+    "$alias": "Reason"
+  }
+}

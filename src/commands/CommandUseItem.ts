@@ -1,5 +1,4 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import UseItem from "../network/outgoing/game/UseItem";
 import L2Item from "../entities/L2Item";
 
 export default class CommandUseItem extends AbstractGameCommand {
@@ -7,6 +6,10 @@ export default class CommandUseItem extends AbstractGameCommand {
     if (item instanceof L2Item) {
       item = item.ObjectId;
     }
-    this.GameClient?.sendPacket(new UseItem(item, false));
+
+    this.GameClient.sendPacket("RequestUseItem", {
+      item_oid: item,
+      ctrl_force_attack: 0,
+    });
   }
 }

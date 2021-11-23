@@ -1,26 +1,23 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import MoveToLocation from "../../incoming/game/MoveToLocation";
 import { GlobalEvents } from "../../../mmocore/EventEmitter";
+import SerializablePacket from "../../../mmocore/SerializablePacket";
 
-export default class MoveToLocationMutator extends IMMOClientMutator<
-  GameClient,
-  MoveToLocation
-> {
-  update(packet: MoveToLocation): void {
-    if (packet.ObjectId) {
-      const creature = this.Client.CreaturesList.getEntryByObjectId(
-        packet.ObjectId
+export default class MoveToLocationMutator extends IMMOClientMutator<GameClient, SerializablePacket> {
+  update(packet: SerializablePacket): void {
+    const creature = this.Client.CreaturesList.getEntryByObjectId(packet.get("actor_oid") as number);
+    if (creature) {
+      creature.setMovingTo(
+        packet.get("current_x") as number,
+        packet.get("current_y") as number,
+        packet.get("current_z") as number,
+        packet.get("destination_x") as number,
+        packet.get("destination_y") as number,
+        packet.get("destination_z") as number
       );
 
-      if (creature) {
-        const [_x, _y, _z] = packet.Location;
-        const [_xDst, _yDst, _zDst] = packet.Destination;
-        creature.setMovingTo(_x, _y, _z, _xDst, _yDst, _zDst);
-
-        if (creature.ObjectId !== this.Client.ActiveChar.ObjectId) {
-          creature.calculateDistance(this.Client.ActiveChar);
-        }
+      if (creature.ObjectId !== this.Client.ActiveChar.ObjectId) {
+        creature.calculateDistance(this.Client.ActiveChar);
       }
     }
   }

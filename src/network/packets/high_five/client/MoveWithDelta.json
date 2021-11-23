@@ -1,0 +1,21 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      82
+    ]
+  },
+  "_x": {
+    "$type": "dword",
+    "$alias": "ΔX"
+  },
+  "_y": {
+    "$type": "dword",
+    "$alias": "ΔY"
+  },
+  "_z": {
+    "$type": "dword",
+    "$alias": "ΔZ"
+  }
+}

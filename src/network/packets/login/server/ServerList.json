@@ -1,0 +1,105 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [4]
+  },
+  "gs_list": {
+    "$type": "byte",
+    "$alias": "Game server count"
+  },
+  "last_game_server": {
+    "$type": "byte",
+    "$alias": "Last game server"
+  },
+  "game_servers": {
+    "$type": "array",
+    "$length": {
+      "$id": "gs_list"
+    },
+    "$schema": {
+      "game_server": {
+        "$type": "byte",
+        "$alias": "Game server"
+      },
+      "ipv4": {
+        "$type": "dword",
+        "$alias": "IPv4"
+      },
+      "port": {
+        "$type": "dword",
+        "$alias": "Port"
+      },
+      "minimum_player_age": {
+        "$type": "byte",
+        "$alias": "Minimum player age"
+      },
+      "pvp_allowed": {
+        "$type": "byte",
+        "$alias": "PvP allowed"
+      },
+      "online_players": {
+        "$type": "word",
+        "$alias": "Online players"
+      },
+      "maximum_players": {
+        "$type": "word",
+        "$alias": "Maximum players"
+      },
+      "online": {
+        "$type": "byte",
+        "$alias": "Online"
+      },
+      "server_type": {
+        "$type": "dword",
+        "$alias": "Type(s)"
+      },
+      "region": {
+        "$type": "byte",
+        "$alias": "Region"
+      }
+    }
+  },
+  "unk1": {
+    "$type": "word",
+    "$alias": "Unknown 1",
+    "$default": 0
+  },
+  "chars": {
+    "$type": "byte",
+    "$alias": "Chars on server",
+    "$default": 0
+  },
+  "chars_list": {
+    "$type": "array",
+    "$length": {
+      "$id": "chars"
+    },
+    "$schema": {
+      "game_server": {
+        "$type": "byte",
+        "$alias": "Server"
+      },
+      "total_chars": {
+        "$type": "byte",
+        "$alias": "Total chars on server"
+      },
+      "chars_to_delete": {
+        "$type": "byte",
+        "$alias": "Chars to delete"
+      },
+      "chars_to_delete_list": {
+        "$type": "array",
+        "$length": {
+          "$id": "chars_to_delete"
+        },
+        "$schema": {
+          "time": {
+            "$type": "dword",
+            "$alias": "Remaining time"
+          }
+        }
+      }
+    }
+  }
+}

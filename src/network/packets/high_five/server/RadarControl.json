@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [241]
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  },
+  "marker": {
+    "$type": "dword",
+    "$alias": "Marker"
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  }
+}

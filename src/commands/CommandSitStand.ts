@@ -1,11 +1,12 @@
 import { Actions } from "../enums/Actions";
-import RequestActionUse from "../network/outgoing/game/RequestActionUse";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandSitStand extends AbstractGameCommand {
   execute(): void {
-    this.GameClient?.sendPacket(
-      new RequestActionUse(Actions.SIT_STAND, false, false)
-    );
+    this.GameClient.sendPacket("RequestActionUse", {
+      action: Actions.SIT_STAND,
+      ctrl_force_attack: 0,
+      shift: 0,
+    });
   }
 }

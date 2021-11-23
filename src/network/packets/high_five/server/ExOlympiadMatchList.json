@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 7,
+    "$default": [254, 212, 0, 1, 0, 0, 0]
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Games count"
+  },
+  "unk0": {
+    "$type": "dword",
+    "$alias": "Unknown 0"
+  },
+  "games": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "stadium": {
+        "$type": "dword",
+        "$alias": "Stadium"
+      },
+      "game_type": {
+        "$type": "dword",
+        "$alias": "Gae type"
+      },
+      "game_state": {
+        "$type": "dword",
+        "$alias": "Time left"
+      },
+      "player1": {
+        "$type": "ntstring",
+        "$alias": "Player 1"
+      },
+      "player2": {
+        "$type": "ntstring",
+        "$alias": "Player 2"
+      }
+    }
+  }
+}

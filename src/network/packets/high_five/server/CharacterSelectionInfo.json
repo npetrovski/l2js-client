@@ -1,0 +1,296 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [9]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Created character count"
+  },
+  "max_character_count": {
+    "$type": "dword",
+    "$alias": "Max character count"
+  },
+  "pad": {
+    "$type": "byte",
+    "$length": 1,
+    "$default": [0]
+  },
+  "characters": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "character_name": {
+        "$type": "ntstring",
+        "$alias": "Character name"
+      },
+      "character_id": {
+        "$type": "dword",
+        "$alias": "Character ID"
+      },
+      "account_name": {
+        "$type": "ntstring",
+        "$alias": "Account name"
+      },
+      "session_id": {
+        "$type": "dword",
+        "$alias": "Account ID"
+      },
+      "pledge_id": {
+        "$type": "dword",
+        "$alias": "Pledge ID"
+      },
+      "builder_level": {
+        "$type": "dword",
+        "$alias": "Builder level"
+      },
+      "sex": {
+        "$type": "dword",
+        "$alias": "Sex"
+      },
+      "race": {
+        "$type": "dword",
+        "$alias": "Race"
+      },
+      "visible_class": {
+        "$type": "dword",
+        "$alias": "Visible class"
+      },
+      "server": {
+        "$type": "dword",
+        "$alias": "Server"
+      },
+      "location_x": {
+        "$type": "dword",
+        "$alias": "Location X"
+      },
+      "location_y": {
+        "$type": "dword",
+        "$alias": "Location Y"
+      },
+      "location_z": {
+        "$type": "dword",
+        "$alias": "Location Z"
+      },
+      "current_hp": {
+        "$type": "float",
+        "$alias": "Current HP"
+      },
+      "current_mp": {
+        "$type": "float",
+        "$alias": "Current MP"
+      },
+      "sp": {
+        "$type": "dword",
+        "$alias": "SP"
+      },
+      "xp": {
+        "$type": "double",
+        "$alias": "XP"
+      },
+      "progress_to_next_level_percent": {
+        "$type": "float",
+        "$alias": "Progress to next level (%)"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "karma": {
+        "$type": "dword",
+        "$alias": "Karma"
+      },
+      "pk_count": {
+        "$type": "dword",
+        "$alias": "PK Count"
+      },
+      "pvp_count": {
+        "$type": "dword",
+        "$alias": "PvP Count"
+      },
+      "underwear": {
+        "$type": "dword",
+        "$alias": "Underwear"
+      },
+      "earring_bottom_left_": {
+        "$type": "dword",
+        "$alias": "Earring (bottom/left)"
+      },
+      "earring_top_right_": {
+        "$type": "dword",
+        "$alias": "Earring (top/right)"
+      },
+      "necklace": {
+        "$type": "dword",
+        "$alias": "Necklace"
+      },
+      "ring_bottom_left_": {
+        "$type": "dword",
+        "$alias": "Ring (bottom/left)"
+      },
+      "ring_top_right_": {
+        "$type": "dword",
+        "$alias": "Ring (top/right)"
+      },
+      "headgear": {
+        "$type": "dword",
+        "$alias": "Headgear"
+      },
+      "weapon": {
+        "$type": "dword",
+        "$alias": "Weapon"
+      },
+      "shield_sigil_": {
+        "$type": "dword",
+        "$alias": "Shield [Sigil]"
+      },
+      "gloves": {
+        "$type": "dword",
+        "$alias": "Gloves"
+      },
+      "upper_body": {
+        "$type": "dword",
+        "$alias": "Upper Body"
+      },
+      "lower_body": {
+        "$type": "dword",
+        "$alias": "Lower Body"
+      },
+      "boots": {
+        "$type": "dword",
+        "$alias": "Boots"
+      },
+      "cloak": {
+        "$type": "dword",
+        "$alias": "Cloak"
+      },
+      "weapon_two_handed": {
+        "$type": "dword",
+        "$alias": "Weapon / Two Handed"
+      },
+      "hair_accessory_top_": {
+        "$type": "dword",
+        "$alias": "Hair Accessory (top)"
+      },
+      "hair_accessory_bottom_": {
+        "$type": "dword",
+        "$alias": "Hair Accessory (bottom)"
+      },
+      "right_bracelet": {
+        "$type": "dword",
+        "$alias": "Right Bracelet"
+      },
+      "left_bracelet": {
+        "$type": "dword",
+        "$alias": "Left Bracelet"
+      },
+      "talisman_1_": {
+        "$type": "dword",
+        "$alias": "Talisman (1)"
+      },
+      "talisman_2_": {
+        "$type": "dword",
+        "$alias": "Talisman (2)"
+      },
+      "talisman_3_": {
+        "$type": "dword",
+        "$alias": "Talisman (3)"
+      },
+      "talisman_4_": {
+        "$type": "dword",
+        "$alias": "Talisman (4)"
+      },
+      "talisman_5_": {
+        "$type": "dword",
+        "$alias": "Talisman (5)"
+      },
+      "talisman_6_": {
+        "$type": "dword",
+        "$alias": "Talisman (6)"
+      },
+      "belt": {
+        "$type": "dword",
+        "$alias": "Belt"
+      },
+      "hair_style": {
+        "$type": "dword",
+        "$alias": "Hair style"
+      },
+      "hair_color": {
+        "$type": "dword",
+        "$alias": "Hair color"
+      },
+      "face": {
+        "$type": "dword",
+        "$alias": "Face"
+      },
+      "maximum_hp": {
+        "$type": "float",
+        "$alias": "Maximum HP"
+      },
+      "maximum_mp": {
+        "$type": "float",
+        "$alias": "Maximum MP"
+      },
+      "time_to_deletion": {
+        "$type": "dword",
+        "$alias": "Time to deletion"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "selected": {
+        "$type": "dword",
+        "$alias": "Selected"
+      },
+      "weapon_enchant_level": {
+        "$type": "byte",
+        "$alias": "Weapon enchant level"
+      },
+      "weapon_augmentation_effect_1": {
+        "$type": "word",
+        "$alias": "Weapon augmentation effect (1)"
+      },
+      "weapon_augmentation_effect_2": {
+        "$type": "word",
+        "$alias": "Weapon augmentation effect (2)"
+      },
+      "transformation": {
+        "$type": "dword",
+        "$alias": "Transformation"
+      },
+      "pet": {
+        "$type": "dword",
+        "$alias": "Pet"
+      },
+      "pet_level": {
+        "$type": "dword",
+        "$alias": "Pet level"
+      },
+      "pet_food": {
+        "$type": "dword",
+        "$alias": "Pet Food"
+      },
+      "pet_food_level": {
+        "$type": "dword",
+        "$alias": "Pet Food Level"
+      },
+      "current_pet_hp": {
+        "$type": "float",
+        "$alias": "Current pet HP"
+      },
+      "current_pet_mp": {
+        "$type": "float",
+        "$alias": "Current pet MP"
+      },
+      "vitality": {
+        "$type": "dword",
+        "$alias": "Vitality"
+      }
+    }
+  }
+}

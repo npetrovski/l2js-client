@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 217, 0]
+  },
+  "object_id": {
+    "$type": "dword",
+    "$alias": "Object Id"
+  },
+  "state": {
+    "$type": "byte",
+    "$alias": "State"
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [251]
+  },
+  "page": {
+    "$type": "byte",
+    "$alias": "Page"
+  },
+  "current_period": {
+    "$type": "byte",
+    "$alias": "Current period"
+  },
+  "page__branch": {
+    "$type": "branch",
+    "$id": "page",
+    "$condition": {
+      "$eq": 1
+    },
+    "$schema": {
+      "current_cycle": {
+        "$type": "dword",
+        "$alias": "Current cycle"
+      },
+      "period_info": {
+        "$type": "dword",
+        "$alias": "Period info"
+      },
+      "period_duration_info": {
+        "$type": "dword",
+        "$alias": "Period duration info"
+      },
+      "viewer_s_cabal": {
+        "$type": "byte",
+        "$alias": "Viewer's cabal"
+      },
+      "viewer_s_seal": {
+        "$type": "byte",
+        "$alias": "Viewer's seal"
+      },
+      "contribution_score": {
+        "$type": "double",
+        "$alias": "Contribution score"
+      },
+      "ancient_adena_to_be_collected": {
+        "$type": "double",
+        "$alias": "Ancient adena to be collected"
+      },
+      "dusk_contribution_score": {
+        "$type": "double",
+        "$alias": "Dusk contribution score"
+      },
+      "dusk_festival_score": {
+        "$type": "double",
+        "$alias": "Dusk festival score"
+      },
+      "dusk_total_score": {
+        "$type": "double",
+        "$alias": "Dusk total score"
+      },
+      "dusk_total_": {
+        "$type": "byte",
+        "$alias": "Dusk total %"
+      },
+      "dawn_contribution_score": {
+        "$type": "double",
+        "$alias": "Dawn contribution score"
+      },
+      "dawn_festival_score": {
+        "$type": "double",
+        "$alias": "Dawn festival score"
+      },
+      "dawn_total_score": {
+        "$type": "double",
+        "$alias": "Dawn total score"
+      },
+      "dawn_total_": {
+        "$type": "byte",
+        "$alias": "Dawn total %"
+      }
+    }
+  },
+  "page__branch_1": {
+    "$type": "branch",
+    "$id": "page",
+    "$condition": {
+      "$eq": 2
+    },
+    "$schema": {
+      "1": {
+        "$type": "word",
+        "$alias": "1"
+      },
+      "fest_cnt": {
+        "$type": "byte",
+        "$alias": "Festival count"
+      },
+      "fest_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "fest_cnt"
+        },
+        "$schema": {
+          "festival": {
+            "$type": "byte",
+            "$alias": "Festival"
+          },
+          "minimal_score": {
+            "$type": "dword",
+            "$alias": "Minimal score"
+          },
+          "dusk_score": {
+            "$type": "double",
+            "$alias": "Dusk score"
+          },
+          "party_sz": {
+            "$type": "byte",
+            "$alias": "Achiever party size"
+          },
+          "party_sz_loop": {
+            "$type": "array",
+            "$length": {
+              "$id": "party_sz"
+            },
+            "$schema": {
+              "achiever_name": {
+                "$type": "ntstring",
+                "$alias": "Achiever name"
+              }
+            }
+          },
+          "dawn_score": {
+            "$type": "double",
+            "$alias": "Dawn score"
+          }
+        }
+      }
+    }
+  },
+  "page__branch_1_2": {
+    "$type": "branch",
+    "$id": "page",
+    "$condition": {
+      "$eq": 3
+    },
+    "$schema": {
+      "_of_registrations_to_retain_an_owned_seal_on_victory_": {
+        "$type": "byte",
+        "$alias": "% of registrations to retain an owned seal (on victory)"
+      },
+      "_of_registrations_to_claim_a_seal_on_victory_": {
+        "$type": "byte",
+        "$alias": "% of registrations to claim a seal (on victory)"
+      },
+      "seal_cnt": {
+        "$type": "byte",
+        "$alias": "Seal count"
+      },
+      "seal_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "seal_cnt"
+        },
+        "$schema": {
+          "seal": {
+            "$type": "byte",
+            "$alias": "Seal"
+          },
+          "owner": {
+            "$type": "byte",
+            "$alias": "Owner"
+          },
+          "_of_dusk_registrations": {
+            "$type": "byte",
+            "$alias": "% of Dusk registrations"
+          },
+          "_of_dawn_registrations": {
+            "$type": "byte",
+            "$alias": "% of Dawn registrations"
+          }
+        }
+      }
+    }
+  },
+  "page__branch_1_2_3": {
+    "$type": "branch",
+    "$id": "page",
+    "$condition": {
+      "$eq": 4
+    },
+    "$schema": {
+      "winning_cabal": {
+        "$type": "byte",
+        "$alias": "Winning cabal"
+      },
+      "seal_cnt": {
+        "$type": "byte",
+        "$alias": "Seal count"
+      },
+      "seal_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "seal_cnt"
+        },
+        "$schema": {
+          "seal": {
+            "$type": "byte",
+            "$alias": "Seal"
+          },
+          "expected_owner": {
+            "$type": "byte",
+            "$alias": "Expected owner"
+          },
+          "explanation": {
+            "$type": "dword",
+            "$alias": "Explanation"
+          }
+        }
+      }
+    }
+  }
+}

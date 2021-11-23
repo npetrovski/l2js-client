@@ -1,0 +1,59 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [201]
+  },
+  "residence": {
+    "$type": "dword",
+    "$alias": "Residence"
+  },
+  "owner_s_view": {
+    "$type": "dword",
+    "$alias": "Owner's view"
+  },
+  "owner_pledge_id": {
+    "$type": "dword",
+    "$alias": "Owner pledge ID"
+  },
+  "owner_pledge_name": {
+    "$type": "ntstring",
+    "$alias": "Owner pledge name"
+  },
+  "owner_pledge_leader": {
+    "$type": "ntstring",
+    "$alias": "Owner pledge leader"
+  },
+  "owner_alliance_id": {
+    "$type": "dword",
+    "$alias": "Owner alliance ID"
+  },
+  "owner_alliance_name": {
+    "$type": "ntstring",
+    "$alias": "Owner alliance name"
+  },
+  "current_server_time": {
+    "$type": "dword",
+    "$alias": "Current server time"
+  },
+  "siege_time": {
+    "$type": "dword",
+    "$alias": "Siege time"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Next siege time options"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "possible_time_for_next_siege": {
+        "$type": "dword",
+        "$alias": "Possible time for next siege"
+      }
+    }
+  }
+}

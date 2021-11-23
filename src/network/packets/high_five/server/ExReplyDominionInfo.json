@@ -1,0 +1,51 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 146, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Territory count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "territory": {
+        "$type": "dword",
+        "$alias": "Territory"
+      },
+      "dominion": {
+        "$type": "ntstring",
+        "$alias": "Dominion"
+      },
+      "owner_pledge": {
+        "$type": "ntstring",
+        "$alias": "Owner pledge"
+      },
+      "index_1": {
+        "$type": "dword",
+        "$alias": "Owned ward count"
+      },
+      "index_1_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "index_1"
+        },
+        "$schema": {
+          "ward": {
+            "$type": "dword",
+            "$alias": "Ward"
+          }
+        }
+      },
+      "war_time": {
+        "$type": "dword",
+        "$alias": "War time"
+      }
+    }
+  }
+}

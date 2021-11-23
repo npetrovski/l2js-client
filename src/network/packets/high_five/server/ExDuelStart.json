@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 78, 0]
+  },
+  "party": {
+    "$type": "dword",
+    "$alias": "Party"
+  }
+}

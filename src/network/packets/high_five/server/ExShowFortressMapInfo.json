@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 125, 0]
+  },
+  "fortress": {
+    "$type": "dword",
+    "$alias": "Fortress"
+  },
+  "under_siege": {
+    "$type": "dword",
+    "$alias": "Under siege"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Barracks"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "commander_killed": {
+        "$type": "dword",
+        "$alias": "Commander killed"
+      }
+    }
+  }
+}

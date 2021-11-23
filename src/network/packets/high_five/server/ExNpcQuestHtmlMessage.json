@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 141, 0]
+  },
+  "npc_oid": {
+    "$type": "dword",
+    "$alias": "NPC OID"
+  },
+  "message": {
+    "$type": "ntstring",
+    "$alias": "Message"
+  },
+  "quest": {
+    "$type": "dword",
+    "$alias": "Quest"
+  }
+}

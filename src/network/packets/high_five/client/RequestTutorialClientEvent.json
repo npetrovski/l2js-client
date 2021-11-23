@@ -1,0 +1,13 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      136
+    ]
+  },
+  "event_s_": {
+    "$type": "dword",
+    "$alias": "Event(s)"
+  }
+}

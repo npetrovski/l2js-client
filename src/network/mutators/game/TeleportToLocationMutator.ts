@@ -1,24 +1,22 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import TeleportToLocation from "../../incoming/game/TeleportToLocation";
 import { GlobalEvents } from "../../../mmocore/EventEmitter";
+import SerializablePacket from "../../../mmocore/SerializablePacket";
 
-export default class TeleportToLocationMutator extends IMMOClientMutator<
-  GameClient,
-  TeleportToLocation
-> {
-  update(packet: TeleportToLocation): void {
-    if (packet.ObjectId === this.Client.ActiveChar.ObjectId) {
+export default class TeleportToLocationMutator extends IMMOClientMutator<GameClient, SerializablePacket> {
+  update(packet: SerializablePacket): void {
+    if ((packet.get("actor_oid") as number) === this.Client.ActiveChar.ObjectId) {
       this.Client.CreaturesList.clear();
       this.Client.DroppedItems.clear();
     }
 
-    const creature = this.Client.CreaturesList.getEntryByObjectId(
-      packet.ObjectId
-    );
+    const creature = this.Client.CreaturesList.getEntryByObjectId(packet.get("actor_oid") as number);
     if (creature) {
-      const [_x, _y, _z] = packet.Location;
-      creature.setLocation(_x, _y, _z);
+      creature.setLocation(
+        packet.get("destination_x") as number,
+        packet.get("destination_y") as number,
+        packet.get("destination_z") as number
+      );
     }
   }
 }

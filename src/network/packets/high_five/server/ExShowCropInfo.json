@@ -1,0 +1,87 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 36, 0]
+  },
+  "owner_s_view": {
+    "$type": "byte",
+    "$alias": "Owner's view"
+  },
+  "manor": {
+    "$type": "dword",
+    "$alias": "Manor"
+  },
+  "sales": {
+    "$type": "dword",
+    "$alias": "Sales"
+  },
+  "crop_cnt": {
+    "$type": "dword",
+    "$alias": "Crop count"
+  },
+  "crop_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "crop_cnt"
+    },
+    "$schema": {
+      "crop": {
+        "$type": "dword",
+        "$alias": "Crop"
+      },
+      "remaining_amount": {
+        "$type": "double",
+        "$alias": "Remaining amount"
+      },
+      "total_amount": {
+        "$type": "double",
+        "$alias": "Total amount"
+      },
+      "price": {
+        "$type": "double",
+        "$alias": "Price"
+      },
+      "reward": {
+        "$type": "byte",
+        "$alias": "Reward"
+      },
+      "seed_level": {
+        "$type": "dword",
+        "$alias": "Seed level"
+      },
+      "r1_cnt": {
+        "$type": "byte",
+        "$alias": "Reward 1 items"
+      },
+      "r1_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "r1_cnt"
+        },
+        "$schema": {
+          "reward_1": {
+            "$type": "dword",
+            "$alias": "Reward 1"
+          }
+        }
+      },
+      "r2_cnt": {
+        "$type": "byte",
+        "$alias": "Reward 2 items"
+      },
+      "r2_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "r2_cnt"
+        },
+        "$schema": {
+          "reward_2": {
+            "$type": "dword",
+            "$alias": "Reward 2"
+          }
+        }
+      }
+    }
+  }
+}

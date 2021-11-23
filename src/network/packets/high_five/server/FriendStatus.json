@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [119]
+  },
+  "online": {
+    "$type": "dword",
+    "$alias": "Online"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "character_pk": {
+    "$type": "dword",
+    "$alias": "Character PK"
+  }
+}

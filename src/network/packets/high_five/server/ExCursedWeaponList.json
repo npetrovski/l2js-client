@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 70, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Weapon count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "weapon": {
+        "$type": "dword",
+        "$alias": "Weapon"
+      }
+    }
+  }
+}

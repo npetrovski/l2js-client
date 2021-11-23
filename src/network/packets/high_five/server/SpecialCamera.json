@@ -1,0 +1,49 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      214
+    ]
+  },
+  "actor_oid": {
+    "$type": "dword",
+    "$alias": "Actor OID"
+  },
+  "distance": {
+    "$type": "dword",
+    "$alias": "Distance"
+  },
+  "yaw": {
+    "$type": "dword",
+    "$alias": "Yaw"
+  },
+  "pitch": {
+    "$type": "dword",
+    "$alias": "Pitch"
+  },
+  "time": {
+    "$type": "dword",
+    "$alias": "Time"
+  },
+  "duration": {
+    "$type": "dword",
+    "$alias": "Duration"
+  },
+  "relative_yaw": {
+    "$type": "dword",
+    "$alias": "Relative yaw"
+  },
+  "relative_pitch": {
+    "$type": "dword",
+    "$alias": "Relative pitch"
+  },
+  "widescreen": {
+    "$type": "dword",
+    "$alias": "Widescreen"
+  },
+  "relative_angle": {
+    "$type": "dword",
+    "$alias": "Relative angle"
+  }
+}

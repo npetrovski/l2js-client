@@ -1,17 +1,14 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import PartySmallWindowDelete from "../../incoming/game/PartySmallWindowDelete";
 import { GlobalEvents } from "../../../mmocore/EventEmitter";
+import SerializablePacket from "../../../mmocore/SerializablePacket";
 
-export default class PartySmallWindowDeleteMutator extends IMMOClientMutator<
-  GameClient,
-  PartySmallWindowDelete
-> {
-  update(packet: PartySmallWindowDelete): void {
-    const char = this.Client.PartyList.getEntryByObjectId(packet.MemberObjId);
+export default class PartySmallWindowDeleteMutator extends IMMOClientMutator<GameClient, SerializablePacket> {
+  update(packet: SerializablePacket): void {
+    const char = this.Client.PartyList.getEntryByObjectId(packet.get("member_oid") as number);
     if (char) {
       GlobalEvents.fire("PartySmallWindow", { member: char, action: "delete" });
     }
-    this.Client.PartyList.removeByObjectId(packet.MemberObjId);
+    this.Client.PartyList.removeByObjectId(packet.get("member_oid") as number);
   }
 }

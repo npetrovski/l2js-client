@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 83, 0]
+  },
+  "item_oid": {
+    "$type": "dword",
+    "$alias": "Item OID"
+  },
+  "item": {
+    "$type": "dword",
+    "$alias": "Item"
+  },
+  "item_accepted": {
+    "$type": "dword",
+    "$alias": "Item accepted"
+  }
+}

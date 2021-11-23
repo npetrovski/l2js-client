@@ -1,8 +1,11 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import Say2 from "../network/outgoing/game/Say2";
+import { ChatType } from "../enums/ChatType";
 
 export default class CommandSayToClan extends AbstractGameCommand {
   execute(text: string): void {
-    this.GameClient?.sendPacket(new Say2(Say2.CLAN, text));
+    this.GameClient.sendPacket("Say2", {
+      message: text,
+      chat_type: ChatType.CLAN,
+    });
   }
 }

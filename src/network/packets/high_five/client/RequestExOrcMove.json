@@ -1,0 +1,16 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      26,
+      0
+    ]
+  },
+  "block": {
+    "$type": "bytes",
+    "$alias": "Block",
+    "$length": 64
+  }
+}

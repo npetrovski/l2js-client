@@ -1,0 +1,223 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [12]
+  },
+  "npc_oid": {
+    "$type": "dword",
+    "$alias": "NPC OID"
+  },
+  "npc": {
+    "$type": "dword",
+    "$alias": "NPC"
+  },
+  "is_attackable": {
+    "$type": "dword",
+    "$alias": "Attackable"
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  },
+  "yaw": {
+    "$type": "dword",
+    "$alias": "Yaw"
+  },
+  "unknown0": {
+    "$type": "dword",
+    "$alias": "Unknown 0"
+  },
+  "casting_speed": {
+    "$type": "dword",
+    "$alias": "Casting speed"
+  },
+  "attack_speed": {
+    "$type": "dword",
+    "$alias": "Attack speed"
+  },
+  "running_speed_on_ground": {
+    "$type": "dword",
+    "$alias": "Running speed (on ground)"
+  },
+  "walking_speed_on_ground": {
+    "$type": "dword",
+    "$alias": "Walking speed (on ground)"
+  },
+  "running_speed_in_water": {
+    "$type": "dword",
+    "$alias": "Running speed (in water)"
+  },
+  "walking_speed_in_water": {
+    "$type": "dword",
+    "$alias": "Walking speed (in water)"
+  },
+  "running_speed_mounted": {
+    "$type": "dword",
+    "$alias": "Running speed (mounted)"
+  },
+  "walking_speed_mounted": {
+    "$type": "dword",
+    "$alias": "Walking speed (mounted)"
+  },
+  "running_speed_flying_mounted": {
+    "$type": "dword",
+    "$alias": "Running speed (flying mounted)"
+  },
+  "walking_speed_flying_mounted": {
+    "$type": "dword",
+    "$alias": "Walking speed (flying mounted)"
+  },
+  "movement_speed_multiplier": {
+    "$type": "float",
+    "$alias": "Movement speed multiplier"
+  },
+  "attack_speed_multiplier": {
+    "$type": "float",
+    "$alias": "Attack speed multiplier"
+  },
+  "current_collision_radius": {
+    "$type": "float",
+    "$alias": "Current collision radius"
+  },
+  "current_collision_height": {
+    "$type": "float",
+    "$alias": "Current collision height"
+  },
+  "weapon": {
+    "$type": "dword",
+    "$alias": "Weapon"
+  },
+  "upper_body": {
+    "$type": "dword",
+    "$alias": "Upper Body"
+  },
+  "shield_sigil": {
+    "$type": "dword",
+    "$alias": "Shield [Sigil]"
+  },
+  "unknown1": {
+    "$type": "byte",
+    "$alias": "Unknown 1"
+  },
+  "is_running": {
+    "$type": "byte",
+    "$alias": "Moving"
+  },
+  "is_in_combat": {
+    "$type": "byte",
+    "$alias": "In combat"
+  },
+  "is_dead": {
+    "$type": "byte",
+    "$alias": "Lying dead"
+  },
+  "knownlist_state": {
+    "$type": "byte",
+    "$alias": "Knownlist state"
+  },
+  "unknown3": {
+    "$type": "dword",
+    "$alias": "Unknown 3"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "unknown4": {
+    "$type": "dword",
+    "$alias": "Unknown 4"
+  },
+  "title": {
+    "$type": "ntstring",
+    "$alias": "Title"
+  },
+  "title_color": {
+    "$type": "dword",
+    "$alias": "Title color"
+  },
+  "in_pvp": {
+    "$type": "dword",
+    "$alias": "In PvP"
+  },
+  "karma": {
+    "$type": "dword",
+    "$alias": "Karma"
+  },
+  "abnormal_effect": {
+    "$type": "dword",
+    "$alias": "Abnormal effect"
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  },
+  "pledge_crest_id": {
+    "$type": "dword",
+    "$alias": "Pledge crest ID"
+  },
+  "alliance_id": {
+    "$type": "dword",
+    "$alias": "Alliance ID"
+  },
+  "alliance_crest_id": {
+    "$type": "dword",
+    "$alias": "Alliance crest ID"
+  },
+  "environment": {
+    "$type": "byte",
+    "$alias": "Environment"
+  },
+  "duel_team": {
+    "$type": "byte",
+    "$alias": "Duel team"
+  },
+  "default_collision_radius": {
+    "$type": "float",
+    "$alias": "Default collision radius"
+  },
+  "default_collision_height": {
+    "$type": "float",
+    "$alias": "Default collision height"
+  },
+  "weapon_enchant_glow": {
+    "$type": "dword",
+    "$alias": "Weapon enchant glow"
+  },
+  "is_flying": {
+    "$type": "dword",
+    "$alias": "Flying"
+  },
+  "pad1": {
+    "$type": "dword",
+    "$alias": "Padding 1"
+  },
+  "ability_level": {
+    "$type": "dword",
+    "$alias": "Ability level"
+  },
+  "is_targetable": {
+    "$type": "byte",
+    "$alias": "Targetable"
+  },
+  "show_name_tag": {
+    "$type": "byte",
+    "$alias": "Show name tag"
+  },
+  "special_effect": {
+    "$type": "dword",
+    "$alias": "Special effect"
+  },
+  "display_effect": {
+    "$type": "dword",
+    "$alias": "Display effect"
+  }
+}

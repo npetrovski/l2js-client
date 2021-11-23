@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [18]
+  },
+  "character_index": {
+    "$type": "dword",
+    "$alias": "Character index"
+  },
+  "unk0": {
+    "$type": "word",
+    "$alias": "0",
+    "$default": 0
+  },
+  "unk1": {
+    "$type": "dword",
+    "$alias": "0",
+    "$default": 0
+  },
+  "unk2": {
+    "$type": "dword",
+    "$alias": "0",
+    "$default": 0
+  },
+  "unk3": {
+    "$type": "dword",
+    "$alias": "0",
+    "$default": 0
+  }
+}

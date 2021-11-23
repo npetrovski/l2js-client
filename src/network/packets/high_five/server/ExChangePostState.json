@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 179, 0]
+  },
+  "mailbox": {
+    "$type": "dword",
+    "$alias": "Mailbox"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Update count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "message_id": {
+        "$type": "dword",
+        "$alias": "Message ID"
+      },
+      "action": {
+        "$type": "dword",
+        "$alias": "Action"
+      }
+    }
+  }
+}

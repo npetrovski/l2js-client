@@ -1,0 +1,79 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [203]
+  },
+  "residence": {
+    "$type": "dword",
+    "$alias": "Residence"
+  },
+  "owner_s_view": {
+    "$type": "dword",
+    "$alias": "Owner's view"
+  },
+  "has_applicants": {
+    "$type": "dword",
+    "$alias": "Has applicants"
+  },
+  "part_number": {
+    "$type": "dword",
+    "$alias": "Part number"
+  },
+  "total_defending_pledge_count": {
+    "$type": "dword",
+    "$alias": "Total defending pledge count"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Defenders"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "pledge_id": {
+        "$type": "dword",
+        "$alias": "Pledge ID"
+      },
+      "pledge_name": {
+        "$type": "ntstring",
+        "$alias": "Pledge name"
+      },
+      "pledge_leader_name": {
+        "$type": "ntstring",
+        "$alias": "Pledge leader name"
+      },
+      "pledge_crest_id": {
+        "$type": "dword",
+        "$alias": "Pledge crest ID"
+      },
+      "application_time": {
+        "$type": "dword",
+        "$alias": "Application time"
+      },
+      "application_state": {
+        "$type": "dword",
+        "$alias": "Application state"
+      },
+      "alliance_id": {
+        "$type": "dword",
+        "$alias": "Alliance ID"
+      },
+      "alliance_name": {
+        "$type": "ntstring",
+        "$alias": "Alliance name"
+      },
+      "alliance_leader_name": {
+        "$type": "ntstring",
+        "$alias": "Alliance leader name"
+      },
+      "alliance_crest_id": {
+        "$type": "dword",
+        "$alias": "Alliance crest ID"
+      }
+    }
+  }
+}

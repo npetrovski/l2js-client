@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [131]
+  },
+  "invitor_name": {
+    "$type": "ntstring",
+    "$alias": "Invitor name"
+  }
+}

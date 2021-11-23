@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 23, 0]
+  },
+  "fortress": {
+    "$type": "dword",
+    "$alias": "Fortress"
+  },
+  "barracks": {
+    "$type": "dword",
+    "$alias": "Barracks"
+  },
+  "killed_commanders": {
+    "$type": "dword",
+    "$alias": "Killed commanders"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [236]
+  },
+  "return_location_x": {
+    "$type": "dword",
+    "$alias": "Return location X"
+  },
+  "return_location_y": {
+    "$type": "dword",
+    "$alias": "Return location Y"
+  },
+  "return_location_z": {
+    "$type": "dword",
+    "$alias": "Return location Z"
+  }
+}

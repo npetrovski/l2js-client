@@ -1,0 +1,81 @@
+{
+  "0": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      231
+    ]
+  },
+  "henna": {
+    "$type": "dword",
+    "$alias": "Henna"
+  },
+  "recovered_item": {
+    "$type": "dword",
+    "$alias": "Recovered item"
+  },
+  "recovered_amount": {
+    "$type": "double",
+    "$alias": "Recovered amount"
+  },
+  "price_of_removal": {
+    "$type": "double",
+    "$alias": "Price of removal"
+  },
+  "viewer_s_adena": {
+    "$type": "double",
+    "$alias": "Viewer's adena"
+  },
+  "current_int": {
+    "$type": "dword",
+    "$alias": "Current INT"
+  },
+  "int_without_henna": {
+    "$type": "byte",
+    "$alias": "INT without henna"
+  },
+  "current_str": {
+    "$type": "dword",
+    "$alias": "Current STR"
+  },
+  "str_without_henna": {
+    "$type": "byte",
+    "$alias": "STR without henna"
+  },
+  "current_con": {
+    "$type": "dword",
+    "$alias": "Current CON"
+  },
+  "con_without_henna": {
+    "$type": "byte",
+    "$alias": "CON without henna"
+  },
+  "current_men": {
+    "$type": "dword",
+    "$alias": "Current MEN"
+  },
+  "men_without_henna": {
+    "$type": "byte",
+    "$alias": "MEN without henna"
+  },
+  "current_dex": {
+    "$type": "dword",
+    "$alias": "Current DEX"
+  },
+  "dex_without_henna": {
+    "$type": "byte",
+    "$alias": "DEX without henna"
+  },
+  "current_wit": {
+    "$type": "dword",
+    "$alias": "Current WIT"
+  },
+  "wit_without_henna": {
+    "$type": "byte",
+    "$alias": "WIT without henna"
+  }
+}

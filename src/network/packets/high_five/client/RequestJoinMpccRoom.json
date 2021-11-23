@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      92,
+      0
+    ]
+  },
+  "room_id": {
+    "$type": "dword",
+    "$alias": "Room ID"
+  },
+  "_0": {
+    "$type": "dword",
+    "$alias": "? 0"
+  }
+}

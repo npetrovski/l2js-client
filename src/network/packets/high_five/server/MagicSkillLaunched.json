@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [84]
+  },
+  "caster_oid": {
+    "$type": "dword",
+    "$alias": "Caster OID"
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Affected"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "affected_oid": {
+        "$type": "dword",
+        "$alias": "Affected OID"
+      }
+    }
+  }
+}

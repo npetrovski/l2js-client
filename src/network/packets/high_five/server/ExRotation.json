@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [254, 193, 0]
+  },
+  "rotator_oid": {
+    "$type": "dword",
+    "$alias": "Rotator OID"
+  },
+  "yaw": {
+    "$type": "dword",
+    "$alias": "Yaw"
+  }
+}

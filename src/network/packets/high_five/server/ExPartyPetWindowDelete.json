@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 106, 0]
+  },
+  "servitor_oid": {
+    "$type": "dword",
+    "$alias": "Servitor OID"
+  },
+  "owner_oid": {
+    "$type": "dword",
+    "$alias": "Owner OID"
+  },
+  "servitor_s_name": {
+    "$type": "ntstring",
+    "$alias": "Servitor's name"
+  }
+}

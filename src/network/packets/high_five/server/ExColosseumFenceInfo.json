@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 3, 0]
+  },
+  "fence_oid": {
+    "$type": "dword",
+    "$alias": "Fence OID"
+  },
+  "visibility": {
+    "$type": "dword",
+    "$alias": "Visibility"
+  },
+  "center_x": {
+    "$type": "dword",
+    "$alias": "Center X"
+  },
+  "center_y": {
+    "$type": "dword",
+    "$alias": "Center Y"
+  },
+  "center_z": {
+    "$type": "dword",
+    "$alias": "Center Z"
+  },
+  "height": {
+    "$type": "dword",
+    "$alias": "Height"
+  },
+  "width": {
+    "$type": "dword",
+    "$alias": "Width"
+  }
+}

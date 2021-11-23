@@ -1,0 +1,29 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      59
+    ]
+  },
+  "item_cnt": {
+    "$type": "dword",
+    "$alias": "Item count"
+  },
+  "item_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "item_cnt"
+    },
+    "$schema": {
+      "item_pk": {
+        "$type": "dword",
+        "$alias": "Item PK"
+      },
+      "amount": {
+        "$type": "dword",
+        "$alias": "Amount"
+      }
+    }
+  }
+}

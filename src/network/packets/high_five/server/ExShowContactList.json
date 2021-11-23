@@ -1,0 +1,20 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 211, 0]
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Count"
+  },
+  "contacts": {
+    "$type": "array",
+    "$length": { "$id": "cnt" },
+    "$schema": {
+      "name": {
+        "$type": "ntstring"
+      }
+    }
+  }
+}

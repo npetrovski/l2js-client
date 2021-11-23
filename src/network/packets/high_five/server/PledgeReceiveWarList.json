@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 63, 0]
+  },
+  "tab": {
+    "$type": "dword",
+    "$alias": "Tab"
+  },
+  "page_": {
+    "$type": "dword",
+    "$alias": "Page??"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Pledge count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "pledge_name": {
+        "$type": "ntstring",
+        "$alias": "Pledge name"
+      },
+      "declared_": {
+        "$type": "dword",
+        "$alias": "Declared??"
+      },
+      "under_attack_": {
+        "$type": "dword",
+        "$alias": "Under attack??"
+      }
+    }
+  }
+}

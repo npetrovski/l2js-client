@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 210, 0]
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Character name"
+  },
+  "is_added": {
+    "$type": "dword",
+    "$alias": "Added"
+  }
+}

@@ -3,13 +3,8 @@ import IStream from "../../mmocore/IStream";
 
 export default class NetSocket implements IStream {
   private _socket: net.Socket = new net.Socket();
-  private _remoteAddress!: string;
-  private _remotePort!: number;
 
-  constructor(ip: string, port: number) {
-    this._remoteAddress = ip;
-    this._remotePort = port;
-  }
+  constructor(private _remoteAddress: string, private _remotePort: number) {}
 
   connect(): Promise<void> {
     return new Promise((resolve, reject) => {

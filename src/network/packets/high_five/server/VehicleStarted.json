@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [192]
+  },
+  "vehicle_oid": {
+    "$type": "dword",
+    "$alias": "Vehicle OID"
+  },
+  "moving": {
+    "$type": "dword",
+    "$alias": "Moving"
+  }
+}

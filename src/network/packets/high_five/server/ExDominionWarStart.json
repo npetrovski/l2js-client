@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 163, 0]
+  },
+  "mercenary_oid": {
+    "$type": "dword",
+    "$alias": "Mercenary OID"
+  },
+  "unk1": {
+    "$type": "dword",
+    "$alias": "Unk 1"
+  },
+  "territory": {
+    "$type": "dword",
+    "$alias": "Territory"
+  },
+  "name_hidden": {
+    "$type": "dword",
+    "$alias": "Name hidden"
+  },
+  "new_name": {
+    "$type": "dword",
+    "$alias": "New name"
+  }
+}

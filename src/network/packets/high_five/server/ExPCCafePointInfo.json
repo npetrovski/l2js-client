@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 50, 0]
+  },
+  "total_points": {
+    "$type": "dword",
+    "$alias": "Total points"
+  },
+  "earned_points": {
+    "$type": "dword",
+    "$alias": "Earned points"
+  },
+  "_1": {
+    "$type": "byte",
+    "$alias": "??? 1"
+  },
+  "_decreasing_but_not_every_5_min_": {
+    "$type": "dword",
+    "$alias": "??? (decreasing, but not every 5 min)"
+  },
+  "first_login_this_day_bonus": {
+    "$type": "byte",
+    "$alias": "First login this day bonus"
+  },
+  "timer": {
+    "$type": "dword",
+    "$alias": "Timer"
+  }
+}

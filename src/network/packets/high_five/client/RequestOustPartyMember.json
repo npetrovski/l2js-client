@@ -1,0 +1,13 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      69
+    ]
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  }
+}

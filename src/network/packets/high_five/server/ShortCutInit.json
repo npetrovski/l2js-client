@@ -1,0 +1,60 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [69]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Shortcut count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "cond_1": {
+        "$type": "dword",
+        "$alias": "Type"
+      },
+      "slot": {
+        "$type": "dword",
+        "$alias": "Slot"
+      },
+      "cond_1_branch": {
+        "$type": "branch",
+        "$id": "cond_1",
+        "$condition": {
+          "$eq": 1
+        },
+        "$schema": {
+          "cooldown_group": {
+            "$type": "dword",
+            "$alias": "Cooldown group"
+          },
+          "remaining_time": {
+            "$type": "dword",
+            "$alias": "Remaining time"
+          },
+          "cooldown_time": {
+            "$type": "dword",
+            "$alias": "Cooldown time"
+          },
+          "augmentation_effect_1_": {
+            "$type": "word",
+            "$alias": "Augmentation effect (1)"
+          },
+          "augmentation_effect_2_": {
+            "$type": "word",
+            "$alias": "Augmentation effect (2)"
+          }
+        }
+      },
+      "executor": {
+        "$type": "dword",
+        "$alias": "Executor"
+      }
+    }
+  }
+}

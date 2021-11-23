@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 42, 0]
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "enchantable": {
+    "$type": "dword",
+    "$alias": "Enchantable"
+  },
+  "enchanted": {
+    "$type": "dword",
+    "$alias": "Enchanted"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Route count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "route_level": {
+        "$type": "dword",
+        "$alias": "Route level"
+      }
+    }
+  }
+}

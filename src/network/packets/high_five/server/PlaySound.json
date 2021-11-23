@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [158]
+  },
+  "type": {
+    "$type": "dword",
+    "$alias": "Type"
+  },
+  "file": {
+    "$type": "ntstring",
+    "$alias": "File"
+  },
+  "bind_to_object": {
+    "$type": "dword",
+    "$alias": "Bind to object"
+  },
+  "oid": {
+    "$type": "dword",
+    "$alias": "Object Id"
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location (X)"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location (y)"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location (Z)"
+  },
+  "delay": {
+    "$type": "dword",
+    "$alias": "Delay"
+  }
+}

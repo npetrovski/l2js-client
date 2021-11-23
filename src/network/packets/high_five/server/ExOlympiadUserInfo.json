@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 122, 0]
+  },
+  "side": {
+    "$type": "byte",
+    "$alias": "Side"
+  },
+  "player_oid": {
+    "$type": "dword",
+    "$alias": "Player OID"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "class": {
+    "$type": "dword",
+    "$alias": "Class"
+  },
+  "current_hp": {
+    "$type": "dword",
+    "$alias": "Current HP"
+  },
+  "maximum_hp": {
+    "$type": "dword",
+    "$alias": "Maximum HP"
+  },
+  "current_cp": {
+    "$type": "dword",
+    "$alias": "Current CP"
+  },
+  "maximum_cp": {
+    "$type": "dword",
+    "$alias": "Maximum CP"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [234]
+  },
+  "image": {
+    "$type": "ntstring",
+    "$alias": "Image"
+  },
+  "arrow_x": {
+    "$type": "dword",
+    "$alias": "Arrow X"
+  },
+  "arrow_y": {
+    "$type": "dword",
+    "$alias": "Arrow Y"
+  }
+}

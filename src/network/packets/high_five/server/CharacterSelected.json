@@ -1,0 +1,144 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [11]
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "character_id": {
+    "$type": "dword",
+    "$alias": "Character ID"
+  },
+  "title": {
+    "$type": "ntstring",
+    "$alias": "Title"
+  },
+  "session_id": {
+    "$type": "dword",
+    "$alias": "Session ID"
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  },
+  "builder_level": {
+    "$type": "dword",
+    "$alias": "Builder level"
+  },
+  "sex": {
+    "$type": "dword",
+    "$alias": "Sex"
+  },
+  "race": {
+    "$type": "dword",
+    "$alias": "Race"
+  },
+  "visible_class": {
+    "$type": "dword",
+    "$alias": "Visible class"
+  },
+  "active_1": {
+    "$type": "dword",
+    "$alias": "???"
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  },
+  "current_hp": {
+    "$type": "float",
+    "$alias": "Current HP"
+  },
+  "current_mp": {
+    "$type": "float",
+    "$alias": "Current MP"
+  },
+  "sp": {
+    "$type": "dword",
+    "$alias": "SP"
+  },
+  "xp": {
+    "$type": "double",
+    "$alias": "XP"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "karma": {
+    "$type": "dword",
+    "$alias": "Karma"
+  },
+  "pk_count": {
+    "$type": "dword",
+    "$alias": "PK Count"
+  },
+  "int": {
+    "$type": "dword",
+    "$alias": "INT"
+  },
+  "str": {
+    "$type": "dword",
+    "$alias": "STR"
+  },
+  "con": {
+    "$type": "dword",
+    "$alias": "CON"
+  },
+  "men": {
+    "$type": "dword",
+    "$alias": "MEN"
+  },
+  "dex": {
+    "$type": "dword",
+    "$alias": "DEX"
+  },
+  "wit": {
+    "$type": "dword",
+    "$alias": "WIT"
+  },
+  "game_time": {
+    "$type": "dword",
+    "$alias": "Game time"
+  },
+  "class": {
+    "$type": "dword",
+    "$alias": "Class"
+  },
+  "gg_1_": {
+    "$type": "dword",
+    "$alias": "GG (1)"
+  },
+  "gg_2_": {
+    "$type": "dword",
+    "$alias": "GG (2)"
+  },
+  "gg_3_": {
+    "$type": "dword",
+    "$alias": "GG (3)"
+  },
+  "gg_4_": {
+    "$type": "dword",
+    "$alias": "GG (4)"
+  },
+  "gg_5_": {
+    "$type": "bytes",
+    "$alias": "GG (5)",
+    "$length": 64
+  },
+  "cm_opcode_shuffling_seed": {
+    "$type": "dword",
+    "$alias": "CM opcode shuffling seed"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [153]
+  },
+  "owner": {
+    "$type": "ntstring",
+    "$alias": "Owner"
+  },
+  "index_0": {
+    "$type": "word",
+    "$alias": "Quest count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "quest": {
+        "$type": "dword",
+        "$alias": "Quest"
+      },
+      "state": {
+        "$type": "dword",
+        "$alias": "State"
+      }
+    }
+  }
+}

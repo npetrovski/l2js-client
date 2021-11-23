@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 12, 0]
+  },
+  "shot": {
+    "$type": "dword",
+    "$alias": "Shot"
+  },
+  "enabled": {
+    "$type": "dword",
+    "$alias": "Enabled"
+  }
+}

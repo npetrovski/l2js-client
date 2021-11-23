@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 95, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Action count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "action": {
+        "$type": "dword",
+        "$alias": "Action"
+      }
+    }
+  }
+}

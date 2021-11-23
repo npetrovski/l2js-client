@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 103, 0]
+  },
+  "index_0": {
+    "$type": "word",
+    "$alias": "Step count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "_x": {
+        "$type": "dword",
+        "$alias": "??? X"
+      },
+      "_y": {
+        "$type": "dword",
+        "$alias": "??? Y"
+      },
+      "_z": {
+        "$type": "dword",
+        "$alias": "??? Z"
+      },
+      "_time": {
+        "$type": "word",
+        "$alias": "??? Time"
+      }
+    }
+  }
+}

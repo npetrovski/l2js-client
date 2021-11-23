@@ -1,0 +1,71 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [51]
+  },
+  "attacker_oid": {
+    "$type": "dword",
+    "$alias": "Attacker OID"
+  },
+  "main_target_oid": {
+    "$type": "dword",
+    "$alias": "Main target OID"
+  },
+  "damage_to_main_target": {
+    "$type": "dword",
+    "$alias": "Damage to main target"
+  },
+  "damage_flags": {
+    "$type": "byte",
+    "$alias": "Damage flags"
+  },
+  "attacker_x": {
+    "$type": "dword",
+    "$alias": "Attacker X"
+  },
+  "attacker_y": {
+    "$type": "dword",
+    "$alias": "Attacker Y"
+  },
+  "attacker_z": {
+    "$type": "dword",
+    "$alias": "Attacker Z"
+  },
+  "index_0": {
+    "$type": "word",
+    "$alias": "Additional hit count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "target_oid": {
+        "$type": "dword",
+        "$alias": "Target OID"
+      },
+      "damage": {
+        "$type": "dword",
+        "$alias": "Damage"
+      },
+      "damage_flags": {
+        "$type": "byte",
+        "$alias": "Damage flags"
+      }
+    }
+  },
+  "main_target_x": {
+    "$type": "dword",
+    "$alias": "Main target X"
+  },
+  "main_target_y": {
+    "$type": "dword",
+    "$alias": "Main target Y"
+  },
+  "main_target_z": {
+    "$type": "dword",
+    "$alias": "Main target Z"
+  }
+}

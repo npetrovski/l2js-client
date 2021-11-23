@@ -1,0 +1,21 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      198
+    ]
+  },
+  "message": {
+    "$type": "dword",
+    "$alias": "Message"
+  },
+  "accepted": {
+    "$type": "dword",
+    "$alias": "Accepted"
+  },
+  "requester": {
+    "$type": "dword",
+    "$alias": "Requester"
+  }
+}

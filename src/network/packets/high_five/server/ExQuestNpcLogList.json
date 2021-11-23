@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 197, 0]
+  },
+  "quest": {
+    "$type": "dword",
+    "$alias": "Quest"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "size"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "npc": {
+        "$type": "dword",
+        "$alias": "Npc"
+      },
+      "unk1": {
+        "$type": "byte",
+        "$alias": "Unknown 1"
+      },
+      "count": {
+        "$type": "dword",
+        "$alias": "Count"
+      }
+    }
+  }
+}

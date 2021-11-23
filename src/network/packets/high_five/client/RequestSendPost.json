@@ -1,0 +1,47 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      99,
+      0
+    ]
+  },
+  "recipient": {
+    "$type": "ntstring",
+    "$alias": "Recipient"
+  },
+  "cod": {
+    "$type": "dword",
+    "$alias": "COD"
+  },
+  "subject": {
+    "$type": "ntstring",
+    "$alias": "Subject"
+  },
+  "message": {
+    "$type": "ntstring",
+    "$alias": "Message"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Attachment count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "item_oid": {
+        "$type": "dword",
+        "$alias": "Item OID"
+      },
+      "quantity": {
+        "$type": "double",
+        "$alias": "Quantity"
+      }
+    }
+  }
+}

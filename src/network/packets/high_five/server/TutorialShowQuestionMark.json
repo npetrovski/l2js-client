@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [167]
+  },
+  "mark_id": {
+    "$type": "dword",
+    "$alias": "Mark ID"
+  }
+}

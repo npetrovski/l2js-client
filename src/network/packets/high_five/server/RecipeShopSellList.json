@@ -1,0 +1,47 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [223]
+  },
+  "manufacturer_s_oid": {
+    "$type": "dword",
+    "$alias": "Manufacturer's OID"
+  },
+  "current_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "maximum_mp": {
+    "$type": "dword",
+    "$alias": "Maximum MP"
+  },
+  "viewer_s_adena": {
+    "$type": "double",
+    "$alias": "Viewer's adena"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Manufacturable count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "recipe": {
+        "$type": "dword",
+        "$alias": "Recipe"
+      },
+      "can_create": {
+        "$type": "dword",
+        "$alias": "Can create"
+      },
+      "price": {
+        "$type": "double",
+        "$alias": "Price"
+      }
+    }
+  }
+}

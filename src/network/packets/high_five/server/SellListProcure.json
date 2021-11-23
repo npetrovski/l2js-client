@@ -1,0 +1,103 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [239]
+  },
+  "viewer_s_adena": {
+    "$type": "dword",
+    "$alias": "Viewer's adena"
+  },
+  "manor": {
+    "$type": "dword",
+    "$alias": "Manor"
+  },
+  "crop_cnt": {
+    "$type": "word",
+    "$alias": "Crop count"
+  },
+  "crop_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "crop_cnt"
+    },
+    "$schema": {
+      "type": {
+        "$type": "word",
+        "$alias": "Base item type"
+      },
+      "crop_oid": {
+        "$type": "dword",
+        "$alias": "Crop OID"
+      },
+      "is_ticket": {
+        "$type": "dword",
+        "$alias": "Crop"
+      },
+      "amount": {
+        "$type": "dword",
+        "$alias": "Amount"
+      },
+      "main_item_type": {
+        "$type": "word",
+        "$alias": "Main item type"
+      },
+      "is_ticket_branch": {
+        "$type": "branch",
+        "$id": "is_ticket",
+        "$condition": {
+          "$or": [
+            {
+              "$eq": 4443
+            },
+            {
+              "$eq": 4444
+            }
+          ]
+        },
+        "$schema": {}
+      },
+      "type_branch": {
+        "$type": "branch",
+        "$id": "type",
+        "$condition": {
+          "$lt": 4
+        },
+        "$schema": {
+          "used_paperdoll_slot_s_": {
+            "$type": "dword",
+            "$alias": "Used paperdoll slot(s)"
+          },
+          "is_ticket_branch": {
+            "$type": "branch",
+            "$id": "is_ticket",
+            "$condition": {
+              "$or": [
+                {
+                  "$eq": 4443
+                },
+                {
+                  "$eq": 4444
+                }
+              ]
+            },
+            "$schema": {
+              "0": {
+                "$type": "word",
+                "$alias": "0"
+              },
+              "race_number": {
+                "$type": "word",
+                "$alias": "Race number"
+              }
+            }
+          }
+        }
+      },
+      "price": {
+        "$type": "dword",
+        "$alias": "Price"
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [43]
+  },
+  "account_name": {
+    "$type": "ntstring",
+    "$alias": "Account name"
+  },
+  "game_server_account_id": {
+    "$type": "dword",
+    "$alias": "Account ID"
+  },
+  "game_server_session_id": {
+    "$type": "dword",
+    "$alias": "Session ID"
+  },
+  "account_id": {
+    "$type": "dword",
+    "$alias": "Account ID"
+  },
+  "auth_key": {
+    "$type": "dword",
+    "$alias": "Auth key"
+  },
+  "localization": {
+    "$type": "dword",
+    "$alias": "Localization",
+    "$default": 1
+  },
+  "padding": {
+    "$type": "bytes",
+    "$length": 8,
+    "$default": [0, 0, 0, 0, 0, 0, 0, 0]
+  }
+}

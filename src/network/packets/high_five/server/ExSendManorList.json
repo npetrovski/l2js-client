@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 34, 0]
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Manor count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "castle": {
+        "$type": "dword",
+        "$alias": "Castle"
+      },
+      "manor": {
+        "$type": "ntstring",
+        "$alias": "Manor"
+      }
+    }
+  }
+}

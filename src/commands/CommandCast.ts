@@ -1,12 +1,11 @@
-import RequestMagicSkillUse from "../network/outgoing/game/RequestMagicSkillUse";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandCast extends AbstractGameCommand {
-  execute(magicSkillId: number, ctrl?: boolean, shift?: boolean): void {
-    const forceCtrl = ctrl ?? false;
-    const forceShift = shift ?? false;
-    this.GameClient?.sendPacket(
-      new RequestMagicSkillUse(magicSkillId, forceCtrl, forceShift)
-    );
+  execute(magicSkillId: number, ctrl = false, shift = false): void {
+    this.GameClient.sendPacket("RequestMagicSkillUse", {
+      skill: magicSkillId,
+      ctrl_force_attack: ctrl ? 1 : 0,
+      shift: shift ? 1 : 0,
+    });
   }
 }

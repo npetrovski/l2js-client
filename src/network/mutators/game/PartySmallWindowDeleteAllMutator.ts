@@ -1,18 +1,15 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import PartySmallWindowDeleteAll from "../../incoming/game/PartySmallWindowDeleteAll";
 import { GlobalEvents } from "../../../mmocore/EventEmitter";
+import SerializablePacket from "../../../mmocore/SerializablePacket";
 
-export default class PartySmallWindowDeleteAllMutator extends IMMOClientMutator<
-  GameClient,
-  PartySmallWindowDeleteAll
-> {
-  update(packet: PartySmallWindowDeleteAll): void {
+export default class PartySmallWindowDeleteAllMutator extends IMMOClientMutator<GameClient, SerializablePacket> {
+  update(packet: SerializablePacket): void {
     this.Client.PartyList.clear();
 
     GlobalEvents.fire("PartySmallWindow", {
       member: null,
-      action: "delete-all"
+      action: "delete-all",
     });
   }
 }

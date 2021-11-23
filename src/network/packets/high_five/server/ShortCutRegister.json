@@ -1,0 +1,141 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [68]
+  },
+  "cond_1": {
+    "$type": "dword",
+    "$alias": "Type"
+  },
+  "slot": {
+    "$type": "dword",
+    "$alias": "Slot"
+  },
+  "cond_1__branch": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$eq": 1
+    },
+    "$schema": {
+      "item_oid": {
+        "$type": "dword",
+        "$alias": "Item OID"
+      }
+    }
+  },
+  "cond_1__branch_1": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$eq": 2
+    },
+    "$schema": {
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "disabled": {
+        "$type": "byte",
+        "$alias": "Disabled"
+      }
+    }
+  },
+  "cond_1__branch_1_2": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$eq": 3
+    },
+    "$schema": {
+      "action": {
+        "$type": "dword",
+        "$alias": "Action"
+      }
+    }
+  },
+  "cond_1__branch_1_2_3": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$eq": 4
+    },
+    "$schema": {
+      "macro_id": {
+        "$type": "dword",
+        "$alias": "Macro ID"
+      }
+    }
+  },
+  "cond_1__branch_1_2_3_4": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$eq": 5
+    },
+    "$schema": {
+      "recipe": {
+        "$type": "dword",
+        "$alias": "Recipe"
+      }
+    }
+  },
+  "cond_1__branch_1_2_3_4_5": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$and": [
+        {
+          "$lt": 1
+        },
+        {
+          "$gt": 5
+        }
+      ]
+    },
+    "$schema": {
+      "id": {
+        "$type": "dword",
+        "$alias": "ID"
+      }
+    }
+  },
+  "executor": {
+    "$type": "dword",
+    "$alias": "Executor"
+  },
+  "cond_1__branch_1_2_3_4_5_6": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$eq": 1
+    },
+    "$schema": {
+      "cooldown_group": {
+        "$type": "dword",
+        "$alias": "Cooldown group"
+      },
+      "remaining_time": {
+        "$type": "dword",
+        "$alias": "Remaining time"
+      },
+      "cooldown_time": {
+        "$type": "dword",
+        "$alias": "Cooldown time"
+      },
+      "augmentation_effect_1_": {
+        "$type": "word",
+        "$alias": "Augmentation effect (1)"
+      },
+      "augmentation_effect_2_": {
+        "$type": "word",
+        "$alias": "Augmentation effect (2)"
+      }
+    }
+  }
+}

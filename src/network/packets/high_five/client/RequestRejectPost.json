@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      104,
+      0
+    ]
+  },
+  "message_id": {
+    "$type": "dword",
+    "$alias": "Message ID"
+  }
+}

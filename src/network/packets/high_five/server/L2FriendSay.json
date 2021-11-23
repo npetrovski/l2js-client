@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [120]
+  },
+  "delivery_failure_reason": {
+    "$type": "dword",
+    "$alias": "Delivery failure reason"
+  },
+  "recipient": {
+    "$type": "ntstring",
+    "$alias": "Recipient"
+  },
+  "talker": {
+    "$type": "ntstring",
+    "$alias": "Talker"
+  },
+  "message": {
+    "$type": "ntstring",
+    "$alias": "Message"
+  }
+}

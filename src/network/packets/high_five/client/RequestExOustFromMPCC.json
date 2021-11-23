@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      8,
+      0
+    ]
+  },
+  "party_leader_name": {
+    "$type": "ntstring",
+    "$alias": "Party leader name"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      66
+    ]
+  },
+  "invitee_name": {
+    "$type": "ntstring",
+    "$alias": "Invitee name"
+  },
+  "item_distribution": {
+    "$type": "dword",
+    "$alias": "Item distribution"
+  }
+}

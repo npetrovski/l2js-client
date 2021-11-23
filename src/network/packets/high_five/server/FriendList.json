@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [117]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Friend count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "character_id": {
+        "$type": "dword",
+        "$alias": "Character ID"
+      },
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "online": {
+        "$type": "dword",
+        "$alias": "Online"
+      },
+      "character_oid": {
+        "$type": "dword",
+        "$alias": "Character OID"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      }
+    }
+  }
+}

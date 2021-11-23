@@ -1,0 +1,13 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      113
+    ]
+  },
+  "player_oid": {
+    "$type": "dword",
+    "$alias": "Player OID"
+  }
+}

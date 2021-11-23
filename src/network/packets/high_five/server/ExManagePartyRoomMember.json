@@ -1,0 +1,51 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 10, 0]
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  },
+  "member_oid": {
+    "$type": "dword",
+    "$alias": "Member OID"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "class": {
+    "$type": "dword",
+    "$alias": "Class"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "region": {
+    "$type": "dword",
+    "$alias": "Region"
+  },
+  "membership": {
+    "$type": "dword",
+    "$alias": "Membership"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Unavailable instances"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "instance": {
+        "$type": "dword",
+        "$alias": "Instance"
+      }
+    }
+  }
+}

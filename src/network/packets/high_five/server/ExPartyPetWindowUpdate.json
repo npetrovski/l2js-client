@@ -1,0 +1,47 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 25, 0]
+  },
+  "servitor_oid": {
+    "$type": "dword",
+    "$alias": "Servitor OID"
+  },
+  "servitor": {
+    "$type": "dword",
+    "$alias": "Servitor"
+  },
+  "servitor_s_type": {
+    "$type": "dword",
+    "$alias": "Servitor's type"
+  },
+  "owner_oid": {
+    "$type": "dword",
+    "$alias": "Owner OID"
+  },
+  "servitor_s_name": {
+    "$type": "ntstring",
+    "$alias": "Servitor's name"
+  },
+  "current_hp": {
+    "$type": "dword",
+    "$alias": "Current HP"
+  },
+  "maximum_hp": {
+    "$type": "dword",
+    "$alias": "Maximum HP"
+  },
+  "current_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "maximum_mp": {
+    "$type": "dword",
+    "$alias": "Maximum MP"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  }
+}

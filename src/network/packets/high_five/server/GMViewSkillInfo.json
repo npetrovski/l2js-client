@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [151]
+  },
+  "owner": {
+    "$type": "ntstring",
+    "$alias": "Owner"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Skill count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "passive": {
+        "$type": "dword",
+        "$alias": "Passive"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "disabled": {
+        "$type": "byte",
+        "$alias": "Disabled"
+      },
+      "enchantable": {
+        "$type": "byte",
+        "$alias": "Enchantable"
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      73
+    ]
+  },
+  "message": {
+    "$type": "ntstring",
+    "$alias": "Message"
+  },
+  "chat_type": {
+    "$type": "dword",
+    "$alias": "Chat"
+  },
+  "chat_type_branch": {
+    "$type": "branch",
+    "$id": "chat_type",
+    "$condition": {
+      "$eq": 2
+    },
+    "$schema": {
+      "recipient": {
+        "$type": "ntstring",
+        "$alias": "Recipient"
+      }
+    }
+  }
+}

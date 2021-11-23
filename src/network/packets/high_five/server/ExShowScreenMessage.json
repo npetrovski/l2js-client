@@ -1,0 +1,71 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 57, 0]
+  },
+  "custom": {
+    "$type": "dword",
+    "$alias": "Custom"
+  },
+  "message": {
+    "$type": "dword",
+    "$alias": "Message"
+  },
+  "position": {
+    "$type": "dword",
+    "$alias": "Position"
+  },
+  "_0": {
+    "$type": "dword",
+    "$alias": "??? 0"
+  },
+  "small": {
+    "$type": "dword",
+    "$alias": "Small"
+  },
+  "_4_or_0": {
+    "$type": "dword",
+    "$alias": "??? 4 or 0"
+  },
+  "_1": {
+    "$type": "dword",
+    "$alias": "??? 1"
+  },
+  "decorated": {
+    "$type": "dword",
+    "$alias": "Decorated"
+  },
+  "duration": {
+    "$type": "dword",
+    "$alias": "Duration"
+  },
+  "fade": {
+    "$type": "dword",
+    "$alias": "Fade"
+  },
+  "message_": {
+    "$type": "dword",
+    "$alias": "Message"
+  },
+  "1st_token": {
+    "$type": "ntstring",
+    "$alias": "1st token"
+  },
+  "2nd_token": {
+    "$type": "ntstring",
+    "$alias": "2nd token"
+  },
+  "3rd_token": {
+    "$type": "ntstring",
+    "$alias": "3rd token"
+  },
+  "4th_token": {
+    "$type": "ntstring",
+    "$alias": "4th token"
+  },
+  "5th_token": {
+    "$type": "ntstring",
+    "$alias": "5th token"
+  }
+}

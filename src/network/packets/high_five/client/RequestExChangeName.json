@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      56,
+      0
+    ]
+  },
+  "_": {
+    "$type": "dword",
+    "$alias": "???"
+  },
+  "new_pledge_name": {
+    "$type": "ntstring",
+    "$alias": "New pledge name"
+  },
+  "__": {
+    "$type": "dword",
+    "$alias": "???"
+  }
+}

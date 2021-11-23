@@ -1,0 +1,32 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [5]
+  },
+  "account_id": {
+    "$type": "dword",
+    "$alias": "Account ID"
+  },
+  "auth_key": {
+    "$type": "dword",
+    "$alias": "Auth key"
+  },
+  "list_type": {
+    "$type": "byte",
+    "$alias": "List type",
+    "$defaut": 4
+  },
+  "padding_0_": {
+    "$type": "bytes",
+    "$alias": "Padding[0]",
+    "$length": 6,
+    "$default": [0, 0, 0, 0, 0, 0]
+  },
+  "padding_0": {
+    "$type": "bytes",
+    "$alias": "Padding[0]",
+    "$length": 16,
+    "$default": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  }
+}

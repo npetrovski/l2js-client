@@ -1,0 +1,83 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 144, 0]
+  },
+  "viewed_territory": {
+    "$type": "dword",
+    "$alias": "Viewed territory"
+  },
+  "owner_pledge": {
+    "$type": "ntstring",
+    "$alias": "Owner pledge"
+  },
+  "owner_pledge_leader": {
+    "$type": "ntstring",
+    "$alias": "Owner pledge leader"
+  },
+  "owner_alliance": {
+    "$type": "ntstring",
+    "$alias": "Owner alliance"
+  },
+  "registered_pledges": {
+    "$type": "dword",
+    "$alias": "Registered pledges"
+  },
+  "registered_mercenaries": {
+    "$type": "dword",
+    "$alias": "Registered mercenaries"
+  },
+  "war_time": {
+    "$type": "dword",
+    "$alias": "War time"
+  },
+  "current_server_time": {
+    "$type": "dword",
+    "$alias": "Current server time"
+  },
+  "registered_pledge": {
+    "$type": "dword",
+    "$alias": "Registered pledge"
+  },
+  "registered_self": {
+    "$type": "dword",
+    "$alias": "Registered self"
+  },
+  "request_period": {
+    "$type": "dword",
+    "$alias": "Request period"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Territory count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "territory": {
+        "$type": "dword",
+        "$alias": "Territory"
+      },
+      "index_1": {
+        "$type": "dword",
+        "$alias": "Owned ward count"
+      },
+      "index_1_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "index_1"
+        },
+        "$schema": {
+          "ward": {
+            "$type": "dword",
+            "$alias": "Ward"
+          }
+        }
+      }
+    }
+  }
+}

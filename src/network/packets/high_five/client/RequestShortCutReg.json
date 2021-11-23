@@ -1,0 +1,29 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      61
+    ]
+  },
+  "type": {
+    "$type": "dword",
+    "$alias": "Type"
+  },
+  "slot": {
+    "$type": "dword",
+    "$alias": "Slot"
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "executor": {
+    "$type": "dword",
+    "$alias": "Executor"
+  }
+}

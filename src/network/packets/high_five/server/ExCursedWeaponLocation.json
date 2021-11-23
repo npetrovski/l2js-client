@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 71, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Weapon count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "weapon": {
+        "$type": "dword",
+        "$alias": "Weapon"
+      },
+      "equipped": {
+        "$type": "dword",
+        "$alias": "Equipped"
+      },
+      "location_x": {
+        "$type": "dword",
+        "$alias": "Location X"
+      },
+      "location_y": {
+        "$type": "dword",
+        "$alias": "Location Y"
+      },
+      "location_z": {
+        "$type": "dword",
+        "$alias": "Location Z"
+      }
+    }
+  }
+}

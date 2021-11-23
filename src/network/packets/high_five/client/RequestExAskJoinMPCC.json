@@ -1,0 +1,19 @@
+{
+  "0": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      6,
+      0
+    ]
+  },
+  "invitee_name": {
+    "$type": "ntstring",
+    "$alias": "Invitee name"
+  }
+}

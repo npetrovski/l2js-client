@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [1]
+  },
+  "revived_oid": {
+    "$type": "dword",
+    "$alias": "Revived OID"
+  }
+}

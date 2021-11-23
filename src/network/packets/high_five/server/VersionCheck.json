@@ -1,0 +1,34 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [46]
+  },
+  "exact_version_match": {
+    "$type": "byte",
+    "$alias": "Exact version match"
+  },
+
+  "cipher_key_part": {
+    "$type": "bytes",
+    "$alias": "Cipher key part",
+    "$length": 8
+  },
+
+  "cipher_enabled": {
+    "$type": "dword",
+    "$alias": "Cipher enabled"
+  },
+  "server": {
+    "$type": "dword",
+    "$alias": "Server"
+  },
+  "merged_server": {
+    "$type": "byte",
+    "$alias": "Merged server"
+  },
+  "cm_opcode_shuffling_seed": {
+    "$type": "dword",
+    "$alias": "CM opcode shuffling seed"
+  }
+}

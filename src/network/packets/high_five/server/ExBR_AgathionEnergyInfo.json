@@ -1,0 +1,40 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 222, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Agathion count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "agathion_oid": {
+        "$type": "dword",
+        "$alias": "Agathion object Id"
+      },
+      "agathion": {
+        "$type": "dword",
+        "$alias": "Agathion Id"
+      },
+      "unk1": {
+        "$type": "dword",
+        "$alias": "Unknown 1",
+        "$default": 2097152
+      },
+      "remaining_energy": {
+        "$type": "dword",
+        "$alias": "Remaining energy"
+      },
+      "energy": {
+        "$type": "dword",
+        "$alias": "Agathion energy"
+      }
+    }
+  }
+}

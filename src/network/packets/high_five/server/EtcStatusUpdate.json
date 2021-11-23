@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [249]
+  },
+  "charges": {
+    "$type": "dword",
+    "$alias": "Increase Force"
+  },
+  "weight_penalty": {
+    "$type": "dword",
+    "$alias": "Weight Penalty"
+  },
+  "block_all_chat": {
+    "$type": "dword",
+    "$alias": "Block All Chat"
+  },
+  "danger_area": {
+    "$type": "dword",
+    "$alias": "Danger Area"
+  },
+  "weapon_grade_penalty": {
+    "$type": "dword",
+    "$alias": "Weapon Grade Penalty"
+  },
+  "armor_grade_penalty": {
+    "$type": "dword",
+    "$alias": "Armor Grade Penalty"
+  },
+  "charm_of_courage": {
+    "$type": "dword",
+    "$alias": "Charm of Courage"
+  },
+  "death_penalty": {
+    "$type": "dword",
+    "$alias": "Death Penalty"
+  },
+  "soul_expansion": {
+    "$type": "dword",
+    "$alias": "Soul Expansion"
+  }
+}

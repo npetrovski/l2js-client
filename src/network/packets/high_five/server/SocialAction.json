@@ -1,0 +1,17 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      39
+    ]
+  },
+  "actor_oid": {
+    "$type": "dword",
+    "$alias": "Actor OID"
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  }
+}

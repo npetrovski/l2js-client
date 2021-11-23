@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 41, 0]
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Enchant count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "required_sp": {
+        "$type": "dword",
+        "$alias": "Required SP"
+      },
+      "required_xp": {
+        "$type": "dword",
+        "$alias": "Required XP"
+      }
+    }
+  }
+}

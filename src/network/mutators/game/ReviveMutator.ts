@@ -1,20 +1,11 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import Revive from "../../incoming/game/Revive";
 import { GlobalEvents } from "../../../mmocore/EventEmitter";
+import SerializablePacket from "../../../mmocore/SerializablePacket";
 
-export default class ReviveMutator extends IMMOClientMutator<
-  GameClient,
-  Revive
-> {
-  update(packet: Revive): void {
-    if (packet.ObjectId === this.Client.ActiveChar.ObjectId) {
-      this.Client.ActiveChar.IsDead = false;
-    }
-
-    const creature = this.Client.CreaturesList.getEntryByObjectId(
-      packet.ObjectId
-    );
+export default class ReviveMutator extends IMMOClientMutator<GameClient, SerializablePacket> {
+  update(packet: SerializablePacket): void {
+    const creature = this.Client.CreaturesList.getEntryByObjectId(packet.get("revived_oid") as number);
     if (creature) {
       creature.IsDead = false;
     }

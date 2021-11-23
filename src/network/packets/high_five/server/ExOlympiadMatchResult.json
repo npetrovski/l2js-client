@@ -1,0 +1,103 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 7,
+    "$default": [254, 212, 0, 0, 0, 0, 0]
+  },
+  "tie": {
+    "$type": "dword",
+    "$alias": "Tie or win"
+  },
+  "game_name": {
+    "$type": "ntstring",
+    "$alias": "Game name"
+  },
+  "win_team": {
+    "$type": "dword",
+    "$alias": "Win team"
+  },
+  "winner_cnt": {
+    "$type": "dword",
+    "$alias": "Winners count"
+  },
+  "winners": {
+    "$type": "array",
+    "$length": {
+      "$id": "winner_cnt"
+    },
+    "$schema": {
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Player name"
+      },
+      "clan_name": {
+        "$type": "ntstring",
+        "$alias": "Player name"
+      },
+      "clan": {
+        "$type": "dword",
+        "$alias": "Clan"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "damage": {
+        "$type": "dword",
+        "$alias": "Damage"
+      },
+      "points": {
+        "$type": "dword",
+        "$alias": "Points"
+      },
+      "diff_points": {
+        "$type": "dword",
+        "$alias": "Diff"
+      }
+    }
+  },
+  "lose_team": {
+    "$type": "dword",
+    "$alias": "Lose team"
+  },
+  "loser_cnt": {
+    "$type": "dword",
+    "$alias": "Losers count"
+  },
+  "losers": {
+    "$type": "array",
+    "$length": {
+      "$id": "loser_cnt"
+    },
+    "$schema": {
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Player name"
+      },
+      "clan_name": {
+        "$type": "ntstring",
+        "$alias": "Player name"
+      },
+      "clan": {
+        "$type": "dword",
+        "$alias": "Clan"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "damage": {
+        "$type": "dword",
+        "$alias": "Damage"
+      },
+      "points": {
+        "$type": "dword",
+        "$alias": "Points"
+      },
+      "diff_points": {
+        "$type": "dword",
+        "$alias": "Diff"
+      }
+    }
+  }
+}

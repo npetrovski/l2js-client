@@ -1,0 +1,17 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      183
+    ]
+  },
+  "servitor_type": {
+    "$type": "dword",
+    "$alias": "Servitor type"
+  },
+  "servitor_oid": {
+    "$type": "dword",
+    "$alias": "Servitor OID"
+  }
+}

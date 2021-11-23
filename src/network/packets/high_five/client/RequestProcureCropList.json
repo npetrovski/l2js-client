@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      2,
+      0
+    ]
+  },
+  "crop_cnt": {
+    "$type": "dword",
+    "$alias": "Crop count"
+  },
+  "crop_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "crop_cnt"
+    },
+    "$schema": {
+      "crop_oid": {
+        "$type": "dword",
+        "$alias": "Crop OID"
+      },
+      "crop": {
+        "$type": "dword",
+        "$alias": "Crop"
+      },
+      "buyer": {
+        "$type": "dword",
+        "$alias": "Buyer"
+      },
+      "amount": {
+        "$type": "dword",
+        "$alias": "Amount"
+      }
+    }
+  }
+}

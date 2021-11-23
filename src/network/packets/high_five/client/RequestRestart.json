@@ -1,0 +1,9 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      87
+    ]
+  }
+}

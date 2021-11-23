@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      75,
+      0
+    ]
+  },
+  "target_oid": {
+    "$type": "dword",
+    "$alias": "Target OID"
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  }
+}

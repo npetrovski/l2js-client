@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      18,
+      0
+    ]
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  },
+  "sponsor": {
+    "$type": "ntstring",
+    "$alias": "Sponsor"
+  },
+  "apprentice": {
+    "$type": "ntstring",
+    "$alias": "Apprentice"
+  }
+}

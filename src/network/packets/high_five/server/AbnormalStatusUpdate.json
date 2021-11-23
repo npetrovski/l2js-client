@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [133]
+  },
+  "effect_count": {
+    "$type": "word",
+    "$alias": "Effect count"
+  },
+  "effect_list": {
+    "$type": "array",
+    "$length": {
+      "$id": "effect_count"
+    },
+    "$schema": {
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "word",
+        "$alias": "Level"
+      },
+      "time_left": {
+        "$type": "dword",
+        "$alias": "Time left"
+      }
+    }
+  }
+}

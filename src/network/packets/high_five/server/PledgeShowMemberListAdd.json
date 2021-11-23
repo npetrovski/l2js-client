@@ -1,0 +1,41 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      92
+    ]
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "class": {
+    "$type": "dword",
+    "$alias": "Class"
+  },
+  "sex": {
+    "$type": "dword",
+    "$alias": "Sex"
+  },
+  "race": {
+    "$type": "dword",
+    "$alias": "Race"
+  },
+  "member_oid": {
+    "$type": "dword",
+    "$alias": "Member OID"
+  },
+  "unit": {
+    "$type": "dword",
+    "$alias": "Unit"
+  },
+  "apprentice_sponsor": {
+    "$type": "dword",
+    "$alias": "Apprentice/Sponsor"
+  }
+}

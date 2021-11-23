@@ -1,0 +1,63 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [181]
+  },
+  "alliance_name": {
+    "$type": "ntstring",
+    "$alias": "Alliance name"
+  },
+  "total_members": {
+    "$type": "dword",
+    "$alias": "Total members"
+  },
+  "online_members": {
+    "$type": "dword",
+    "$alias": "Online members"
+  },
+  "leader_pledge": {
+    "$type": "ntstring",
+    "$alias": "Leader pledge"
+  },
+  "leader": {
+    "$type": "ntstring",
+    "$alias": "Leader"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Allied pledge count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "0": {
+        "$type": "dword",
+        "$alias": "0"
+      },
+      "pledge_name": {
+        "$type": "ntstring",
+        "$alias": "Pledge name"
+      },
+      "pledge_level": {
+        "$type": "dword",
+        "$alias": "Pledge level"
+      },
+      "pledge_leader": {
+        "$type": "ntstring",
+        "$alias": "Pledge leader"
+      },
+      "total_members": {
+        "$type": "dword",
+        "$alias": "Total members"
+      },
+      "online_members": {
+        "$type": "dword",
+        "$alias": "Online members"
+      }
+    }
+  }
+}

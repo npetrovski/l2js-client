@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 21, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Fort count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "fortress": {
+        "$type": "dword",
+        "$alias": "Fortress"
+      },
+      "owner_pledge": {
+        "$type": "ntstring",
+        "$alias": "Owner pledge"
+      },
+      "under_siege": {
+        "$type": "dword",
+        "$alias": "Under siege"
+      },
+      "owned_for": {
+        "$type": "dword",
+        "$alias": "Owned for"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [224]
+  },
+  "manufacturer_s_oid": {
+    "$type": "dword",
+    "$alias": "Manufacturer's OID"
+  },
+  "recipe": {
+    "$type": "dword",
+    "$alias": "Recipe"
+  },
+  "current_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "maximum_mp": {
+    "$type": "dword",
+    "$alias": "Maximum MP"
+  },
+  "result": {
+    "$type": "dword",
+    "$alias": "Result"
+  },
+  "price": {
+    "$type": "double",
+    "$alias": "Price"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 38, 0]
+  },
+  "manor": {
+    "$type": "dword",
+    "$alias": "Manor"
+  },
+  "seed_cnt": {
+    "$type": "dword",
+    "$alias": "Seed count"
+  },
+  "seed_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "seed_cnt"
+    },
+    "$schema": {
+      "item": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "r1_cnt": {
+        "$type": "byte",
+        "$alias": "Reward 1 items"
+      },
+      "r1_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "r1_cnt"
+        },
+        "$schema": {
+          "reward_1": {
+            "$type": "dword",
+            "$alias": "Reward 1"
+          }
+        }
+      },
+      "r2_cnt": {
+        "$type": "byte",
+        "$alias": "Reward 2 items"
+      },
+      "r2_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "r2_cnt"
+        },
+        "$schema": {
+          "reward_2": {
+            "$type": "dword",
+            "$alias": "Reward 2"
+          }
+        }
+      },
+      "maximum_amount": {
+        "$type": "double",
+        "$alias": "Maximum amount"
+      },
+      "production_price": {
+        "$type": "double",
+        "$alias": "Production price"
+      },
+      "minimum_price": {
+        "$type": "double",
+        "$alias": "Minimum price"
+      },
+      "maximum_price": {
+        "$type": "double",
+        "$alias": "Maximum price"
+      },
+      "today_s_amount": {
+        "$type": "double",
+        "$alias": "Today's amount"
+      },
+      "today_s_price": {
+        "$type": "double",
+        "$alias": "Today's price"
+      },
+      "next_amount": {
+        "$type": "double",
+        "$alias": "Next amount"
+      },
+      "next_price": {
+        "$type": "double",
+        "$alias": "Next price"
+      }
+    }
+  }
+}

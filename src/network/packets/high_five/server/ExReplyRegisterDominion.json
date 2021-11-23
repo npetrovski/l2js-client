@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      254,
+      146,
+      0
+    ]
+  },
+  "territory": {
+    "$type": "dword",
+    "$alias": "Territory"
+  },
+  "registered_pledge": {
+    "$type": "dword",
+    "$alias": "Registered pledge"
+  },
+  "registered_self": {
+    "$type": "dword",
+    "$alias": "Registered self"
+  },
+  "request_period": {
+    "$type": "dword",
+    "$alias": "Request period"
+  },
+  "registered_pledges": {
+    "$type": "dword",
+    "$alias": "Registered pledges"
+  },
+  "registered_mercenaries": {
+    "$type": "dword",
+    "$alias": "Registered mercenaries"
+  }
+}

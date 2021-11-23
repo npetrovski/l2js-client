@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 22, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Clan hall count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "clan_hall": {
+        "$type": "dword",
+        "$alias": "Clan hall"
+      },
+      "owner_pledge": {
+        "$type": "ntstring",
+        "$alias": "Owner pledge"
+      },
+      "owner_pledge_leader": {
+        "$type": "ntstring",
+        "$alias": "Owner pledge leader"
+      },
+      "acquisition": {
+        "$type": "dword",
+        "$alias": "Acquisition"
+      }
+    }
+  }
+}

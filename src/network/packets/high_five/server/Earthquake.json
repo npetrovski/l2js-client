@@ -1,0 +1,33 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      211
+    ]
+  },
+  "epicenter_x": {
+    "$type": "dword",
+    "$alias": "Epicenter X"
+  },
+  "epicenter_y": {
+    "$type": "dword",
+    "$alias": "Epicenter Y"
+  },
+  "epicenter_z": {
+    "$type": "dword",
+    "$alias": "Epicenter Z"
+  },
+  "intensity": {
+    "$type": "dword",
+    "$alias": "Intensity"
+  },
+  "duration": {
+    "$type": "dword",
+    "$alias": "Duration"
+  },
+  "by_npc": {
+    "$type": "dword",
+    "$alias": "By NPC"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 123, 0]
+  },
+  "player_oid": {
+    "$type": "dword",
+    "$alias": "Player OID"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Effect count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "word",
+        "$alias": "Level"
+      },
+      "time_left": {
+        "$type": "dword",
+        "$alias": "Time left"
+      }
+    }
+  }
+}

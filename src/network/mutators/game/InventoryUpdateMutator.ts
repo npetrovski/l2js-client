@@ -1,20 +1,36 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import InventoryUpdate from "../../incoming/game/InventoryUpdate";
 import { GlobalEvents } from "../../../mmocore/EventEmitter";
+import SerializablePacket from "../../../mmocore/SerializablePacket";
+import L2Item from "../../../entities/L2Item";
 
-export default class InventoryUpdateMutator extends IMMOClientMutator<
-  GameClient,
-  InventoryUpdate
-> {
-  update(packet: InventoryUpdate): void {
-    packet.Items.forEach(item => {
+export default class InventoryUpdateMutator extends IMMOClientMutator<GameClient, SerializablePacket> {
+  update(packet: SerializablePacket): void {
+    (packet.get("items") as Record<string, number>[]).forEach((data) => {
+      const item = new L2Item();
+      item.ObjectId = data.item_oid;
+      item.Id = data.item;
+      item.Count = data.quantity;
+      item.IsEquipped = data.is_equipped === 1;
+      item.EnchantLevel = data.enchant_level;
+      item.AugmentBonus = data.augmentation;
+      item.AttackElementVal = data.attack_element_power;
+
+      item.DefAttFire = data.fire_defense;
+      item.DefAttWater = data.water_defense;
+      item.DefAttWind = data.wind_defense;
+      item.DefAttEarth = data.earth_defense;
+      item.DefAttHolly = data.holy_defense;
+      item.DefAttUnholly = data.dark_defense;
+
       const currentItem = this.Client.InventoryItems.getEntryById(item.Id);
       if (currentItem) {
         this.Client.InventoryItems.delete(currentItem);
       }
 
-      this.Client.InventoryItems.add(item);
+      if (data.action !== 3) {
+        this.Client.InventoryItems.add(item);
+      }
     });
   }
 }

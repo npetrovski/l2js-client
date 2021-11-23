@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 27, 0]
+  },
+  "pledge": {
+    "$type": "dword",
+    "$alias": "Pledge"
+  },
+  "insignia_id": {
+    "$type": "dword",
+    "$alias": "Insignia ID"
+  },
+  "bytesize": {
+    "$type": "dword",
+    "$alias": "Size in bytes"
+  }
+}

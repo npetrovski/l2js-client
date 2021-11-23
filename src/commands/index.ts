@@ -1,3 +1,4 @@
+
 import CommandAcceptJoinParty from "./CommandAcceptJoinParty";
 import CommandAcceptResurrect from "./CommandAcceptResurrect";
 import CommandAttack from "./CommandAttack";
@@ -15,6 +16,7 @@ import CommandHit from "./CommandHit";
 import CommandInventory from "./CommandInventory";
 import CommandMoveTo from "./CommandMoveTo";
 import CommandNextTarget from "./CommandNextTarget";
+import CommandPick from "./CommandPick";
 import CommandRequestDuel from "./CommandRequestDuel";
 import CommandRevive from "./CommandRevive";
 import CommandSay from "./CommandSay";
@@ -29,46 +31,35 @@ import CommandUseItem from "./CommandUseItem";
 import CommandValidatePosition from "./CommandValidatePosition";
 
 export default {
-  enter: CommandEnter.prototype,
-  say: CommandSay.prototype,
-  shout: CommandShout.prototype,
-  tell: CommandTell.prototype,
-  sayToParty: CommandSayToParty.prototype,
-  sayToClan: CommandSayToClan.prototype,
-  sayToTrade: CommandSayToTrade.prototype,
-  sayToAlly: CommandSayToAlly.prototype,
 
-  moveTo: CommandMoveTo.prototype,
-  hit: CommandHit.prototype,
-  attack: CommandAttack.prototype,
-  dropItem: CommandDropItem.prototype,
-  cancelTarget: CommandCancelTarget.prototype,
-
-  acceptJoinParty: CommandAcceptJoinParty.prototype,
-  declineJoinParty: CommandDeclineJoinParty.prototype,
-
-  nextTarget: CommandNextTarget.prototype,
-
-  inventory: CommandInventory.prototype,
-  useItem: CommandUseItem.prototype,
-
-  requestDuel: CommandRequestDuel.prototype,
-
-  autoShots: CommandAutoShots.prototype,
-
-  cancelBuff: CommandCancelBuff.prototype,
-  sitOrStand: CommandSitStand.prototype,
-
-  validatePosition: CommandValidatePosition.prototype,
-
-  cast: CommandCast.prototype,
-
-  dwarvenCraftRecipes: CommandDwarvenCraftRecipes.prototype,
-
-  craft: CommandCraft.prototype,
-
-  revive: CommandRevive.prototype,
-
-  acceptResurrect: CommandAcceptResurrect.prototype,
-  declineResurrect: CommandDeclineResurrect.prototype
+      acceptJoinParty: CommandAcceptJoinParty.prototype,
+      acceptResurrect: CommandAcceptResurrect.prototype,
+      attack: CommandAttack.prototype,
+      autoShots: CommandAutoShots.prototype,
+      cancelBuff: CommandCancelBuff.prototype,
+      cancelTarget: CommandCancelTarget.prototype,
+      cast: CommandCast.prototype,
+      craft: CommandCraft.prototype,
+      declineJoinParty: CommandDeclineJoinParty.prototype,
+      declineResurrect: CommandDeclineResurrect.prototype,
+      dropItem: CommandDropItem.prototype,
+      dwarvenCraftRecipes: CommandDwarvenCraftRecipes.prototype,
+      enter: CommandEnter.prototype,
+      hit: CommandHit.prototype,
+      inventory: CommandInventory.prototype,
+      moveTo: CommandMoveTo.prototype,
+      nextTarget: CommandNextTarget.prototype,
+      pick: CommandPick.prototype,
+      requestDuel: CommandRequestDuel.prototype,
+      revive: CommandRevive.prototype,
+      say: CommandSay.prototype,
+      sayToAlly: CommandSayToAlly.prototype,
+      sayToClan: CommandSayToClan.prototype,
+      sayToParty: CommandSayToParty.prototype,
+      sayToTrade: CommandSayToTrade.prototype,
+      shout: CommandShout.prototype,
+      sitStand: CommandSitStand.prototype,
+      tell: CommandTell.prototype,
+      useItem: CommandUseItem.prototype,
+      validatePosition: CommandValidatePosition.prototype,
 };

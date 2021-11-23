@@ -1,5 +1,4 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import DlgAnswer from "../network/outgoing/game/DlgAnswer";
 
 export default class CommandAcceptResurrect extends AbstractGameCommand {
   execute(): void {
@@ -7,13 +6,11 @@ export default class CommandAcceptResurrect extends AbstractGameCommand {
       typeof this.GameClient?.LastConfirmMessageId !== "undefined" &&
       typeof this.GameClient?.LastConfirmMessageRequesterId !== "undefined"
     ) {
-      this.GameClient?.sendPacket(
-        new DlgAnswer(
-          this.GameClient.LastConfirmMessageId,
-          1,
-          this.GameClient.LastConfirmMessageRequesterId
-        )
-      );
+      this.GameClient.sendPacket("DlgAnswer", {
+        message: this.GameClient.LastConfirmMessageId,
+        accepted: 1,
+        requester: this.GameClient.LastConfirmMessageRequesterId,
+      });
     }
   }
 }

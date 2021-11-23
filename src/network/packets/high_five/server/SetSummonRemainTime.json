@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [209]
+  },
+  "total_time": {
+    "$type": "dword",
+    "$alias": "Total time"
+  },
+  "time_left": {
+    "$type": "dword",
+    "$alias": "Time left"
+  }
+}

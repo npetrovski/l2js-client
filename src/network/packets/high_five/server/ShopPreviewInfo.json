@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [246]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Paperdoll slot count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "item": {
+        "$type": "dword",
+        "$alias": "Item"
+      }
+    }
+  }
+}

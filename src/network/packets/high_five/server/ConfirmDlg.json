@@ -1,0 +1,121 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [243]
+  },
+  "message": {
+    "$type": "dword",
+    "$alias": "Message"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Parameter count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "cond_1": {
+        "$type": "dword",
+        "$alias": "Parameter"
+      },
+      "branch_1": {
+        "$type": "branch",
+        "$id": "cond_1",
+        "$condition": {
+          "$or": [{ "$eq": 0 }, { "$eq": 12 }]
+        },
+        "$schema": {
+          "value": {
+            "$type": "ntstring",
+            "$alias": "Value"
+          }
+        }
+      },
+      "branch_2": {
+        "$type": "branch",
+        "$id": "cond_1",
+        "$condition": {
+          "$eq": 6
+        },
+        "$schema": {
+          "value": {
+            "$type": "double",
+            "$alias": "Value"
+          }
+        }
+      },
+      "branch_3": {
+        "$type": "branch",
+        "$id": "cond_1",
+        "$condition": {
+          "$or": [
+            { "$eq": 3 },
+            { "$eq": 5 },
+            { "$eq": 1 },
+            { "$eq": 2 },
+            { "$eq": 9 },
+            { "$eq": 13 },
+            { "$eq": 10 },
+            { "$eq": 11 }
+          ]
+        },
+        "$schema": {
+          "value": {
+            "$type": "dword",
+            "$alias": "Value"
+          }
+        }
+      },
+      "branch_4": {
+        "$type": "branch",
+        "$id": "cond_1",
+        "$condition": {
+          "$eq": 4
+        },
+        "$schema": {
+          "skill_id": {
+            "$type": "dword",
+            "$alias": "Value"
+          },
+          "skill_level": {
+            "$type": "dword",
+            "$alias": "Value"
+          }
+        }
+      },
+      "branch_5": {
+        "$type": "branch",
+        "$id": "cond_1",
+        "$condition": {
+          "$eq": 7
+        },
+        "$schema": {
+          "location_x": {
+            "$type": "dword",
+            "$alias": "Value"
+          },
+          "location_y": {
+            "$type": "dword",
+            "$alias": "Value"
+          },
+          "location_z": {
+            "$type": "dword",
+            "$alias": "Value"
+          }
+        }
+      }
+    }
+  },
+  "time_to_answer": {
+    "$type": "dword",
+    "$alias": "Time to answer"
+  },
+  "requester_id": {
+    "$type": "dword",
+    "$alias": "Requester ID"
+  }
+}

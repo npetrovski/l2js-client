@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [115]
+  },
+  "color": {
+    "$type": "byte",
+    "$alias": "Color"
+  },
+  "instant_change": {
+    "$type": "byte",
+    "$alias": "Instant change"
+  }
+}

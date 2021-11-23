@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 128, 0]
+  },
+  "seller_oid": {
+    "$type": "dword",
+    "$alias": "Seller OID"
+  },
+  "description": {
+    "$type": "ntstring",
+    "$alias": "Description"
+  }
+}

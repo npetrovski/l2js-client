@@ -1,0 +1,92 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [232]
+  },
+  "action": {
+    "$type": "byte",
+    "$alias": "Action"
+  },
+  "affected_macro": {
+    "$type": "dword",
+    "$alias": "Affected macro"
+  },
+  "total_affected_macros": {
+    "$type": "byte",
+    "$alias": "Total affected macros"
+  },
+  "macro_cnt": {
+    "$type": "byte",
+    "$alias": "Macros"
+  },
+  "macro_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "macro_cnt"
+    },
+    "$schema": {
+      "macro_id": {
+        "$type": "dword",
+        "$alias": "Macro ID"
+      },
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "description": {
+        "$type": "ntstring",
+        "$alias": "Description"
+      },
+      "acronym": {
+        "$type": "ntstring",
+        "$alias": "Acronym"
+      },
+      "icon": {
+        "$type": "byte",
+        "$alias": "Icon"
+      },
+      "cmd_cnt": {
+        "$type": "byte",
+        "$alias": "Command count"
+      },
+      "cmd_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "cmd_cnt"
+        },
+        "$schema": {
+          "sequence_number": {
+            "$type": "byte",
+            "$alias": "Sequence number"
+          },
+          "type": {
+            "$type": "byte",
+            "$alias": "Type"
+          },
+          "type_branch": {
+            "$type": "branch",
+            "$id": "type",
+            "$condition": {
+              "$eq": 1
+            },
+            "$schema": {
+              "1": {
+                "$type": "byte",
+                "$alias": "1"
+              },
+              "skill": {
+                "$type": "dword",
+                "$alias": "Skill"
+              },
+              "unk0": {
+                "$type": "ntstring",
+                "$alias": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

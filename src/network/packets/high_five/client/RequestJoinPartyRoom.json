@@ -1,0 +1,25 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      129
+    ]
+  },
+  "room_id": {
+    "$type": "dword",
+    "$alias": "Room ID"
+  },
+  "region": {
+    "$type": "dword",
+    "$alias": "Region"
+  },
+  "level_range": {
+    "$type": "dword",
+    "$alias": "Level range"
+  },
+  "_": {
+    "$type": "dword",
+    "$alias": "???"
+  }
+}

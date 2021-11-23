@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      114,
+      0
+    ]
+  },
+  "list_id": {
+    "$type": "dword",
+    "$alias": "List ID"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Item count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "slot_number": {
+        "$type": "dword",
+        "$alias": "Slot number"
+      }
+    }
+  }
+}

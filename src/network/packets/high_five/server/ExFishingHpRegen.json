@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 40, 0]
+  },
+  "fisher_oid": {
+    "$type": "dword",
+    "$alias": "Fisher OID"
+  },
+  "time_left": {
+    "$type": "dword",
+    "$alias": "Time left"
+  },
+  "hp_remaining": {
+    "$type": "dword",
+    "$alias": "HP remaining"
+  },
+  "hp_mode": {
+    "$type": "byte",
+    "$alias": "Strength"
+  },
+  "action_result": {
+    "$type": "byte",
+    "$alias": "Action result"
+  },
+  "action": {
+    "$type": "byte",
+    "$alias": "Action"
+  },
+  "mastery_penalty": {
+    "$type": "dword",
+    "$alias": "Mastery penalty (%)"
+  },
+  "deceptive": {
+    "$type": "byte",
+    "$alias": "Action"
+  }
+}

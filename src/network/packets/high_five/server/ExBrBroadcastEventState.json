@@ -1,0 +1,32 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 188, 0]
+  },
+  "event": {
+    "$type": "dword",
+    "$alias": "Event"
+  },
+  "active": {
+    "$type": "dword",
+    "$alias": "Active"
+  },
+  "event__branch": {
+    "$type": "branch",
+    "$id": "event",
+    "$condition": {
+      "$eq": 20090801
+    },
+    "$schema": {
+      "day": {
+        "$type": "dword",
+        "$alias": "Day"
+      },
+      "progress_": {
+        "$type": "dword",
+        "$alias": "Progress (%)"
+      }
+    }
+  }
+}

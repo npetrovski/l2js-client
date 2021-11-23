@@ -1,0 +1,49 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      230
+    ]
+  },
+  "viewer_s_adena": {
+    "$type": "double",
+    "$alias": "Viewer's adena"
+  },
+  "available_slots": {
+    "$type": "dword",
+    "$alias": "Available slots"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Henna count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "henna": {
+        "$type": "dword",
+        "$alias": "Henna"
+      },
+      "recovered_item": {
+        "$type": "dword",
+        "$alias": "Recovered item"
+      },
+      "recovered_amount": {
+        "$type": "double",
+        "$alias": "Recovered amount"
+      },
+      "price_of_removal": {
+        "$type": "double",
+        "$alias": "Price of removal"
+      },
+      "henna_modifier_currently_active": {
+        "$type": "dword",
+        "$alias": "Henna modifier currently active"
+      }
+    }
+  }
+}

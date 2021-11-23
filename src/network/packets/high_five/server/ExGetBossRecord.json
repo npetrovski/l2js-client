@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 52, 0]
+  },
+  "rank": {
+    "$type": "dword",
+    "$alias": "Rank"
+  },
+  "points": {
+    "$type": "dword",
+    "$alias": "Points"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Killed bosses"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "raid_boss": {
+        "$type": "dword",
+        "$alias": "Raid boss"
+      },
+      "points_this_week": {
+        "$type": "dword",
+        "$alias": "Points this week"
+      },
+      "total_points": {
+        "$type": "dword",
+        "$alias": "Total points"
+      }
+    }
+  }
+}

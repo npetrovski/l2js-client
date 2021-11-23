@@ -1,0 +1,47 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 94, 0]
+  },
+  "enchant": {
+    "$type": "dword",
+    "$alias": "Enchant"
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "required_sp": {
+    "$type": "dword",
+    "$alias": "Required SP"
+  },
+  "success_rate_": {
+    "$type": "dword",
+    "$alias": "Success rate (%)"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Required items"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "item": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "amount": {
+        "$type": "dword",
+        "$alias": "Amount"
+      }
+    }
+  }
+}

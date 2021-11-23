@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 74, 0]
+  },
+  "item": {
+    "$type": "dword",
+    "$alias": "Item"
+  },
+  "cooldown_group": {
+    "$type": "dword",
+    "$alias": "Cooldown group"
+  },
+  "remaining_time": {
+    "$type": "dword",
+    "$alias": "Remaining time"
+  },
+  "cooldown_time": {
+    "$type": "dword",
+    "$alias": "Cooldown time"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [77]
+  },
+  "door_oid": {
+    "$type": "dword",
+    "$alias": "Door OID"
+  },
+  "closed": {
+    "$type": "dword",
+    "$alias": "Closed"
+  },
+  "damage_level": {
+    "$type": "dword",
+    "$alias": "Damage level"
+  },
+  "attackable": {
+    "$type": "dword",
+    "$alias": "Attackable"
+  },
+  "door": {
+    "$type": "dword",
+    "$alias": "Door"
+  },
+  "current_hp": {
+    "$type": "dword",
+    "$alias": "Current HP"
+  },
+  "maximum_hp": {
+    "$type": "dword",
+    "$alias": "Maximum HP"
+  }
+}

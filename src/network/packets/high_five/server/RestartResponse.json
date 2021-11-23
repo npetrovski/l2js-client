@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [113]
+  },
+  "can_return_to_character_selection": {
+    "$type": "dword",
+    "$alias": "Can return to character selection"
+  },
+  "ok_merong_khaha": {
+    "$type": "ntstring",
+    "$alias": "ok merong~ khaha"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      79,
+      0
+    ]
+  },
+  "slot_number": {
+    "$type": "dword",
+    "$alias": "Slot number"
+  },
+  "receiver_oid": {
+    "$type": "dword",
+    "$alias": "Receiver OID"
+  },
+  "quantity": {
+    "$type": "double",
+    "$alias": "Quantity"
+  }
+}

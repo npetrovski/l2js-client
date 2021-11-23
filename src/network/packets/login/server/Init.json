@@ -1,0 +1,46 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [0]
+  },
+  "session_id": {
+    "$type": "dword",
+    "$alias": "Session ID"
+  },
+  "protocol_version": {
+    "$type": "dword",
+    "$alias": "Protocol version"
+  },
+  "rsa_scrambled_modulus": {
+    "$type": "bytes",
+    "$alias": "RSA scrambled modulus",
+    "$length": 128
+  },
+  "gg_1_": {
+    "$type": "dword",
+    "$alias": "GG (1)"
+  },
+  "gg_2_": {
+    "$type": "dword",
+    "$alias": "GG (2)"
+  },
+  "gg_3_": {
+    "$type": "dword",
+    "$alias": "GG (3)"
+  },
+  "gg_4_": {
+    "$type": "dword",
+    "$alias": "GG (4)"
+  },
+  "blowfish_key": {
+    "$type": "bytes",
+    "$alias": "Blowfish key",
+    "$length": 16
+  },
+  "padding": {
+    "$type": "byte",
+    "$alias": "pad",
+    "$default": 0
+  }
+}

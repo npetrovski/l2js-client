@@ -1,0 +1,76 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [6]
+  },
+  "viewer_s_adena": {
+    "$type": "dword",
+    "$alias": "Viewer's adena"
+  },
+  "sell_request_id": {
+    "$type": "dword",
+    "$alias": "Sell request ID"
+  },
+  "cnt": {
+    "$type": "word",
+    "$alias": "Sellable item count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "type": {
+        "$type": "word",
+        "$alias": "Base item type"
+      },
+      "item_oid": {
+        "$type": "dword",
+        "$alias": "Item OID"
+      },
+      "item": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "amount": {
+        "$type": "dword",
+        "$alias": "Amount"
+      },
+      "main_item_type": {
+        "$type": "word",
+        "$alias": "Main item type"
+      },
+      "blessed": {
+        "$type": "word",
+        "$alias": "Blessed"
+      },
+      "type_branch": {
+        "$type": "branch",
+        "$id": "type",
+        "$condition": {
+          "$lt": 4
+        },
+        "$schema": {
+          "0": {
+            "$type": "word",
+            "$alias": "0"
+          },
+          "used_paperdoll_slot_s_": {
+            "$type": "word",
+            "$alias": "Used paperdoll slot(s)"
+          },
+          "enchant_level": {
+            "$type": "word",
+            "$alias": "Enchant level"
+          }
+        }
+      },
+      "sell_price": {
+        "$type": "dword",
+        "$alias": "Sell price"
+      }
+    }
+  }
+}

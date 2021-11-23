@@ -1,0 +1,21 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      191
+    ]
+  },
+  "manufacturer_s_oid": {
+    "$type": "dword",
+    "$alias": "Manufacturer's OID"
+  },
+  "recipe": {
+    "$type": "dword",
+    "$alias": "Recipe"
+  },
+  "price": {
+    "$type": "dword",
+    "$alias": "Price"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [74]
+  },
+  "talker_oid": {
+    "$type": "dword",
+    "$alias": "Talker OID"
+  },
+  "type": {
+    "$type": "dword",
+    "$alias": "Chat"
+  },
+  "type__branch": {
+    "$type": "branch",
+    "$id": "type",
+    "$condition": {
+      "$eq": 11
+    },
+    "$schema": {
+      "talker": {
+        "$type": "dword",
+        "$alias": "Talker"
+      }
+    }
+  },
+  "type__branch_1": {
+    "$type": "branch",
+    "$id": "type",
+    "$condition": {
+      "$neq": 11
+    },
+    "$schema": {
+      "talker": {
+        "$type": "ntstring",
+        "$alias": "Talker"
+      }
+    }
+  },
+  "sm": {
+    "$type": "dword",
+    "$alias": "Message"
+  },
+  "sm__branch": {
+    "$type": "branch",
+    "$id": "sm",
+    "$condition": {
+      "$lt": 0
+    },
+    "$schema": {
+      "message": {
+        "$type": "ntstring",
+        "$alias": "Message"
+      }
+    }
+  }
+}

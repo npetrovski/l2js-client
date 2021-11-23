@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      254,
+      212,
+      0
+    ]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Contact count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "contact": {
+        "$type": "ntstring",
+        "$alias": "Contact"
+      }
+    }
+  }
+}

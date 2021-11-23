@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [34]
+  },
+  "actor_oid": {
+    "$type": "dword",
+    "$alias": "Actor OID"
+  },
+  "destination_x": {
+    "$type": "dword",
+    "$alias": "Destination X"
+  },
+  "destination_y": {
+    "$type": "dword",
+    "$alias": "Destination Y"
+  },
+  "destination_z": {
+    "$type": "dword",
+    "$alias": "Destination Z"
+  },
+  "unk1": {
+    "$type": "dword",
+    "$alias": "Unknown 1"
+  },
+  "heading": {
+    "$type": "dword",
+    "$alias": "Heading"
+  }
+}

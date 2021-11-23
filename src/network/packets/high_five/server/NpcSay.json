@@ -1,0 +1,65 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [48]
+  },
+  "npc_oid": {
+    "$type": "dword",
+    "$alias": "NPC OID"
+  },
+  "chat": {
+    "$type": "dword",
+    "$alias": "Chat"
+  },
+  "npc": {
+    "$type": "dword",
+    "$alias": "NPC"
+  },
+  "msg": {
+    "$type": "dword",
+    "$alias": "Message"
+  },
+  "msg__branch": {
+    "$type": "branch",
+    "$id": "msg",
+    "$condition": {
+      "$lt": 0
+    },
+    "$schema": {
+      "custom_message": {
+        "$type": "ntstring",
+        "$alias": "Custom message"
+      }
+    }
+  },
+  "msg__branch_1": {
+    "$type": "branch",
+    "$id": "msg",
+    "$condition": {
+      "$gt": 0
+    },
+    "$schema": {
+      "1st_token": {
+        "$type": "ntstring",
+        "$alias": "1st token"
+      },
+      "2nd_token": {
+        "$type": "ntstring",
+        "$alias": "2nd token"
+      },
+      "3rd_token": {
+        "$type": "ntstring",
+        "$alias": "3rd token"
+      },
+      "4th_token": {
+        "$type": "ntstring",
+        "$alias": "4th token"
+      },
+      "5th_token": {
+        "$type": "ntstring",
+        "$alias": "5th token"
+      }
+    }
+  }
+}

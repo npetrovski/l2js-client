@@ -1,0 +1,29 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      50
+    ]
+  },
+  "oid": {
+    "$type": "dword",
+    "$alias": "Target OID"
+  },
+  "origin_x": {
+    "$type": "dword",
+    "$alias": "Origin X"
+  },
+  "origin_y": {
+    "$type": "dword",
+    "$alias": "Origin Y"
+  },
+  "origin_z": {
+    "$type": "dword",
+    "$alias": "Origin Z"
+  },
+  "shift": {
+    "$type": "byte",
+    "$alias": "Shift click"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      254,
+      213,
+      0
+    ]
+  },
+  "mode": {
+    "$type": "dword",
+    "$alias": "View"
+  },
+  "mode__branch": {
+    "$type": "branch",
+    "$id": "mode",
+    "$condition": {
+      "$eq": 0
+    },
+    "$schema": {
+      "cnt": {
+        "$type": "dword",
+        "$alias": "Match count"
+      },
+      "incomplete_list": {
+        "$type": "dword",
+        "$alias": "Incomplete list"
+      },
+      "cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "cnt"
+        },
+        "$schema": {
+          "stadium_id": {
+            "$type": "dword",
+            "$alias": "Stadium ID"
+          },
+          "type": {
+            "$type": "dword",
+            "$alias": "Type"
+          },
+          "state": {
+            "$type": "dword",
+            "$alias": "State"
+          },
+          "red": {
+            "$type": "ntstring",
+            "$alias": "Red"
+          },
+          "blue": {
+            "$type": "ntstring",
+            "$alias": "Blue"
+          }
+        }
+      }
+    }
+  },
+  "mode__branch_1": {
+    "$type": "branch",
+    "$id": "mode",
+    "$condition": {
+      "$gt": 0
+    },
+    "$schema": {
+      "0": {
+        "$type": "dword",
+        "$alias": "0"
+      },
+      "1": {
+        "$type": "dword",
+        "$alias": "1"
+      },
+      "winner": {
+        "$type": "ntstring",
+        "$alias": "Winner"
+      },
+      "side": {
+        "$type": "dword",
+        "$alias": "Side"
+      },
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "pledge_name": {
+        "$type": "ntstring",
+        "$alias": "Pledge name"
+      },
+      "pledge_id": {
+        "$type": "dword",
+        "$alias": "Pledge ID"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "damage": {
+        "$type": "dword",
+        "$alias": "Damage"
+      },
+      "point_total": {
+        "$type": "dword",
+        "$alias": "Point total"
+      },
+      "points_earned": {
+        "$type": "dword",
+        "$alias": "Points earned"
+      }
+    }
+  }
+}

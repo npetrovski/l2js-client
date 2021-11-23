@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 134, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Item count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "0": {
+        "$type": "dword",
+        "$alias": "0"
+      },
+      "slot_number": {
+        "$type": "dword",
+        "$alias": "Slot number"
+      },
+      "owner_oid": {
+        "$type": "dword",
+        "$alias": "Owner OID"
+      },
+      "item": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "quantity": {
+        "$type": "double",
+        "$alias": "Quantity"
+      },
+      "sender": {
+        "$type": "ntstring",
+        "$alias": "Sender"
+      }
+    }
+  }
+}

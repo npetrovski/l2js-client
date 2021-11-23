@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 97, 0]
+  },
+  "elemental_power_increase": {
+    "$type": "dword",
+    "$alias": "Elemental power increase"
+  }
+}

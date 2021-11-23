@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 7,
+    "$default": [
+      208,
+      78,
+      0,
+      1,
+      0,
+      0,
+      0
+    ]
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "icon": {
+    "$type": "dword",
+    "$alias": "Icon"
+  },
+  "tag": {
+    "$type": "ntstring",
+    "$alias": "Tag"
+  }
+}

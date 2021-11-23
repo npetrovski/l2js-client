@@ -1,0 +1,71 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [156]
+  },
+  "page_count": {
+    "$type": "dword",
+    "$alias": "Page count"
+  },
+  "room_cnt": {
+    "$type": "dword",
+    "$alias": "Room count"
+  },
+  "room_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "room_cnt"
+    },
+    "$schema": {
+      "room_id": {
+        "$type": "dword",
+        "$alias": "Room ID"
+      },
+      "room_title": {
+        "$type": "ntstring",
+        "$alias": "Room title"
+      },
+      "location": {
+        "$type": "dword",
+        "$alias": "Location"
+      },
+      "minimum_level_to_join": {
+        "$type": "dword",
+        "$alias": "Minimum level to join"
+      },
+      "maximum_level_to_join": {
+        "$type": "dword",
+        "$alias": "Maximum level to join"
+      },
+      "size": {
+        "$type": "dword",
+        "$alias": "Size"
+      },
+      "leader_name": {
+        "$type": "ntstring",
+        "$alias": "Leader name"
+      },
+      "member_cnt": {
+        "$type": "dword",
+        "$alias": "Member count"
+      },
+      "member_cnt_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "member_cnt"
+        },
+        "$schema": {
+          "member_class": {
+            "$type": "dword",
+            "$alias": "Member class"
+          },
+          "member_name": {
+            "$type": "ntstring",
+            "$alias": "Member name"
+          }
+        }
+      }
+    }
+  }
+}

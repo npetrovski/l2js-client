@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [137]
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "ally_name": {
+    "$type": "ntstring",
+    "$alias": "Alliance Name"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [205]
+  },
+  "leader_oid": {
+    "$type": "dword",
+    "$alias": "Leader OID"
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  },
+  "pledge_crest_id": {
+    "$type": "dword",
+    "$alias": "Pledge crest ID"
+  },
+  "alliance_id": {
+    "$type": "dword",
+    "$alias": "Alliance ID"
+  },
+  "alliance_crest_id": {
+    "$type": "dword",
+    "$alias": "Alliance crest ID"
+  },
+  "pledge_insignia_id": {
+    "$type": "dword",
+    "$alias": "Pledge insignia ID"
+  },
+  "pledge_reputation": {
+    "$type": "dword",
+    "$alias": "Pledge reputation"
+  }
+}

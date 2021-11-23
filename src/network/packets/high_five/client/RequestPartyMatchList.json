@@ -1,0 +1,13 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      112
+    ]
+  },
+  "mode": {
+    "$type": "dword",
+    "$alias": "Mode"
+  }
+}

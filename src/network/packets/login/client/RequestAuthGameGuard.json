@@ -1,0 +1,49 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [7]
+  },
+  "session_id": {
+    "$type": "dword",
+    "$alias": "Session ID"
+  },
+  "gg_1": {
+    "$type": "dword",
+    "$alias": "GG (1)",
+    "$default": 1
+  },
+  "gg_2": {
+    "$type": "dword",
+    "$alias": "GG (2)",
+    "$default": 2
+  },
+  "gg_3": {
+    "$type": "dword",
+    "$alias": "GG (3)",
+    "$default": 3
+  },
+  "gg_4": {
+    "$type": "dword",
+    "$alias": "GG (4)",
+    "$default": 4
+  },
+  "padding_0": {
+    "$type": "bytes",
+    "$alias": "Padding[0]",
+    "$length": 3,
+    "$default": [0, 0, 0]
+  },
+  "checksum": {
+    "$type": "bytes",
+    "$alias": "Checksum",
+    "$length": 4,
+    "$default": [0, 0, 0, 0]
+  },
+  "padding_1": {
+    "$type": "bytes",
+    "$alias": "Padding[1]",
+    "$length": 12,
+    "$default": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  }
+}

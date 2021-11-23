@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [207]
+  },
+  "door": {
+    "$type": "dword",
+    "$alias": "Door"
+  },
+  "closed": {
+    "$type": "dword",
+    "$alias": "Closed"
+  }
+}

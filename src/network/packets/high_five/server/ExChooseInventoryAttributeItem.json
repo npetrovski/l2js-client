@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 98, 0]
+  },
+  "item": {
+    "$type": "dword",
+    "$alias": "Item"
+  },
+  "increases_fire_power": {
+    "$type": "dword",
+    "$alias": "Increases fire power"
+  },
+  "increases_water_power": {
+    "$type": "dword",
+    "$alias": "Increases water power"
+  },
+  "increases_wind_power": {
+    "$type": "dword",
+    "$alias": "Increases wind power"
+  },
+  "increases_earth_power": {
+    "$type": "dword",
+    "$alias": "Increases earth power"
+  },
+  "increases_holy_power": {
+    "$type": "dword",
+    "$alias": "Increases holy power"
+  },
+  "increases_dark_power": {
+    "$type": "dword",
+    "$alias": "Increases dark power"
+  },
+  "maximum_element_level": {
+    "$type": "dword",
+    "$alias": "Maximum element level"
+  }
+}

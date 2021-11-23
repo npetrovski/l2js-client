@@ -1,0 +1,51 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 58, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Pledge skill count"
+  },
+  "index_1": {
+    "$type": "dword",
+    "$alias": "Unit skill count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      }
+    }
+  },
+  "index_1__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_1"
+    },
+    "$schema": {
+      "unit": {
+        "$type": "dword",
+        "$alias": "Unit"
+      },
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      }
+    }
+  }
+}

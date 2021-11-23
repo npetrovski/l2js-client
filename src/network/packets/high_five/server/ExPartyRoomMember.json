@@ -1,0 +1,63 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 8, 0]
+  },
+  "owner_s_view": {
+    "$type": "dword",
+    "$alias": "Owner's view"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Member count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "member_oid": {
+        "$type": "dword",
+        "$alias": "Member OID"
+      },
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "region": {
+        "$type": "dword",
+        "$alias": "Region"
+      },
+      "membership": {
+        "$type": "dword",
+        "$alias": "Membership"
+      },
+      "index_1": {
+        "$type": "dword",
+        "$alias": "Unavailable instances"
+      },
+      "index_1_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "index_1"
+        },
+        "$schema": {
+          "instance": {
+            "$type": "dword",
+            "$alias": "Instance"
+          }
+        }
+      }
+    }
+  }
+}

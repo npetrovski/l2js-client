@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [25]
+  },
+  "npc_oid": {
+    "$type": "dword",
+    "$alias": "NPC OID"
+  },
+  "message": {
+    "$type": "ntstring",
+    "$alias": "Message"
+  },
+  "title": {
+    "$type": "dword",
+    "$alias": "Title"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      54,
+      0
+    ]
+  },
+  "destination_x": {
+    "$type": "dword",
+    "$alias": "Destination X"
+  },
+  "destination_y": {
+    "$type": "dword",
+    "$alias": "Destination Y"
+  },
+  "destination_z": {
+    "$type": "dword",
+    "$alias": "Destination Z"
+  },
+  "aircraft_oid": {
+    "$type": "dword",
+    "$alias": "Aircraft OID"
+  }
+}

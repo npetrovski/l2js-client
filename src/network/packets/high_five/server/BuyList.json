@@ -1,0 +1,111 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 183, 0]
+  },
+  "viewer_s_adena": {
+    "$type": "double",
+    "$alias": "Viewer's adena"
+  },
+  "buy_request_id": {
+    "$type": "dword",
+    "$alias": "Buy request ID"
+  },
+  "item_count": {
+    "$type": "word",
+    "$alias": "Buyable count"
+  },
+  "item_count__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "item_count"
+    },
+    "$schema": {
+      "base_item_type": {
+        "$type": "word",
+        "$alias": "Base item type"
+      },
+      "item_oid": {
+        "$type": "dword",
+        "$alias": "Item OID"
+      },
+      "is_ticket": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "amount": {
+        "$type": "double",
+        "$alias": "Amount"
+      },
+      "main_item_type": {
+        "$type": "word",
+        "$alias": "Main item type"
+      },
+      "is_ticket_branch": {
+        "$type": "branch",
+        "$id": "is_ticket",
+        "$condition": {
+          "$or": [
+            {
+              "$eq": 4443
+            },
+            {
+              "$eq": 4444
+            }
+          ]
+        },
+        "$schema": {
+          "0": {
+            "$type": "word",
+            "$alias": "0"
+          },
+          "race_number": {
+            "$type": "word",
+            "$alias": "Race number"
+          }
+        }
+      },
+      "used_paperdoll_slot_s_": {
+        "$type": "dword",
+        "$alias": "Used paperdoll slot(s)"
+      },
+      "price": {
+        "$type": "double",
+        "$alias": "Price"
+      },
+      "attack_element": {
+        "$type": "word",
+        "$alias": "Attack element"
+      },
+      "attack_element_power": {
+        "$type": "word",
+        "$alias": "Attack element power"
+      },
+      "fire_defense": {
+        "$type": "word",
+        "$alias": "Fire defense"
+      },
+      "water_defense": {
+        "$type": "word",
+        "$alias": "Water defense"
+      },
+      "wind_defense": {
+        "$type": "word",
+        "$alias": "Wind defense"
+      },
+      "earth_defense": {
+        "$type": "word",
+        "$alias": "Earth defense"
+      },
+      "holy_defense": {
+        "$type": "word",
+        "$alias": "Holy defense"
+      },
+      "dark_defense": {
+        "$type": "word",
+        "$alias": "Dark defense"
+      }
+    }
+  }
+}

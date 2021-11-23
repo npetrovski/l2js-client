@@ -1,6 +1,5 @@
 import AbstractGameCommand from "./AbstractGameCommand";
 import L2Character from "../entities/L2Character";
-import RequestDuelStart from "../network/outgoing/game/RequestDuelStart";
 
 export default class CommandRequestDuel extends AbstractGameCommand {
   execute(char?: L2Character | string, partyDuel = false): void {
@@ -16,6 +15,9 @@ export default class CommandRequestDuel extends AbstractGameCommand {
       return;
     }
 
-    this.GameClient?.sendPacket(new RequestDuelStart(char, partyDuel));
+    this.GameClient.sendPacket("RequestDuelStart", {
+      player: char,
+      is_party_duel: partyDuel ? 1 : 0,
+    });
   }
 }

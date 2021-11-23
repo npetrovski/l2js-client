@@ -1,5 +1,4 @@
-import MMOClient from "./MMOClient";
-import ReceivablePacket from "./ReceivablePacket";
-export default interface IPacketHandler<T extends MMOClient> {
-  handlePacket(packetBytes: Uint8Array, client: T): ReceivablePacket;
+import SerializablePacket from "./SerializablePacket";
+export default interface IPacketHandler {
+  handlePacket(packetBytes: Uint8Array): SerializablePacket | undefined;
 }

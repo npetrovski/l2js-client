@@ -1,0 +1,33 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      128
+    ]
+  },
+  "room_id": {
+    "$type": "dword",
+    "$alias": "Room ID"
+  },
+  "size": {
+    "$type": "dword",
+    "$alias": "Size"
+  },
+  "minimum_level_to_join": {
+    "$type": "dword",
+    "$alias": "Minimum level to join"
+  },
+  "maximum_level_to_join": {
+    "$type": "dword",
+    "$alias": "Maximum level to join"
+  },
+  "item_distribution": {
+    "$type": "dword",
+    "$alias": "Item distribution"
+  },
+  "room_title": {
+    "$type": "ntstring",
+    "$alias": "Room title"
+  }
+}

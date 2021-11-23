@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 93, 0]
+  },
+  "target_oid_": {
+    "$type": "dword",
+    "$alias": "Target OID??"
+  },
+  "killer_oid_": {
+    "$type": "dword",
+    "$alias": "Killer OID??"
+  },
+  "unk0": {
+    "$type": "dword",
+    "$alias": "Unknown 0"
+  }
+}

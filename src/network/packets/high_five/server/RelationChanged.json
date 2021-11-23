@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [206]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Relationship count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "actor_oid": {
+        "$type": "dword",
+        "$alias": "Actor OID"
+      },
+      "relationship": {
+        "$type": "dword",
+        "$alias": "Relationship"
+      },
+      "attackable": {
+        "$type": "dword",
+        "$alias": "Attackable"
+      },
+      "karma": {
+        "$type": "dword",
+        "$alias": "Karma"
+      },
+      "in_pvp": {
+        "$type": "dword",
+        "$alias": "In PvP"
+      }
+    }
+  }
+}

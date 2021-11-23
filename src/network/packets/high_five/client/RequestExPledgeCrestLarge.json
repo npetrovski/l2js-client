@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      16,
+      0
+    ]
+  },
+  "insignia_id": {
+    "$type": "dword",
+    "$alias": "Insignia ID"
+  }
+}

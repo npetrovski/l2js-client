@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      27,
+      0
+    ]
+  },
+  "player": {
+    "$type": "ntstring",
+    "$alias": "Player"
+  },
+  "is_party_duel": {
+    "$type": "dword",
+    "$alias": "Party duel"
+  }
+}

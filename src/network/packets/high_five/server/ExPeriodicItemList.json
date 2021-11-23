@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      254,
+      136,
+      0
+    ]
+  },
+  "fortune_item_list": {
+    "$type": "dword",
+    "$alias": "Item count"
+  },
+  "fortune_item_list__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "fortune_item_list"
+    },
+    "$schema": {
+      "item_oid": {
+        "$type": "dword",
+        "$alias": "Item OID"
+      },
+      "time_remaining": {
+        "$type": "dword",
+        "$alias": "Time remaining"
+      }
+    }
+  }
+}

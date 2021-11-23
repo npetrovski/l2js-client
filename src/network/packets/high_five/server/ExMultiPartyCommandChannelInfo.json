@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 49, 0]
+  },
+  "owner": {
+    "$type": "ntstring",
+    "$alias": "Owner"
+  },
+  "looting": {
+    "$type": "dword",
+    "$alias": "Looting"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Party count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "party_leader": {
+        "$type": "ntstring",
+        "$alias": "Party leader"
+      },
+      "leader_oid": {
+        "$type": "dword",
+        "$alias": "Leader OID"
+      },
+      "party_member_count": {
+        "$type": "dword",
+        "$alias": "Party member count"
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 47, 0]
+  },
+  "inventory_slots": {
+    "$type": "dword",
+    "$alias": "Inventory slots"
+  },
+  "warehouse_slots": {
+    "$type": "dword",
+    "$alias": "Warehouse slots"
+  },
+  "clan_warehouse_slots": {
+    "$type": "dword",
+    "$alias": "Clan warehouse slots"
+  },
+  "selling_store_slots": {
+    "$type": "dword",
+    "$alias": "Selling store slots"
+  },
+  "buying_store_slots": {
+    "$type": "dword",
+    "$alias": "Buying store slots"
+  },
+  "dwarven_recipe_book_slots": {
+    "$type": "dword",
+    "$alias": "Dwarven recipe book slots"
+  },
+  "common_recipe_book_slots": {
+    "$type": "dword",
+    "$alias": "Common recipe book slots"
+  },
+  "extra_inventory_slots_belt_": {
+    "$type": "dword",
+    "$alias": "Extra inventory slots (belt)"
+  },
+  "quest_inventory_slots": {
+    "$type": "dword",
+    "$alias": "Quest inventory slots"
+  }
+}

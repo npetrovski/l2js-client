@@ -1,0 +1,24 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 1, 0]
+  },
+  "unk1": {
+    "$type": "dword",
+    "$alias": "Unknown 1",
+    "$default": 1
+  },
+  "time_left": {
+    "$type": "dword",
+    "$alias": "Time left"
+  },
+  "update_interval": {
+    "$type": "dword",
+    "$alias": "Update interval"
+  },
+  "hp_per_update": {
+    "$type": "float",
+    "$alias": "HP per update"
+  }
+}

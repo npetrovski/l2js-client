@@ -1,0 +1,47 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 121, 0]
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Hero count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "pledge": {
+        "$type": "ntstring",
+        "$alias": "Pledge"
+      },
+      "pledge_crest_id": {
+        "$type": "dword",
+        "$alias": "Pledge crest ID"
+      },
+      "alliance": {
+        "$type": "ntstring",
+        "$alias": "Alliance"
+      },
+      "alliance_crest_id": {
+        "$type": "dword",
+        "$alias": "Alliance crest ID"
+      },
+      "count": {
+        "$type": "dword",
+        "$alias": "Count"
+      }
+    }
+  }
+}

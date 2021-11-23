@@ -1,0 +1,25 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [2]
+  },
+  "account_id": {
+    "$type": "dword",
+    "$alias": "Account ID"
+  },
+  "auth_key": {
+    "$type": "dword",
+    "$alias": "Auth key"
+  },
+  "game_server": {
+    "$type": "byte",
+    "$alias": "Game server"
+  },
+  "padding_0": {
+    "$type": "bytes",
+    "$alias": "Padding[0]",
+    "$length": 14,
+    "$default": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  }
+}

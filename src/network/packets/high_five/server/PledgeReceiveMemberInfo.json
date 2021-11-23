@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 62, 0]
+  },
+  "unit": {
+    "$type": "dword",
+    "$alias": "Unit"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "title": {
+    "$type": "ntstring",
+    "$alias": "Title"
+  },
+  "ranking": {
+    "$type": "dword",
+    "$alias": "Ranking"
+  },
+  "pledge_unit_name": {
+    "$type": "ntstring",
+    "$alias": "Pledge/Unit name"
+  },
+  "affilate": {
+    "$type": "ntstring",
+    "$alias": "Affilate"
+  }
+}

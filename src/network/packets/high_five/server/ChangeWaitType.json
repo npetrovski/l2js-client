@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [41]
+  },
+  "actor_oid": {
+    "$type": "dword",
+    "$alias": "Actor OID"
+  },
+  "waiting_mode": {
+    "$type": "dword",
+    "$alias": "Waiting mode"
+  },
+  "actor_x": {
+    "$type": "dword",
+    "$alias": "Actor X"
+  },
+  "actor_y": {
+    "$type": "dword",
+    "$alias": "Actor Y"
+  },
+  "actor_z": {
+    "$type": "dword",
+    "$alias": "Actor Z"
+  }
+}

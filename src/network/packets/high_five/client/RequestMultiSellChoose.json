@@ -1,0 +1,70 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      176
+    ]
+  },
+  "list_id": {
+    "$type": "dword",
+    "$alias": "List ID"
+  },
+  "exchange_id": {
+    "$type": "dword",
+    "$alias": "Exchange ID"
+  },
+  "amount": {
+    "$type": "double",
+    "$alias": "Amount"
+  },
+  "unk0_branch": {
+    "$type": "branch",
+    "$schema": {
+      "enchant_level": {
+        "$type": "word",
+        "$alias": "Enchant level"
+      },
+      "augmentation_effect_1_": {
+        "$type": "dword",
+        "$alias": "Augmentation effect (1)"
+      },
+      "augmentation_effect_2_": {
+        "$type": "dword",
+        "$alias": "Augmentation effect (2)"
+      },
+      "attack_element": {
+        "$type": "word",
+        "$alias": "Attack element"
+      },
+      "attack_element_power": {
+        "$type": "word",
+        "$alias": "Attack element power"
+      },
+      "fire_defense": {
+        "$type": "word",
+        "$alias": "Fire defense"
+      },
+      "water_defense": {
+        "$type": "word",
+        "$alias": "Water defense"
+      },
+      "wind_defense": {
+        "$type": "word",
+        "$alias": "Wind defense"
+      },
+      "earth_defense": {
+        "$type": "word",
+        "$alias": "Earth defense"
+      },
+      "holy_defense": {
+        "$type": "word",
+        "$alias": "Holy defense"
+      },
+      "dark_defense": {
+        "$type": "word",
+        "$alias": "Dark defense"
+      }
+    }
+  }
+}

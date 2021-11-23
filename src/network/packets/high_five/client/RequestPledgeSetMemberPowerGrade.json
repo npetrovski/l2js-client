@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      21,
+      0
+    ]
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "ranking": {
+    "$type": "dword",
+    "$alias": "Ranking"
+  }
+}

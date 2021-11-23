@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 91, 0]
+  },
+  "leader": {
+    "$type": "ntstring",
+    "$alias": "Leader"
+  },
+  "leader_oid": {
+    "$type": "dword",
+    "$alias": "Leader OID"
+  },
+  "member_count": {
+    "$type": "dword",
+    "$alias": "Member count"
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  }
+}

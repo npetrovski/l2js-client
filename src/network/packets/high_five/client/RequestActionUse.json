@@ -1,0 +1,21 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      86
+    ]
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  },
+  "ctrl_force_attack": {
+    "$type": "dword",
+    "$alias": "Ctrl (force attack)"
+  },
+  "shift": {
+    "$type": "byte",
+    "$alias": "Shift key pressed"
+  }
+}

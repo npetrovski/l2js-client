@@ -1,0 +1,13 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      22
+    ]
+  },
+  "item_paperdoll_mask": {
+    "$type": "dword",
+    "$alias": "Item paperdoll mask"
+  }
+}

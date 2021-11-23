@@ -1,6 +1,5 @@
-import MMOClient from "./MMOClient";
-import ReceivablePacket from "./ReceivablePacket";
+import SerializablePacket from "./SerializablePacket";
 
 export default interface IProcessable {
-  process(raw: Uint8Array): Promise<ReceivablePacket>;
+  process(raw: Uint8Array): Promise<SerializablePacket>;
 }

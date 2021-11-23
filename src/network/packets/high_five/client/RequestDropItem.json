@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [23]
+  },
+  "item_oid": {
+    "$type": "dword",
+    "$alias": "Item OID"
+  },
+  "amount": {
+    "$type": "double",
+    "$alias": "Amount"
+  },
+  "destination_x": {
+    "$type": "dword",
+    "$alias": "Destination X"
+  },
+  "destination_y": {
+    "$type": "dword",
+    "$alias": "Destination Y"
+  },
+  "destination_z": {
+    "$type": "dword",
+    "$alias": "Destination Z"
+  }
+}

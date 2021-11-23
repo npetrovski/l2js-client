@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [35]
+  },
+  "selector_oid": {
+    "$type": "dword",
+    "$alias": "Selector OID"
+  },
+  "target_oid": {
+    "$type": "dword",
+    "$alias": "Target OID"
+  },
+  "selector_x": {
+    "$type": "dword",
+    "$alias": "Selector X"
+  },
+  "selector_y": {
+    "$type": "dword",
+    "$alias": "Selector Y"
+  },
+  "selector_z": {
+    "$type": "dword",
+    "$alias": "Selector Z"
+  },
+  "mode": {
+    "$type": "dword",
+    "$alias": "Mode"
+  }
+}

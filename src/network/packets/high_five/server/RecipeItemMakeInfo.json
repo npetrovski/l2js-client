@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [221]
+  },
+  "recipe": {
+    "$type": "dword",
+    "$alias": "Recipe"
+  },
+  "type": {
+    "$type": "dword",
+    "$alias": "Type"
+  },
+  "current_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "maximum_mp": {
+    "$type": "dword",
+    "$alias": "Maximum MP"
+  },
+  "result": {
+    "$type": "dword",
+    "$alias": "Result"
+  }
+}

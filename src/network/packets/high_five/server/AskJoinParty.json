@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [57]
+  },
+  "invitor_oid": {
+    "$type": "dword",
+    "$alias": "Invitor OID"
+  },
+  "item_distribution": {
+    "$type": "dword",
+    "$alias": "Item distribution"
+  }
+}

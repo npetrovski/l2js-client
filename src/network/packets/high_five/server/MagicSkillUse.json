@@ -1,0 +1,96 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [72]
+  },
+  "caster_oid": {
+    "$type": "dword",
+    "$alias": "Caster OID"
+  },
+  "main_target_oid": {
+    "$type": "dword",
+    "$alias": "Main target OID"
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "cast_time": {
+    "$type": "dword",
+    "$alias": "Cast time"
+  },
+  "reuse_delay": {
+    "$type": "dword",
+    "$alias": "Reuse delay"
+  },
+  "caster_x": {
+    "$type": "dword",
+    "$alias": "Caster X"
+  },
+  "caster_y": {
+    "$type": "dword",
+    "$alias": "Caster Y"
+  },
+  "caster_z": {
+    "$type": "dword",
+    "$alias": "Caster Z"
+  },
+  "unk": {
+    "$type": "word",
+    "$alias": "i_fatal_blow"
+  },
+  "unk__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "unk"
+    },
+    "$schema": {
+      "0": {
+        "$type": "word",
+        "$alias": "0"
+      }
+    }
+  },
+  "use_type": {
+    "$type": "word",
+    "$alias": "Usage type"
+  },
+  "use_type__branch": {
+    "$type": "branch",
+    "$id": "use_type",
+    "$condition": {
+      "$eq": 1
+    },
+    "$schema": {
+      "ground_target_x": {
+        "$type": "dword",
+        "$alias": "Ground target X"
+      },
+      "ground_target_y": {
+        "$type": "dword",
+        "$alias": "Ground target Y"
+      },
+      "ground_target_z": {
+        "$type": "dword",
+        "$alias": "Ground target Z"
+      }
+    }
+  },
+  "main_target_x": {
+    "$type": "dword",
+    "$alias": "Main target X"
+  },
+  "main_target_y": {
+    "$type": "dword",
+    "$alias": "Main target Y"
+  },
+  "main_target_z": {
+    "$type": "dword",
+    "$alias": "Main target Z"
+  }
+}

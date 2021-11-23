@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 120, 0]
+  },
+  "crop": {
+    "$type": "dword",
+    "$alias": "Crop"
+  },
+  "buyer_cnt": {
+    "$type": "dword",
+    "$alias": "Buyer count"
+  },
+  "buyer_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "buyer_cnt"
+    },
+    "$schema": {
+      "manor": {
+        "$type": "dword",
+        "$alias": "Manor"
+      },
+      "amount": {
+        "$type": "double",
+        "$alias": "Amount"
+      },
+      "price": {
+        "$type": "double",
+        "$alias": "Price"
+      },
+      "reward": {
+        "$type": "byte",
+        "$alias": "Reward"
+      }
+    }
+  }
+}

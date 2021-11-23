@@ -1,0 +1,555 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [49]
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  },
+  "vehicle_oid": {
+    "$type": "dword",
+    "$alias": "Vehicle OID"
+  },
+  "player_oid": {
+    "$type": "dword",
+    "$alias": "Player OID"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "race": {
+    "$type": "dword",
+    "$alias": "Race"
+  },
+  "sex": {
+    "$type": "dword",
+    "$alias": "Sex"
+  },
+  "visible_class": {
+    "$type": "dword",
+    "$alias": "Visible class"
+  },
+  "underwear": {
+    "$type": "dword",
+    "$alias": "Underwear"
+  },
+  "headgear": {
+    "$type": "dword",
+    "$alias": "Headgear"
+  },
+  "weapon": {
+    "$type": "dword",
+    "$alias": "Weapon"
+  },
+  "shield_sigil_": {
+    "$type": "dword",
+    "$alias": "Shield [Sigil]"
+  },
+  "gloves": {
+    "$type": "dword",
+    "$alias": "Gloves"
+  },
+  "upper_body": {
+    "$type": "dword",
+    "$alias": "Upper Body"
+  },
+  "lower_body": {
+    "$type": "dword",
+    "$alias": "Lower Body"
+  },
+  "boots": {
+    "$type": "dword",
+    "$alias": "Boots"
+  },
+  "cloak": {
+    "$type": "dword",
+    "$alias": "Cloak"
+  },
+  "weapon_two_handed": {
+    "$type": "dword",
+    "$alias": "Weapon / Two Handed"
+  },
+  "hair_accessory_top_": {
+    "$type": "dword",
+    "$alias": "Hair Accessory (top)"
+  },
+  "hair_accessory_bottom_": {
+    "$type": "dword",
+    "$alias": "Hair Accessory (bottom)"
+  },
+  "right_bracelet": {
+    "$type": "dword",
+    "$alias": "Right Bracelet"
+  },
+  "left_bracelet": {
+    "$type": "dword",
+    "$alias": "Left Bracelet"
+  },
+  "talisman_1_": {
+    "$type": "dword",
+    "$alias": "Talisman (1)"
+  },
+  "talisman_2_": {
+    "$type": "dword",
+    "$alias": "Talisman (2)"
+  },
+  "talisman_3_": {
+    "$type": "dword",
+    "$alias": "Talisman (3)"
+  },
+  "talisman_4_": {
+    "$type": "dword",
+    "$alias": "Talisman (4)"
+  },
+  "talisman_5_": {
+    "$type": "dword",
+    "$alias": "Talisman (5)"
+  },
+  "talisman_6_": {
+    "$type": "dword",
+    "$alias": "Talisman (6)"
+  },
+  "belt": {
+    "$type": "dword",
+    "$alias": "Belt"
+  },
+  "underwear_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Underwear augmentation effect (1)"
+  },
+  "underwear_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Underwear augmentation effect (2)"
+  },
+  "headgear_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Headgear augmentation effect (1)"
+  },
+  "headgear_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Headgear augmentation effect (2)"
+  },
+  "weapon_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Weapon augmentation effect (1)"
+  },
+  "weapon_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Weapon augmentation effect (2)"
+  },
+  "shield_sigil_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Shield [Sigil] augmentation effect (1)"
+  },
+  "shield_sigil_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Shield [Sigil] augmentation effect (2)"
+  },
+  "gloves_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Gloves augmentation effect (1)"
+  },
+  "gloves_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Gloves augmentation effect (2)"
+  },
+  "upper_body_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Upper Body augmentation effect (1)"
+  },
+  "upper_body_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Upper Body augmentation effect (2)"
+  },
+  "lower_body_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Lower Body augmentation effect (1)"
+  },
+  "lower_body_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Lower Body augmentation effect (2)"
+  },
+  "boots_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Boots augmentation effect (1)"
+  },
+  "boots_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Boots augmentation effect (2)"
+  },
+  "cloak_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Cloak augmentation effect (1)"
+  },
+  "cloak_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Cloak augmentation effect (2)"
+  },
+  "weapon_two_handed_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Weapon / Two Handed augmentation effect (1)"
+  },
+  "weapon_two_handed_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Weapon / Two Handed augmentation effect (2)"
+  },
+  "hair_accessory_top_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Hair Accessory (top) augmentation effect (1)"
+  },
+  "hair_accessory_top_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Hair Accessory (top) augmentation effect (2)"
+  },
+  "hair_accessory_bottom_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Hair Accessory (bottom) augmentation effect (1)"
+  },
+  "hair_accessory_bottom_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Hair Accessory (bottom) augmentation effect (2)"
+  },
+  "right_bracelet_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Right Bracelet augmentation effect (1)"
+  },
+  "right_bracelet_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Right Bracelet augmentation effect (2)"
+  },
+  "left_bracelet_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Left Bracelet augmentation effect (1)"
+  },
+  "left_bracelet_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Left Bracelet augmentation effect (2)"
+  },
+  "talisman_1_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Talisman (1) augmentation effect (1)"
+  },
+  "talisman_1_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Talisman (1) augmentation effect (2)"
+  },
+  "talisman_2_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Talisman (2) augmentation effect (1)"
+  },
+  "talisman_2_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Talisman (2) augmentation effect (2)"
+  },
+  "talisman_3_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Talisman (3) augmentation effect (1)"
+  },
+  "talisman_3_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Talisman (3) augmentation effect (2)"
+  },
+  "talisman_4_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Talisman (4) augmentation effect (1)"
+  },
+  "talisman_4_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Talisman (4) augmentation effect (2)"
+  },
+  "talisman_5_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Talisman (5) augmentation effect (1)"
+  },
+  "talisman_5_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Talisman (5) augmentation effect (2)"
+  },
+  "talisman_6_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Talisman (6) augmentation effect (1)"
+  },
+  "talisman_6_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Talisman (6) augmentation effect (2)"
+  },
+  "belt_augmentation_effect_1_": {
+    "$type": "word",
+    "$alias": "Belt augmentation effect (1)"
+  },
+  "belt_augmentation_effect_2_": {
+    "$type": "word",
+    "$alias": "Belt augmentation effect (2)"
+  },
+  "talisman_slots": {
+    "$type": "dword",
+    "$alias": "Talisman slots"
+  },
+  "cloak_slot": {
+    "$type": "dword",
+    "$alias": "Cloak slot"
+  },
+  "in_pvp": {
+    "$type": "dword",
+    "$alias": "In PvP"
+  },
+  "karma": {
+    "$type": "dword",
+    "$alias": "Karma"
+  },
+  "casting_speed": {
+    "$type": "dword",
+    "$alias": "Casting speed"
+  },
+  "attack_speed": {
+    "$type": "dword",
+    "$alias": "Attack speed"
+  },
+  "pad0": {
+    "$type": "dword",
+    "$alias": "Pad0"
+  },
+  "running_speed_on_ground": {
+    "$type": "dword",
+    "$alias": "Running speed (on ground)"
+  },
+  "walking_speed_on_ground": {
+    "$type": "dword",
+    "$alias": "Walking speed (on ground)"
+  },
+  "running_speed_in_water": {
+    "$type": "dword",
+    "$alias": "Running speed (in water)"
+  },
+  "walking_speed_in_water": {
+    "$type": "dword",
+    "$alias": "Walking speed (in water)"
+  },
+  "running_speed_mounted": {
+    "$type": "dword",
+    "$alias": "Running speed (mounted)"
+  },
+  "walking_speed_mounted": {
+    "$type": "dword",
+    "$alias": "Walking speed (mounted)"
+  },
+  "running_speed_flying_mounted": {
+    "$type": "dword",
+    "$alias": "Running speed (flying mounted)"
+  },
+  "walking_speed_flying_mounted": {
+    "$type": "dword",
+    "$alias": "Walking speed (flying mounted)"
+  },
+  "movement_speed_multiplier": {
+    "$type": "float",
+    "$alias": "Movement speed multiplier"
+  },
+  "attack_speed_multiplier": {
+    "$type": "float",
+    "$alias": "Attack speed multiplier"
+  },
+  "collision_radius": {
+    "$type": "float",
+    "$alias": "Collision radius"
+  },
+  "collision_height": {
+    "$type": "float",
+    "$alias": "Collision height"
+  },
+  "hair_style": {
+    "$type": "dword",
+    "$alias": "Hair style"
+  },
+  "hair_color": {
+    "$type": "dword",
+    "$alias": "Hair color"
+  },
+  "face": {
+    "$type": "dword",
+    "$alias": "Face"
+  },
+  "title": {
+    "$type": "ntstring",
+    "$alias": "Title"
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  },
+  "pledge_crest_id": {
+    "$type": "dword",
+    "$alias": "Pledge crest ID"
+  },
+  "alliance_id": {
+    "$type": "dword",
+    "$alias": "Alliance ID"
+  },
+  "alliance_crest_id": {
+    "$type": "dword",
+    "$alias": "Alliance crest ID"
+  },
+  "is_sitting": {
+    "$type": "byte",
+    "$alias": "Waiting"
+  },
+  "is_running": {
+    "$type": "byte",
+    "$alias": "Moving"
+  },
+  "is_in_combat": {
+    "$type": "byte",
+    "$alias": "In combat"
+  },
+  "lying_dead": {
+    "$type": "byte",
+    "$alias": "Lying dead"
+  },
+  "builder": {
+    "$type": "byte",
+    "$alias": "Builder"
+  },
+  "mount_type": {
+    "$type": "byte",
+    "$alias": "Mount type"
+  },
+  "private_store": {
+    "$type": "byte",
+    "$alias": "Private store"
+  },
+  "cubic_count": {
+    "$type": "word",
+    "$alias": "Cubic count"
+  },
+  "cubics": {
+    "$type": "array",
+    "$length": {
+      "$id": "cubic_count"
+    },
+    "$schema": {
+      "cubic": {
+        "$type": "word",
+        "$alias": "Cubic"
+      }
+    }
+  },
+  "looking_for_party": {
+    "$type": "byte",
+    "$alias": "Looking for party"
+  },
+  "abnormal_effect": {
+    "$type": "dword",
+    "$alias": "Abnormal effect"
+  },
+  "environment": {
+    "$type": "byte",
+    "$alias": "Environment"
+  },
+  "evaluation_score": {
+    "$type": "word",
+    "$alias": "Evaluation score"
+  },
+  "mount": {
+    "$type": "dword",
+    "$alias": "Mount"
+  },
+  "current_class": {
+    "$type": "dword",
+    "$alias": "Current class"
+  },
+  "pad2": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "weapon_enchant_glow": {
+    "$type": "byte",
+    "$alias": "Weapon enchant glow"
+  },
+  "duel_team": {
+    "$type": "byte",
+    "$alias": "Duel team"
+  },
+  "pledge_insignia_id": {
+    "$type": "dword",
+    "$alias": "Pledge insignia ID"
+  },
+  "is_noble": {
+    "$type": "byte",
+    "$alias": "Noble"
+  },
+  "is_hero": {
+    "$type": "byte",
+    "$alias": "Hero"
+  },
+  "is_fishing": {
+    "$type": "byte",
+    "$alias": "Fishing"
+  },
+  "fishing_lure_x": {
+    "$type": "dword",
+    "$alias": "Fishing lure X"
+  },
+  "fishing_lure_y": {
+    "$type": "dword",
+    "$alias": "Fishing lure Y"
+  },
+  "fishing_lure_z": {
+    "$type": "dword",
+    "$alias": "Fishing lure Z"
+  },
+  "name_color": {
+    "$type": "dword",
+    "$alias": "Name color"
+  },
+  "yaw": {
+    "$type": "dword",
+    "$alias": "Yaw"
+  },
+  "social_class": {
+    "$type": "dword",
+    "$alias": "Social class"
+  },
+  "pledge_unit": {
+    "$type": "dword",
+    "$alias": "Pledge unit"
+  },
+  "title_color": {
+    "$type": "dword",
+    "$alias": "Title color"
+  },
+  "cursed_weapon_level": {
+    "$type": "dword",
+    "$alias": "Cursed weapon level"
+  },
+  "pledge_reputation": {
+    "$type": "dword",
+    "$alias": "Pledge reputation"
+  },
+  "transformation": {
+    "$type": "dword",
+    "$alias": "Transformation"
+  },
+  "agathion": {
+    "$type": "dword",
+    "$alias": "Agathion"
+  },
+  "pad3": {
+    "$type": "dword",
+    "$alias": "pad3"
+  },
+  "special_effect": {
+    "$type": "dword",
+    "$alias": "Special effect"
+  }
+}

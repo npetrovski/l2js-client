@@ -1,0 +1,81 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      228
+    ]
+  },
+  "henna": {
+    "$type": "dword",
+    "$alias": "Henna"
+  },
+  "actual_item": {
+    "$type": "dword",
+    "$alias": "Actual item"
+  },
+  "amount_in_inventory": {
+    "$type": "double",
+    "$alias": "Amount in inventory"
+  },
+  "price_of_appliance": {
+    "$type": "double",
+    "$alias": "Price of appliance"
+  },
+  "applicable": {
+    "$type": "dword",
+    "$alias": "Applicable"
+  },
+  "viewer_s_adena": {
+    "$type": "double",
+    "$alias": "Viewer's adena"
+  },
+  "current_int": {
+    "$type": "dword",
+    "$alias": "Current INT"
+  },
+  "int_with_henna": {
+    "$type": "byte",
+    "$alias": "INT with henna"
+  },
+  "current_str": {
+    "$type": "dword",
+    "$alias": "Current STR"
+  },
+  "str_with_henna": {
+    "$type": "byte",
+    "$alias": "STR with henna"
+  },
+  "current_con": {
+    "$type": "dword",
+    "$alias": "Current CON"
+  },
+  "con_with_henna": {
+    "$type": "byte",
+    "$alias": "CON with henna"
+  },
+  "current_men": {
+    "$type": "dword",
+    "$alias": "Current MEN"
+  },
+  "men_with_henna": {
+    "$type": "byte",
+    "$alias": "MEN with henna"
+  },
+  "current_dex": {
+    "$type": "dword",
+    "$alias": "Current DEX"
+  },
+  "dex_with_henna": {
+    "$type": "byte",
+    "$alias": "DEX with henna"
+  },
+  "current_wit": {
+    "$type": "dword",
+    "$alias": "Current WIT"
+  },
+  "wit_with_henna": {
+    "$type": "byte",
+    "$alias": "WIT with henna"
+  }
+}

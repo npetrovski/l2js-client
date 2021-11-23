@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      69,
+      0
+    ]
+  },
+  "fortress": {
+    "$type": "dword",
+    "$alias": "Fortress"
+  }
+}

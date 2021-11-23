@@ -1,0 +1,113 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 17, 0]
+  },
+  "ex": {
+    "$type": "ntstring",
+    "$alias": "Alias"
+  },
+  "unk0_branch": {
+    "$type": "branch",
+    "$schema": {
+      "center_x": {
+        "$type": "dword",
+        "$alias": "Center X"
+      },
+      "center_y": {
+        "$type": "dword",
+        "$alias": "Center Y"
+      },
+      "center_z": {
+        "$type": "dword",
+        "$alias": "Center Z"
+      }
+    }
+  },
+  "unk0_branch_1": {
+    "$type": "branch",
+    "$schema": {
+      "unk0": {
+        "$type": "dword",
+        "$alias": ""
+      }
+    }
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Primitive count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "type": {
+        "$type": "byte",
+        "$alias": "Type"
+      },
+      "ex_branch": {
+        "$type": "branch",
+        "$id": "ex",
+        "$condition": "primitive.ExtendedPrimitive",
+        "$schema": {
+          "label": {
+            "$type": "ntstring",
+            "$alias": "Label"
+          },
+          "red": {
+            "$type": "dword",
+            "$alias": "Red"
+          },
+          "green": {
+            "$type": "dword",
+            "$alias": "Green"
+          },
+          "blue": {
+            "$type": "dword",
+            "$alias": "Blue"
+          },
+          "alpha": {
+            "$type": "dword",
+            "$alias": "Alpha"
+          }
+        }
+      },
+      "type_branch": {
+        "$type": "branch",
+        "$id": "type",
+        "$condition": {
+          "$eq": 2
+        },
+        "$schema": {
+          "start_x": {
+            "$type": "dword",
+            "$alias": "Start X"
+          },
+          "start_y": {
+            "$type": "dword",
+            "$alias": "Start Y"
+          },
+          "start_z": {
+            "$type": "dword",
+            "$alias": "Start Z"
+          },
+          "end_x": {
+            "$type": "dword",
+            "$alias": "End X"
+          },
+          "end_y": {
+            "$type": "dword",
+            "$alias": "End Y"
+          },
+          "end_z": {
+            "$type": "dword",
+            "$alias": "End Z"
+          }
+        }
+      }
+    }
+  }
+}

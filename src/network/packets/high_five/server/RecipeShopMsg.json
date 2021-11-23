@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [225]
+  },
+  "manufacturer_s_oid": {
+    "$type": "dword",
+    "$alias": "Manufacturer's OID"
+  },
+  "description": {
+    "$type": "ntstring",
+    "$alias": "Description"
+  }
+}

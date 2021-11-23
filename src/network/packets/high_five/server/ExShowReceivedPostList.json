@@ -1,0 +1,67 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 170, 0]
+  },
+  "current_server_time": {
+    "$type": "dword",
+    "$alias": "Current server time"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Message count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "id": {
+        "$type": "dword",
+        "$alias": "ID"
+      },
+      "subject": {
+        "$type": "ntstring",
+        "$alias": "Subject"
+      },
+      "sender": {
+        "$type": "ntstring",
+        "$alias": "Sender"
+      },
+      "locked": {
+        "$type": "dword",
+        "$alias": "Locked"
+      },
+      "expires_on": {
+        "$type": "dword",
+        "$alias": "Expires on"
+      },
+      "unread": {
+        "$type": "dword",
+        "$alias": "Unread"
+      },
+      "had_attachment_s_": {
+        "$type": "dword",
+        "$alias": "Had attachment(s)"
+      },
+      "has_attachment_s_": {
+        "$type": "dword",
+        "$alias": "Has attachment(s)"
+      },
+      "starred": {
+        "$type": "dword",
+        "$alias": "Starred"
+      },
+      "news": {
+        "$type": "dword",
+        "$alias": "News"
+      },
+      "sender_character_id": {
+        "$type": "dword",
+        "$alias": "Sender character ID"
+      }
+    }
+  }
+}

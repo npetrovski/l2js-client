@@ -1,0 +1,49 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [118]
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  },
+  "character_pk": {
+    "$type": "dword",
+    "$alias": "Character PK"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "online": {
+    "$type": "dword",
+    "$alias": "Online"
+  },
+  "online__branch": {
+    "$type": "branch",
+    "$id": "online",
+    "$condition": {
+      "$gt": 0
+    },
+    "$schema": {
+      "character_oid": {
+        "$type": "dword",
+        "$alias": "Character OID"
+      }
+    }
+  },
+  "online__branch_1": {
+    "$type": "branch",
+    "$id": "online",
+    "$condition": {
+      "$eq": 0
+    },
+    "$schema": {
+      "0": {
+        "$type": "dword",
+        "$alias": "0"
+      }
+    }
+  }
+}

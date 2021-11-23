@@ -1,0 +1,17 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      25
+    ]
+  },
+  "item_oid": {
+    "$type": "dword",
+    "$alias": "Item OID"
+  },
+  "ctrl_force_attack": {
+    "$type": "dword",
+    "$alias": "Ctrl (force attack)"
+  }
+}

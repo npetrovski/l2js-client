@@ -1,0 +1,12 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 108, 0]
+  },
+  "_all_null_bytes": {
+    "$type": "bytes",
+    "$alias": "??? all null bytes",
+    "$length": 128
+  }
+}

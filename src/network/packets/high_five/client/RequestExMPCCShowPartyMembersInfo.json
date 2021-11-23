@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      45,
+      0
+    ]
+  },
+  "party_leader_s_member_s_oid": {
+    "$type": "dword",
+    "$alias": "Party leader's(Member's) OID"
+  }
+}

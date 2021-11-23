@@ -1,0 +1,30 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      204
+    ]
+  },
+  "ranking": {
+    "$type": "dword",
+    "$alias": "Ranking"
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  },
+  "action__branch": {
+    "$type": "branch",
+    "$id": "action",
+    "$condition": {
+      "$eq": 2
+    },
+    "$schema": {
+      "privilleges": {
+        "$type": "dword",
+        "$alias": "Privilleges"
+      }
+    }
+  }
+}

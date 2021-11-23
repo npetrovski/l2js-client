@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [220]
+  },
+  "book": {
+    "$type": "dword",
+    "$alias": "Book"
+  },
+  "max_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "recipe_cnt": {
+    "$type": "dword",
+    "$alias": "Available recipes"
+  },
+  "recipes": {
+    "$type": "array",
+    "$length": {
+      "$id": "recipe_cnt"
+    },
+    "$schema": {
+      "recipe": {
+        "$type": "dword",
+        "$alias": "Recipe"
+      },
+      "position": {
+        "$type": "dword",
+        "$alias": "Position"
+      }
+    }
+  }
+}

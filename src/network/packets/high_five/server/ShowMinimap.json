@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [163]
+  },
+  "item": {
+    "$type": "dword",
+    "$alias": "Item"
+  }
+}

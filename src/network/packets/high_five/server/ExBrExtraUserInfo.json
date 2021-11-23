@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 218, 0]
+  },
+  "actor_oid": {
+    "$type": "dword",
+    "$alias": "Actor OID"
+  },
+  "event_effect": {
+    "$type": "dword",
+    "$alias": "Event effect"
+  },
+  "active": {
+    "$type": "byte",
+    "$alias": "Active"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 30, 0]
+  },
+  "fisher_oid": {
+    "$type": "dword",
+    "$alias": "Fisher OID"
+  },
+  "fish_type": {
+    "$type": "dword",
+    "$alias": "Fish type"
+  },
+  "lure_s_x": {
+    "$type": "dword",
+    "$alias": "Lure's X"
+  },
+  "lure_s_y": {
+    "$type": "dword",
+    "$alias": "Lure's Y"
+  },
+  "lure_s_z": {
+    "$type": "dword",
+    "$alias": "Lure's Z"
+  },
+  "night_lure": {
+    "$type": "byte",
+    "$alias": "Night lure"
+  },
+  "prize_winning_lure": {
+    "$type": "byte",
+    "$alias": "Prize-winning lure"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 20, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Castle count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "castle": {
+        "$type": "dword",
+        "$alias": "Castle"
+      },
+      "owner_pledge": {
+        "$type": "ntstring",
+        "$alias": "Owner pledge"
+      },
+      "tax_rate": {
+        "$type": "dword",
+        "$alias": "Tax rate"
+      },
+      "siege_time": {
+        "$type": "dword",
+        "$alias": "Siege time"
+      }
+    }
+  }
+}

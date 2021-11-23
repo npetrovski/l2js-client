@@ -1,0 +1,21 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      127
+    ]
+  },
+  "page": {
+    "$type": "dword",
+    "$alias": "Page"
+  },
+  "region": {
+    "$type": "dword",
+    "$alias": "Region"
+  },
+  "level_range": {
+    "$type": "dword",
+    "$alias": "Level range"
+  }
+}

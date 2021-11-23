@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      17,
+      0
+    ]
+  },
+  "bytesize": {
+    "$type": "dword",
+    "$alias": "Size in bytes"
+  }
+}

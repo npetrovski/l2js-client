@@ -1,0 +1,128 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [78]
+  },
+  "leader_oid": {
+    "$type": "dword",
+    "$alias": "Leader OID"
+  },
+  "item_distribution": {
+    "$type": "dword",
+    "$alias": "Item distribution"
+  },
+  "members_count": {
+    "$type": "dword",
+    "$alias": "Other members"
+  },
+  "members": {
+    "$type": "array",
+    "$length": {
+      "$id": "members_count"
+    },
+    "$schema": {
+      "member_oid": {
+        "$type": "dword",
+        "$alias": "Member OID"
+      },
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "current_cp": {
+        "$type": "dword",
+        "$alias": "Current CP"
+      },
+      "maximum_cp": {
+        "$type": "dword",
+        "$alias": "Maximum CP"
+      },
+      "current_hp": {
+        "$type": "dword",
+        "$alias": "Current HP"
+      },
+      "maximum_hp": {
+        "$type": "dword",
+        "$alias": "Maximum HP"
+      },
+      "current_mp": {
+        "$type": "dword",
+        "$alias": "Current MP"
+      },
+      "maximum_mp": {
+        "$type": "dword",
+        "$alias": "Maximum MP"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "sex": {
+        "$type": "dword",
+        "$alias": "Sex"
+      },
+      "race": {
+        "$type": "dword",
+        "$alias": "Race"
+      },
+      "pad1": {
+        "$type": "dword",
+        "$alias": "Pad1"
+      },
+      "pad2": {
+        "$type": "dword",
+        "$alias": "Pad2"
+      },
+      "servitor_oid": {
+        "$type": "dword",
+        "$alias": "Servitor OID"
+      },
+      "servitor_branch": {
+        "$type": "branch",
+        "$id": "servitor_oid",
+        "$condition": {
+          "$gt": 0
+        },
+        "$schema": {
+          "servitor": {
+            "$type": "dword",
+            "$alias": "Servitor"
+          },
+          "servitor_type": {
+            "$type": "dword",
+            "$alias": "Servitor's type"
+          },
+          "servitor_name": {
+            "$type": "ntstring",
+            "$alias": "Servitor's name"
+          },
+          "servitor_current_hp": {
+            "$type": "dword",
+            "$alias": "Servitor's current HP"
+          },
+          "servitor_maximum_hp": {
+            "$type": "dword",
+            "$alias": "Servitor's maximum HP"
+          },
+          "servitor_current_mp": {
+            "$type": "dword",
+            "$alias": "Servitor's current MP"
+          },
+          "servitor_maximum_mp": {
+            "$type": "dword",
+            "$alias": "Servitor's maximum MP"
+          },
+          "servitor_level": {
+            "$type": "dword",
+            "$alias": "Servitor's level"
+          }
+        }
+      }
+    }
+  }
+}

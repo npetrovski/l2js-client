@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      117,
+      0
+    ]
+  },
+  "item_distribution": {
+    "$type": "dword",
+    "$alias": "Item distribution"
+  }
+}

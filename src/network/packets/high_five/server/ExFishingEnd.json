@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 31, 0]
+  },
+  "fisher_oid": {
+    "$type": "dword",
+    "$alias": "Fisher OID"
+  },
+  "success": {
+    "$type": "byte",
+    "$alias": "Success"
+  }
+}

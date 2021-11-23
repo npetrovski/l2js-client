@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [135]
+  },
+  "outcome": {
+    "$type": "dword",
+    "$alias": "Outcome"
+  },
+  "received_item": {
+    "$type": "dword",
+    "$alias": "Received item"
+  },
+  "received_item_count": {
+    "$type": "double",
+    "$alias": "Received item count"
+  }
+}

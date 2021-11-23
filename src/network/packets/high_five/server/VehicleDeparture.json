@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [108]
+  },
+  "vehicle_oid": {
+    "$type": "dword",
+    "$alias": "Vehicle OID"
+  },
+  "movement_speed": {
+    "$type": "dword",
+    "$alias": "Movement speed"
+  },
+  "rotation_speed": {
+    "$type": "dword",
+    "$alias": "Rotation speed"
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  }
+}

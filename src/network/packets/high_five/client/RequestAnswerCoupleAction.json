@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      119,
+      0
+    ]
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  },
+  "answer": {
+    "$type": "dword",
+    "$alias": "Answer"
+  },
+  "requestor_oid": {
+    "$type": "dword",
+    "$alias": "Requestor OID"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [124]
+  },
+  "scroll": {
+    "$type": "dword",
+    "$alias": "Scroll"
+  }
+}

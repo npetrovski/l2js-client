@@ -1,0 +1,309 @@
+{
+  "0": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "1": {
+    "$type": "dword",
+    "$alias": "1"
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [178]
+  },
+  "type": {
+    "$type": "dword",
+    "$alias": "Type"
+  },
+  "type__branch": {
+    "$type": "branch",
+    "$id": "type",
+    "$condition": {
+      "$eq": 1
+    },
+    "$schema": {
+      "summon_oid": {
+        "$type": "dword",
+        "$alias": "Summon OID"
+      }
+    }
+  },
+  "type__branch_1": {
+    "$type": "branch",
+    "$id": "type",
+    "$condition": {
+      "$neq": 1
+    },
+    "$schema": {
+      "pet_oid": {
+        "$type": "dword",
+        "$alias": "Pet OID"
+      }
+    }
+  },
+  "servitor": {
+    "$type": "dword",
+    "$alias": "Servitor"
+  },
+  "attackable": {
+    "$type": "dword",
+    "$alias": "Attackable"
+  },
+  "location_x": {
+    "$type": "dword",
+    "$alias": "Location X"
+  },
+  "location_y": {
+    "$type": "dword",
+    "$alias": "Location Y"
+  },
+  "location_z": {
+    "$type": "dword",
+    "$alias": "Location Z"
+  },
+  "heading": {
+    "$type": "dword",
+    "$alias": "Heading"
+  },
+  "casting_speed": {
+    "$type": "dword",
+    "$alias": "Casting speed"
+  },
+  "attack_speed": {
+    "$type": "dword",
+    "$alias": "Attack speed"
+  },
+  "running_speed_on_ground_": {
+    "$type": "dword",
+    "$alias": "Running speed (on ground)"
+  },
+  "walking_speed_on_ground_": {
+    "$type": "dword",
+    "$alias": "Walking speed (on ground)"
+  },
+  "running_speed_in_water_": {
+    "$type": "dword",
+    "$alias": "Running speed (in water)"
+  },
+  "walking_speed_in_water_": {
+    "$type": "dword",
+    "$alias": "Walking speed (in water)"
+  },
+  "running_speed_in_air_": {
+    "$type": "dword",
+    "$alias": "Running speed (in air) ???"
+  },
+  "walking_speed_in_air_": {
+    "$type": "dword",
+    "$alias": "Walking speed (in air) ???"
+  },
+  "running_speed_in_air_while_mounted_": {
+    "$type": "dword",
+    "$alias": "Running speed (in air) while mounted?"
+  },
+  "walking_speed_in_air_while_mounted_": {
+    "$type": "dword",
+    "$alias": "Walking speed (in air) while mounted?"
+  },
+  "movement_speed_multiplier": {
+    "$type": "float",
+    "$alias": "Movement speed multiplier"
+  },
+  "attack_speed_multiplier": {
+    "$type": "float",
+    "$alias": "Attack speed multiplier"
+  },
+  "collision_radius": {
+    "$type": "float",
+    "$alias": "Collision radius"
+  },
+  "collision_height": {
+    "$type": "float",
+    "$alias": "Collision height"
+  },
+  "main_weapon": {
+    "$type": "dword",
+    "$alias": "Main weapon"
+  },
+  "chest_armor": {
+    "$type": "dword",
+    "$alias": "Chest armor"
+  },
+  "shield_support_weapon": {
+    "$type": "dword",
+    "$alias": "Shield/support weapon"
+  },
+  "owner_online": {
+    "$type": "byte",
+    "$alias": "Owner online"
+  },
+  "moving": {
+    "$type": "byte",
+    "$alias": "Moving"
+  },
+  "in_combat": {
+    "$type": "byte",
+    "$alias": "In combat"
+  },
+  "lying_dead": {
+    "$type": "byte",
+    "$alias": "Lying dead"
+  },
+  "knownlist_state": {
+    "$type": "byte",
+    "$alias": "Knownlist state"
+  },
+  "_": {
+    "$type": "dword",
+    "$alias": "???"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "__": {
+    "$type": "dword",
+    "$alias": "???"
+  },
+  "title": {
+    "$type": "ntstring",
+    "$alias": "Title"
+  },
+  "in_pvp": {
+    "$type": "dword",
+    "$alias": "In PvP"
+  },
+  "karma": {
+    "$type": "dword",
+    "$alias": "Karma"
+  },
+  "current_satiation": {
+    "$type": "dword",
+    "$alias": "Current satiation"
+  },
+  "maximum_satiation": {
+    "$type": "dword",
+    "$alias": "Maximum satiation"
+  },
+  "current_hp": {
+    "$type": "dword",
+    "$alias": "Current HP"
+  },
+  "maximum_hp": {
+    "$type": "dword",
+    "$alias": "Maximum HP"
+  },
+  "current_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "maximum_mp": {
+    "$type": "dword",
+    "$alias": "Maximum MP"
+  },
+  "sp": {
+    "$type": "dword",
+    "$alias": "SP"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "xp": {
+    "$type": "double",
+    "$alias": "XP"
+  },
+  "current_level_xp": {
+    "$type": "double",
+    "$alias": "Current level XP"
+  },
+  "next_level_xp": {
+    "$type": "double",
+    "$alias": "Next level XP"
+  },
+  "current_carried_weight": {
+    "$type": "dword",
+    "$alias": "Current carried weight"
+  },
+  "maximum_carried_weight": {
+    "$type": "dword",
+    "$alias": "Maximum carried weight"
+  },
+  "p_atk_": {
+    "$type": "dword",
+    "$alias": "P. Atk."
+  },
+  "p_def_": {
+    "$type": "dword",
+    "$alias": "P. Def."
+  },
+  "m_atk_": {
+    "$type": "dword",
+    "$alias": "M. Atk."
+  },
+  "m_def_": {
+    "$type": "dword",
+    "$alias": "M. Def."
+  },
+  "accuracy": {
+    "$type": "dword",
+    "$alias": "Accuracy"
+  },
+  "evasion": {
+    "$type": "dword",
+    "$alias": "Evasion"
+  },
+  "critical": {
+    "$type": "dword",
+    "$alias": "Critical"
+  },
+  "actual_movement_speed": {
+    "$type": "dword",
+    "$alias": "Actual movement speed"
+  },
+  "attack_speed_": {
+    "$type": "dword",
+    "$alias": "Attack speed"
+  },
+  "casting_speed_": {
+    "$type": "dword",
+    "$alias": "Casting speed"
+  },
+  "abnormal_effect": {
+    "$type": "dword",
+    "$alias": "Abnormal effect"
+  },
+  "mountable": {
+    "$type": "word",
+    "$alias": "Mountable"
+  },
+  "weapon_enchant_glow": {
+    "$type": "byte",
+    "$alias": "Weapon enchant glow"
+  },
+  "_0": {
+    "$type": "word",
+    "$alias": "??? 0"
+  },
+  "duel_team": {
+    "$type": "byte",
+    "$alias": "Duel team"
+  },
+  "soulshot_usage": {
+    "$type": "dword",
+    "$alias": "Soulshot usage"
+  },
+  "spiritshot_usage": {
+    "$type": "dword",
+    "$alias": "Spiritshot usage"
+  },
+  "ability_level": {
+    "$type": "dword",
+    "$alias": "Ability level"
+  },
+  "special_effect": {
+    "$type": "dword",
+    "$alias": "Special effect"
+  }
+}

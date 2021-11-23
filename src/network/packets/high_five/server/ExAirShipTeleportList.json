@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 154, 0]
+  },
+  "landing_zone_id": {
+    "$type": "dword",
+    "$alias": "Landing zone ID"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Destination count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "number": {
+        "$type": "dword",
+        "$alias": "Number"
+      },
+      "fuel_required": {
+        "$type": "dword",
+        "$alias": "Fuel required"
+      },
+      "destination_x": {
+        "$type": "dword",
+        "$alias": "Destination X"
+      },
+      "destination_y": {
+        "$type": "dword",
+        "$alias": "Destination Y"
+      },
+      "destination_z": {
+        "$type": "dword",
+        "$alias": "Destination Z"
+      }
+    }
+  }
+}

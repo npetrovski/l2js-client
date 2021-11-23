@@ -1,0 +1,40 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [3]
+  },
+  "account_id": {
+    "$type": "dword",
+    "$alias": "Account ID"
+  },
+  "auth_key": {
+    "$type": "dword",
+    "$alias": "Auth key"
+  },
+  "0_": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "billing_mode": {
+    "$type": "dword",
+    "$alias": "Billing mode"
+  },
+  "paid_time": {
+    "$type": "dword",
+    "$alias": "Paid time"
+  },
+  "0__": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "warning_mask": {
+    "$type": "dword",
+    "$alias": "Warning mask"
+  },
+  "forbidden_servers": {
+    "$type": "bytes",
+    "$alias": "Forbidden servers",
+    "$length": 16
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 75, 0]
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Member count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "member_oid": {
+        "$type": "dword",
+        "$alias": "Member OID"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      }
+    }
+  }
+}

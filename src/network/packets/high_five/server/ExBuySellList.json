@@ -1,0 +1,315 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 183, 0]
+  },
+  "cond_1": {
+    "$type": "dword",
+    "$alias": "Sell/Refund"
+  },
+  "cond_1__branch": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$eq": 0
+    },
+    "$schema": {
+      "viewer_s_adena": {
+        "$type": "double",
+        "$alias": "Viewer's adena"
+      },
+      "request_id": {
+        "$type": "dword",
+        "$alias": "Request ID"
+      },
+      "item_list": {
+        "$type": "word",
+        "$alias": "Buyable count"
+      }
+    }
+  },
+  "cond_1__branch_1": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$gt": 0
+    },
+    "$schema": {
+      "item_list": {
+        "$type": "word",
+        "$alias": "Sellable count"
+      }
+    }
+  },
+  "item_list_loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "item_list"
+    },
+    "$schema": {
+      "cond_1_branch": {
+        "$type": "branch",
+        "$id": "cond_1",
+        "$condition": {
+          "$gt": 0
+        },
+        "$schema": {
+          "price": {
+            "$type": "double",
+            "$alias": "Price"
+          }
+        }
+      },
+      "slot_number": {
+        "$type": "dword",
+        "$alias": "Slot number"
+      },
+      "amount": {
+        "$type": "double",
+        "$alias": "Amount"
+      },
+      "main_item_type": {
+        "$type": "word",
+        "$alias": "Main item type"
+      },
+      "is_ticket_branch": {
+        "$type": "branch",
+        "$id": "is_ticket",
+        "$condition": {
+          "$or": [
+            {
+              "$eq": 4443
+            },
+            {
+              "$eq": 4444
+            }
+          ]
+        },
+        "$schema": {
+          "race_number": {
+            "$type": "word",
+            "$alias": "Race number"
+          },
+          "bet": {
+            "$type": "word",
+            "$alias": "Bet"
+          }
+        }
+      },
+      "equipped": {
+        "$type": "word",
+        "$alias": "Equipped"
+      },
+      "used_paperdoll_slot_s_": {
+        "$type": "dword",
+        "$alias": "Used paperdoll slot(s)"
+      },
+      "augmentation_effect_1_": {
+        "$type": "word",
+        "$alias": "Augmentation effect (1)"
+      },
+      "augmentation_effect_2_": {
+        "$type": "word",
+        "$alias": "Augmentation effect (2)"
+      },
+      "mana_left": {
+        "$type": "dword",
+        "$alias": "Mana left"
+      },
+      "time_remaining": {
+        "$type": "dword",
+        "$alias": "Time remaining"
+      },
+      "attack_element": {
+        "$type": "word",
+        "$alias": "Attack element"
+      },
+      "attack_element_power": {
+        "$type": "word",
+        "$alias": "Attack element power"
+      },
+      "fire_defense": {
+        "$type": "word",
+        "$alias": "Fire defense"
+      },
+      "water_defense": {
+        "$type": "word",
+        "$alias": "Water defense"
+      },
+      "wind_defense": {
+        "$type": "word",
+        "$alias": "Wind defense"
+      },
+      "earth_defense": {
+        "$type": "word",
+        "$alias": "Earth defense"
+      },
+      "holy_defense": {
+        "$type": "word",
+        "$alias": "Holy defense"
+      },
+      "dark_defense": {
+        "$type": "word",
+        "$alias": "Dark defense"
+      },
+      "enchant_effect_1_": {
+        "$type": "word",
+        "$alias": "Enchant effect (1)"
+      },
+      "enchant_effect_2_": {
+        "$type": "word",
+        "$alias": "Enchant effect (2)"
+      },
+      "enchant_effect_3_": {
+        "$type": "word",
+        "$alias": "Enchant effect (3)"
+      }
+    }
+  },
+  "cond_1__branch_1_2": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$gt": 0
+    },
+    "$schema": {
+      "index_0": {
+        "$type": "word",
+        "$alias": "Refundable count"
+      },
+      "index_0_loop": {
+        "$type": "array",
+        "$length": {
+          "$id": "index_0"
+        },
+        "$schema": {
+          "item_oid": {
+            "$type": "dword",
+            "$alias": "Item OID"
+          },
+          "is_ticket": {
+            "$type": "dword",
+            "$alias": "Item"
+          },
+          "slot_number_inventory_": {
+            "$type": "dword",
+            "$alias": "Slot number (inventory)"
+          },
+          "amount": {
+            "$type": "double",
+            "$alias": "Amount"
+          },
+          "main_item_type": {
+            "$type": "word",
+            "$alias": "Main item type"
+          },
+          "is_ticket_branch": {
+            "$type": "branch",
+            "$id": "is_ticket",
+            "$condition": {
+              "$or": [
+                {
+                  "$eq": 4443
+                },
+                {
+                  "$eq": 4444
+                }
+              ]
+            },
+            "$schema": {
+              "race_number": {
+                "$type": "word",
+                "$alias": "Race number"
+              },
+              "bet": {
+                "$type": "word",
+                "$alias": "Bet"
+              }
+            }
+          },
+          "equipped": {
+            "$type": "word",
+            "$alias": "Equipped"
+          },
+          "used_paperdoll_slot_s_": {
+            "$type": "dword",
+            "$alias": "Used paperdoll slot(s)"
+          },
+          "augmentation_effect_1_": {
+            "$type": "word",
+            "$alias": "Augmentation effect (1)"
+          },
+          "augmentation_effect_2_": {
+            "$type": "word",
+            "$alias": "Augmentation effect (2)"
+          },
+          "mana_left": {
+            "$type": "dword",
+            "$alias": "Mana left"
+          },
+          "time_remaining": {
+            "$type": "dword",
+            "$alias": "Time remaining"
+          },
+          "attack_element": {
+            "$type": "word",
+            "$alias": "Attack element"
+          },
+          "attack_element_power": {
+            "$type": "word",
+            "$alias": "Attack element power"
+          },
+          "fire_defense": {
+            "$type": "word",
+            "$alias": "Fire defense"
+          },
+          "water_defense": {
+            "$type": "word",
+            "$alias": "Water defense"
+          },
+          "wind_defense": {
+            "$type": "word",
+            "$alias": "Wind defense"
+          },
+          "earth_defense": {
+            "$type": "word",
+            "$alias": "Earth defense"
+          },
+          "holy_defense": {
+            "$type": "word",
+            "$alias": "Holy defense"
+          },
+          "dark_defense": {
+            "$type": "word",
+            "$alias": "Dark defense"
+          },
+          "enchant_effect_1_": {
+            "$type": "word",
+            "$alias": "Enchant effect (1)"
+          },
+          "enchant_effect_2_": {
+            "$type": "word",
+            "$alias": "Enchant effect (2)"
+          },
+          "enchant_effect_3_": {
+            "$type": "word",
+            "$alias": "Enchant effect (3)"
+          },
+          "slot_number_refund_list_": {
+            "$type": "dword",
+            "$alias": "Slot number (refund list)"
+          },
+          "price": {
+            "$type": "double",
+            "$alias": "Price"
+          }
+        }
+      },
+      "close_dialog": {
+        "$type": "byte",
+        "$alias": "Close dialog"
+      }
+    }
+  }
+}

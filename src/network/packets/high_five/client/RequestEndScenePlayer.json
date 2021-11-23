@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      88,
+      0
+    ]
+  },
+  "scene": {
+    "$type": "dword",
+    "$alias": "Scene"
+  }
+}

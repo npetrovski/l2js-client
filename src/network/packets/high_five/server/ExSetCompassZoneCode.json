@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 51, 0]
+  },
+  "zone": {
+    "$type": "dword",
+    "$alias": "Zone"
+  }
+}

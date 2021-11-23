@@ -1,0 +1,65 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      159
+    ]
+  },
+  "buyer_oid": {
+    "$type": "dword",
+    "$alias": "Buyer OID"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Sold item count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "private_store_slot": {
+        "$type": "dword",
+        "$alias": "Private store slot"
+      },
+      "is_ticket": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "is_ticket_branch": {
+        "$type": "branch",
+        "$id": "is_ticket",
+        "$condition": {
+          "$or": [
+            {
+              "$eq": 4443
+            },
+            {
+              "$eq": 4444
+            }
+          ]
+        },
+        "$schema": {
+          "race_number": {
+            "$type": "word",
+            "$alias": "Race number"
+          },
+          "bet": {
+            "$type": "word",
+            "$alias": "Bet"
+          }
+        }
+      },
+      "amount": {
+        "$type": "dword",
+        "$alias": "Amount"
+      },
+      "price_single_item_": {
+        "$type": "dword",
+        "$alias": "Price (single item)"
+      }
+    }
+  }
+}

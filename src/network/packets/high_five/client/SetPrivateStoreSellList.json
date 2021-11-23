@@ -1,0 +1,37 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      49
+    ]
+  },
+  "package_sale": {
+    "$type": "dword",
+    "$alias": "Package sale"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "On sale item count"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "item_oid": {
+        "$type": "dword",
+        "$alias": "Item OID"
+      },
+      "amount": {
+        "$type": "dword",
+        "$alias": "Amount"
+      },
+      "price_single_item_": {
+        "$type": "dword",
+        "$alias": "Price (single item)"
+      }
+    }
+  }
+}

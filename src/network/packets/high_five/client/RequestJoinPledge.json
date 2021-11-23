@@ -1,0 +1,17 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      38
+    ]
+  },
+  "invitee_oid": {
+    "$type": "dword",
+    "$alias": "Invitee OID"
+  },
+  "unit": {
+    "$type": "dword",
+    "$alias": "Unit"
+  }
+}

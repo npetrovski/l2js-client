@@ -1,0 +1,32 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [124]
+  },
+  "skill": {
+    "$type": "dword",
+    "$alias": "Skill"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "type": {
+    "$type": "dword",
+    "$alias": "Type"
+  },
+  "type__branch": {
+    "$type": "branch",
+    "$id": "type",
+    "$condition": {
+      "$eq": 3
+    },
+    "$schema": {
+      "pledge_unit": {
+        "$type": "dword",
+        "$alias": "Pledge unit"
+      }
+    }
+  }
+}

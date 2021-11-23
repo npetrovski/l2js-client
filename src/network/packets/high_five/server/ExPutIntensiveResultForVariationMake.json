@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 84, 0]
+  },
+  "lifestone_oid": {
+    "$type": "dword",
+    "$alias": "Lifestone OID"
+  },
+  "lifestone": {
+    "$type": "dword",
+    "$alias": "Lifestone"
+  },
+  "required_gemstone": {
+    "$type": "dword",
+    "$alias": "Required gemstone"
+  },
+  "required_quantity": {
+    "$type": "double",
+    "$alias": "Required quantity"
+  },
+  "lifestone_accepted": {
+    "$type": "dword",
+    "$alias": "Lifestone accepted"
+  }
+}

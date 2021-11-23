@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [44]
+  },
+  "invitor_oid": {
+    "$type": "dword",
+    "$alias": "Invitor OID"
+  },
+  "pledge_name": {
+    "$type": "ntstring",
+    "$alias": "Pledge name"
+  },
+  "unit": {
+    "$type": "dword",
+    "$alias": "Unit"
+  },
+  "unit_name": {
+    "$type": "ntstring",
+    "$alias": "Unit name"
+  }
+}

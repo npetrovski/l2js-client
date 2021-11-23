@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [244]
+  },
+  "member_type": {
+    "$type": "dword",
+    "$alias": "Member type"
+  },
+  "member_oid": {
+    "$type": "dword",
+    "$alias": "Member OID"
+  },
+  "skill_cnt": {
+    "$type": "dword",
+    "$alias": "Effect count"
+  },
+  "skills": {
+    "$type": "array",
+    "$length": {
+      "$id": "skill_cnt"
+    },
+    "$schema": {
+      "skill": {
+        "$type": "dword",
+        "$alias": "Skill"
+      },
+      "level": {
+        "$type": "word",
+        "$alias": "Level"
+      },
+      "time_left": {
+        "$type": "dword",
+        "$alias": "Time left"
+      }
+    }
+  }
+}

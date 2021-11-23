@@ -1,0 +1,125 @@
+{
+  "0": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      90
+    ]
+  },
+  "subunit": {
+    "$type": "dword",
+    "$alias": "Subunit"
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  },
+  "unit": {
+    "$type": "dword",
+    "$alias": "Unit"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "leader_name": {
+    "$type": "ntstring",
+    "$alias": "Leader name"
+  },
+  "crest_id": {
+    "$type": "dword",
+    "$alias": "Crest ID"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "castle": {
+    "$type": "dword",
+    "$alias": "Castle"
+  },
+  "hideout": {
+    "$type": "dword",
+    "$alias": "Hideout"
+  },
+  "fortress": {
+    "$type": "dword",
+    "$alias": "Fortress"
+  },
+  "rank": {
+    "$type": "dword",
+    "$alias": "Rank"
+  },
+  "reputation": {
+    "$type": "dword",
+    "$alias": "Reputation"
+  },
+  "0_": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "alliance_id": {
+    "$type": "dword",
+    "$alias": "Alliance ID"
+  },
+  "alliance_name": {
+    "$type": "ntstring",
+    "$alias": "Alliance name"
+  },
+  "alliance_crest_id": {
+    "$type": "dword",
+    "$alias": "Alliance crest ID"
+  },
+  "at_war": {
+    "$type": "dword",
+    "$alias": "At war"
+  },
+  "territory_ward": {
+    "$type": "dword",
+    "$alias": "Territory ward"
+  },
+  "index_0": {
+    "$type": "dword",
+    "$alias": "Member count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "sex": {
+        "$type": "dword",
+        "$alias": "Sex"
+      },
+      "race": {
+        "$type": "dword",
+        "$alias": "Race"
+      },
+      "member_oid": {
+        "$type": "dword",
+        "$alias": "Member OID"
+      },
+      "apprentice": {
+        "$type": "dword",
+        "$alias": "Apprentice"
+      }
+    }
+  }
+}

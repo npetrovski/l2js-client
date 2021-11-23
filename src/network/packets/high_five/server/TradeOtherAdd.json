@@ -1,0 +1,111 @@
+{
+  "0": {
+    "$type": "word",
+    "$alias": "0"
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [27]
+  },
+  "index_0": {
+    "$type": "word",
+    "$alias": "Item count"
+  },
+  "index_0__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "index_0"
+    },
+    "$schema": {
+      "item_oid": {
+        "$type": "dword",
+        "$alias": "Item OID"
+      },
+      "is_ticket": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "amount": {
+        "$type": "double",
+        "$alias": "Amount"
+      },
+      "main_item_type": {
+        "$type": "word",
+        "$alias": "Main item type"
+      },
+      "is_ticket_branch": {
+        "$type": "branch",
+        "$id": "is_ticket",
+        "$condition": {
+          "$or": [
+            {
+              "$eq": 4443
+            },
+            {
+              "$eq": 4444
+            }
+          ]
+        },
+        "$schema": {
+          "0": {
+            "$type": "word",
+            "$alias": "0"
+          },
+          "race_number": {
+            "$type": "word",
+            "$alias": "Race number"
+          }
+        }
+      },
+      "used_paperdoll_slot_s_": {
+        "$type": "dword",
+        "$alias": "Used paperdoll slot(s)"
+      },
+      "attack_element": {
+        "$type": "word",
+        "$alias": "Attack element"
+      },
+      "attack_element_power": {
+        "$type": "word",
+        "$alias": "Attack element power"
+      },
+      "fire_defense": {
+        "$type": "word",
+        "$alias": "Fire defense"
+      },
+      "water_defense": {
+        "$type": "word",
+        "$alias": "Water defense"
+      },
+      "wind_defense": {
+        "$type": "word",
+        "$alias": "Wind defense"
+      },
+      "earth_defense": {
+        "$type": "word",
+        "$alias": "Earth defense"
+      },
+      "holy_defense": {
+        "$type": "word",
+        "$alias": "Holy defense"
+      },
+      "dark_defense": {
+        "$type": "word",
+        "$alias": "Dark defense"
+      },
+      "enchant_effect_1_": {
+        "$type": "word",
+        "$alias": "Enchant effect (1)"
+      },
+      "enchant_effect_2_": {
+        "$type": "word",
+        "$alias": "Enchant effect (2)"
+      },
+      "enchant_effect_3_": {
+        "$type": "word",
+        "$alias": "Enchant effect (3)"
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [229]
+  },
+  "int_modifier": {
+    "$type": "byte",
+    "$alias": "INT modifier"
+  },
+  "str_modifier": {
+    "$type": "byte",
+    "$alias": "STR modifier"
+  },
+  "con_modifier": {
+    "$type": "byte",
+    "$alias": "CON modifier"
+  },
+  "men_modifier": {
+    "$type": "byte",
+    "$alias": "MEN modifier"
+  },
+  "dex_modifier": {
+    "$type": "byte",
+    "$alias": "DEX modifier"
+  },
+  "wit_modifier": {
+    "$type": "byte",
+    "$alias": "WIT modifier"
+  },
+  "available_slots": {
+    "$type": "dword",
+    "$alias": "Available slots"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Used slots"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "henna": {
+        "$type": "dword",
+        "$alias": "Henna"
+      },
+      "active": {
+        "$type": "dword",
+        "$alias": "Active"
+      }
+    }
+  }
+}

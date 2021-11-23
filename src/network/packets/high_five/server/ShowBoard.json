@@ -1,0 +1,91 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [123]
+  },
+  "window_action": {
+    "$type": "byte",
+    "$alias": "Window action"
+  },
+  "board_item": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item_": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item__": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item___": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item____": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item_____": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item______": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item_______": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item_________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item__________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item___________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item____________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item_____________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item______________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item_______________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item________________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item_________________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item__________________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  },
+  "board_item___________________": {
+    "$type": "ntstring",
+    "$alias": "Board item"
+  }
+}

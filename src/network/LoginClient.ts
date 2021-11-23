@@ -1,20 +1,25 @@
 import MMOClient from "../mmocore/MMOClient";
 import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
-import LoginCrypt from "../security/crypt/LoginCrypt";
-import LoginPacketHandler from "./LoginPacketHandler";
+import LoginCrypt from "./LoginCrypt";
 import L2Server from "../entities/L2Server";
-import LoginServerPacket from "./outgoing/login/LoginServerPacket";
 import { GlobalEvents } from "../mmocore/EventEmitter";
 import IConnection from "../mmocore/IConnection";
 import mutators from "./mutators/login/index";
+import SocketFactory from "../socket/SocketFactory";
+import MMOSession from "../mmocore/MMOSession";
+import PacketHandler from "./PacketHandler";
+import { default as packets } from "./packets/index";
+import SerializablePacket from "../mmocore/SerializablePacket";
+import IPacketHandler from "../mmocore/IPacketHandler";
 
 export default class LoginClient extends MMOClient {
-  private _loginCrypt: LoginCrypt = new LoginCrypt();
-  private _blowfishKey!: Uint8Array;
+  private _loginCrypt = new LoginCrypt();
   private _servers: L2Server[] = [];
   private _serverId = 1;
   private _config!: MMOConfig;
+  private _serverPacketsHandler!: IPacketHandler;
+  private _clientPacketsHandler!: IPacketHandler;
 
   get ServerId(): number {
     return this._serverId;
@@ -22,15 +27,6 @@ export default class LoginClient extends MMOClient {
 
   set ServerId(serverId: number) {
     this._serverId = serverId;
-  }
-
-  get BlowfishKey(): Uint8Array {
-    return this._blowfishKey;
-  }
-
-  set BlowfishKey(blowfishKey: Uint8Array) {
-    this._blowfishKey = blowfishKey;
-    this._loginCrypt.setKey(blowfishKey);
   }
 
   get Servers(): L2Server[] {
@@ -49,25 +45,73 @@ export default class LoginClient extends MMOClient {
     this._config = config;
   }
 
-  constructor() {
-    super();
-    this.PacketHandler = new LoginPacketHandler();
+  get ServerPacketsHandler(): IPacketHandler {
+    if (!this._serverPacketsHandler) {
+      this._serverPacketsHandler = new PacketHandler(
+        Object.fromEntries(
+          Object.entries((packets.auth as any)[this.Protocol].server).map(([key, meta]) => {
+            return [(meta as any).prefix, { name: key, schema: (meta as any).schema }];
+          })
+        )
+      );
+    }
+    return this._serverPacketsHandler;
+  }
 
-    mutators.forEach(m => {
-      const mutator = Object.create(m[0], {
+  set ServerPacketsHandler(handler: IPacketHandler) {
+    this._serverPacketsHandler = handler;
+  }
+
+  get ClientPacketsHandler(): IPacketHandler {
+    if (!this._clientPacketsHandler) {
+      this._clientPacketsHandler = new PacketHandler(
+        Object.fromEntries(
+          Object.entries((packets.auth as any)[this.Protocol].client).map(([key, meta]) => {
+            return [(meta as any).prefix, { name: key, schema: (meta as any).schema }];
+          })
+        )
+      );
+    }
+    return this._clientPacketsHandler;
+  }
+
+  set ClientPacketsHandler(handler: IPacketHandler) {
+    this._clientPacketsHandler = handler;
+  }
+
+  public Packets!: {
+    client: { [name: string]: { prefix: string; schema: unknown } };
+    server: { [name: string]: { prefix: string; schema: unknown } };
+  };
+
+  constructor(public Protocol: string) {
+    super();
+
+    this.logger.debug(`Auth protocol: '${Protocol}'`);
+
+    this.Packets = (packets.auth as any)[this.Protocol];
+
+    mutators.forEach((m) => {
+      const mutator = Object.create(m[0] as any, {
         Client: { value: this },
-        PacketType: { value: (m[1] as any).name }
+        PacketType: { value: m[1] },
       });
       this.registerMutator(mutator);
     });
   }
 
+  reset(): void {
+    this._servers = [];
+    this._buffer = new Uint8Array();
+    this._loginCrypt = new LoginCrypt();
+  }
+
   init(config: MMOConfig, connection?: IConnection): this {
-    this.Connection = connection ?? new MMOConnection(config, this);
+    this.Connection = connection ?? new MMOConnection(SocketFactory.getSocketAdapter(config), this);
 
     this.Config = config;
 
-    this.Session.username = config.Username;
+    MMOSession.Username = config.Username;
 
     if (config.ServerId) {
       this._serverId = config.ServerId;
@@ -76,37 +120,54 @@ export default class LoginClient extends MMOClient {
     return this;
   }
 
-  pack(lsp: LoginServerPacket): Uint8Array {
-    lsp.write();
-
-    const count =
-      lsp.Position % 8 === 0
-        ? lsp.Position
-        : lsp.Position + (8 - (lsp.Position % 8));
-    this._loginCrypt.encrypt(lsp.Buffer, 0, count);
-
-    const sendable: Uint8Array = new Uint8Array(count + 2);
-    sendable[0] = (count + 2) & 0xff;
-    sendable[1] = (count + 2) >>> 8;
-    sendable.set(lsp.Buffer.slice(0, count), 2);
-
-    return sendable;
+  encrypt(buf: Uint8Array, offset?: number, size?: number): void {
+    return this._loginCrypt.encrypt(buf, offset, size);
+  }
+  decrypt(buf: Uint8Array, offset?: number, size?: number): boolean {
+    return this._loginCrypt.decrypt(buf, offset, size);
+  }
+  setKey(key: Uint8Array): void {
+    return this._loginCrypt.setKey(key);
   }
 
-  sendPacket(lsp: LoginServerPacket): Promise<void> {
-    const sendable: Uint8Array = this.pack(lsp);
+  pack(lsp: SerializablePacket): Uint8Array {
+    if (!lsp.Buffer || lsp.Buffer.byteLength === 0) {
+      return new Uint8Array();
+    }
 
-    this.logger.debug("Sending ", lsp.constructor.name);
+    const pos = lsp.Buffer.byteLength + 4;
+    const count = pos + (8 - (pos % 8));
+
+    const data = new Uint8Array(count + 2);
+    data.set(lsp.Buffer, 2);
+
+    this.encrypt(data, 2, count - 2);
+
+    data[0] = (count + 2) & 0xff;
+    data[1] = (count + 2) >>> 8;
+
+    return data;
+  }
+
+  findPacket(name: string, type: "client" | "server" = "client"): SerializablePacket | undefined {
+    if (name in this.Packets.client) {
+      return new SerializablePacket(name, ((this.Packets as any)[type] as any)[name].schema);
+    }
+  }
+
+  sendPacket(name: string, data: Record<string, unknown> = {}): Promise<void> {
+    const sp = this.findPacket(name);
+    if (!sp) {
+      throw new Error(`Cannot prepare sendable packet for '${name}'`);
+    }
+    sp.write(data);
+
+    const sendable: Uint8Array = this.pack(sp);
+
+    this.logger.debug("Sending", `0x${sendable[0].toString(16)} ${sp.Name}`);
+
     return this.sendRaw(sendable).then(() => {
-      GlobalEvents.fire(`PacketSent:${lsp.constructor.name}`, { packet: lsp });
+      GlobalEvents.fire(`PacketSent:${sp.Name}`, { packet: sp });
     });
-  }
-
-  encrypt(buf: Uint8Array, offset: number, size: number): void {
-    this._loginCrypt.encrypt(buf, offset, size);
-  }
-
-  decrypt(buf: Uint8Array, offset: number, size: number): void {
-    this._loginCrypt.decrypt(buf, offset, size);
   }
 }

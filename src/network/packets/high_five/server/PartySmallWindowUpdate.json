@@ -1,0 +1,47 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [82]
+  },
+  "member_oid": {
+    "$type": "dword",
+    "$alias": "Member OID"
+  },
+  "name": {
+    "$type": "ntstring",
+    "$alias": "Name"
+  },
+  "current_cp": {
+    "$type": "dword",
+    "$alias": "Current CP"
+  },
+  "maximum_cp": {
+    "$type": "dword",
+    "$alias": "Maximum CP"
+  },
+  "current_hp": {
+    "$type": "dword",
+    "$alias": "Current HP"
+  },
+  "maximum_hp": {
+    "$type": "dword",
+    "$alias": "Maximum HP"
+  },
+  "current_mp": {
+    "$type": "dword",
+    "$alias": "Current MP"
+  },
+  "maximum_mp": {
+    "$type": "dword",
+    "$alias": "Maximum MP"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "class": {
+    "$type": "dword",
+    "$alias": "Class"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 105, 0]
+  },
+  "show_window": {
+    "$type": "dword",
+    "$alias": "Show window"
+  },
+  "cond_1": {
+    "$type": "dword",
+    "$alias": "Retry"
+  },
+  "cond_1__branch": {
+    "$type": "branch",
+    "$id": "cond_1",
+    "$condition": {
+      "$eq": 0
+    },
+    "$schema": {
+      "old_pledge_name": {
+        "$type": "ntstring",
+        "$alias": "Old pledge name"
+      }
+    }
+  }
+}

@@ -15,7 +15,10 @@ export default class SocketFactory {
         if (typeof process !== "undefined" && process.release.name === "node") {
           return new NetSocket(config.Ip, config.Port);
         }
-        if (typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+        if (
+          typeof navigator !== "undefined" &&
+          navigator.userAgent.toLowerCase().indexOf("firefox") > -1
+        ) {
           throw new Error("Not yet implemented");
           // return new FireFox();
         }
@@ -24,5 +27,4 @@ export default class SocketFactory {
 
     throw new Error("Cannot find appropriate socket adapter");
   }
-
 }

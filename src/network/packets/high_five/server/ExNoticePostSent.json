@@ -1,0 +1,11 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 180, 0]
+  },
+  "animation": {
+    "$type": "dword",
+    "$alias": "Animation"
+  }
+}

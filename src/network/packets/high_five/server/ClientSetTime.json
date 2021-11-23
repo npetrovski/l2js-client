@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [242]
+  },
+  "game_time_since_server_start": {
+    "$type": "dword",
+    "$alias": "Game time since server start"
+  },
+  "game_time_speed_multiplier": {
+    "$type": "dword",
+    "$alias": "Game time speed multiplier"
+  }
+}

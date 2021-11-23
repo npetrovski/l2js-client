@@ -7,8 +7,6 @@ import L2ObjectCollection from "./entities/L2ObjectCollection";
 import L2Skill from "./entities/L2Skill";
 import L2User from "./entities/L2User";
 import L2Recipe from "./entities/L2Recipe";
-import GameClient from "./network/GameClient";
-import LoginClient from "./network/LoginClient";
 import { EventHandlerType } from "./events/EventTypes";
 import ClientCommands from "./commands/ClientCommands";
 
@@ -16,9 +14,6 @@ import ClientCommands from "./commands/ClientCommands";
  * Lineage 2 Client main class
  */
 export default class Client extends ClientCommands {
-  LoginClient = new LoginClient();
-  GameClient = new GameClient();
-
   get Me(): L2User {
     return this.GameClient.ActiveChar;
   }
@@ -50,9 +45,7 @@ export default class Client extends ClientCommands {
     return this.GameClient.CommonRecipeBook;
   }
 
-  private ___event_params(
-    ...params: EventHandlerType
-  ): { type: string; handler: EventHandler } {
+  private ___event_params(...params: EventHandlerType): { type: string; handler: EventHandler } {
     let type: string;
     let handler: any;
     if (params.length >= 3) {

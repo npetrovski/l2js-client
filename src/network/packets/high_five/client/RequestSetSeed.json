@@ -1,0 +1,39 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      3,
+      0
+    ]
+  },
+  "manor": {
+    "$type": "dword",
+    "$alias": "Manor"
+  },
+  "seed_cnt": {
+    "$type": "dword",
+    "$alias": "Seed count"
+  },
+  "seed_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "seed_cnt"
+    },
+    "$schema": {
+      "item": {
+        "$type": "dword",
+        "$alias": "Item"
+      },
+      "amount": {
+        "$type": "dword",
+        "$alias": "Amount"
+      },
+      "price": {
+        "$type": "dword",
+        "$alias": "Price"
+      }
+    }
+  }
+}

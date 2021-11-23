@@ -1,0 +1,219 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 104, 0]
+  },
+  "open_window": {
+    "$type": "byte",
+    "$alias": "Open window"
+  },
+  "auction_id": {
+    "$type": "dword",
+    "$alias": "Auction ID"
+  },
+  "highest_bid": {
+    "$type": "double",
+    "$alias": "Highest bid"
+  },
+  "time_left": {
+    "$type": "dword",
+    "$alias": "Time left"
+  },
+  "item": {
+    "$type": "dword",
+    "$alias": "Item"
+  },
+  "item_dupe_": {
+    "$type": "dword",
+    "$alias": "Item (dupe)"
+  },
+  "slot_number": {
+    "$type": "dword",
+    "$alias": "Slot number"
+  },
+  "quantity": {
+    "$type": "double",
+    "$alias": "Quantity"
+  },
+  "main_item_type": {
+    "$type": "word",
+    "$alias": "Main item type"
+  },
+  "special_item_type": {
+    "$type": "word",
+    "$alias": "Special item type"
+  },
+  "equipped": {
+    "$type": "word",
+    "$alias": "Equipped"
+  },
+  "used_paperdoll_slot_s_": {
+    "$type": "dword",
+    "$alias": "Used paperdoll slot(s)"
+  },
+  "enchant_level": {
+    "$type": "word",
+    "$alias": "Enchant level"
+  },
+  "name_exists": {
+    "$type": "word",
+    "$alias": "Name exists"
+  },
+  "augmentation": {
+    "$type": "dword",
+    "$alias": "Augmentation"
+  },
+  "mana_left": {
+    "$type": "dword",
+    "$alias": "Mana left"
+  },
+  "time_remaining": {
+    "$type": "dword",
+    "$alias": "Time remaining"
+  },
+  "attack_element": {
+    "$type": "word",
+    "$alias": "Attack element"
+  },
+  "attack_element_power": {
+    "$type": "word",
+    "$alias": "Attack element power"
+  },
+  "fire_defense": {
+    "$type": "word",
+    "$alias": "Fire defense"
+  },
+  "water_defense": {
+    "$type": "word",
+    "$alias": "Water defense"
+  },
+  "wind_defense": {
+    "$type": "word",
+    "$alias": "Wind defense"
+  },
+  "earth_defense": {
+    "$type": "word",
+    "$alias": "Earth defense"
+  },
+  "holy_defense": {
+    "$type": "word",
+    "$alias": "Holy defense"
+  },
+  "dark_defense": {
+    "$type": "word",
+    "$alias": "Dark defense"
+  },
+  "0_": {
+    "$type": "word",
+    "$alias": "0"
+  },
+  "0__": {
+    "$type": "word",
+    "$alias": "0"
+  },
+  "next_starter_bid": {
+    "$type": "double",
+    "$alias": "Next starter bid"
+  },
+  "start_time": {
+    "$type": "dword",
+    "$alias": "Start time"
+  },
+  "item_": {
+    "$type": "dword",
+    "$alias": "Item"
+  },
+  "item_dupe__": {
+    "$type": "dword",
+    "$alias": "Item (dupe)"
+  },
+  "slot_number_": {
+    "$type": "dword",
+    "$alias": "Slot number"
+  },
+  "quantity_": {
+    "$type": "double",
+    "$alias": "Quantity"
+  },
+  "main_item_type_": {
+    "$type": "word",
+    "$alias": "Main item type"
+  },
+  "special_item_type_": {
+    "$type": "word",
+    "$alias": "Special item type"
+  },
+  "equipped_": {
+    "$type": "word",
+    "$alias": "Equipped"
+  },
+  "used_paperdoll_slot_s__": {
+    "$type": "dword",
+    "$alias": "Used paperdoll slot(s)"
+  },
+  "enchant_level_": {
+    "$type": "word",
+    "$alias": "Enchant level"
+  },
+  "name_exists_": {
+    "$type": "word",
+    "$alias": "Name exists"
+  },
+  "augmentation_": {
+    "$type": "dword",
+    "$alias": "Augmentation"
+  },
+  "mana_left_": {
+    "$type": "dword",
+    "$alias": "Mana left"
+  },
+  "time_remaining_": {
+    "$type": "dword",
+    "$alias": "Time remaining"
+  },
+  "attack_element_": {
+    "$type": "word",
+    "$alias": "Attack element"
+  },
+  "attack_element_power_": {
+    "$type": "word",
+    "$alias": "Attack element power"
+  },
+  "fire_defense_": {
+    "$type": "word",
+    "$alias": "Fire defense"
+  },
+  "water_defense_": {
+    "$type": "word",
+    "$alias": "Water defense"
+  },
+  "wind_defense_": {
+    "$type": "word",
+    "$alias": "Wind defense"
+  },
+  "earth_defense_": {
+    "$type": "word",
+    "$alias": "Earth defense"
+  },
+  "holy_defense_": {
+    "$type": "word",
+    "$alias": "Holy defense"
+  },
+  "dark_defense_": {
+    "$type": "word",
+    "$alias": "Dark defense"
+  },
+  "0___": {
+    "$type": "word",
+    "$alias": "0"
+  },
+  "0____": {
+    "$type": "word",
+    "$alias": "0"
+  },
+  "0_____": {
+    "$type": "word",
+    "$alias": "0"
+  }
+}

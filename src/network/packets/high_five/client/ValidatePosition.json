@@ -1,0 +1,29 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      89
+    ]
+  },
+  "client_x": {
+    "$type": "dword",
+    "$alias": "Client X"
+  },
+  "client_y": {
+    "$type": "dword",
+    "$alias": "Client Y"
+  },
+  "client_z": {
+    "$type": "dword",
+    "$alias": "Client Z"
+  },
+  "client_yaw": {
+    "$type": "dword",
+    "$alias": "Client Yaw"
+  },
+  "vehicle_oid": {
+    "$type": "dword",
+    "$alias": "Vehicle OID"
+  }
+}

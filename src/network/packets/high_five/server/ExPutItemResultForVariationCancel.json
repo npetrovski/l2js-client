@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 87, 0]
+  },
+  "item_oid": {
+    "$type": "dword",
+    "$alias": "Item OID"
+  },
+  "item": {
+    "$type": "dword",
+    "$alias": "Item"
+  },
+  "augmentation_effect_1_": {
+    "$type": "dword",
+    "$alias": "Augmentation effect (1)"
+  },
+  "augmentation_effect_2_": {
+    "$type": "dword",
+    "$alias": "Augmentation effect (2)"
+  },
+  "removal_price": {
+    "$type": "double",
+    "$alias": "Removal price"
+  },
+  "item_accepted": {
+    "$type": "dword",
+    "$alias": "Item accepted"
+  }
+}

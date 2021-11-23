@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 189, 0]
+  },
+  "event": {
+    "$type": "dword",
+    "$alias": "Event"
+  },
+  "day": {
+    "$type": "dword",
+    "$alias": "Day"
+  },
+  "count": {
+    "$type": "dword",
+    "$alias": "Count"
+  },
+  "best_score": {
+    "$type": "dword",
+    "$alias": "Best Score"
+  },
+  "my_score": {
+    "$type": "dword",
+    "$alias": "My score"
+  }
+}

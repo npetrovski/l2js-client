@@ -1,0 +1,35 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 54, 0]
+  },
+  "total_waiting_count": {
+    "$type": "dword",
+    "$alias": "Total waiting count"
+  },
+  "pr_wait_cnt": {
+    "$type": "dword",
+    "$alias": "Player count"
+  },
+  "pr_wait_cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "pr_wait_cnt"
+    },
+    "$schema": {
+      "name": {
+        "$type": "ntstring",
+        "$alias": "Name"
+      },
+      "class": {
+        "$type": "dword",
+        "$alias": "Class"
+      },
+      "level": {
+        "$type": "dword",
+        "$alias": "Level"
+      }
+    }
+  }
+}

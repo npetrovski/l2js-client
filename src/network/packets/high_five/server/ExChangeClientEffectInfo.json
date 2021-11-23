@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 194, 0]
+  },
+  "type": {
+    "$type": "dword",
+    "$alias": "Type"
+  },
+  "key": {
+    "$type": "dword",
+    "$alias": "Key"
+  },
+  "value": {
+    "$type": "dword",
+    "$alias": "Value"
+  }
+}

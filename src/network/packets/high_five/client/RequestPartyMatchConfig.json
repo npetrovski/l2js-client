@@ -1,0 +1,25 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      111
+    ]
+  },
+  "show_in_list": {
+    "$type": "dword",
+    "$alias": "Show in list"
+  },
+  "show_level": {
+    "$type": "dword",
+    "$alias": "Show level"
+  },
+  "show_occupation": {
+    "$type": "dword",
+    "$alias": "Show occupation"
+  },
+  "memo": {
+    "$type": "ntstring",
+    "$alias": "Memo"
+  }
+}

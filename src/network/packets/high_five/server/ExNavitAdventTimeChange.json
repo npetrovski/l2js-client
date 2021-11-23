@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 225, 0]
+  },
+  "time_paused": {
+    "$type": "byte",
+    "$alias": "Time paused"
+  },
+  "advent_bonus_time_left": {
+    "$type": "dword",
+    "$alias": "Advent bonus time left"
+  }
+}

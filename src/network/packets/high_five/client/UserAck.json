@@ -1,0 +1,24 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 4,
+    "$default": [
+      56,
+      0,
+      0,
+      0
+    ]
+  },
+  "character_id": {
+    "$type": "dword",
+    "$alias": "Character ID"
+  },
+  "character_oid": {
+    "$type": "dword",
+    "$alias": "Character OID"
+  },
+  "unk0": {
+    "$type": "dword",
+    "$alias": ""
+  }
+}

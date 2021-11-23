@@ -1,0 +1,23 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      84,
+      0
+    ]
+  },
+  "territory": {
+    "$type": "dword",
+    "$alias": "Territory"
+  },
+  "pledge": {
+    "$type": "dword",
+    "$alias": "Pledge"
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  }
+}

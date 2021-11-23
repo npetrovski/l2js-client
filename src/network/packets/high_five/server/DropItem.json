@@ -1,0 +1,43 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [22]
+  },
+  "dropper_oid": {
+    "$type": "dword",
+    "$alias": "Dropper OID"
+  },
+  "item_oid": {
+    "$type": "dword",
+    "$alias": "Item OID"
+  },
+  "item": {
+    "$type": "dword",
+    "$alias": "Item"
+  },
+  "destination_x": {
+    "$type": "dword",
+    "$alias": "Destination X"
+  },
+  "destination_y": {
+    "$type": "dword",
+    "$alias": "Destination Y"
+  },
+  "destination_z": {
+    "$type": "dword",
+    "$alias": "Destination Z"
+  },
+  "is_stackable": {
+    "$type": "dword",
+    "$alias": "Stackable"
+  },
+  "amount": {
+    "$type": "double",
+    "$alias": "Amount"
+  },
+  "unknown": {
+    "$type": "dword",
+    "$alias": "Unknown"
+  }
+}

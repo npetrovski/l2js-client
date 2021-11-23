@@ -1,0 +1,71 @@
+{
+  "0": {
+    "$type": "dword",
+    "$alias": "0"
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [142]
+  },
+  "pledge_id": {
+    "$type": "dword",
+    "$alias": "Pledge ID"
+  },
+  "crest_id": {
+    "$type": "dword",
+    "$alias": "Crest ID"
+  },
+  "level": {
+    "$type": "dword",
+    "$alias": "Level"
+  },
+  "castle": {
+    "$type": "dword",
+    "$alias": "Castle"
+  },
+  "hideout": {
+    "$type": "dword",
+    "$alias": "Hideout"
+  },
+  "fort": {
+    "$type": "dword",
+    "$alias": "Fort"
+  },
+  "rank": {
+    "$type": "dword",
+    "$alias": "Rank"
+  },
+  "reputation": {
+    "$type": "dword",
+    "$alias": "Reputation"
+  },
+  "status": {
+    "$type": "dword",
+    "$alias": "Status"
+  },
+  "alliance_id": {
+    "$type": "dword",
+    "$alias": "Alliance ID"
+  },
+  "alliance_name": {
+    "$type": "ntstring",
+    "$alias": "Alliance name"
+  },
+  "alliance_crest_id": {
+    "$type": "dword",
+    "$alias": "Alliance crest ID"
+  },
+  "at_war": {
+    "$type": "dword",
+    "$alias": "At war"
+  },
+  "territory_ward": {
+    "$type": "dword",
+    "$alias": "Territory ward"
+  },
+  "0_": {
+    "$type": "dword",
+    "$alias": "0"
+  }
+}

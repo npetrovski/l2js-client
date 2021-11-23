@@ -1,0 +1,14 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [
+      72
+    ]
+  },
+  "unselect": {
+    "$type": "word",
+    "$alias": "Abort case and unselect",
+    "$default": 0
+  }
+}

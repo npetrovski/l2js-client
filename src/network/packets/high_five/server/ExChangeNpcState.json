@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 190, 0]
+  },
+  "npc_oid": {
+    "$type": "dword",
+    "$alias": "NPC OID"
+  },
+  "gracia_seed_effect": {
+    "$type": "dword",
+    "$alias": "Gracia seed effect"
+  }
+}

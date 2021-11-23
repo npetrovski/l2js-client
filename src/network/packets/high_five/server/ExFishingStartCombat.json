@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 39, 0]
+  },
+  "fisher_oid": {
+    "$type": "dword",
+    "$alias": "Fisher OID"
+  },
+  "time_left": {
+    "$type": "dword",
+    "$alias": "Time left"
+  },
+  "hp_remaining": {
+    "$type": "dword",
+    "$alias": "HP remaining"
+  },
+  "strength": {
+    "$type": "byte",
+    "$alias": "Strength"
+  },
+  "lure_type": {
+    "$type": "byte",
+    "$alias": "Lure type"
+  }
+}

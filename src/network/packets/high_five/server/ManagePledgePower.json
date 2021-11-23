@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [42]
+  },
+  "ranking": {
+    "$type": "dword",
+    "$alias": "Ranking"
+  },
+  "action": {
+    "$type": "dword",
+    "$alias": "Action"
+  },
+  "privileges": {
+    "$type": "dword",
+    "$alias": "Privileges"
+  }
+}

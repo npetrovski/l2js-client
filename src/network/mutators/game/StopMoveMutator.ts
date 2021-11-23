@@ -1,19 +1,18 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import StopMove from "../../incoming/game/StopMove";
 import { GlobalEvents } from "../../../mmocore/EventEmitter";
+import SerializablePacket from "../../../mmocore/SerializablePacket";
 
-export default class StopMoveMutator extends IMMOClientMutator<
-  GameClient,
-  StopMove
-> {
-  update(packet: StopMove): void {
-    const creature = this.Client.CreaturesList.getEntryByObjectId(
-      packet.ObjectId
-    );
+export default class StopMoveMutator extends IMMOClientMutator<GameClient, SerializablePacket> {
+  update(packet: SerializablePacket): void {
+    const creature = this.Client.CreaturesList.getEntryByObjectId(packet.get("actor_oid") as number);
     if (creature) {
-      const [_x, _y, _z] = packet.Location;
-      creature.setLocation(_x, _y, _z, packet.Heading);
+      creature.setLocation(
+        packet.get("location_x") as number,
+        packet.get("location_y") as number,
+        packet.get("location_z") as number,
+        packet.get("yaw") as number
+      );
       creature.calculateDistance(this.Client.ActiveChar);
       creature.IsMoving = false;
     }

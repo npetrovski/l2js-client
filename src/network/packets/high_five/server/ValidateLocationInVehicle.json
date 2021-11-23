@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [128]
+  },
+  "actor_oid": {
+    "$type": "dword",
+    "$alias": "Actor OID"
+  },
+  "vehicle_oid": {
+    "$type": "dword",
+    "$alias": "Vehicle OID"
+  },
+  "actor_x": {
+    "$type": "dword",
+    "$alias": "Actor X"
+  },
+  "actor_y": {
+    "$type": "dword",
+    "$alias": "Actor Y"
+  },
+  "actor_z": {
+    "$type": "dword",
+    "$alias": "Actor Z"
+  },
+  "actor_yaw": {
+    "$type": "dword",
+    "$alias": "Actor yaw"
+  }
+}

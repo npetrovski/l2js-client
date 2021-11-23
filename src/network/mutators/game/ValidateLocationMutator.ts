@@ -1,19 +1,18 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import ValidateLocation from "../../incoming/game/ValidateLocation";
 import { GlobalEvents } from "../../../mmocore/EventEmitter";
+import SerializablePacket from "../../../mmocore/SerializablePacket";
 
-export default class ValidateLocationMutator extends IMMOClientMutator<
-  GameClient,
-  ValidateLocation
-> {
-  update(packet: ValidateLocation): void {
-    const creature = this.Client.CreaturesList.getEntryByObjectId(
-      packet.ObjectId
-    );
+export default class ValidateLocationMutator extends IMMOClientMutator<GameClient, SerializablePacket> {
+  update(packet: SerializablePacket): void {
+    const creature = this.Client.CreaturesList.getEntryByObjectId(packet.get("actor_oid") as number);
     if (creature) {
-      const [_x, _y, _z] = packet.Location;
-      creature.setLocation(_x, _y, _z, packet.Heading);
+      creature.setLocation(
+        packet.get("location_x") as number,
+        packet.get("location_y") as number,
+        packet.get("location_z") as number,
+        packet.get("yaw") as number
+      );
     }
   }
 }

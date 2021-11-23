@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 15, 0]
+  },
+  "message": {
+    "$type": "byte",
+    "$alias": "Message"
+  },
+  "custom_message": {
+    "$type": "ntstring",
+    "$alias": "Custom message"
+  }
+}

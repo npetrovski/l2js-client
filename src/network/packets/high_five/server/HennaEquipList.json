@@ -1,0 +1,47 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [238]
+  },
+  "viewer_s_adena": {
+    "$type": "double",
+    "$alias": "Viewer's adena"
+  },
+  "available_slots": {
+    "$type": "dword",
+    "$alias": "Available slots"
+  },
+  "cnt": {
+    "$type": "dword",
+    "$alias": "Henna count (different types in inventory)"
+  },
+  "cnt__loop": {
+    "$type": "array",
+    "$length": {
+      "$id": "cnt"
+    },
+    "$schema": {
+      "henna": {
+        "$type": "dword",
+        "$alias": "Henna"
+      },
+      "actual_item": {
+        "$type": "dword",
+        "$alias": "Actual item"
+      },
+      "amount_in_inventory": {
+        "$type": "double",
+        "$alias": "Amount in inventory"
+      },
+      "price_of_appliance": {
+        "$type": "double",
+        "$alias": "Price of appliance"
+      },
+      "applicable": {
+        "$type": "dword",
+        "$alias": "Applicable"
+      }
+    }
+  }
+}

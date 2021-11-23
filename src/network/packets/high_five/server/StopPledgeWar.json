@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [101]
+  },
+  "pledge_name": {
+    "$type": "ntstring",
+    "$alias": "Pledge name"
+  },
+  "leader_name": {
+    "$type": "ntstring",
+    "$alias": "Leader name"
+  }
+}

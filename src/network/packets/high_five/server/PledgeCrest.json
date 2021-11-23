@@ -1,0 +1,19 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [106]
+  },
+  "crest_id": {
+    "$type": "dword",
+    "$alias": "Crest ID"
+  },
+  "bytesize": {
+    "$type": "dword",
+    "$alias": "Size in bytes"
+  },
+  "image": {
+    "$type": "bytes",
+    "$alias": "Image"
+  }
+}

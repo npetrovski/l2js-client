@@ -1,0 +1,51 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [159]
+  },
+  "object": {
+    "$type": "dword",
+    "$alias": "Object"
+  },
+  "oid": {
+    "$type": "dword",
+    "$alias": "OID"
+  },
+  "door": {
+    "$type": "dword",
+    "$alias": "Door"
+  },
+  "can_be_targetted": {
+    "$type": "dword",
+    "$alias": "Can be targetted"
+  },
+  "mesh_index": {
+    "$type": "dword",
+    "$alias": "Mesh index"
+  },
+  "closed": {
+    "$type": "dword",
+    "$alias": "Closed"
+  },
+  "attackable": {
+    "$type": "dword",
+    "$alias": "Attackable"
+  },
+  "current_hp": {
+    "$type": "dword",
+    "$alias": "Current HP"
+  },
+  "maximum_hp": {
+    "$type": "dword",
+    "$alias": "Maximum HP"
+  },
+  "show_hp_bar": {
+    "$type": "dword",
+    "$alias": "Show HP bar"
+  },
+  "damage_level": {
+    "$type": "dword",
+    "$alias": "Damage level"
+  }
+}

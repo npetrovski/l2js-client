@@ -1,0 +1,31 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [254, 110, 0]
+  },
+  "actor_oid": {
+    "$type": "dword",
+    "$alias": "Actor OID"
+  },
+  "aircraft_oid": {
+    "$type": "dword",
+    "$alias": "Aircraft OID"
+  },
+  "actor_x": {
+    "$type": "dword",
+    "$alias": "Actor X"
+  },
+  "actor_y": {
+    "$type": "dword",
+    "$alias": "Actor Y"
+  },
+  "actor_z": {
+    "$type": "dword",
+    "$alias": "Actor Z"
+  },
+  "actor_heading": {
+    "$type": "dword",
+    "$alias": "Actor heading"
+  }
+}

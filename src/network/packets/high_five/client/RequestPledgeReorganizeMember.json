@@ -1,0 +1,27 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      44,
+      0
+    ]
+  },
+  "requested_": {
+    "$type": "dword",
+    "$alias": "Requested??"
+  },
+  "member": {
+    "$type": "ntstring",
+    "$alias": "Member"
+  },
+  "unit": {
+    "$type": "dword",
+    "$alias": "Unit"
+  },
+  "unit_member": {
+    "$type": "ntstring",
+    "$alias": "Unit member"
+  }
+}

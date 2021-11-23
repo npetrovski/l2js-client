@@ -1,0 +1,31 @@
+{
+  "0": {
+    "$type": "word",
+    "$alias": "0"
+  },
+  "prefix": {
+    "$type": "bytes",
+    "$length": 3,
+    "$default": [
+      208,
+      49,
+      0
+    ]
+  },
+  "page": {
+    "$type": "dword",
+    "$alias": "Page"
+  },
+  "minimum_level": {
+    "$type": "dword",
+    "$alias": "Minimum level"
+  },
+  "maximum_level": {
+    "$type": "dword",
+    "$alias": "Maximum level"
+  },
+  "level_range": {
+    "$type": "dword",
+    "$alias": "Level range"
+  }
+}

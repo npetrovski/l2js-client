@@ -1,0 +1,41 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [75]
+  },
+  "state": {
+    "$type": "dword",
+    "$alias": "State"
+  },
+  "item_oid": {
+    "$type": "dword",
+    "$alias": "Item OID"
+  },
+  "state__branch": {
+    "$type": "branch",
+    "$id": "state",
+    "$condition": {
+      "$eq": 1
+    },
+    "$schema": {
+      "slot": {
+        "$type": "dword",
+        "$alias": "Slot"
+      }
+    }
+  },
+  "state__branch_1": {
+    "$type": "branch",
+    "$id": "state",
+    "$condition": {
+      "$eq": 2
+    },
+    "$schema": {
+      "item_paperdoll_mask": {
+        "$type": "dword",
+        "$alias": "Item paperdoll mask"
+      }
+    }
+  }
+}

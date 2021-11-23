@@ -1,0 +1,15 @@
+{
+  "prefix": {
+    "$type": "bytes",
+    "$length": 1,
+    "$default": [7]
+  },
+  "game_server_session_id": {
+    "$type": "dword",
+    "$alias": "Game server session ID"
+  },
+  "account_id": {
+    "$type": "dword",
+    "$alias": "Account ID"
+  }
+}
