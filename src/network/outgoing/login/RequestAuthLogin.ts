@@ -1,6 +1,6 @@
 import MMOSession from "../../../mmocore/MMOSession";
 import LoginServerPacket from "./LoginServerPacket";
-import BigInteger from "big-integer";
+import { bigToUint8Array, modPow } from "../../../mmocore/BigintArith";
 
 export default class RequestAuthLogin extends LoginServerPacket {
   private _username!: string;
@@ -24,21 +24,17 @@ export default class RequestAuthLogin extends LoginServerPacket {
     }
 
     const loginInfo: Uint8Array = new Uint8Array(128);
-
+    const hexStr = (buffer: Uint8Array) => {
+      return Array.from(Array.from(buffer), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join("");
+    };
     loginInfo[0x5b] = 0x24;
-    [...this._username].forEach(
-      (k, i) => (loginInfo[0x5e + i] = k.charCodeAt(0))
-    );
-    [...this._password].forEach(
-      (k, i) => (loginInfo[0x6c + i] = k.charCodeAt(0))
-    );
+    [...this._username].forEach((k, i) => (loginInfo[0x5e + i] = k.charCodeAt(0)));
+    [...this._password].forEach((k, i) => (loginInfo[0x6c + i] = k.charCodeAt(0)));
 
-    const e = BigInteger("65537", 10);
-    const modulus = BigInteger(this._hexStr(this._session.publicKey), 16);
-    const input = BigInteger(this._hexStr(loginInfo), 16);
-    const encryptedLoginInfo: Uint8Array = Uint8Array.from(
-      input.modPow(e, modulus).toArray(256).value
-    );
+    const e = BigInt(65537);
+    const modulus = BigInt(`0x${hexStr(this._session.publicKey)}`);
+    const input = BigInt(`0x${hexStr(loginInfo)}`);
+    const encryptedLoginInfo = bigToUint8Array(modPow(input, e, modulus));
 
     this.writeC(0);
     this.writeB(encryptedLoginInfo);
@@ -68,27 +64,11 @@ export default class RequestAuthLogin extends LoginServerPacket {
         break;
     }
 
-    this.writeB(
-      Uint8Array.from([
-        0x08,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00
-      ])
-    ); // footer
+    this.writeB(Uint8Array.from([0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])); // footer
     this.writeB(Uint8Array.from(Array(16).fill(0)));
   }
 
   private _hexStr(buffer: Uint8Array) {
-    return Array.from(Array.from(buffer), byte =>
-      ("0" + (byte & 0xff).toString(16)).slice(-2)
-    ).join("");
+    return Array.from(Array.from(buffer), (byte) => ("0" + (byte & 0xff).toString(16)).slice(-2)).join("");
   }
 }

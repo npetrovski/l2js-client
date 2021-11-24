@@ -10,7 +10,7 @@ import { GlobalEvents } from "../mmocore/EventEmitter";
 import MMOClient from "../mmocore/MMOClient";
 import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
-import GameCrypt from "../security/crypt/GameCrypt";
+import GameCrypt from "./GameCrypt";
 import GamePacketHandler from "./GamePacketHandler";
 import GameServerPacket from "./outgoing/game/GameServerPacket";
 import L2Recipe from "../entities/L2Recipe";
@@ -23,17 +23,11 @@ export default class GameClient extends MMOClient {
   private _activeChar: L2User = new L2User();
   private _creatures: L2ObjectCollection<L2Creature> = new L2ObjectCollection();
   private _party: L2ObjectCollection<L2PartyMember> = new L2ObjectCollection();
-  private _droppedItems: L2ObjectCollection<
-    L2DroppedItem
-  > = new L2ObjectCollection();
+  private _droppedItems: L2ObjectCollection<L2DroppedItem> = new L2ObjectCollection();
   private _items: L2ObjectCollection<L2Item> = new L2ObjectCollection();
   private _skills: L2ObjectCollection<L2Skill> = new L2ObjectCollection();
-  private _dwarfRecipeBook: L2ObjectCollection<
-    L2Recipe
-  > = new L2ObjectCollection();
-  private _commonRecipeBook: L2ObjectCollection<
-    L2Recipe
-  > = new L2ObjectCollection();
+  private _dwarfRecipeBook: L2ObjectCollection<L2Recipe> = new L2ObjectCollection();
+  private _commonRecipeBook: L2ObjectCollection<L2Recipe> = new L2ObjectCollection();
 
   public LastConfirmMessageId!: number;
   public LastConfirmMessageRequesterId!: number;
@@ -90,10 +84,10 @@ export default class GameClient extends MMOClient {
     super();
     this.PacketHandler = new GamePacketHandler();
 
-    mutators.forEach(m => {
+    mutators.forEach((m) => {
       const mutator = Object.create(m[0], {
         Client: { value: this },
-        PacketType: { value: (m[1] as any).name }
+        PacketType: { value: (m[1] as any).name },
       });
       this.registerMutator(mutator);
     });

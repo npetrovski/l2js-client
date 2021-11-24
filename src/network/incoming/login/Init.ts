@@ -1,5 +1,4 @@
 import LoginClientPacket from "./LoginClientPacket";
-import NewCrypt from "../../../security/crypt/NewCrypt";
 
 export default class Init extends LoginClientPacket {
   PublicKey!: Uint8Array;
@@ -12,15 +11,6 @@ export default class Init extends LoginClientPacket {
 
   // @Override
   readImpl(): boolean {
-    const checkNum: number = new DataView(
-      this._buffer.slice(
-        this._buffer.length - 8,
-        this._buffer.length - 4
-      ).buffer
-    ).getUint32(0, true);
-
-    NewCrypt.decXORPass(this._buffer, 0, this._buffer.length, checkNum);
-
     const _id: number = this.readC();
     this.SessionId = this.readD();
 
