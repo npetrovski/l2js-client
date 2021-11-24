@@ -26,6 +26,8 @@ export default class CharSelected extends GameClientPacket {
     user.Hp = this.readD();
     user.Mp = this.readD();
 
+    this.User = user;
+
     return true;
   }
 }
