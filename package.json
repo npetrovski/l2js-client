@@ -41,12 +41,11 @@
   "homepage": "https://github.com/npetrovski/l2js-client",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^13.13.52",
-    "@types/node-rsa": "^1.1.1",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "eslint": "^7.32.0",
-    "typescript": "^3.9.10",
-    "vuepress": "^1.5.3"
+    "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.3.0",
+    "typescript": "^4.5.2",
+    "vuepress": "^1.8.2"
   }
 }
