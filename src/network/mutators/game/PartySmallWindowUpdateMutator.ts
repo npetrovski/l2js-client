@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import PartySmallWindowUpdate from "../../incoming/game/PartySmallWindowUpdate";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 
 export default class PartySmallWindowUpdateMutator extends IMMOClientMutator<
   GameClient,
@@ -24,7 +24,7 @@ export default class PartySmallWindowUpdateMutator extends IMMOClientMutator<
       char.ClassId = packet.PartyMember.ClassId;
       char.IsDead = packet.PartyMember.IsDead;
 
-      GlobalEvents.fire("PartySmallWindow", { member: char, action: "update" });
+      this.fire("PartySmallWindow", { member: char, action: "update" });
     }
   }
 }

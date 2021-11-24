@@ -1,5 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class ExDuelAskStart extends GameClientPacket {
   // @Override
@@ -10,7 +9,8 @@ export default class ExDuelAskStart extends GameClientPacket {
     const _requestorName = this.readS();
     const _partyDuel = this.readD();
 
-    GlobalEvents.fire("RequestedDuel", { requestorName: _requestorName });
+    // TODO: Trigger from mutator
+    // GlobalEvents.fire("RequestedDuel", { requestorName: _requestorName });
 
     return true;
   }

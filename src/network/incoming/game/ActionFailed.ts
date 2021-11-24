@@ -1,4 +1,3 @@
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import GameClientPacket from "./GameClientPacket";
 
 export default class ActionFailed extends GameClientPacket {
@@ -6,7 +5,8 @@ export default class ActionFailed extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    GlobalEvents.fire("ActionFailed");
+    // TODO: trigger from mutator
+    // GlobalEvents.fire("ActionFailed");
 
     return true;
   }

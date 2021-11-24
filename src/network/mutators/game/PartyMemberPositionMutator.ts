@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import PartyMemberPosition from "../../incoming/game/PartyMemberPosition";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 
 export default class PartyMemberPositionMutator extends IMMOClientMutator<
   GameClient,
@@ -15,7 +15,7 @@ export default class PartyMemberPositionMutator extends IMMOClientMutator<
         const [_x, _y, _z] = packet.Members[objId];
         char.setLocation(_x, _y, _z);
         char.calculateDistance(this.Client.ActiveChar);
-        GlobalEvents.fire("PartyMemberPosition", { member: char });
+        this.fire("PartyMemberPosition", { member: char });
       }
     });
   }

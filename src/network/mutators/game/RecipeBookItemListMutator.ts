@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import RecipeBookItemList from "../../incoming/game/RecipeBookItemList";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 
 export default class RecipeBookItemListMutator extends IMMOClientMutator<
   GameClient,
@@ -22,7 +22,7 @@ export default class RecipeBookItemListMutator extends IMMOClientMutator<
       }
     });
 
-    GlobalEvents.fire("RecipeBook", {
+    this.fire("RecipeBook", {
       isDwarven: packet.IsDwarvenCraft
     });
   }

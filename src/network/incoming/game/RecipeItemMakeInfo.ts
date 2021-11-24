@@ -1,4 +1,3 @@
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import GameClientPacket from "./GameClientPacket";
 
 export default class RecipeItemMakeInfo extends GameClientPacket {
@@ -12,10 +11,11 @@ export default class RecipeItemMakeInfo extends GameClientPacket {
     const _playerMaxMp = this.readD();
     const _success = this.readD() === 1;
 
-    GlobalEvents.fire("CraftResult", {
-      recipeId: _recId,
-      success: _success
-    });
+    // TODO: trigger from mutator
+    // GlobalEvents.fire("CraftResult", {
+    //   recipeId: _recId,
+    //   success: _success
+    // });
 
     return true;
   }

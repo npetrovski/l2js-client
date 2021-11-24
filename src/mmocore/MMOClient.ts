@@ -1,6 +1,6 @@
 import ReceivablePacket from "./ReceivablePacket";
 import IPacketHandler from "./IPacketHandler";
-import { GlobalEvents } from "./EventEmitter";
+import EventEmitter from "./EventEmitter";
 import IConnection from "./IConnection";
 import Logger from "./Logger";
 import MMOSession from "./MMOSession";
@@ -10,7 +10,7 @@ import IMMOClientMutator from "./IMMOClientMutator";
 import AbstractPacket from "./AbstractPacket";
 import MMOConfig from "./MMOConfig";
 
-export default abstract class MMOClient implements IProcessable {
+export default abstract class MMOClient extends EventEmitter implements IProcessable {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
   private _connection!: IConnection;
@@ -140,7 +140,7 @@ export default abstract class MMOClient implements IProcessable {
             if (rcp.read()) {
               this.logger.debug("Received", rcp.constructor.name);
               this.mutate(rcp);
-              GlobalEvents.fire(`PacketReceived:${rcp.constructor.name}`, {
+              this.fire(`PacketReceived:${rcp.constructor.name}`, {
                 packet: rcp
               });
               resolve(rcp);

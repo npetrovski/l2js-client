@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import SpawnItem from "../../incoming/game/SpawnItem";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 
 export default class SpawnItemMutator extends IMMOClientMutator<
   GameClient,

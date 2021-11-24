@@ -1,4 +1,3 @@
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import GameClientPacket from "./GameClientPacket";
 import L2Recipe from "../../../entities/L2Recipe";
 

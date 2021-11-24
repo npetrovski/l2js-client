@@ -1,4 +1,3 @@
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import GameClientPacket from "./GameClientPacket";
 
 export default class NpcHtmlMessage extends GameClientPacket {
@@ -10,11 +9,12 @@ export default class NpcHtmlMessage extends GameClientPacket {
     const _html = this.readS();
     const _itemId = this.readD();
 
-    GlobalEvents.fire("NpcHtmlMessage", {
-      npcObjectId: _npcObjId,
-      html: _html,
-      itemId: _itemId
-    });
+    // TODO: Trigger from mutator
+    // GlobalEvents.fire("NpcHtmlMessage", {
+    //   npcObjectId: _npcObjId,
+    //   html: _html,
+    //   itemId: _itemId
+    // });
 
     return true;
   }

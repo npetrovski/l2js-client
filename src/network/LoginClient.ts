@@ -5,7 +5,6 @@ import LoginCrypt from "../security/crypt/LoginCrypt";
 import LoginPacketHandler from "./LoginPacketHandler";
 import L2Server from "../entities/L2Server";
 import LoginServerPacket from "./outgoing/login/LoginServerPacket";
-import { GlobalEvents } from "../mmocore/EventEmitter";
 import IConnection from "../mmocore/IConnection";
 import mutators from "./mutators/login/index";
 
@@ -98,7 +97,7 @@ export default class LoginClient extends MMOClient {
 
     this.logger.debug("Sending ", lsp.constructor.name);
     return this.sendRaw(sendable).then(() => {
-      GlobalEvents.fire(`PacketSent:${lsp.constructor.name}`, { packet: lsp });
+      this.fire(`PacketSent:${lsp.constructor.name}`, { packet: lsp });
     });
   }
 

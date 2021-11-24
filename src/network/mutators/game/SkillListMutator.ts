@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import SkillList from "../../incoming/game/SkillList";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 
 export default class SkillListMutator extends IMMOClientMutator<
   GameClient,

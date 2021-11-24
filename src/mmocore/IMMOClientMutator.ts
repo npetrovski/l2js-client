@@ -12,5 +12,9 @@ export default abstract class IMMOClientMutator<
     this.PacketType = x.name;
   }
 
+  fire(type: string, data?: Record<string, unknown>) {
+    this.Client.fire(type, data);
+  }
+
   abstract update(packet: T): void;
 }

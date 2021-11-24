@@ -6,7 +6,6 @@ import L2ObjectCollection from "../entities/L2ObjectCollection";
 import L2PartyMember from "../entities/L2PartyMember";
 import L2Skill from "../entities/L2Skill";
 import L2User from "../entities/L2User";
-import { GlobalEvents } from "../mmocore/EventEmitter";
 import MMOClient from "../mmocore/MMOClient";
 import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
@@ -135,7 +134,7 @@ export default class GameClient extends MMOClient {
 
     this.logger.debug("Sending ", gsp.constructor.name);
     return this.sendRaw(sendable).then(() => {
-      GlobalEvents.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
+      this.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
     });
   }
 }

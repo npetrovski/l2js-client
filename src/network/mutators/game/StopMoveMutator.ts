@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import StopMove from "../../incoming/game/StopMove";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 
 export default class StopMoveMutator extends IMMOClientMutator<
   GameClient,

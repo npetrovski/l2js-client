@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import SetupGauge from "../../incoming/game/SetupGauge";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 
 export default class SetupGaugeMutator extends IMMOClientMutator<
   GameClient,

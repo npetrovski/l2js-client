@@ -1,5 +1,4 @@
 import { EPacketReceived } from "../events/EventTypes";
-import { GlobalEvents } from "../mmocore/EventEmitter";
 import MMOConfig from "../mmocore/MMOConfig";
 import GameClient from "../network/GameClient";
 import SystemMessage from "../network/incoming/game/SystemMessage";
@@ -35,21 +34,21 @@ export default class CommandEnter extends AbstractGameCommand {
       this.LoginClient.init(this._config);
       this.LoginClient.connect()
         .then(() => {
-          GlobalEvents.once("PacketReceived:PlayFail", (e: EPacketReceived) => {
+          this.LoginClient.once("PacketReceived:PlayFail", (e: EPacketReceived) => {
             reject((e.data.packet as PlayFail).FailReason);
           });
-          GlobalEvents.once(
+          this.LoginClient.once(
             "PacketReceived:LoginFail",
             (e: EPacketReceived) => {
               reject((e.data.packet as LoginFail).FailReason);
             }
           );
-          GlobalEvents.once("PacketReceived:Init", () =>
+          this.LoginClient.once("PacketReceived:Init", () =>
             this.LoginClient.sendPacket(
               new AuthGameGuard(this.LoginClient.Session.sessionId)
             )
           );
-          GlobalEvents.once("PacketReceived:GGAuth", () =>
+          this.LoginClient.once("PacketReceived:GGAuth", () =>
             this.LoginClient.sendPacket(
               new RequestAuthLogin(
                 this._config.Username,
@@ -58,12 +57,12 @@ export default class CommandEnter extends AbstractGameCommand {
               )
             )
           );
-          GlobalEvents.once("PacketReceived:LoginOk", () =>
+          this.LoginClient.once("PacketReceived:LoginOk", () =>
             this.LoginClient.sendPacket(
               new RequestServerList(this.LoginClient.Session)
             )
           );
-          GlobalEvents.once(
+          this.LoginClient.once(
             "PacketReceived:ServerList",
             (e: EPacketReceived) => {
               this.LoginClient.sendPacket(
@@ -75,7 +74,7 @@ export default class CommandEnter extends AbstractGameCommand {
               );
             }
           );
-          GlobalEvents.once("PacketReceived:PlayOk", () => {
+          this.LoginClient.once("PacketReceived:PlayOk", () => {
             this.LoginClient.Connection.close();
             const gameConfig = {
               ...this._config,
@@ -90,22 +89,22 @@ export default class CommandEnter extends AbstractGameCommand {
               .then(() => this.GameClient.sendPacket(new ProtocolVersion()))
               .catch(e => reject(e));
           });
-          GlobalEvents.once("PacketReceived:KeyPacket", () =>
+          this.GameClient.once("PacketReceived:KeyPacket", () =>
             this.GameClient.sendPacket(new AuthLogin(this.GameClient.Session))
           );
-          GlobalEvents.once("PacketReceived:CharSelectionInfo", () =>
+          this.GameClient.once("PacketReceived:CharSelectionInfo", () =>
             this.GameClient.sendPacket(
               new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0)
             )
           );
-          GlobalEvents.once("PacketReceived:CharSelected", () => {
+          this.GameClient.once("PacketReceived:CharSelected", () => {
             this.GameClient.sendPacket(new RequestManorList())
               .then(() => this.GameClient.sendPacket(new RequestKeyMapping()))
               .then(() => this.GameClient.sendPacket(new EnterWorld()))
               .catch(e => reject("Enter world fail." + e));
           });
 
-          GlobalEvents.on(
+          this.GameClient.on(
             "PacketReceived:SystemMessage",
             (e: EPacketReceived) => {
               if (
@@ -116,13 +115,13 @@ export default class CommandEnter extends AbstractGameCommand {
                   login: this.LoginClient,
                   game: this.GameClient
                 };
-                GlobalEvents.fire("LoggedIn", param);
+                this.GameClient.fire("LoggedIn", param);
                 resolve(param);
               }
             }
           );
 
-          GlobalEvents.on("PacketReceived:TeleportToLocation", () => {
+          this.GameClient.on("PacketReceived:TeleportToLocation", () => {
             this.GameClient.sendPacket(new Appearing());
             this.GameClient.sendPacket(
               new ValidatePosition(

@@ -98,5 +98,3 @@ export default class EventEmitter {
     return event;
   }
 }
-
-export const GlobalEvents = new EventEmitter();
