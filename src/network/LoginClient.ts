@@ -79,11 +79,11 @@ export default class LoginClient extends MMOClient {
   pack(lsp: LoginServerPacket): Uint8Array {
     lsp.write();
 
-    if (!lsp.Buffer || lsp._offset === 0) {
+    if (!lsp.Buffer || lsp.Position === 0) {
       return new Uint8Array();
     }
 
-    const pos = lsp._offset + 4;
+    const pos = lsp.Position + 4;
     const count = pos + (8 - (pos % 8));
 
     const data = new Uint8Array(count + 2);
