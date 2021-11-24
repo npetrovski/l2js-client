@@ -39,9 +39,7 @@
     "url": "https://github.com/npetrovski/l2js-client/issues"
   },
   "homepage": "https://github.com/npetrovski/l2js-client",
-  "dependencies": {
-    "big-integer": "^1.6.49"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^13.13.52",
     "@types/node-rsa": "^1.1.1",
