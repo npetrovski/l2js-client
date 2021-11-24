@@ -13,16 +13,9 @@ export default class LoginFail extends LoginClientPacket {
     if (_reason === 0x1f) {
       this._securityCard = true;
     } else {
-      this.FailReason = (LoginFailReason as any)[_reason];
+      this.FailReason = _reason as LoginFailReason;
     }
 
     return true;
   }
-
-  /*
-  run(): void {
-    if (this._securityCard) {
-      this.Client.sendPacket(new RequestSecurityCard());
-    }
-  }*/
 }

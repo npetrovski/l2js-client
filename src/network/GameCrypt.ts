@@ -8,11 +8,14 @@ export default class GameCrypt {
     this._inKey = new Int8Array(key);
     this._outKey = new Int8Array(key);
   }
-  decrypt(raw: Uint8Array, offset: number, size: number): void {
+  decrypt(raw: Uint8Array, offset?: number, size?: number): void {
     if (!this._istEnabled) {
       this._istEnabled = true;
       return;
     }
+
+    offset = offset ?? 0;
+    size = size ?? raw.byteLength;
 
     let temp = 0;
     for (let i = 0; i < size; i++) {
@@ -34,10 +37,13 @@ export default class GameCrypt {
     this._inKey[11] = (old >> 0x18) & 0xff;
   }
 
-  encrypt(raw: Uint8Array, offset: number, size: number): void {
+  encrypt(raw: Uint8Array, offset?: number, size?: number): void {
     if (!this._istEnabled) {
       return;
     }
+
+    offset = offset ?? 0;
+    size = size ?? raw.byteLength;
 
     let temp = 0;
     for (let i = 0; i < size; i++) {
