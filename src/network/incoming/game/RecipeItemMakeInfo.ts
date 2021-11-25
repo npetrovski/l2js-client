@@ -1,21 +1,22 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class RecipeItemMakeInfo extends GameClientPacket {
+
+  RecipeId: number = 0;
+  CraftType: number = 0;
+  PlayerCurrentMp: number = 0;
+  PlayerMaxMp: number = 0;
+  Success: boolean = false;
+
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
 
-    const _recId = this.readD();
-    const _craftType = this.readD(); // 0 = Dwarven - 1 = Common
-    const _playerCurrMp = this.readD();
-    const _playerMaxMp = this.readD();
-    const _success = this.readD() === 1;
-
-    // TODO: trigger from mutator
-    // GlobalEvents.fire("CraftResult", {
-    //   recipeId: _recId,
-    //   success: _success
-    // });
+    this.RecipeId = this.readD();
+    this.CraftType = this.readD(); // 0 = Dwarven - 1 = Common
+    this.PlayerCurrentMp = this.readD();
+    this.PlayerMaxMp = this.readD();
+    this.Success = this.readD() === 1;
 
     return true;
   }

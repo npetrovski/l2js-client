@@ -5,9 +5,6 @@ export default class ActionFailed extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    // TODO: trigger from mutator
-    // GlobalEvents.fire("ActionFailed");
-
     return true;
   }
 }

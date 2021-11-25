@@ -21,14 +21,6 @@ export default class CreatureSay extends GameClientPacket {
       this.Messages.push(this.readS());
     }
 
-    // TODO: Trigger from mutator
-    // GlobalEvents.fire("CreatureSay", {
-    //   objectId: _objectId,
-    //   type: _textType,
-    //   charName: _charName,
-    //   npcStringId: _npcStringId,
-    //   messages: _messages
-    // });
     return true;
   }
 }

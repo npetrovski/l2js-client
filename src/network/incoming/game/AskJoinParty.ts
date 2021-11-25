@@ -2,17 +2,15 @@ import GameClientPacket from "./GameClientPacket";
 import { PartyDistributionType } from "../../../enums/PartyDistributionType";
 
 export default class AskJoinParty extends GameClientPacket {
+  RequestorName: string = "";
+  PartyDistributionType: PartyDistributionType;
+
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _requestorName = this.readS();
-    const _partyDistributionType = PartyDistributionType[this.readD()];
+    this.RequestorName = this.readS();
+    this.PartyDistributionType = PartyDistributionType[this.readD()];
 
-    // TODO: trigger from mutator
-    // GlobalEvents.fire(`PartyRequest`, {
-    //   requestorName: _requestorName,
-    //   partyDistributionType: _partyDistributionType
-    // });
     return true;
   }
 }

@@ -30,12 +30,6 @@ export default class Attack extends GameClientPacket {
 
     const [_targetX, _targetY, _targetZ] = this.readLoc();
 
-    // TODO: trigger from mutator
-    // GlobalEvents.fire(`Attacked`, {
-    //   object: _attackerObjId,
-    //   subjects
-    // });
-
     return true;
   }
 }
