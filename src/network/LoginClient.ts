@@ -1,7 +1,7 @@
 import MMOClient from "../mmocore/MMOClient";
 import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
-import LoginCrypt from "../security/crypt/LoginCrypt";
+import LoginCrypt from "./LoginCrypt";
 import LoginPacketHandler from "./LoginPacketHandler";
 import L2Server from "../entities/L2Server";
 import LoginServerPacket from "./outgoing/login/LoginServerPacket";
@@ -52,10 +52,10 @@ export default class LoginClient extends MMOClient {
     super();
     this.PacketHandler = new LoginPacketHandler();
 
-    mutators.forEach(m => {
+    mutators.forEach((m) => {
       const mutator = Object.create(m[0], {
         Client: { value: this },
-        PacketType: { value: (m[1] as any).name }
+        PacketType: { value: (m[1] as any).name },
       });
       this.registerMutator(mutator);
     });
@@ -78,18 +78,22 @@ export default class LoginClient extends MMOClient {
   pack(lsp: LoginServerPacket): Uint8Array {
     lsp.write();
 
-    const count =
-      lsp.Position % 8 === 0
-        ? lsp.Position
-        : lsp.Position + (8 - (lsp.Position % 8));
-    this._loginCrypt.encrypt(lsp.Buffer, 0, count);
+    if (!lsp.Buffer || lsp.Position === 0) {
+      return new Uint8Array();
+    }
 
-    const sendable: Uint8Array = new Uint8Array(count + 2);
-    sendable[0] = (count + 2) & 0xff;
-    sendable[1] = (count + 2) >>> 8;
-    sendable.set(lsp.Buffer.slice(0, count), 2);
+    const pos = lsp.Position + 4;
+    const count = pos + (8 - (pos % 8));
 
-    return sendable;
+    const data = new Uint8Array(count + 2);
+    data.set(lsp.Buffer.slice(0, count), 2);
+
+    this.encrypt(data, 2, count - 2);
+
+    data[0] = (count + 2) & 0xff;
+    data[1] = (count + 2) >>> 8;
+
+    return data;
   }
 
   sendPacket(lsp: LoginServerPacket): Promise<void> {
