@@ -11,7 +11,7 @@ export enum LogLevel {
 export default class Logger implements ILogger {
   private _context = "";
 
-  private _logLevel: LogLevel = 8;
+  private _logLevel: LogLevel = 1;
 
   constructor(ctx: string, level?: LogLevel) {
     this._context = ctx;
