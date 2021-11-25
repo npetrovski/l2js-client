@@ -1,4 +1,6 @@
-export default abstract class L2Object {
+import { EventEmmiter } from '../mmocore/EventEmitter';
+
+export default abstract class L2Object extends EventEmmiter {
   private _id!: number;
   private _objectId!: number;
   private _name!: string;

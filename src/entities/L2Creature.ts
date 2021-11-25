@@ -397,11 +397,10 @@ export default abstract class L2Creature extends L2Object {
 
   public set IsMoving(value: boolean) {
     this._isMoving = value;
-    // TODO: Find a way to trigger these
     if (value) {
-      // GlobalEvents.fire("StartMoving", { creature: this });
+      this.fire("StartMoving", { creature: this });
     } else {
-      // GlobalEvents.fire("StopMoving", { creature: this });
+      this.fire("StopMoving", { creature: this });
     }
   }
 
