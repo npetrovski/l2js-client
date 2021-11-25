@@ -69,18 +69,21 @@ export default class Client extends ClientCommands {
   on(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
     this.GameClient.on(c.type, c.handler);
+    this.LoginClient.on(c.type, c.handler);
     return this;
   }
 
   once(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
     this.GameClient.once(c.type, c.handler);
+    this.LoginClient.once(c.type, c.handler);
     return this;
   }
 
   off(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
     this.GameClient.off(c.type, c.handler);
+    this.LoginClient.off(c.type, c.handler);
     return this;
   }
 }
