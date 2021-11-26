@@ -16,7 +16,7 @@ import ClientCommands from "./commands/ClientCommands";
  * Lineage 2 Client main class
  */
 export default class Client extends ClientCommands {
-  LoginClient: LoginClient|null = new LoginClient();
+  LoginClient: LoginClient | null = new LoginClient();
   GameClient = new GameClient();
 
   constructor() {
@@ -61,9 +61,10 @@ export default class Client extends ClientCommands {
     return this.GameClient.CommonRecipeBook;
   }
 
-  private ___event_params(
-    ...params: EventHandlerType
-  ): { type: string; handler: EventHandler } {
+  private ___event_params(...params: EventHandlerType): {
+    type: string;
+    handler: EventHandler;
+  } {
     let type: string;
     let handler: any;
     if (params.length >= 3) {

@@ -16,7 +16,7 @@ export default class UserInfoMutator extends IMMOClientMutator<
     } else {
       this.Client.ActiveChar = {
         ...user,
-        ...packet.User
+        ...packet.User,
       } as L2User;
     }
   }

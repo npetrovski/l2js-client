@@ -24,7 +24,7 @@ export default class CharInfo extends GameClientPacket {
     GameServerPacket.PAPERDOLL_DECO4,
     GameServerPacket.PAPERDOLL_DECO5,
     GameServerPacket.PAPERDOLL_DECO6,
-    GameServerPacket.PAPERDOLL_BELT
+    GameServerPacket.PAPERDOLL_BELT,
   ];
 
   Char: L2Character = new L2Character();

@@ -17,13 +17,15 @@ import L2Recipe from "../entities/L2Recipe";
 import IConnection from "../mmocore/IConnection";
 import mutators from "./mutators/game/index";
 
-class L2ClientObjectCollection<T extends L2Object> extends L2ObjectCollection<T> {
+class L2ClientObjectCollection<
+  T extends L2Object
+> extends L2ObjectCollection<T> {
   constructor(private Client: MMOClient) {
     super();
   }
 
   add(value: T) {
-    value.onAll(event => {
+    value.onAll((event) => {
       this.Client.fire(event.type, event.data);
     });
     return super.add(value);
@@ -34,13 +36,20 @@ export default class GameClient extends MMOClient {
   private _gameCrypt: GameCrypt = new GameCrypt();
   private _config!: MMOConfig;
   private _activeChar: L2User = new L2User();
-  private _creatures: L2ObjectCollection<L2Creature> = new L2ClientObjectCollection(this);
-  private _party: L2ClientObjectCollection<L2PartyMember> = new L2ClientObjectCollection(this);
-  private _droppedItems: L2ClientObjectCollection<L2DroppedItem> = new L2ClientObjectCollection(this);
-  private _items: L2ClientObjectCollection<L2Item> = new L2ClientObjectCollection(this);
-  private _skills: L2ClientObjectCollection<L2Skill> = new L2ClientObjectCollection(this);
-  private _dwarfRecipeBook: L2ClientObjectCollection<L2Recipe> = new L2ClientObjectCollection(this);
-  private _commonRecipeBook: L2ClientObjectCollection<L2Recipe> = new L2ClientObjectCollection(this);
+  private _creatures: L2ObjectCollection<L2Creature> =
+    new L2ClientObjectCollection(this);
+  private _party: L2ClientObjectCollection<L2PartyMember> =
+    new L2ClientObjectCollection(this);
+  private _droppedItems: L2ClientObjectCollection<L2DroppedItem> =
+    new L2ClientObjectCollection(this);
+  private _items: L2ClientObjectCollection<L2Item> =
+    new L2ClientObjectCollection(this);
+  private _skills: L2ClientObjectCollection<L2Skill> =
+    new L2ClientObjectCollection(this);
+  private _dwarfRecipeBook: L2ClientObjectCollection<L2Recipe> =
+    new L2ClientObjectCollection(this);
+  private _commonRecipeBook: L2ClientObjectCollection<L2Recipe> =
+    new L2ClientObjectCollection(this);
 
   public LastConfirmMessageId!: number;
   public LastConfirmMessageRequesterId!: number;

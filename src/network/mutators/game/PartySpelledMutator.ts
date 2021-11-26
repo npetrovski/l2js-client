@@ -2,7 +2,6 @@ import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import PartySpelled from "../../incoming/game/PartySpelled";
 
-
 export default class PartySpelledMutator extends IMMOClientMutator<
   GameClient,
   PartySpelled
@@ -13,7 +12,7 @@ export default class PartySpelledMutator extends IMMOClientMutator<
     );
     if (creature) {
       creature.Buffs.clear();
-      packet.PartyMemberBuffs.forEach(buff => {
+      packet.PartyMemberBuffs.forEach((buff) => {
         creature.Buffs.add(buff);
       });
 

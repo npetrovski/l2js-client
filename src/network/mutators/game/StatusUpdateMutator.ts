@@ -14,7 +14,7 @@ export default class StatusUpdateMutator extends IMMOClientMutator<
         packet.ObjectId
       );
 
-      Object.keys(packet.Stats).forEach(key => {
+      Object.keys(packet.Stats).forEach((key) => {
         const status: number = parseInt(key, 10);
         const value = packet.Stats[status];
 

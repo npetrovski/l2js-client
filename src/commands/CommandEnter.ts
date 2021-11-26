@@ -34,9 +34,12 @@ export default class CommandEnter extends AbstractGameCommand {
       this.LoginClient.init(this._config);
       this.LoginClient.connect()
         .then(() => {
-          this.LoginClient.once("PacketReceived:PlayFail", (e: EPacketReceived) => {
-            reject((e.data.packet as PlayFail).FailReason);
-          });
+          this.LoginClient.once(
+            "PacketReceived:PlayFail",
+            (e: EPacketReceived) => {
+              reject((e.data.packet as PlayFail).FailReason);
+            }
+          );
           this.LoginClient.once(
             "PacketReceived:LoginFail",
             (e: EPacketReceived) => {
@@ -80,14 +83,14 @@ export default class CommandEnter extends AbstractGameCommand {
               ...this._config,
               ...{
                 Ip: this.LoginClient.Session.server.host,
-                Port: this.LoginClient.Session.server.port
-              }
+                Port: this.LoginClient.Session.server.port,
+              },
             };
             this.GameClient.Session = this.LoginClient.Session;
             this.GameClient.init(gameConfig as MMOConfig);
             this.GameClient.connect()
               .then(() => this.GameClient.sendPacket(new ProtocolVersion()))
-              .catch(e => reject(e));
+              .catch((e) => reject(e));
           });
           this.GameClient.once("PacketReceived:KeyPacket", () =>
             this.GameClient.sendPacket(new AuthLogin(this.GameClient.Session))
@@ -101,7 +104,7 @@ export default class CommandEnter extends AbstractGameCommand {
             this.GameClient.sendPacket(new RequestManorList())
               .then(() => this.GameClient.sendPacket(new RequestKeyMapping()))
               .then(() => this.GameClient.sendPacket(new EnterWorld()))
-              .catch(e => reject("Enter world fail." + e));
+              .catch((e) => reject("Enter world fail." + e));
           });
 
           this.GameClient.on(
@@ -113,7 +116,7 @@ export default class CommandEnter extends AbstractGameCommand {
               ) {
                 const param = {
                   login: this.LoginClient,
-                  game: this.GameClient
+                  game: this.GameClient,
                 };
                 this.GameClient.fire("LoggedIn", param);
                 resolve(param);
@@ -134,7 +137,7 @@ export default class CommandEnter extends AbstractGameCommand {
             );
           });
         })
-        .catch(e => reject(e));
+        .catch((e) => reject(e));
     });
   }
 }

@@ -1,4 +1,4 @@
-import EventEmmiter from '../mmocore/EventEmitter';
+import EventEmmiter from "../mmocore/EventEmitter";
 
 export default abstract class L2Object extends EventEmmiter {
   private _id!: number;

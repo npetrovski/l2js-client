@@ -9,7 +9,7 @@ export default class RecipeItemMakeInfoMutator extends IMMOClientMutator<
   update(packet: RecipeItemMakeInfo): void {
     this.fire("CraftResult", {
       recipeId: packet.RecipeId,
-      success: packet.Success
+      success: packet.Success,
     });
   }
 }

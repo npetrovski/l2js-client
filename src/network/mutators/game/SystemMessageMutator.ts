@@ -8,8 +8,8 @@ export default class SystemMessageMutator extends IMMOClientMutator<
 > {
   update(packet: SystemMessage): void {
     this.fire("SystemMessage", {
-        messageId: packet.messageId,
-        params: packet.messageParams
+      messageId: packet.messageId,
+      params: packet.messageParams,
     });
   }
 }

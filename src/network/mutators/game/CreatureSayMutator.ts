@@ -12,7 +12,7 @@ export default class CreatureSayMutator extends IMMOClientMutator<
       type: packet.Type,
       charName: packet.CharName,
       npcStringId: packet.NpcStringId,
-      messages: packet.Messages
+      messages: packet.Messages,
     });
   }
 }

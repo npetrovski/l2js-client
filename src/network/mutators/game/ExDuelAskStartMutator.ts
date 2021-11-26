@@ -8,7 +8,7 @@ export default class ExDuelAskStartMutator extends IMMOClientMutator<
 > {
   update(packet: ExDuelAskStart): void {
     this.fire("RequestedDuel", {
-        requestorName: packet.RequestorName
+      requestorName: packet.RequestorName,
     });
   }
 }

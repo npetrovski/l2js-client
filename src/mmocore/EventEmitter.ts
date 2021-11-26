@@ -59,7 +59,7 @@ export default class EventEmitter {
   }
 
   onAll(handler: EventHandler): boolean {
-    return this.on('*', handler);
+    return this.on("*", handler);
   }
 
   offAll(): void {
@@ -70,14 +70,15 @@ export default class EventEmitter {
     if (!type) return;
 
     let handlers = this._eventHandlers[type] ?? [];
-    const allHandlers = this._eventHandlers['*'] ?? [];
-    if (allHandlers && allHandlers.length) handlers = handlers.concat(allHandlers);
+    const allHandlers = this._eventHandlers["*"] ?? [];
+    if (allHandlers && allHandlers.length)
+      handlers = handlers.concat(allHandlers);
     if (!handlers.length) return;
 
     const event = this.createEvent(type, data);
 
     for (const handler of handlers) {
-      const once = event.once = handler._once === true;
+      const once = (event.once = handler._once === true);
 
       handler(event);
       if (once) setImmediate(this.off.bind(this), type, handler); // we should not modify handlers in for loop
@@ -99,7 +100,11 @@ export default class EventEmitter {
     return this._eventHandlers[type] || [];
   }
 
-  createEvent(type: string, data?: Record<string, unknown>, once = false): Event {
+  createEvent(
+    type: string,
+    data?: Record<string, unknown>,
+    once = false
+  ): Event {
     const event: Event = { type, data, once };
     return event;
   }

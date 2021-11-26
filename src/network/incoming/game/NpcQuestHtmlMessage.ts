@@ -1,7 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class NpcQuestHtmlMessage extends GameClientPacket {
-
   NpcObjectId: number = 0;
   Html: string = "";
   QuestId: number = 0;

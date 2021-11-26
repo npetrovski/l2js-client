@@ -1,7 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class Attack extends GameClientPacket {
-
   AttackerObjectId: number = 0;
   Subjects: number[] = [];
 

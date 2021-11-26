@@ -1,7 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class CreatureSay extends GameClientPacket {
-
   ObjectId: number = 0;
   Type: number = 0;
   CharName: string = "";

@@ -3,13 +3,13 @@ import Attack from "../../incoming/game/Attack";
 import GameClient from "../../GameClient";
 
 export default class AttackMutator extends IMMOClientMutator<
-    GameClient,
-    Attack
+  GameClient,
+  Attack
 > {
-    update(packet: Attack): void {
-        this.fire(`Attacked`, {
-            object: packet.AttackerObjectId,
-            subjects: packet.Subjects
-        });
-    }
+  update(packet: Attack): void {
+    this.fire(`Attacked`, {
+      object: packet.AttackerObjectId,
+      subjects: packet.Subjects,
+    });
+  }
 }

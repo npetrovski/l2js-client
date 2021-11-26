@@ -2,7 +2,6 @@ import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import TargetSelected from "../../incoming/game/TargetSelected";
 
-
 export default class TargetSelectedMutator extends IMMOClientMutator<
   GameClient,
   TargetSelected
@@ -21,7 +20,7 @@ export default class TargetSelectedMutator extends IMMOClientMutator<
     this.fire("TargetSelected", {
       objectId: packet.ObjectId,
       targetObjectId: packet.TargetObjectId,
-      targetLocation: packet.Location
+      targetLocation: packet.Location,
     });
   }
 }

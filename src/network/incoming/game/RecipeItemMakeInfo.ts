@@ -1,7 +1,6 @@
 import GameClientPacket from "./GameClientPacket";
 
 export default class RecipeItemMakeInfo extends GameClientPacket {
-
   RecipeId: number = 0;
   CraftType: number = 0;
   PlayerCurrentMp: number = 0;
