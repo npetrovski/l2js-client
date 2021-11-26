@@ -9,7 +9,6 @@ export default class UserInfoMutator extends IMMOClientMutator<
   UserInfo
 > {
   update(packet: UserInfo): void {
-    console.log("Mutator setting user " + packet.User.X);
     this.Client.ActiveChar = packet.User;
     this.Client.CreaturesList.add(packet.User);
   }

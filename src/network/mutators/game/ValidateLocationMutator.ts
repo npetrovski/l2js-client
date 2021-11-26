@@ -14,6 +14,12 @@ export default class ValidateLocationMutator extends IMMOClientMutator<
     if (creature) {
       const [_x, _y, _z] = packet.Location;
       creature.setLocation(_x, _y, _z, packet.Heading);
+
+      if (this.Client.ActiveChar.ObjectId == packet.ObjectId) {
+        this.Client.ActiveChar.setLocation(_x, _y, _z, packet.Heading);
+        console.log("updating self position");
+      }
+      
     }
   }
 }

@@ -116,9 +116,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x2e:
           rpk = new Packets.KeyPacket();
           break;
-        case 0x2f:
-          rpk = new Packets.MoveToLocation();
-          break;
         case 0x30:
           rpk = new Packets.NpcSay();
           break;
@@ -174,7 +171,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.VehicleInfo();
           break;
         case 0x61:
-          rpk = new Packets.StopRotation();
+          rpk = new Packets.ValidateLocation();
           break;
         case 0x63:
           rpk = new Packets.StartPledgeWar();
@@ -215,8 +212,8 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x75:
           rpk = new Packets.FriendList();
           break;
-        case 0x79:
-          rpk = new Packets.ValidateLocation();
+        case 0x76:
+          rpk = new Packets.SetToLocation();
           break;
         case 0x7a:
           rpk = new Packets.StartRotation();
@@ -252,7 +249,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.MyTargetSelected();
           break;
         case 0xa7:
-          rpk = new Packets.TutorialShowQuestionMark();
+          rpk = new Packets.PartyMemberPosition();
           break;
         case 0xa8:
           rpk = new Packets.TutorialEnableClientEvent();
@@ -265,10 +262,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0xb7:
           rpk = new Packets.PetDelete();
-          break;
-
-        case 0xba:
-          rpk = new Packets.PartyMemberPosition();
           break;
         case 0xc0:
           rpk = new Packets.VehicleStarted();
