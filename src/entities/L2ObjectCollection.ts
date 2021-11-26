@@ -80,4 +80,9 @@ export default class L2ObjectCollection<T extends L2Object> extends Set<T> {
     value.offAll();
     return super.delete(value);
   }
+
+  public clear() {
+    this.forEach(item => item.offAll());
+    return super.clear();
+  }
 }
