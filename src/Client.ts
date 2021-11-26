@@ -22,9 +22,9 @@ export default class Client extends ClientCommands {
   constructor() {
     super();
 
-    this.LoginClient?.once("PacketReceived:PlayOk", () => {
+    this.once("PacketReceived", "KeyPacket", () => {
       setImmediate(() => {
-        this.LoginClient?.off();
+        this.LoginClient?.offAll();
         this.LoginClient = null;
       });
     });

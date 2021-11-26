@@ -71,10 +71,10 @@ export default class EventEmitter {
     const event = this.createEvent(type, data);
 
     for (const handler of handlers) {
-      if (handler._once) event.once = true;
+      const once = event.once = handler._once === true;
 
       handler(event);
-      if (event.once) this.off(type, handler);
+      if (once) setImmediate(this.off.bind(this), type, handler); // we should not modify handlers in for loop
     }
   }
 
