@@ -395,12 +395,11 @@ export default abstract class L2Creature extends L2Object {
     return this._isMoving;
   }
 
-  public set IsMoving(value: boolean) {
-    this._isMoving = value;
-    if (value) {
-      this.fire("StartMoving", { creature: this });
-    } else {
-      this.fire("StopMoving", { creature: this });
+  public set IsMoving(isMoving: boolean) {
+    const wasMoving = this._isMoving;
+    this._isMoving = isMoving;
+    if (isMoving !== wasMoving) {
+      this.fire(`${isMoving ? "Start" : "Stop"}Moving`, { creature: this });
     }
   }
 
