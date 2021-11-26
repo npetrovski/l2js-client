@@ -17,6 +17,11 @@ export default class StopMoveMutator extends IMMOClientMutator<
         creature.calculateDistance(this.Client.ActiveChar);
       }
       creature.IsMoving = false;
+
+      if (this.Client.ActiveChar.ObjectId == packet.ObjectId) {
+        this.Client.ActiveChar.setLocation(_x, _y, _z, packet.Heading);
+        console.log("updating self position");
+      }
     }
   }
 }

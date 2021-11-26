@@ -7,7 +7,6 @@ export default class CharInfoMutator extends IMMOClientMutator<
   CharInfo
 > {
   update(packet: CharInfo): void {
-    console.log("Creature with name " + packet.Char.Name);
     const char = this.Client.CreaturesList.getEntryByObjectId(
       packet.Char.ObjectId
     );
