@@ -75,4 +75,9 @@ export default class L2ObjectCollection<T extends L2Object> extends Set<T> {
       }
     }
   }
+
+  public delete(value: T): boolean {
+    value.offAll();
+    return super.delete(value);
+  }
 }

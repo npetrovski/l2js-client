@@ -58,6 +58,10 @@ export default class EventEmitter {
     }
   }
 
+  onAll(handler: EventHandler): boolean {
+    return this.on('*', handler);
+  }
+
   offAll(): void {
     this._eventHandlers = {};
   }
@@ -65,8 +69,10 @@ export default class EventEmitter {
   fire(type: string, data?: Record<string, unknown>): void {
     if (!type) return;
 
-    const handlers = this._eventHandlers[type];
-    if (!handlers || !handlers.length) return;
+    let handlers = this._eventHandlers[type] ?? [];
+    const allHandlers = this._eventHandlers['*'] ?? [];
+    if (allHandlers && allHandlers.length) handlers = handlers.concat(allHandlers);
+    if (!handlers.length) return;
 
     const event = this.createEvent(type, data);
 
