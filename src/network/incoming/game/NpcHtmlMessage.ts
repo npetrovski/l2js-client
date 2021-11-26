@@ -10,7 +10,7 @@ export default class NpcHtmlMessage extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    this.NpcObjId = this.readD();
+    this.NpcObjectId = this.readD();
     this.Html = this.readS();
     this.ItemId = this.readD();
 

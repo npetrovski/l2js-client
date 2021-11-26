@@ -11,7 +11,7 @@ export default class NpcQuestHtmlMessage extends GameClientPacket {
     const _id = this.readC();
     const _sub = this.readH();
 
-    this.NpcObjId = this.readD();
+    this.NpcObjectId = this.readD();
     this.Html = this.readS();
     this.QuestId = this.readD();
 

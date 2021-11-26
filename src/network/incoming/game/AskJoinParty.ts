@@ -3,13 +3,13 @@ import { PartyDistributionType } from "../../../enums/PartyDistributionType";
 
 export default class AskJoinParty extends GameClientPacket {
   RequestorName: string = "";
-  PartyDistributionType: PartyDistributionType;
+  PartyDistributionType?: PartyDistributionType;
 
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
     this.RequestorName = this.readS();
-    this.PartyDistributionType = PartyDistributionType[this.readD()];
+    this.PartyDistributionType = this.readD();
 
     return true;
   }
