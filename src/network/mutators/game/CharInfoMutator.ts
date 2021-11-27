@@ -33,7 +33,9 @@ export default class CharInfoMutator extends IMMOClientMutator<
       char.IsHero = packet.Char.IsHero;
       char.Heading = packet.Char.Heading;
 
-      char.calculateDistance(this.Client.ActiveChar);
+      if (packet.Char.ObjectId !== this.Client.ActiveChar.ObjectId) {
+        char.calculateDistance(this.Client.ActiveChar);
+      }
     }
 
     this.fire("CharInfo", { creature: char });
