@@ -81,7 +81,7 @@ export default class EventEmitter {
       const once = (event.once = handler._once === true);
 
       handler(event);
-      if (once) setImmediate(this.off.bind(this), type, handler); // we should not modify handlers in for loop
+      if (once) setTimeout(this.off.bind(this), 0, type, handler); // we should not modify handlers in for loop
     }
   }
 

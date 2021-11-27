@@ -2,8 +2,8 @@ import L2Buff from "../entities/L2Buff";
 import L2Creature from "../entities/L2Creature";
 import L2DroppedItem from "../entities/L2DroppedItem";
 import L2Item from "../entities/L2Item";
-import L2Object from "../entities/L2Object";
 import L2ObjectCollection from "../entities/L2ObjectCollection";
+import L2ClientObjectCollection from "../entities/L2ClientObjectCollection";
 import L2PartyMember from "../entities/L2PartyMember";
 import L2Skill from "../entities/L2Skill";
 import L2User from "../entities/L2User";
@@ -16,23 +16,6 @@ import GameServerPacket from "./outgoing/game/GameServerPacket";
 import L2Recipe from "../entities/L2Recipe";
 import IConnection from "../mmocore/IConnection";
 import mutators from "./mutators/game/index";
-
-class L2ClientObjectCollection<
-  T extends L2Object
-> extends L2ObjectCollection<T> {
-  constructor(private Client: MMOClient) {
-    super();
-  }
-
-  add(value: T) {
-    if (!this.has(value)) {
-      value.onAll((event) => {
-        this.Client.fire(event.type, event.data);
-      });
-    }
-    return super.add(value);
-  }
-}
 
 export default class GameClient extends MMOClient {
   private _gameCrypt: GameCrypt = new GameCrypt();
