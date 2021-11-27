@@ -23,10 +23,10 @@ export default class Client extends ClientCommands {
     super();
 
     this.once("PacketReceived", "KeyPacket", () => {
-      setImmediate(() => {
+      setTimeout(() => {
         this.LoginClient?.offAll();
         this.LoginClient = null;
-      });
+      }, 0);
     });
   }
 
