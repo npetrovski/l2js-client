@@ -25,9 +25,11 @@ class L2ClientObjectCollection<
   }
 
   add(value: T) {
-    value.onAll((event) => {
-      this.Client.fire(event.type, event.data);
-    });
+    if (!this.has(value)) {
+      value.onAll((event) => {
+        this.Client.fire(event.type, event.data);
+      });
+    }
     return super.add(value);
   }
 }
