@@ -119,6 +119,7 @@ import ExFishingEnd from "./ExFishingEnd";
 import ExFishingHpRegen from "./ExFishingHpRegen";
 import ExRotation from "./ExRotation";
 import PetUpdate from "./PetUpdate";
+import SetToLocation from "./SetToLocation";
 
 export {
   AbnormalStatusUpdate,
@@ -238,6 +239,7 @@ export {
   ServerClose,
   PartySpelled,
   SendTradeRequest,
+  SetToLocation,
   SetupGauge,
   ExFishingEnd,
   ExFishingHpRegen,
