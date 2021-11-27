@@ -1,4 +1,3 @@
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import GameClientPacket from "./GameClientPacket";
 
 export default class Revive extends GameClientPacket {

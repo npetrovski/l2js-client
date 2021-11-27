@@ -1,7 +1,6 @@
 import L2Character from "../../../entities/L2Character";
 import GameClientPacket from "./GameClientPacket";
 import GameServerPacket from "../../outgoing/game/GameServerPacket";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class CharInfo extends GameClientPacket {
   static readonly PAPERDOLL_ORDER: number[] = [
@@ -25,7 +24,7 @@ export default class CharInfo extends GameClientPacket {
     GameServerPacket.PAPERDOLL_DECO4,
     GameServerPacket.PAPERDOLL_DECO5,
     GameServerPacket.PAPERDOLL_DECO6,
-    GameServerPacket.PAPERDOLL_BELT
+    GameServerPacket.PAPERDOLL_BELT,
   ];
 
   Char: L2Character = new L2Character();

@@ -1,5 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class PartyMemberPosition extends GameClientPacket {
   Members: Record<number, number[]> = {};

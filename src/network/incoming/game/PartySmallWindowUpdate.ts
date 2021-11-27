@@ -1,5 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import L2PartyMember from "../../../entities/L2PartyMember";
 
 export default class PartySmallWindowUpdate extends GameClientPacket {

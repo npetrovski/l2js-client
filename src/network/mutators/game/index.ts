@@ -78,6 +78,24 @@ import TargetUnselectedMutator from "./TargetUnselectedMutator";
 import TeleportToLocationMutator from "./TeleportToLocationMutator";
 import UserInfoMutator from "./UserInfoMutator";
 import ValidateLocationMutator from "./ValidateLocationMutator";
+import ActionFailed from "../../incoming/game/ActionFailed";
+import AskJoinParty from "../../incoming/game/AskJoinParty";
+import Attack from "../../incoming/game/Attack";
+import CreatureSay from "../../incoming/game/CreatureSay";
+import ExDuelAskStart from "../../incoming/game/ExDuelAskStart";
+import NpcHtmlMessage from "../../incoming/game/NpcHtmlMessage";
+import NpcQuestHtmlMessage from "../../incoming/game/NpcQuestHtmlMessage";
+import RecipeItemMakeInfo from "../../incoming/game/RecipeItemMakeInfo";
+import SystemMessage from "../../incoming/game/SystemMessage";
+import ActionFailedMutator from "./ActionFailedMutator";
+import AskJoinPartyMutator from "./AskJoinPartyMutator";
+import AttackMutator from "./AttackMutator";
+import CreatureSayMutator from "./CreatureSayMutator";
+import ExDuelAskStartMutator from "./ExDuelAskStartMutator";
+import NpcHtmlMessageMutator from "./NpcHtmlMessageMutator";
+import NpcQuestHtmlMessageMutator from "./NpcQuestHtmlMessageMutator";
+import RecipeItemMakeInfoMutator from "./RecipeItemMakeInfoMutator";
+import SystemMessageMutator from "./SystemMessageMutator";
 
 export default [
   [AbnormalStatusUpdateMutator.prototype, AbnormalStatusUpdate],
@@ -119,5 +137,14 @@ export default [
   [TargetUnselectedMutator.prototype, TargetUnselected],
   [TeleportToLocationMutator.prototype, TeleportToLocation],
   [UserInfoMutator.prototype, UserInfo],
-  [ValidateLocationMutator.prototype, ValidateLocation]
+  [ValidateLocationMutator.prototype, ValidateLocation],
+  [ActionFailedMutator.prototype, ActionFailed],
+  [AskJoinPartyMutator.prototype, AskJoinParty],
+  [AttackMutator.prototype, Attack],
+  [CreatureSayMutator.prototype, CreatureSay],
+  [ExDuelAskStartMutator.prototype, ExDuelAskStart],
+  [NpcHtmlMessageMutator.prototype, NpcHtmlMessage],
+  [NpcQuestHtmlMessageMutator.prototype, NpcQuestHtmlMessage],
+  [RecipeItemMakeInfoMutator.prototype, RecipeItemMakeInfo],
+  [SystemMessageMutator.prototype, SystemMessage],
 ];

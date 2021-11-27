@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import PartySmallWindowAdd from "../../incoming/game/PartySmallWindowAdd";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class PartySmallWindowAddMutator extends IMMOClientMutator<
   GameClient,
@@ -10,9 +9,9 @@ export default class PartySmallWindowAddMutator extends IMMOClientMutator<
   update(packet: PartySmallWindowAdd): void {
     this.Client.PartyList.add(packet.PartyMember);
 
-    GlobalEvents.fire("PartySmallWindow", {
+    this.fire("PartySmallWindow", {
       member: packet.PartyMember,
-      action: "add"
+      action: "add",
     });
   }
 }

@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import Revive from "../../incoming/game/Revive";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class ReviveMutator extends IMMOClientMutator<
   GameClient,
@@ -19,6 +18,6 @@ export default class ReviveMutator extends IMMOClientMutator<
       creature.IsDead = false;
     }
 
-    GlobalEvents.fire("Revive", { creature });
+    this.fire("Revive", { creature });
   }
 }

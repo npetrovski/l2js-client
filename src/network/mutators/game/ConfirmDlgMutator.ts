@@ -1,5 +1,4 @@
 import { ConfirmDlgType } from "../../../enums/ConfirmDlgType";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import ConfirmDlg from "../../incoming/game/ConfirmDlg";
@@ -12,7 +11,7 @@ export default class ConfirmDlgMutator extends IMMOClientMutator<
     this.Client.LastConfirmMessageId = packet.messageId;
     this.Client.LastConfirmMessageRequesterId = packet.RequesterId;
 
-    GlobalEvents.fire("ConfirmDlg", {
+    this.fire("ConfirmDlg", {
       messageId: packet.messageId,
       type:
         Object.values(ConfirmDlgType).indexOf(packet.messageId) > -1
@@ -24,7 +23,7 @@ export default class ConfirmDlgMutator extends IMMOClientMutator<
         packet.messageId === ConfirmDlgType.RESURRECT_USING_CHARM_OF_COURAGE,
       params: packet.messageParams,
       time: packet.Time,
-      requesterId: packet.RequesterId
+      requesterId: packet.RequesterId,
     });
   }
 }

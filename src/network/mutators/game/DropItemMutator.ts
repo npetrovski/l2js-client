@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import DropItem from "../../incoming/game/DropItem";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class DropItemMutator extends IMMOClientMutator<
   GameClient,

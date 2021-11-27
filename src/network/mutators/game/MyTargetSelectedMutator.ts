@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import MyTargetSelected from "../../incoming/game/MyTargetSelected";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class MyTargetSelectedMutator extends IMMOClientMutator<
   GameClient,
@@ -15,8 +14,8 @@ export default class MyTargetSelectedMutator extends IMMOClientMutator<
       this.Client.ActiveChar.Target = npc;
     }
 
-    GlobalEvents.fire("MyTargetSelected", {
-      objectId: packet.CreatureObjId
+    this.fire("MyTargetSelected", {
+      objectId: packet.CreatureObjId,
     });
   }
 }

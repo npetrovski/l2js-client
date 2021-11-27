@@ -1,5 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class MyTargetSelected extends GameClientPacket {
   CreatureObjId!: number;

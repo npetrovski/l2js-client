@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import NpcInfo from "../../incoming/game/NpcInfo";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class NpcInfoMutator extends IMMOClientMutator<
   GameClient,

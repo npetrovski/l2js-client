@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import RecipeBookItemList from "../../incoming/game/RecipeBookItemList";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class RecipeBookItemListMutator extends IMMOClientMutator<
   GameClient,
@@ -14,7 +13,7 @@ export default class RecipeBookItemListMutator extends IMMOClientMutator<
       this.Client.CommonRecipeBook.clear();
     }
 
-    packet.Recipes.forEach(recipe => {
+    packet.Recipes.forEach((recipe) => {
       if (packet.IsDwarvenCraft) {
         this.Client.DwarfRecipeBook.add(recipe);
       } else {
@@ -22,8 +21,8 @@ export default class RecipeBookItemListMutator extends IMMOClientMutator<
       }
     });
 
-    GlobalEvents.fire("RecipeBook", {
-      isDwarven: packet.IsDwarvenCraft
+    this.fire("RecipeBook", {
+      isDwarven: packet.IsDwarvenCraft,
     });
   }
 }

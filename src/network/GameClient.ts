@@ -3,10 +3,10 @@ import L2Creature from "../entities/L2Creature";
 import L2DroppedItem from "../entities/L2DroppedItem";
 import L2Item from "../entities/L2Item";
 import L2ObjectCollection from "../entities/L2ObjectCollection";
+import L2ClientObjectCollection from "../entities/L2ClientObjectCollection";
 import L2PartyMember from "../entities/L2PartyMember";
 import L2Skill from "../entities/L2Skill";
 import L2User from "../entities/L2User";
-import { GlobalEvents } from "../mmocore/EventEmitter";
 import MMOClient from "../mmocore/MMOClient";
 import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
@@ -21,13 +21,20 @@ export default class GameClient extends MMOClient {
   private _gameCrypt: GameCrypt = new GameCrypt();
   private _config!: MMOConfig;
   private _activeChar: L2User = new L2User();
-  private _creatures: L2ObjectCollection<L2Creature> = new L2ObjectCollection();
-  private _party: L2ObjectCollection<L2PartyMember> = new L2ObjectCollection();
-  private _droppedItems: L2ObjectCollection<L2DroppedItem> = new L2ObjectCollection();
-  private _items: L2ObjectCollection<L2Item> = new L2ObjectCollection();
-  private _skills: L2ObjectCollection<L2Skill> = new L2ObjectCollection();
-  private _dwarfRecipeBook: L2ObjectCollection<L2Recipe> = new L2ObjectCollection();
-  private _commonRecipeBook: L2ObjectCollection<L2Recipe> = new L2ObjectCollection();
+  private _creatures: L2ObjectCollection<L2Creature> =
+    new L2ClientObjectCollection(this);
+  private _party: L2ClientObjectCollection<L2PartyMember> =
+    new L2ClientObjectCollection(this);
+  private _droppedItems: L2ClientObjectCollection<L2DroppedItem> =
+    new L2ClientObjectCollection(this);
+  private _items: L2ClientObjectCollection<L2Item> =
+    new L2ClientObjectCollection(this);
+  private _skills: L2ClientObjectCollection<L2Skill> =
+    new L2ClientObjectCollection(this);
+  private _dwarfRecipeBook: L2ClientObjectCollection<L2Recipe> =
+    new L2ClientObjectCollection(this);
+  private _commonRecipeBook: L2ClientObjectCollection<L2Recipe> =
+    new L2ClientObjectCollection(this);
 
   public LastConfirmMessageId!: number;
   public LastConfirmMessageRequesterId!: number;
@@ -129,7 +136,7 @@ export default class GameClient extends MMOClient {
 
     this.logger.debug("Sending ", gsp.constructor.name);
     return this.sendRaw(sendable).then(() => {
-      GlobalEvents.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
+      this.fire(`PacketSent:${gsp.constructor.name}`, { packet: gsp });
     });
   }
 }
