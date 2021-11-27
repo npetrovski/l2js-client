@@ -8,7 +8,7 @@ export default class Attack extends GameClientPacket {
   readImpl(): boolean {
     const _id = this.readC();
 
-    const _attackerObjId = this.readD();
+    this.AttackerObjectId = this.readD();
 
     const _targetId = this.readD();
     const _damage = this.readD();
