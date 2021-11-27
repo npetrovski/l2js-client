@@ -7,7 +7,7 @@ export default class AskJoinPartyMutator extends IMMOClientMutator<
   AskJoinParty
 > {
   update(packet: AskJoinParty): void {
-    this.fire(`AskJoinParty`, {
+    this.fire(`PartyRequest`, {
       requestorName: packet.RequestorName,
       partyDistributionType: packet.PartyDistributionType,
     });
