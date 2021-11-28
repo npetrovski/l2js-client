@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import TargetSelected from "../../incoming/game/TargetSelected";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class TargetSelectedMutator extends IMMOClientMutator<
   GameClient,
@@ -18,10 +17,10 @@ export default class TargetSelectedMutator extends IMMOClientMutator<
       }
     }
 
-    GlobalEvents.fire("TargetSelected", {
+    this.fire("TargetSelected", {
       objectId: packet.ObjectId,
       targetObjectId: packet.TargetObjectId,
-      targetLocation: packet.Location
+      targetLocation: packet.Location,
     });
   }
 }

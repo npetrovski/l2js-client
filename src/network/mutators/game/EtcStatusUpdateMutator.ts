@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import EtcStatusUpdate from "../../incoming/game/EtcStatusUpdate";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 import L2Buff from "../../../entities/L2Buff";
 
 export default class EtcStatusUpdateMutator extends IMMOClientMutator<

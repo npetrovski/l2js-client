@@ -1,5 +1,4 @@
 import GameClientPacket from "./GameClientPacket";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import L2Buff from "../../../entities/L2Buff";
 
 export default class PartySpelled extends GameClientPacket {

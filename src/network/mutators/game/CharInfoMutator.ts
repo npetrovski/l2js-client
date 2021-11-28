@@ -1,4 +1,3 @@
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import CharInfo from "../../incoming/game/CharInfo";
@@ -34,9 +33,11 @@ export default class CharInfoMutator extends IMMOClientMutator<
       char.IsHero = packet.Char.IsHero;
       char.Heading = packet.Char.Heading;
 
-      char.calculateDistance(this.Client.ActiveChar);
+      if (packet.Char.ObjectId !== this.Client.ActiveChar.ObjectId) {
+        char.calculateDistance(this.Client.ActiveChar);
+      }
     }
 
-    GlobalEvents.fire("CharInfo", { creature: char });
+    this.fire("CharInfo", { creature: char });
   }
 }

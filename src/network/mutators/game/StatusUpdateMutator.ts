@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import StatusUpdate from "../../incoming/game/StatusUpdate";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
+
 import L2User from "../../../entities/L2User";
 
 export default class StatusUpdateMutator extends IMMOClientMutator<
@@ -14,7 +14,7 @@ export default class StatusUpdateMutator extends IMMOClientMutator<
         packet.ObjectId
       );
 
-      Object.keys(packet.Stats).forEach(key => {
+      Object.keys(packet.Stats).forEach((key) => {
         const status: number = parseInt(key, 10);
         const value = packet.Stats[status];
 

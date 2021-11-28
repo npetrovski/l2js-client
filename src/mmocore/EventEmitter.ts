@@ -58,6 +58,10 @@ export default class EventEmitter {
     }
   }
 
+  onAll(handler: EventHandler): boolean {
+    return this.on("*", handler);
+  }
+
   offAll(): void {
     this._eventHandlers = {};
   }
@@ -65,16 +69,19 @@ export default class EventEmitter {
   fire(type: string, data?: Record<string, unknown>): void {
     if (!type) return;
 
-    const handlers = this._eventHandlers[type];
-    if (!handlers || !handlers.length) return;
+    let handlers = this._eventHandlers[type] ?? [];
+    const allHandlers = this._eventHandlers["*"] ?? [];
+    if (allHandlers && allHandlers.length)
+      handlers = handlers.concat(allHandlers);
+    if (!handlers.length) return;
 
     const event = this.createEvent(type, data);
 
     for (const handler of handlers) {
-      if (handler._once) event.once = true;
+      const once = (event.once = handler._once === true);
 
       handler(event);
-      if (event.once) this.off(type, handler);
+      if (once) setTimeout(this.off.bind(this), 0, type, handler); // we should not modify handlers in for loop
     }
   }
 
@@ -93,10 +100,12 @@ export default class EventEmitter {
     return this._eventHandlers[type] || [];
   }
 
-  createEvent(type: string, data?: Record<string, unknown>, once = false): Event {
+  createEvent(
+    type: string,
+    data?: Record<string, unknown>,
+    once = false
+  ): Event {
     const event: Event = { type, data, once };
     return event;
   }
 }
-
-export const GlobalEvents = new EventEmitter();

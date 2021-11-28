@@ -1,6 +1,6 @@
 import ReceivablePacket from "./ReceivablePacket";
 import IPacketHandler from "./IPacketHandler";
-import { GlobalEvents } from "./EventEmitter";
+import EventEmitter from "./EventEmitter";
 import IConnection from "./IConnection";
 import Logger from "./Logger";
 import MMOSession from "./MMOSession";
@@ -10,7 +10,10 @@ import IMMOClientMutator from "./IMMOClientMutator";
 import AbstractPacket from "./AbstractPacket";
 import MMOConfig from "./MMOConfig";
 
-export default abstract class MMOClient implements IProcessable {
+export default abstract class MMOClient
+  extends EventEmitter
+  implements IProcessable
+{
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
   private _connection!: IConnection;
@@ -75,7 +78,11 @@ export default abstract class MMOClient implements IProcessable {
   mutate(packet: AbstractPacket): void {
     if (packet.constructor.name in this._mts) {
       this._mts[packet.constructor.name].forEach((m) => {
-        this.logger.debug("Mutating", this.constructor.name, m.constructor.name);
+        this.logger.debug(
+          "Mutating",
+          this.constructor.name,
+          m.constructor.name
+        );
         try {
           m.update(packet);
         } catch (e) {
@@ -114,19 +121,28 @@ export default abstract class MMOClient implements IProcessable {
         }
 
         ((n, ctx) => {
-          const packetData = new Uint8Array(data.slice(n + 2, n + packetLength)); // +2 is for skipping the packet size
+          const packetData = new Uint8Array(
+            data.slice(n + 2, n + packetLength)
+          ); // +2 is for skipping the packet size
           ctx.decrypt(packetData, 0, packetData.byteLength);
 
-          const rcp: ReceivablePacket = ctx._packetHandler.handlePacket(packetData, ctx);
+          const rcp: ReceivablePacket = ctx._packetHandler.handlePacket(
+            packetData,
+            ctx
+          );
           if (!rcp) {
-            reject(`Cannot find a handler for this packet. Opcode: 0x${(packetData[0] & 0xff).toString(16)}`);
+            reject(
+              `Cannot find a handler for this packet. Opcode: 0x${(
+                packetData[0] & 0xff
+              ).toString(16)}`
+            );
             return; // We cannot find the required packet handler. Most probably the game packet is not yet implemented.
           }
 
           if (rcp.read()) {
             this.logger.debug("Received", rcp.constructor.name);
             this.mutate(rcp);
-            GlobalEvents.fire(`PacketReceived:${rcp.constructor.name}`, {
+            this.fire(`PacketReceived:${rcp.constructor.name}`, {
               packet: rcp,
             });
             resolve(rcp);
@@ -139,20 +155,26 @@ export default abstract class MMOClient implements IProcessable {
   }
 
   sendRaw(raw: Uint8Array): Promise<void> {
-    return this._connection.write(raw).catch((error) => this.logger.error(error));
+    return this._connection
+      .write(raw)
+      .catch((error) => this.logger.error(error));
   }
 
   hexString(data: Uint8Array): string {
     return (
       " ".repeat(7) +
-      Array.from(new Array(16), (n, v) => ("0" + (v & 0xff).toString(16)).slice(-2).toUpperCase()).join(" ") +
+      Array.from(new Array(16), (n, v) =>
+        ("0" + (v & 0xff).toString(16)).slice(-2).toUpperCase()
+      ).join(" ") +
       "\r\n" +
       "=".repeat(54) +
       "\r\n" +
       Array.from(Array.from(data), (byte, k) => {
         return (
           (k % 16 === 0
-            ? ("00000" + ((Math.ceil(k / 16) * 16) & 0xffff).toString(16)).slice(-5).toUpperCase() + "  "
+            ? ("00000" + ((Math.ceil(k / 16) * 16) & 0xffff).toString(16))
+                .slice(-5)
+                .toUpperCase() + "  "
             : "") +
           ("0" + (byte & 0xff).toString(16)).slice(-2) +
           ((k + 1) % 16 === 0 ? "\r\n" : " ")

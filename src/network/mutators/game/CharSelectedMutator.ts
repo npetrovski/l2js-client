@@ -8,5 +8,8 @@ export default class CharSelectedMutator extends IMMOClientMutator<
 > {
   update(packet: CharSelected): void {
     this.Client.ActiveChar = packet.User;
+    if (!this.Client.CreaturesList.getEntryByObjectId(packet.User.ObjectId)) {
+      this.Client.CreaturesList.add(this.Client.ActiveChar);
+    }
   }
 }

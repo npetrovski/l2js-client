@@ -1,4 +1,4 @@
-import { EventHandler, GlobalEvents } from "./mmocore/EventEmitter";
+import { EventHandler } from "./mmocore/EventEmitter";
 import L2Buff from "./entities/L2Buff";
 import L2Creature from "./entities/L2Creature";
 import L2DroppedItem from "./entities/L2DroppedItem";
@@ -16,8 +16,19 @@ import ClientCommands from "./commands/ClientCommands";
  * Lineage 2 Client main class
  */
 export default class Client extends ClientCommands {
-  LoginClient = new LoginClient();
+  LoginClient: LoginClient | null = new LoginClient();
   GameClient = new GameClient();
+
+  constructor() {
+    super();
+
+    this.once("PacketReceived", "KeyPacket", () => {
+      setImmediate(() => {
+        this.LoginClient?.offAll();
+        this.LoginClient = null;
+      });
+    });
+  }
 
   get Me(): L2User {
     return this.GameClient.ActiveChar;
@@ -50,9 +61,10 @@ export default class Client extends ClientCommands {
     return this.GameClient.CommonRecipeBook;
   }
 
-  private ___event_params(
-    ...params: EventHandlerType
-  ): { type: string; handler: EventHandler } {
+  private ___event_params(...params: EventHandlerType): {
+    type: string;
+    handler: EventHandler;
+  } {
     let type: string;
     let handler: any;
     if (params.length >= 3) {
@@ -68,19 +80,22 @@ export default class Client extends ClientCommands {
 
   on(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
-    GlobalEvents.on(c.type, c.handler);
+    this.GameClient.on(c.type, c.handler);
+    this.LoginClient?.on(c.type, c.handler);
     return this;
   }
 
   once(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
-    GlobalEvents.once(c.type, c.handler);
+    this.GameClient.once(c.type, c.handler);
+    this.LoginClient?.once(c.type, c.handler);
     return this;
   }
 
   off(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
-    GlobalEvents.off(c.type, c.handler);
+    this.GameClient.off(c.type, c.handler);
+    this.LoginClient?.off(c.type, c.handler);
     return this;
   }
 }

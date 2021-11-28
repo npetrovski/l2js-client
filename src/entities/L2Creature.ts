@@ -2,7 +2,6 @@ import L2Object from "./L2Object";
 import { Sex } from "../enums/Sex";
 import { Race } from "../enums/Race";
 import Vector from "../mmocore/Vector";
-import { GlobalEvents } from "../mmocore/EventEmitter";
 import L2ObjectCollection from "./L2ObjectCollection";
 import L2Buff from "./L2Buff";
 import { Console } from "console";
@@ -396,12 +395,11 @@ export default abstract class L2Creature extends L2Object {
     return this._isMoving;
   }
 
-  public set IsMoving(value: boolean) {
-    this._isMoving = value;
-    if (value) {
-      GlobalEvents.fire("StartMoving", { creature: this });
-    } else {
-      GlobalEvents.fire("StopMoving", { creature: this });
+  public set IsMoving(isMoving: boolean) {
+    const wasMoving = this._isMoving;
+    this._isMoving = isMoving;
+    if (isMoving !== wasMoving) {
+      this.fire(`${isMoving ? "Start" : "Stop"}Moving`, { creature: this });
     }
   }
 

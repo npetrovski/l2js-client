@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import MoveToPawn from "../../incoming/game/MoveToPawn";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class MoveToPawnMutator extends IMMOClientMutator<
   GameClient,
