@@ -430,6 +430,11 @@ export default abstract class L2Creature extends L2Object {
     this.Y = y;
     this.Z = z;
 
+    let angleTarget = Math.atan2(dy - y, dx - x) * (180 / Math.PI);
+    if (angleTarget < 0)
+      angleTarget = 360 + angleTarget;
+    this.Heading = Math.floor(angleTarget * 182.044444444);
+
     const movingVector: Vector = new Vector(dx - this.X, dy - this.Y);
 
     let ticks = Math.ceil(movingVector.length() / (this.CurrentSpeed / 10));
