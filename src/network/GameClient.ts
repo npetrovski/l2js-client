@@ -16,75 +16,25 @@ import GameServerPacket from "./outgoing/game/GameServerPacket";
 import L2Recipe from "../entities/L2Recipe";
 import IConnection from "../mmocore/IConnection";
 import mutators from "./mutators/game/index";
+import SocketFactory from "../socket/SocketFactory";
 
 export default class GameClient extends MMOClient {
   private _gameCrypt: GameCrypt = new GameCrypt();
-  private _config!: MMOConfig;
-  private _activeChar: L2User = new L2User();
-  private _creatures: L2ObjectCollection<L2Creature> =
-    new L2ClientObjectCollection(this);
-  private _party: L2ClientObjectCollection<L2PartyMember> =
-    new L2ClientObjectCollection(this);
-  private _droppedItems: L2ClientObjectCollection<L2DroppedItem> =
-    new L2ClientObjectCollection(this);
-  private _items: L2ClientObjectCollection<L2Item> =
-    new L2ClientObjectCollection(this);
-  private _skills: L2ClientObjectCollection<L2Skill> =
-    new L2ClientObjectCollection(this);
-  private _dwarfRecipeBook: L2ClientObjectCollection<L2Recipe> =
-    new L2ClientObjectCollection(this);
-  private _commonRecipeBook: L2ClientObjectCollection<L2Recipe> =
-    new L2ClientObjectCollection(this);
+  Config!: MMOConfig;
+  ActiveChar: L2User = new L2User();
+  CreaturesList: L2ObjectCollection<L2Creature> = new L2ClientObjectCollection(this);
+  PartyList: L2ClientObjectCollection<L2PartyMember> = new L2ClientObjectCollection(this);
+  DroppedItems: L2ClientObjectCollection<L2DroppedItem> = new L2ClientObjectCollection(this);
+  InventoryItems: L2ClientObjectCollection<L2Item> = new L2ClientObjectCollection(this);
+  SkillsList: L2ClientObjectCollection<L2Skill> = new L2ClientObjectCollection(this);
+  DwarfRecipeBook: L2ClientObjectCollection<L2Recipe> = new L2ClientObjectCollection(this);
+  CommonRecipeBook: L2ClientObjectCollection<L2Recipe> = new L2ClientObjectCollection(this);
 
-  public LastConfirmMessageId!: number;
-  public LastConfirmMessageRequesterId!: number;
-
-  get CreaturesList(): L2ObjectCollection<L2Creature> {
-    return this._creatures;
-  }
-
-  get PartyList(): L2ObjectCollection<L2PartyMember> {
-    return this._party;
-  }
-
-  get DroppedItems(): L2ObjectCollection<L2DroppedItem> {
-    return this._droppedItems;
-  }
-
-  get InventoryItems(): L2ObjectCollection<L2Item> {
-    return this._items;
-  }
+  LastConfirmMessageId!: number;
+  LastConfirmMessageRequesterId!: number;
 
   get BuffsList(): L2ObjectCollection<L2Buff> {
-    return this._activeChar.Buffs;
-  }
-
-  get SkillsList(): L2ObjectCollection<L2Skill> {
-    return this._skills;
-  }
-
-  get DwarfRecipeBook(): L2ObjectCollection<L2Recipe> {
-    return this._dwarfRecipeBook;
-  }
-
-  get CommonRecipeBook(): L2ObjectCollection<L2Recipe> {
-    return this._commonRecipeBook;
-  }
-
-  get Config(): MMOConfig {
-    return this._config;
-  }
-
-  set Config(config: MMOConfig) {
-    this._config = config;
-  }
-
-  get ActiveChar(): L2User {
-    return this._activeChar;
-  }
-
-  set ActiveChar(char: L2User) {
-    this._activeChar = char;
+    return this.ActiveChar.Buffs;
   }
 
   constructor() {
@@ -101,7 +51,7 @@ export default class GameClient extends MMOClient {
   }
 
   init(config: MMOConfig, connection?: IConnection): this {
-    this.Connection = connection ?? new MMOConnection(config, this);
+    this.Connection = connection ?? new MMOConnection(SocketFactory.getSocketAdapter(config), this);
 
     this.Config = config;
 
