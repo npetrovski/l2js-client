@@ -95,8 +95,8 @@ export default class CommandEnter extends AbstractGameCommand {
           this.GameClient.once("PacketReceived:KeyPacket", () =>
             this.GameClient.sendPacket(new AuthLogin(this.GameClient.Session))
           );
-
           this.GameClient.once("PacketReceived:CharSelectionInfo", () => {
+
             setTimeout(() => {
               this.GameClient.sendPacket(
                 new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0)
@@ -106,7 +106,9 @@ export default class CommandEnter extends AbstractGameCommand {
           }
 
           );
+
           this.GameClient.once("PacketReceived:CharSelected", () => {
+
             setTimeout(() => {
               this.GameClient.sendPacket(new EnterWorld())
                 .catch(e => reject("Enter world fail." + e))
