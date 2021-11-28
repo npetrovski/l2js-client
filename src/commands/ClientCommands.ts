@@ -173,23 +173,9 @@ export default interface ClientCommands {
 }
 
 export default abstract class ClientCommands {
-  private _lc!: LoginClient;
+  LoginClient = new LoginClient();
 
-  get LoginClient(): LoginClient {
-    if (!this._lc || !this._lc.IsConnected) {
-      this._lc = new LoginClient();
-    }
-    return this._lc;
-  }
-
-  private _gc!: GameClient;
-
-  get GameClient(): GameClient {
-    if (!this._gc || !this._gc.IsConnected) {
-      this._gc = new GameClient();
-    }
-    return this._gc;
-  }
+  GameClient = new GameClient();
 
   protected commands: Record<string, ICommand> = commands;
   constructor() {
