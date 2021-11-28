@@ -27,6 +27,8 @@ import CommandSitStand from "./CommandSitStand";
 import CommandTell from "./CommandTell";
 import CommandUseItem from "./CommandUseItem";
 import CommandValidatePosition from "./CommandValidatePosition";
+import CommandRequestJoinParty from "./CommandRequestJoinParty";
+import CommandRequestBypass from "./CommandRequestBypass";
 
 export default {
   enter: CommandEnter.prototype,
@@ -70,5 +72,8 @@ export default {
   revive: CommandRevive.prototype,
 
   acceptResurrect: CommandAcceptResurrect.prototype,
-  declineResurrect: CommandDeclineResurrect.prototype
+  declineResurrect: CommandDeclineResurrect.prototype,
+
+  partyInvite: CommandRequestJoinParty.prototype,
+  dialog: CommandRequestBypass.prototype,
 };
