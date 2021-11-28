@@ -174,6 +174,14 @@ export default interface ClientCommands {
    * Decline resurrect request
    */
   declineResurrect(): void;
+  /**
+   * Send Party Request
+   */
+  partyInvite(charOrCharName?: L2Character | string): void;
+  /**
+   * Send bypass to server. (dialog)
+   */
+  dialog(text: string): void;
 }
 
 /**
