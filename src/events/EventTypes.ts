@@ -119,7 +119,7 @@ export declare type ECreatureSay = {
     type: number;
     charName: string;
     npcStringId: number;
-    messages: [];
+    messages: string[];
   };
   once: boolean;
 };
