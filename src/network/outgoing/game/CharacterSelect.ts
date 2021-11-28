@@ -6,11 +6,12 @@ export default class CharacterSelect extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x12);
+    this.writeC(0x0d);
     this.writeD(this.slot);
     this.writeH(0);
     this.writeD(0);
     this.writeD(0);
     this.writeD(0);
+    this.logger.info("CharSelect send " + this.slot);
   }
 }

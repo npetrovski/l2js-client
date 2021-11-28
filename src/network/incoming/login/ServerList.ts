@@ -29,6 +29,8 @@ export default class ServerList extends LoginClientPacket {
     }
 
     const _unkn = this.readH();
+
+    this.logger.info(this.Servers);
     // ...
 
     return true;

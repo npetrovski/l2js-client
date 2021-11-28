@@ -7,7 +7,7 @@
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
+    "strict": false,
     "removeComments": true,
     "noImplicitThis": true,
     "noImplicitAny": true,

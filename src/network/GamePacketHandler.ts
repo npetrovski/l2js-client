@@ -16,10 +16,10 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
     try {
       switch (opcode) {
         case 0x00:
-          rpk = new Packets.Die();
+          rpk = new Packets.KeyPacket();
           break;
         case 0x01:
-          rpk = new Packets.Revive();
+          rpk = new Packets.MoveToLocation();
           break;
         case 0x02:
           rpk = new Packets.PlayerInGame();
@@ -27,16 +27,17 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         case 0x05:
           rpk = new Packets.SpawnItem();
           break;
+        case 0x06:
+          rpk = new Packets.Die();
+          break;
         case 0x08:
           rpk = new Packets.DeleteObject();
-          break;
-        case 0x09:
-          rpk = new Packets.CharSelectionInfo();
           break;
         case 0x0a:
           rpk = new Packets.TempBan();
           break;
-        case 0x0b:
+        case 0x15:
+          this.logger.info("Got char selected packet")
           rpk = new Packets.CharSelected();
           break;
         case 0x0c:
@@ -49,7 +50,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.SunRise();
           break;
         case 0x13:
-          rpk = new Packets.SunSet();
+          rpk = new Packets.CharSelectionInfo();
           break;
         case 0x14:
           rpk = new Packets.TradeStart();
@@ -380,13 +381,13 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               break;
 
             default:
-              // no-op
+              this.logger.info("Unknow subpacket " + opcode)
               break;
           }
           break;
         }
         default:
-          // no-op
+          this.logger.info("Unknow packet " + opcode)
           break;
       }
 
@@ -394,11 +395,11 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         if (data.byteLength > 2) {
           this.logger.debug(
             "Unknown game packet received. [0x" +
-              opcode.toString(16) +
-              " 0x" +
-              data[1].toString(16) +
-              "] len=" +
-              data.byteLength
+            opcode.toString(16) +
+            " 0x" +
+            data[1].toString(16) +
+            "] len=" +
+            data.byteLength
           );
         }
       } else {

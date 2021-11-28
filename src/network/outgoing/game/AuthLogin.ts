@@ -10,16 +10,13 @@ export default class AuthLogin extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x2b);
+    this.writeC(0x08);
     this.writeS(this._session.username);
     this.writeD(this._session.playOk2);
     this.writeD(this._session.playOk1);
     this.writeD(this._session.loginOk1);
     this.writeD(this._session.loginOk2);
-
     this.writeD(1);
-    this.writeB(
-      Uint8Array.from([0x3c, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
-    ); // CT2_6
+    this.logger.info("AuthLogin");
   }
 }

@@ -10,6 +10,7 @@ export default class LoginOk extends LoginClientPacket {
     this.LoginOk1 = this.readD();
     this.LoginOk2 = this.readD();
 
+    this.logger.info("Loging ok" + _id);
     return true;
   }
 }
