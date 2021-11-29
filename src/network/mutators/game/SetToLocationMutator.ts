@@ -1,7 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
 import SetToLocation from "../../incoming/game/SetToLocation";
-import { GlobalEvents } from "../../../mmocore/EventEmitter";
 
 export default class SetToLocationMutator extends IMMOClientMutator<
   GameClient,
