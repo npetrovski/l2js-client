@@ -7,8 +7,6 @@ import L2ObjectCollection from "./entities/L2ObjectCollection";
 import L2Skill from "./entities/L2Skill";
 import L2User from "./entities/L2User";
 import L2Recipe from "./entities/L2Recipe";
-import GameClient from "./network/GameClient";
-import LoginClient from "./network/LoginClient";
 import { EventHandlerType } from "./events/EventTypes";
 import ClientCommands from "./commands/ClientCommands";
 
@@ -16,20 +14,6 @@ import ClientCommands from "./commands/ClientCommands";
  * Lineage 2 Client main class
  */
 export default class Client extends ClientCommands {
-  LoginClient: LoginClient | null = new LoginClient();
-  GameClient = new GameClient();
-
-  constructor() {
-    super();
-
-    this.once("PacketReceived", "KeyPacket", () => {
-      setImmediate(() => {
-        this.LoginClient?.offAll();
-        this.LoginClient = null;
-      });
-    });
-  }
-
   get Me(): L2User {
     return this.GameClient.ActiveChar;
   }
@@ -81,21 +65,21 @@ export default class Client extends ClientCommands {
   on(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
     this.GameClient.on(c.type, c.handler);
-    this.LoginClient?.on(c.type, c.handler);
+    if (this.LoginClient.IsConnected) this.LoginClient.on(c.type, c.handler);
     return this;
   }
 
   once(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
     this.GameClient.once(c.type, c.handler);
-    this.LoginClient?.once(c.type, c.handler);
+    if (this.LoginClient.IsConnected) this.LoginClient.once(c.type, c.handler);
     return this;
   }
 
   off(...params: EventHandlerType): this {
     const c = this.___event_params(...params);
     this.GameClient.off(c.type, c.handler);
-    this.LoginClient?.off(c.type, c.handler);
+    this.LoginClient.off(c.type, c.handler);
     return this;
   }
 }

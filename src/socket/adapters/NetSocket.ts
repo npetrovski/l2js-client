@@ -2,24 +2,27 @@ import * as net from "net";
 import IStream from "../../mmocore/IStream";
 
 export default class NetSocket implements IStream {
-  private _socket: net.Socket = new net.Socket();
-  private _remoteAddress!: string;
-  private _remotePort!: number;
+  private _socket!: net.Socket;
 
-  constructor(ip: string, port: number) {
-    this._remoteAddress = ip;
-    this._remotePort = port;
-  }
+  private timeoutTimer!: ReturnType<typeof setTimeout>;
+
+  private timeout = 5000;
+
+  constructor(private ip: string, private port: number) {}
 
   connect(): Promise<void> {
+    this._socket = new net.Socket();
     return new Promise((resolve, reject) => {
-      this._socket.setTimeout(0);
-      this._socket.on("timeout", () => {
-        reject("Socket timeout");
+      this.timeoutTimer = setTimeout(() => {
         this._socket.end();
-      });
-      this._socket.on("error", err => reject(err));
-      this._socket.connect(this._remotePort, this._remoteAddress, () => {
+        this._socket.destroy();
+        reject("Socket timeout");
+      }, this.timeout);
+
+      this._socket.setTimeout(0);
+      this._socket.on("error", (err) => reject(err));
+      this._socket.connect(this.port, this.ip, () => {
+        clearTimeout(this.timeoutTimer);
         resolve();
       });
     });
@@ -29,8 +32,11 @@ export default class NetSocket implements IStream {
     return new Promise((resolve, reject) => {
       if (!this._socket.destroyed) {
         // this._socket.once("error", (err) => reject(err));
-        this._socket.write(bytes);
-        resolve();
+        if (this._socket.write(bytes)) {
+          resolve();
+        } else {
+          reject("Data not sent");
+        }
       } else {
         reject("Connection is closed");
       }
@@ -39,7 +45,7 @@ export default class NetSocket implements IStream {
 
   recv(): Promise<Uint8Array> {
     this._socket.resume();
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       // this._socket.once("error", err => reject(err));
       this._socket.once("data", (data: Uint8Array) => {
         resolve(data);
@@ -51,9 +57,9 @@ export default class NetSocket implements IStream {
   close(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this._socket.destroyed) {
-        this._socket.once("close", err => {
+        this._socket.once("close", (err) => {
           if (err) {
-            reject();
+            reject(err);
           } else {
             resolve();
           }
@@ -64,6 +70,6 @@ export default class NetSocket implements IStream {
   }
 
   toString(): string {
-    return `${this._remoteAddress}:${this._remotePort}`;
+    return `${this.ip}:${this.port}`;
   }
 }

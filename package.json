@@ -31,6 +31,18 @@
     "bot",
     "l2js"
   ],
+  "prettier": {
+    "trailingComma": "es5",
+    "singleQuote": false,
+    "useTabs": false,
+    "tabWidth": 2,
+    "printWidth": 120,
+    "semi": true,
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "arrowParens": "always",
+    "endOfLine": "lf"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/npetrovski/l2js-client"

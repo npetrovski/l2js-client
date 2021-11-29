@@ -1,50 +1,47 @@
 import IStream from "./IStream";
-import MMOConfig from "./MMOConfig";
 import IConnection from "./IConnection";
-import SocketFactory from "../socket/SocketFactory";
 import Logger from "./Logger";
 import IProcessable from "./IProcessable";
 
 export default class MMOConnection implements IConnection {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
-  private _client!: IProcessable;
+  IsConnected = false;
 
-  private _stream: IStream;
-
-  constructor(config: MMOConfig, client: IProcessable) {
-    this._stream = SocketFactory.getSocketAdapter(config);
-    this._client = client;
-  }
+  constructor(private stream: IStream, private handler: IProcessable) {}
 
   connect(): Promise<void> {
-    this.logger.debug("Connecting", this._stream.toString());
-    return this._stream
+    this.logger.debug("Connecting", this.stream.toString());
+    return this.stream
       .connect()
       .then(() => {
-        this.logger.info("Connected", this._stream.toString());
+        this.IsConnected = true;
+        this.logger.info("Connected", this.stream.toString());
         this.read();
       })
       .catch(() => {
-        this.logger.error("Connection fail to ", this._stream.toString());
+        this.IsConnected = false;
+        throw new Error("Connection failed to " + this.stream.toString());
       });
   }
 
   async read(): Promise<void> {
-    const data: Uint8Array = await this._stream.recv();
+    if (!this.IsConnected) return;
+    const data: Uint8Array = await this.stream.recv();
     if (data) {
-      this._client.process(data).catch(err => this.logger.warn(err));
+      this.handler.process(data).catch((err) => this.logger.warn(err));
     }
     this.read();
   }
 
   write(raw: Uint8Array): Promise<void> {
-    return this._stream.send(raw);
+    return this.stream.send(raw);
   }
 
   close(): Promise<void> {
-    return this._stream.close().then(() => {
-      this.logger.info("Disconnected", this._stream.toString());
+    return this.stream.close().then(() => {
+      this.IsConnected = false;
+      this.logger.info("Disconnected", this.stream.toString());
     });
   }
 }

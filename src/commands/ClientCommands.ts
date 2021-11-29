@@ -17,9 +17,7 @@ export default interface ClientCommands {
    * Enter Lineage2 world
    * @param config
    */
-  enter(
-    config?: MMOConfig | Record<string, unknown>
-  ): Promise<{ login: LoginClient; game: GameClient }>;
+  enter(config?: MMOConfig | Record<string, unknown>): Promise<{ login: LoginClient; game: GameClient }>;
   /**
    * Send a general message
    * @param text
@@ -71,13 +69,7 @@ export default interface ClientCommands {
    * @param y
    * @param z
    */
-  dropItem(
-    objectId: number,
-    count: number,
-    x?: number,
-    y?: number,
-    z?: number
-  ): void;
+  dropItem(objectId: number, count: number, x?: number, y?: number, z?: number): void;
   /**
    * Hit on target. Accepts L2Object object or ObjectId
    * @param object
@@ -132,11 +124,7 @@ export default interface ClientCommands {
    * @param buff
    * @param level
    */
-  cancelBuff(
-    object: L2Character | number,
-    buff: L2Buff | number,
-    level?: number
-  ): void;
+  cancelBuff(object: L2Character | number, buff: L2Buff | number, level?: number): void;
   /**
    * Sit or stand
    */
@@ -174,13 +162,22 @@ export default interface ClientCommands {
    * Decline resurrect request
    */
   declineResurrect(): void;
+  /**
+   * Send Party Request
+   */
+  partyInvite(charOrCharName?: L2Character | string): void;
+  /**
+   * Send bypass to server. (dialog)
+   */
+  dialog(text: string): void;
 }
 
-/**
- * This class should only be extended by main Client class
- */
 export default abstract class ClientCommands {
-  protected commands = commands;
+  LoginClient = new LoginClient();
+
+  GameClient = new GameClient();
+
+  protected commands: Record<string, ICommand> = commands;
   constructor() {
     return new Proxy<ClientCommands>(this, {
       get(target: ClientCommands, propertyKey: string, receiver: any) {
@@ -189,16 +186,13 @@ export default abstract class ClientCommands {
           return Reflect.get(target, propertyKey, receiver);
         }
         if (propertyKey in commands) {
-          const cmd = Object.create(
-            (commands as any)[propertyKey] as AbstractGameCommand,
-            {
-              LoginClient: { value: (target as any).LoginClient },
-              GameClient: { value: (target as any).GameClient }
-            }
-          );
+          const cmd = Object.create((commands as any)[propertyKey] as AbstractGameCommand, {
+            LoginClient: { value: (target as any).LoginClient },
+            GameClient: { value: (target as any).GameClient },
+          });
           return (...args: any) => cmd.execute(...args);
         }
-      }
+      },
     });
   }
 
@@ -206,7 +200,7 @@ export default abstract class ClientCommands {
     if (commandName in this.commands) {
       throw new Error(`Command ${commandName} is already registered.`);
     }
-    (this.commands as any)[commandName] = commandHandler;
+    this.commands[commandName] = commandHandler;
     return this;
   }
 }
