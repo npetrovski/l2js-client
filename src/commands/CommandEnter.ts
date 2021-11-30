@@ -23,9 +23,7 @@ import AbstractGameCommand from "./AbstractGameCommand";
 export default class CommandEnter extends AbstractGameCommand {
   protected _config: MMOConfig = new MMOConfig();
 
-  execute(
-    config?: MMOConfig | Record<string, unknown>
-  ): Promise<{ login: LoginClient; game: GameClient }> {
+  execute(config?: MMOConfig | Record<string, unknown>): Promise<{ login: LoginClient; game: GameClient }> {
     if (config) {
       this._config = { ...new MMOConfig(), ...(config as MMOConfig) };
     }
@@ -34,51 +32,37 @@ export default class CommandEnter extends AbstractGameCommand {
       this.LoginClient.init(this._config);
       this.LoginClient.connect()
         .then(() => {
-          this.LoginClient.once(
-            "PacketReceived:PlayFail",
-            (e: EPacketReceived) => {
-              reject((e.data.packet as PlayFail).FailReason);
-            }
-          );
-          this.LoginClient.once(
-            "PacketReceived:LoginFail",
-            (e: EPacketReceived) => {
-              reject((e.data.packet as LoginFail).FailReason);
-            }
-          );
+          this.LoginClient.once("PacketReceived:PlayFail", (e: EPacketReceived) => {
+            reject((e.data.packet as PlayFail).FailReason);
+          });
+          this.LoginClient.once("PacketReceived:LoginFail", (e: EPacketReceived) => {
+            reject((e.data.packet as LoginFail).FailReason);
+          });
           this.LoginClient.once("PacketReceived:Init", () =>
-            this.LoginClient.sendPacket(
-              new AuthGameGuard(this.LoginClient.Session.sessionId)
-            )
+            this.LoginClient.sendPacket(new AuthGameGuard(this.LoginClient.Session.sessionId))
           );
           this.LoginClient.once("PacketReceived:GGAuth", () =>
             this.LoginClient.sendPacket(
-              new RequestAuthLogin(
-                this._config.Username,
-                this._config.Password,
-                this.LoginClient.Session
-              )
+              new RequestAuthLogin(this._config.Username, this._config.Password, this.LoginClient.Session)
             )
           );
           this.LoginClient.once("PacketReceived:LoginOk", () =>
+            this.LoginClient.sendPacket(new RequestServerList(this.LoginClient.Session))
+          );
+          this.LoginClient.once("PacketReceived:ServerList", (e: EPacketReceived) => {
             this.LoginClient.sendPacket(
-              new RequestServerList(this.LoginClient.Session)
-            )
-          );
-          this.LoginClient.once(
-            "PacketReceived:ServerList",
-            (e: EPacketReceived) => {
-              this.LoginClient.sendPacket(
-                new RequestServerLogin(
-                  this.LoginClient.Session,
-                  this.LoginClient.ServerId ??
-                  (e.data.packet as ServerList).LastServerId
-                )
-              );
-            }
-          );
+              new RequestServerLogin(
+                this.LoginClient.Session,
+                this.LoginClient.ServerId ?? (e.data.packet as ServerList).LastServerId
+              )
+            );
+          });
           this.LoginClient.once("PacketReceived:PlayOk", () => {
-            this.LoginClient.Connection.close();
+            setTimeout(() => {
+              this.LoginClient.Connection.close();
+              this.LoginClient.offAll();
+              // this.LoginClient = null;
+            }, 0);
             const gameConfig = {
               ...this._config,
               ...{
@@ -96,7 +80,6 @@ export default class CommandEnter extends AbstractGameCommand {
             this.GameClient.sendPacket(new AuthLogin(this.GameClient.Session))
           );
           this.GameClient.once("PacketReceived:CharSelectionInfo", () => {
-
             setTimeout(() => {
               this.GameClient.sendPacket(
                 new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0)
@@ -116,20 +99,16 @@ export default class CommandEnter extends AbstractGameCommand {
 
           });
 
-          this.GameClient.on(
-            "PacketReceived:SystemMessage",
-            (e: EPacketReceived) => {
-              /** WELCOME_TO_LINEAGE */
-              if ((e.data.packet as SystemMessage).messageId === 34 ){
-                const param = {
-                  login: this.LoginClient,
-                  game: this.GameClient,
-                };
-                this.GameClient.fire("LoggedIn", param);
-                resolve(param);
-              }
+          this.GameClient.on("PacketReceived:SystemMessage", (e: EPacketReceived) => {
+            if ((e.data.packet as SystemMessage).messageId === 34 /** WELCOME_TO_LINEAGE */) {
+              const param = {
+                login: this.LoginClient,
+                game: this.GameClient,
+              };
+              this.GameClient.fire("LoggedIn", param);
+              resolve(param);
             }
-          );
+          });
 
           this.GameClient.on("PacketReceived:TeleportToLocation", () => {
             this.GameClient.sendPacket(new Appearing());

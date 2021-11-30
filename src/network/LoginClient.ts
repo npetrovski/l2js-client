@@ -7,21 +7,14 @@ import L2Server from "../entities/L2Server";
 import LoginServerPacket from "./outgoing/login/LoginServerPacket";
 import IConnection from "../mmocore/IConnection";
 import mutators from "./mutators/login/index";
+import SocketFactory from "../socket/SocketFactory";
 
 export default class LoginClient extends MMOClient {
   private _loginCrypt: LoginCrypt = new LoginCrypt();
   private _blowfishKey!: Uint8Array;
-  private _servers: L2Server[] = [];
-  private _serverId = 1;
-  private _config!: MMOConfig;
-
-  get ServerId(): number {
-    return this._serverId;
-  }
-
-  set ServerId(serverId: number) {
-    this._serverId = serverId;
-  }
+  Servers: L2Server[] = [];
+  ServerId = 1;
+  Config!: MMOConfig;
 
   get BlowfishKey(): Uint8Array {
     return this._blowfishKey;
@@ -30,22 +23,6 @@ export default class LoginClient extends MMOClient {
   set BlowfishKey(blowfishKey: Uint8Array) {
     this._blowfishKey = blowfishKey;
     this._loginCrypt.setKey(blowfishKey);
-  }
-
-  get Servers(): L2Server[] {
-    return this._servers;
-  }
-
-  set Servers(servers: L2Server[]) {
-    this._servers = servers;
-  }
-
-  get Config(): MMOConfig {
-    return this._config;
-  }
-
-  set Config(config: MMOConfig) {
-    this._config = config;
   }
 
   constructor() {
@@ -62,14 +39,14 @@ export default class LoginClient extends MMOClient {
   }
 
   init(config: MMOConfig, connection?: IConnection): this {
-    this.Connection = connection ?? new MMOConnection(config, this);
+    this.Connection = connection ?? new MMOConnection(SocketFactory.getSocketAdapter(config), this);
 
     this.Config = config;
 
     this.Session.username = config.Username;
 
     if (config.ServerId) {
-      this._serverId = config.ServerId;
+      this.ServerId = config.ServerId;
     }
 
     return this;
