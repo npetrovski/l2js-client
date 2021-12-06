@@ -303,13 +303,10 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.HennaItemRemoveInfo();
           break;
         case 0xee:
-          rpk = new Packets.HennaEquipList();
+          rpk = new Packets.PartySpelled();
           break;
         case 0xed:
           rpk = new Packets.ConfirmDlg();
-          break;
-        case 0xf4:
-          rpk = new Packets.PartySpelled();
           break;
         case 0xf9:
           rpk = new Packets.EtcStatusUpdate();
