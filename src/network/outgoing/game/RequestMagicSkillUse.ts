@@ -12,7 +12,7 @@ export default class RequestMagicSkillUse extends GameServerPacket {
   }
 
   write(): void {
-    this.writeC(0x39);
+    this.writeC(0x2f);
     this.writeD(this._skillId);
     this.writeD(this._ctrlPressed);
     this.writeC(this._shiftPressed);
