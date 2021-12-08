@@ -49,6 +49,7 @@ export default abstract class L2Creature extends L2Object {
   private _baseClassName!: string;
   private _race!: Race;
   private _isMoving = false;
+  private _movingDistance: number = 0;
   private _isReady = true;
   private _karma!: number;
 
@@ -398,9 +399,23 @@ export default abstract class L2Creature extends L2Object {
   public set IsMoving(isMoving: boolean) {
     const wasMoving = this._isMoving;
     this._isMoving = isMoving;
+    if (!isMoving) {
+      this._movingDistance = 0;
+    }
     if (isMoving !== wasMoving) {
       this.fire(`${isMoving ? "Start" : "Stop"}Moving`, { creature: this });
     }
+  }
+
+  /**
+   * @returns Distance length that was requested to move
+   */
+  public get MovingDistance(): number {
+    return this._movingDistance;
+  }
+
+  public set MovingDistance(value: number) {
+    this._movingDistance = value;
   }
 
   public get CurrentSpeed(): number {
@@ -409,7 +424,7 @@ export default abstract class L2Creature extends L2Object {
       : this.WalkSpeed * (this.SpeedMultiplier > 0 ? this.SpeedMultiplier : 1);
   }
 
-  private _moveInterval!: ReturnType<typeof setInterval>;
+  private _moveInterval!: ReturnType<typeof setInterval> | null;
 
   public setMovingTo(
     x: number,
@@ -420,7 +435,14 @@ export default abstract class L2Creature extends L2Object {
     dz: number,
     heading?: number
   ): void {
-    clearInterval(this._moveInterval);
+    if (this._moveInterval) {
+      clearInterval(this._moveInterval);
+
+      // Trigger event as we might changed direction
+      if (this.IsMoving) {
+        this.IsMoving = false;
+      }
+    }
 
     this.Dx = dx;
     this.Dy = dy;
@@ -430,42 +452,64 @@ export default abstract class L2Creature extends L2Object {
     this.Y = y;
     this.Z = z;
 
-    let angleTarget = Math.atan2(dy - y, dx - x) * (180 / Math.PI);
-    if (angleTarget < 0)
-      angleTarget = 360 + angleTarget;
-    this.Heading = Math.floor(angleTarget * 182.044444444);
+    if (!heading) {
+      let angleTarget = Math.atan2(dy - y, dx - x) * (180 / Math.PI);
+      if (angleTarget < 0)
+        angleTarget = 360 + angleTarget;
+      this.Heading = Math.floor(angleTarget * 182.044444444);
+    } else {
+      this.Heading = heading;
+    }
+
+    this.IsMoving = true;
 
     const movingVector: Vector = new Vector(dx - this.X, dy - this.Y);
+    this._movingDistance = movingVector.length();
 
-    let ticks = Math.ceil(movingVector.length() / (this.CurrentSpeed / 10));
+    let ticks = Math.ceil(this._movingDistance / (this.CurrentSpeed / 10));
     movingVector.normalize();
 
+    // TODO: Improve this as it will drift for larger movements
     this._moveInterval = setInterval(() => {
-      this.IsMoving = true;
-      this.X += Math.floor(movingVector.X * (this.CurrentSpeed / 10));
-      this.Y += Math.floor(movingVector.Y * (this.CurrentSpeed / 10));
+      // Check if movement was not cancelled by the server
+      if (!this.IsMoving) {
+        if (this._moveInterval) clearInterval(this._moveInterval);
+        this._moveInterval = null;
+        return;
+      }
+
+      const dx = Math.floor(movingVector.X * (this.CurrentSpeed / 10));
+      const dy = Math.floor(movingVector.Y * (this.CurrentSpeed / 10));
+
+      this._movingDistance -= Math.sqrt(dx*dx + dy*dy);
+      this.X += dx;
+      this.Y += dy;
 
       ticks--;
       if (ticks <= 0) {
-        this.IsMoving = false;
         this.X = this.Dx;
         this.Y = this.Dy;
+        this._movingDistance = 0;
 
-        clearInterval(this._moveInterval);
+        this.IsMoving = false;
+
+        if (this._moveInterval) clearInterval(this._moveInterval);
+        this._moveInterval = null;
       }
-    }, 100);
+    }, 100).unref();
   }
 
-  public th!: ReturnType<typeof setTimeout>;
+  private th!: ReturnType<typeof setTimeout> | null;
 
   public set HiTime(value: number) {
     this.IsReady = false;
     if (this.th) {
       clearTimeout(this.th);
+      this.th = null;
     }
 
     this.th = setTimeout(() => {
       this.IsReady = true;
-    }, value);
+    }, value).unref();
   }
 }
