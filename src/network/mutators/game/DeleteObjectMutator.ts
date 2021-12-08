@@ -9,5 +9,8 @@ export default class DeleteObjectMutator extends IMMOClientMutator<
   update(packet: DeleteObject): void {
     this.Client.CreaturesList.removeByObjectId(packet.ObjectId);
     this.Client.DroppedItems.removeByObjectId(packet.ObjectId);
+    if (this.Client.ActiveChar.Target?.ObjectId === packet.ObjectId) {
+      this.Client.ActiveChar.Target = null;
+    }
   }
 }
