@@ -43,6 +43,10 @@ export default class LoginClient extends MMOClient {
 
     this.Config = config;
 
+    if (config.InitialBlowfishKey != null) {
+      this._loginCrypt.setKey(config.InitialBlowfishKey);
+    }
+
     this.Session.username = config.Username;
 
     if (config.ServerId) {

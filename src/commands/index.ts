@@ -29,8 +29,11 @@ import CommandUseItem from "./CommandUseItem";
 import CommandValidatePosition from "./CommandValidatePosition";
 import CommandRequestJoinParty from "./CommandRequestJoinParty";
 import CommandRequestBypass from "./CommandRequestBypass";
+import CommandLogout from "./CommandLogout";
 
 export default {
+  logout: CommandLogout.prototype,
+
   enter: CommandEnter.prototype,
   say: CommandSay.prototype,
   shout: CommandShout.prototype,

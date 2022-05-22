@@ -5,6 +5,7 @@ import L2Item from "../entities/L2Item";
 import L2Object from "../entities/L2Object";
 import { RestartPoint } from "../enums/RestartPoint";
 import { ShotsType } from "../enums/ShotsType";
+import Logger from "../mmocore/Logger";
 import MMOConfig from "../mmocore/MMOConfig";
 import GameClient from "../network/GameClient";
 import LoginClient from "../network/LoginClient";
@@ -170,9 +171,15 @@ export default interface ClientCommands {
    * Send bypass to server. (dialog)
    */
   dialog(text: string): void;
+  /**
+   * Send logout request
+   */
+  logout(): void;
 }
 
 export default abstract class ClientCommands {
+  protected logger: Logger = Logger.getLogger(this.constructor.name);
+
   LoginClient = new LoginClient();
 
   GameClient = new GameClient();
@@ -190,6 +197,7 @@ export default abstract class ClientCommands {
             LoginClient: { value: (target as any).LoginClient },
             GameClient: { value: (target as any).GameClient },
           });
+          target.logger.debug("Command", propertyKey);
           return (...args: any) => cmd.execute(...args);
         }
       },

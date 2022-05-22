@@ -8,4 +8,5 @@ export default class MMOConfig {
   Stream: IStream | string = "auto";
   Ip = "127.0.0.1";
   Port = 2106;
+  InitialBlowfishKey?: Uint8Array;
 }
