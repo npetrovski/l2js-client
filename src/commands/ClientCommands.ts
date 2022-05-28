@@ -15,14 +15,25 @@ import commands from "./index";
 
 export default interface ClientCommands {
   /**
-   * Enter Lineage2 world
+   * Enter or create character Lineage2 world
    * @param config
    */
-  enter(config?: MMOConfig | Record<string, unknown>): Promise<{ login: LoginClient; game: GameClient }>;
-  /**
-   * Send a general message
-   * @param text
-   */
+  enter(config?: MMOConfig | Record<string, unknown>, newCharData?: {
+    name: string;
+    race: number;
+    sex: number;
+    classId: number;
+    int: number;
+    str: number;
+    con: number;
+    men: number;
+    dex: number;
+    wit: number;
+    hairStyle: number;
+    hairColor: number;
+    face: number;
+  }): Promise<{ login: LoginClient; game: GameClient }>;
+
   say(text: string): void;
   /**
    * Shout a message
