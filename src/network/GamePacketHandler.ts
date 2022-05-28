@@ -1,6 +1,6 @@
 import IPacketHandler from "../mmocore/IPacketHandler";
-import ReceivablePacket from "../mmocore/ReceivablePacket";
 import Logger from "../mmocore/Logger";
+import ReceivablePacket from "../mmocore/ReceivablePacket";
 import GameClient from "./GameClient";
 import * as Packets from "./incoming/game/index";
 
@@ -41,6 +41,15 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           break;
         case 0x0c:
           rpk = new Packets.NpcInfo();
+          break;
+        case 0x0d:
+          rpk = new Packets.NewCharacterSuccess();
+          break;
+        case 0x0f:
+          rpk = new Packets.CharCreateOk();
+          break;
+        case 0x10:
+          rpk = new Packets.CharCreateFail();
           break;
         case 0x11:
           rpk = new Packets.ItemList();
