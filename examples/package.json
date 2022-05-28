@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "tsc",
     "login": "node dist/login.js",
+    "login-create-character": "node dist/login-create-character.js",
     "accept-resurrect": "node dist/accept-resurrect.js",
     "adena-painter": "node dist/adena-painter.js",
     "adena-painter-optimized": "node dist/adena-painter-optimized.js",
