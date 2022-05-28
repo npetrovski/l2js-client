@@ -105,7 +105,6 @@ export default class CommandEnter extends AbstractGameCommand {
             let sizeChar = 0;
             this.GameClient.once("PacketReceived:CharSelectionInfo", (e: EPacketReceived) => {
               sizeChar = (e.data.packet as CharSelectionInfo).characterPackagesSize;
-              console.log(`Total de contas encontrada ${sizeChar}`);
               this.GameClient.sendPacket(new NewCharacter());
             });
 
