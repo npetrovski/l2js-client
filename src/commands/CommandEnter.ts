@@ -1,3 +1,4 @@
+import L2Character from "../entities/L2Character";
 import { EPacketReceived } from "../events/EventTypes";
 import MMOConfig from "../mmocore/MMOConfig";
 import GameClient from "../network/GameClient";
@@ -28,21 +29,7 @@ export default class CommandEnter extends AbstractGameCommand {
 
   execute(
     config?: MMOConfig | Record<string, unknown>,
-    charData?: {
-      name: string;
-      race: number;
-      sex: number;
-      classId: number;
-      int: number;
-      str: number;
-      con: number;
-      men: number;
-      dex: number;
-      wit: number;
-      hairStyle: number;
-      hairColor: number;
-      face: number;
-    }
+    charData?: L2Character
   ): Promise<{ login: LoginClient; game: GameClient }> {
     if (config) {
       this._config = { ...new MMOConfig(), ...(config as MMOConfig) };
@@ -117,11 +104,9 @@ export default class CommandEnter extends AbstractGameCommand {
             );
 
             this.GameClient.once("PacketReceived:CharCreateFail", (e: EPacketReceived) =>
-              reject((e.data.packet as CharCreateFail).result)
+              reject((e.data.packet as CharCreateFail).FailReason)
             );
-          }
-
-          if (!charData) {
+          } else {
             this.GameClient.once("PacketReceived:CharSelectionInfo", () =>
               this.GameClient.sendPacket(new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0))
             );

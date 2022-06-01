@@ -1,6 +1,10 @@
 import L2Character from "../../../entities/L2Character";
 import GameClientPacket from "./GameClientPacket";
 import GameServerPacket from "../../outgoing/game/GameServerPacket";
+import { HairStyle } from "../../../enums/HairStyle";
+import { HairColor } from "../../../enums/HairColor";
+import { Face } from "../../../enums/Face";
+import { ClassId } from "../../../enums/ClassId";
 
 export default class CharInfo extends GameClientPacket {
   static readonly PAPERDOLL_ORDER: number[] = [
@@ -44,7 +48,7 @@ export default class CharInfo extends GameClientPacket {
 
     this.Char.Race = this.readD();
     this.Char.Sex = this.readD();
-    this.Char.BaseClassId = this.readD();
+    this.Char.BaseClassId = (ClassId as any)[this.readD()];
 
     CharInfo.PAPERDOLL_ORDER.forEach(() => {
       const _slotItemDisplayId = this.readD();
@@ -80,9 +84,9 @@ export default class CharInfo extends GameClientPacket {
     const _collisionRadius = this.readF();
     const _collisionHeight = this.readF();
 
-    const _hairStyle = this.readD();
-    const _hairColor = this.readD();
-    const _face = this.readD();
+    this.Char.HairStyle = (HairStyle as any)[this.readD()];
+    this.Char.HairColor = (HairColor as any)[this.readD()];
+    this.Char.Face = (Face as any)[this.readD()];
 
     this.Char.Title = this.readS();
 
@@ -114,7 +118,7 @@ export default class CharInfo extends GameClientPacket {
 
     this.Char.RecommHave = this.readH();
     const _mountNpcId = this.readD() - 1000000;
-    this.Char.ClassId = this.readD();
+    this.Char.ClassId = (ClassId as any)[this.readD()];
 
     const _pad1 = this.readD();
 

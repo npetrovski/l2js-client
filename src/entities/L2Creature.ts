@@ -4,7 +4,10 @@ import { Race } from "../enums/Race";
 import Vector from "../mmocore/Vector";
 import L2ObjectCollection from "./L2ObjectCollection";
 import L2Buff from "./L2Buff";
-import { Console } from "console";
+import { ClassId } from "../enums/ClassId";
+import { Face } from "../enums/Face";
+import { HairStyle } from "../enums/HairStyle";
+import { HairColor } from "../enums/HairColor";
 
 export default abstract class L2Creature extends L2Object {
   private _hp!: number;
@@ -43,16 +46,24 @@ export default abstract class L2Creature extends L2Object {
   private _target!: L2Object | null;
   private _sex!: Sex;
   private _recommHave!: number;
-  private _classId!: number;
+  private _classId!: ClassId;
   private _className!: string;
-  private _baseClassId!: number;
+  private _baseClassId!: ClassId;
   private _baseClassName!: string;
   private _race!: Race;
   private _isMoving = false;
   private _movingDistance: number = 0;
   private _isReady = true;
   private _karma!: number;
-
+  private _hairStyle!: HairStyle;
+  private _hairColor!: HairColor;
+  private _face!: Face;
+  private _STR!: number;
+  private _DEX!: number;
+  private _CON!: number;
+  private _INT!: number;
+  private _WIT!: number;
+  private _MEN!: number;
   private _buffs: L2ObjectCollection<L2Buff> = new L2ObjectCollection();
 
   public get Buffs(): L2ObjectCollection<L2Buff> {
@@ -78,19 +89,19 @@ export default abstract class L2Creature extends L2Object {
     this._baseClassName = value;
   }
 
-  public get BaseClassId(): number {
+  public get BaseClassId(): ClassId {
     return this._baseClassId;
   }
 
-  public set BaseClassId(value: number) {
+  public set BaseClassId(value: ClassId) {
     this._baseClassId = value;
   }
 
-  public get ClassId(): number {
+  public get ClassId(): ClassId {
     return this._classId;
   }
 
-  public set ClassId(value: number) {
+  public set ClassId(value: ClassId) {
     this._classId = value;
   }
 
@@ -368,6 +379,30 @@ export default abstract class L2Creature extends L2Object {
     this._karma = value;
   }
 
+  public get HairStyle(): HairStyle {
+    return this._hairStyle;
+  }
+
+  public set HairStyle(value: HairStyle) {
+    this._hairStyle = value;
+  }
+
+  public get HairColor(): HairColor {
+    return this._hairColor;
+  }
+
+  public set HairColor(value: HairColor) {
+    this._hairColor = value;
+  }
+
+  public get Face(): Face {
+    return this._face;
+  }
+
+  public set Face(value: Face) {
+    this._face = value;
+  }
+
   public get IsInCombat(): boolean {
     return this._isInCombat;
   }
@@ -394,6 +429,53 @@ export default abstract class L2Creature extends L2Object {
 
   public get IsMoving(): boolean {
     return this._isMoving;
+  }
+
+  public get STR(): number {
+    return this._STR;
+  }
+
+  public set STR(value: number) {
+    this._STR = value;
+  }
+
+  public get DEX(): number {
+    return this._DEX;
+  }
+
+  public set DEX(value: number) {
+    this._DEX = value;
+  }
+
+  public get CON(): number {
+    return this._CON;
+  }
+
+  public set CON(value: number) {
+    this._CON = value;
+  }
+
+  public get INT(): number {
+    return this._INT;
+  }
+
+  public set INT(value: number) {
+    this._INT = value;
+  }
+
+  public get WIT(): number {
+    return this._WIT;
+  }
+
+  public set WIT(value: number) {
+    this._WIT = value;
+  }
+  public get MEN(): number {
+    return this._MEN;
+  }
+
+  public set MEN(value: number) {
+    this._MEN = value;
   }
 
   public set IsMoving(isMoving: boolean) {
@@ -426,15 +508,7 @@ export default abstract class L2Creature extends L2Object {
 
   private _moveInterval!: ReturnType<typeof setInterval> | null;
 
-  public setMovingTo(
-    x: number,
-    y: number,
-    z: number,
-    dx: number,
-    dy: number,
-    dz: number,
-    heading?: number
-  ): void {
+  public setMovingTo(x: number, y: number, z: number, dx: number, dy: number, dz: number, heading?: number): void {
     if (this._moveInterval) {
       clearInterval(this._moveInterval);
 
@@ -454,8 +528,7 @@ export default abstract class L2Creature extends L2Object {
 
     if (!heading) {
       let angleTarget = Math.atan2(dy - y, dx - x) * (180 / Math.PI);
-      if (angleTarget < 0)
-        angleTarget = 360 + angleTarget;
+      if (angleTarget < 0) angleTarget = 360 + angleTarget;
       this.Heading = Math.floor(angleTarget * 182.044444444);
     } else {
       this.Heading = heading;
@@ -481,7 +554,7 @@ export default abstract class L2Creature extends L2Object {
       const dx = Math.floor(movingVector.X * (this.CurrentSpeed / 10));
       const dy = Math.floor(movingVector.Y * (this.CurrentSpeed / 10));
 
-      this._movingDistance -= Math.sqrt(dx*dx + dy*dy);
+      this._movingDistance -= Math.sqrt(dx * dx + dy * dy);
       this.X += dx;
       this.Y += dy;
 

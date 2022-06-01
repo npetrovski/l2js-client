@@ -1,6 +1,6 @@
 import EventEmmiter from "../mmocore/EventEmitter";
 
-export default abstract class L2Object extends EventEmmiter {
+export default class L2Object extends EventEmmiter {
   private _id!: number;
   private _objectId!: number;
   private _name!: string;
@@ -88,9 +88,12 @@ export default abstract class L2Object extends EventEmmiter {
   }
 
   public calculateDistance(obj: L2Object): number {
-    this.Distance = Math.sqrt(
-      (this.X - obj.X) * (this.X - obj.X) + (this.Y - obj.Y) * (this.Y - obj.Y)
-    );
+    this.Distance = Math.sqrt((this.X - obj.X) * (this.X - obj.X) + (this.Y - obj.Y) * (this.Y - obj.Y));
     return Math.floor(this.Distance);
+  }
+
+  constructor(init?: Partial<L2Object>) {
+    super();
+    if (init) Object.assign(this, init);
   }
 }

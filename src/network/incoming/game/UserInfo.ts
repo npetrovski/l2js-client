@@ -1,6 +1,10 @@
 import GameClientPacket from "./GameClientPacket";
 import GameServerPacket from "../../outgoing/game/GameServerPacket";
 import L2User from "../../../entities/L2User";
+import { HairStyle } from "../../../enums/HairStyle";
+import { HairColor } from "../../../enums/HairColor";
+import { Face } from "../../../enums/Face";
+import { ClassId } from "../../../enums/ClassId";
 
 export default class UserInfo extends GameClientPacket {
   User!: L2User;
@@ -21,7 +25,7 @@ export default class UserInfo extends GameClientPacket {
     this.User.Race = this.readD();
     this.User.Sex = this.readD();
 
-    this.User.BaseClassId = this.readD();
+    this.User.BaseClassId = (ClassId as any)[this.readD()];
     this.User.Level = this.readD();
     this.User.Exp = this.readQ();
     const _percentFromCurrentLevel = this.readF();
@@ -44,15 +48,15 @@ export default class UserInfo extends GameClientPacket {
 
     const _activeWeapon = this.readD() === 40; // 20 no weapon, 40 weapon equipped
 
-    GameServerPacket.PAPERDOLL_ORDER.forEach(value => {
+    GameServerPacket.PAPERDOLL_ORDER.forEach((value) => {
       const _slot1 = this.readD();
     });
 
-    GameServerPacket.PAPERDOLL_ORDER.forEach(value => {
+    GameServerPacket.PAPERDOLL_ORDER.forEach((value) => {
       const _slot2 = this.readD();
     });
 
-    GameServerPacket.PAPERDOLL_ORDER.forEach(value => {
+    GameServerPacket.PAPERDOLL_ORDER.forEach((value) => {
       const _slot3 = this.readD();
     });
 
@@ -87,9 +91,9 @@ export default class UserInfo extends GameClientPacket {
     const _collisionRadius = this.readF();
     const _collisionHeight = this.readF();
 
-    const HairStyle = this.readD();
-    const HairColor = this.readD();
-    const Face = this.readD();
+    this.User.HairStyle = (HairStyle as any)[this.readD()];
+    this.User.HairColor = (HairColor as any)[this.readD()];
+    this.User.Face = (Face as any)[this.readD()];
 
     const _isGM = this.readD();
 
@@ -126,7 +130,7 @@ export default class UserInfo extends GameClientPacket {
     const _mountNpcId = this.readD() - 1000000;
     const _inventoryLimit = this.readH();
 
-    this.User.ClassId = this.readD();
+    this.User.ClassId = (ClassId as any)[this.readD()];
 
     const _unk0 = this.readD();
 

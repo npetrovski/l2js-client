@@ -13,7 +13,7 @@ export default class LoginFail extends LoginClientPacket {
     if (_reason === 0x1f) {
       this._securityCard = true;
     } else {
-      this.FailReason = _reason as LoginFailReason;
+      this.FailReason = (LoginFailReason as any)[_reason];
     }
 
     return true;

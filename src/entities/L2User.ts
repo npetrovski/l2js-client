@@ -1,12 +1,6 @@
 import L2Character from "./L2Character";
 
 export default class L2User extends L2Character {
-  private _STR!: number;
-  private _DEX!: number;
-  private _CON!: number;
-  private _INT!: number;
-  private _WIT!: number;
-  private _MEN!: number;
   private _pDef!: number;
   private _evasionRate!: number;
   private _accuracy!: number;
@@ -31,53 +25,6 @@ export default class L2User extends L2Character {
   private _maxLoad!: number;
   private _gauge = 0;
   private _gaugeInterval!: ReturnType<typeof setInterval>;
-
-  public get STR(): number {
-    return this._STR;
-  }
-
-  public set STR(value: number) {
-    this._STR = value;
-  }
-
-  public get DEX(): number {
-    return this._DEX;
-  }
-
-  public set DEX(value: number) {
-    this._DEX = value;
-  }
-
-  public get CON(): number {
-    return this._CON;
-  }
-
-  public set CON(value: number) {
-    this._CON = value;
-  }
-
-  public get INT(): number {
-    return this._INT;
-  }
-
-  public set INT(value: number) {
-    this._INT = value;
-  }
-
-  public get WIT(): number {
-    return this._WIT;
-  }
-
-  public set WIT(value: number) {
-    this._WIT = value;
-  }
-  public get MEN(): number {
-    return this._MEN;
-  }
-
-  public set MEN(value: number) {
-    this._MEN = value;
-  }
 
   public get PDef(): number {
     return this._pDef;

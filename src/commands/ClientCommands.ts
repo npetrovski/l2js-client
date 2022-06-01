@@ -18,21 +18,10 @@ export default interface ClientCommands {
    * Enter or create character Lineage2 world
    * @param config
    */
-  enter(config?: MMOConfig | Record<string, unknown>, newCharData?: {
-    name: string;
-    race: number;
-    sex: number;
-    classId: number;
-    int: number;
-    str: number;
-    con: number;
-    men: number;
-    dex: number;
-    wit: number;
-    hairStyle: number;
-    hairColor: number;
-    face: number;
-  }): Promise<{ login: LoginClient; game: GameClient }>;
+  enter(
+    config?: MMOConfig | Record<string, unknown>,
+    newCharData?: L2Character
+  ): Promise<{ login: LoginClient; game: GameClient }>;
 
   say(text: string): void;
   /**
