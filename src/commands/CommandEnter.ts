@@ -1,6 +1,7 @@
 import { EPacketReceived } from "../events/EventTypes";
 import MMOConfig from "../mmocore/MMOConfig";
 import GameClient from "../network/GameClient";
+import { CharCreateFail, CharSelectionInfo } from "../network/incoming/game";
 import SystemMessage from "../network/incoming/game/SystemMessage";
 import LoginFail from "../network/incoming/login/LoginFail";
 import PlayFail from "../network/incoming/login/PlayFail";
@@ -8,8 +9,10 @@ import ServerList from "../network/incoming/login/ServerList";
 import LoginClient from "../network/LoginClient";
 import Appearing from "../network/outgoing/game/Appearing";
 import AuthLogin from "../network/outgoing/game/AuthLogin";
+import CharacterCreate from "../network/outgoing/game/CharacterCreate";
 import CharacterSelect from "../network/outgoing/game/CharacterSelect";
 import EnterWorld from "../network/outgoing/game/EnterWorld";
+import NewCharacter from "../network/outgoing/game/NewCharacter";
 import ProtocolVersion from "../network/outgoing/game/ProtocolVersion";
 import RequestKeyMapping from "../network/outgoing/game/RequestKeyMapping";
 import RequestManorList from "../network/outgoing/game/RequestManorList";
@@ -23,7 +26,24 @@ import AbstractGameCommand from "./AbstractGameCommand";
 export default class CommandEnter extends AbstractGameCommand {
   protected _config: MMOConfig = new MMOConfig();
 
-  execute(config?: MMOConfig | Record<string, unknown>): Promise<{ login: LoginClient; game: GameClient }> {
+  execute(
+    config?: MMOConfig | Record<string, unknown>,
+    charData?: {
+      name: string;
+      race: number;
+      sex: number;
+      classId: number;
+      int: number;
+      str: number;
+      con: number;
+      men: number;
+      dex: number;
+      wit: number;
+      hairStyle: number;
+      hairColor: number;
+      face: number;
+    }
+  ): Promise<{ login: LoginClient; game: GameClient }> {
     if (config) {
       this._config = { ...new MMOConfig(), ...(config as MMOConfig) };
     }
@@ -76,12 +96,37 @@ export default class CommandEnter extends AbstractGameCommand {
               .then(() => this.GameClient.sendPacket(new ProtocolVersion()))
               .catch((e) => reject(e));
           });
+
           this.GameClient.once("PacketReceived:KeyPacket", () =>
             this.GameClient.sendPacket(new AuthLogin(this.GameClient.Session))
           );
-          this.GameClient.once("PacketReceived:CharSelectionInfo", () =>
-            this.GameClient.sendPacket(new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0))
-          );
+
+          if (charData) {
+            let sizeChar = 0;
+            this.GameClient.once("PacketReceived:CharSelectionInfo", (e: EPacketReceived) => {
+              sizeChar = (e.data.packet as CharSelectionInfo).characterPackagesSize;
+              this.GameClient.sendPacket(new NewCharacter());
+            });
+
+            this.GameClient.once("PacketReceived:NewCharacterSuccess", (e: EPacketReceived) =>
+              this.GameClient.sendPacket(new CharacterCreate(charData))
+            );
+
+            this.GameClient.once("PacketReceived:CharCreateOk", (e: EPacketReceived) =>
+              this.GameClient.sendPacket(new CharacterSelect(sizeChar ?? 0))
+            );
+
+            this.GameClient.once("PacketReceived:CharCreateFail", (e: EPacketReceived) =>
+              reject((e.data.packet as CharCreateFail).result)
+            );
+          }
+
+          if (!charData) {
+            this.GameClient.once("PacketReceived:CharSelectionInfo", () =>
+              this.GameClient.sendPacket(new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0))
+            );
+          }
+
           this.GameClient.once("PacketReceived:CharSelected", () => {
             this.GameClient.sendPacket(new RequestManorList())
               .then(() => this.GameClient.sendPacket(new RequestKeyMapping()))

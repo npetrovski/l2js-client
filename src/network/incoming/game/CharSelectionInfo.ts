@@ -1,19 +1,21 @@
-import GameClientPacket from "./GameClientPacket";
-import GameServerPacket from "../../outgoing/game/GameServerPacket";
-import L2User from "../../../entities/L2User";
 import L2ObjectCollection from "../../../entities/L2ObjectCollection";
+import L2User from "../../../entities/L2User";
+import GameServerPacket from "../../outgoing/game/GameServerPacket";
+import GameClientPacket from "./GameClientPacket";
 
 export default class CharSelectionInfo extends GameClientPacket {
+  characterPackagesSize!: number;
+  
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
     const _characterPackages: L2ObjectCollection<L2User> = new L2ObjectCollection();
 
-    const _characterPackagesSize = this.readD();
+    this.characterPackagesSize = this.readD();
     const _charMaxNumber = this.readD();
     const _pad = this.readC();
 
-    for (let i = 0; i < _characterPackagesSize; i++) {
+    for (let i = 0; i < this.characterPackagesSize; i++) {
       const char: L2User = new L2User();
 
       char.Name = this.readS();
