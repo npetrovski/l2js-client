@@ -1,11 +1,14 @@
 import L2ObjectCollection from "../../../entities/L2ObjectCollection";
 import L2User from "../../../entities/L2User";
+import { ClassId } from "../../../enums/ClassId";
+import { Race } from "../../../enums/Race";
+import { Sex } from "../../../enums/Sex";
 import GameServerPacket from "../../outgoing/game/GameServerPacket";
 import GameClientPacket from "./GameClientPacket";
 
 export default class CharSelectionInfo extends GameClientPacket {
   characterPackagesSize!: number;
-  
+
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
@@ -26,9 +29,9 @@ export default class CharSelectionInfo extends GameClientPacket {
       const clanId = this.readD();
       const _builderLevel = this.readD();
 
-      char.Sex = this.readD();
-      char.Race = this.readD();
-      char.BaseClassId = this.readD();
+      char.Sex = (Sex as any)[this.readD()];
+      char.Race = (Race as any)[this.readD()];
+      char.BaseClassId = (ClassId as any)[this.readD()];
 
       const _active = this.readD(); // ??
 
@@ -69,7 +72,7 @@ export default class CharSelectionInfo extends GameClientPacket {
       char.MaxMp = this.readF();
 
       const _daysLeftBeforeDelete = this.readD();
-      char.ClassId = this.readD();
+      char.ClassId = (ClassId as any)[this.readD()];
       const _c3AutoSelectChar = this.readD(); // is this char active - the last one used
 
       const _enchantEffect = this.readC();

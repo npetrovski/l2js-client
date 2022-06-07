@@ -12,7 +12,7 @@ export default class SpawnItem extends GameClientPacket {
     this.Item.Id = this.readD();
 
     const [_x, _y, _z] = this.readLoc();
-    this.Item.setLocation(_x, _y, _z);
+    this.Item.Location = [_x, _y, _z];
 
     const _isStackable = this.readD() === 1;
 

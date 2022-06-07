@@ -74,21 +74,21 @@ export default class L2Object extends EventEmmiter {
     this._z = value;
   }
 
-  public getLocation(): number[] {
-    return Array.from([this._x, this._y, this._z, this._heading]);
+  public get Location(): [number, number, number, number] {
+    return [this._x, this._y, this._z, this._heading];
   }
 
-  public setLocation(x: number, y: number, z: number, heading?: number): void {
-    this._x = x;
-    this._y = y;
-    this._z = z;
-    if (heading) {
-      this._heading = heading;
+  public set Location(loc: [x: number, y: number, z: number, heading?: number]) {
+    this._x = loc[0];
+    this._y = loc[1];
+    this._z = loc[2];
+    if (loc.length >= 3 && loc[3] != undefined) {
+      this._heading = loc[3];
     }
   }
 
-  public calculateDistance(obj: L2Object): number {
-    this.Distance = Math.sqrt((this.X - obj.X) * (this.X - obj.X) + (this.Y - obj.Y) * (this.Y - obj.Y));
+  public calculateDistance(dest: L2Object): number {
+    this.Distance = Math.sqrt((this.X - dest.X) * (this.X - dest.X) + (this.Y - dest.Y) * (this.Y - dest.Y));
     return Math.floor(this.Distance);
   }
 

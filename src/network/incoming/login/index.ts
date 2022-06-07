@@ -1,6 +1,7 @@
 import AccountKicked from "./AccountKicked";
 import GGAuth from "./GGAuth";
 import Init from "./Init";
+import LoginClientPacket from "./LoginClientPacket";
 import LoginFail from "./LoginFail";
 import LoginOk from "./LoginOk";
 import PlayFail from "./PlayFail";
@@ -11,9 +12,12 @@ export {
   AccountKicked,
   GGAuth,
   Init,
+  LoginClientPacket,
   LoginFail,
   LoginOk,
   PlayFail,
   PlayOk,
-  ServerList
+  ServerList,
+
 };
+  
