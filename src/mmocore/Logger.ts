@@ -5,7 +5,7 @@ export enum LogLevel {
   INFO = 1,
   WARNING = 2,
   ERROR = 4,
-  DEBUG = 8
+  DEBUG = 8,
 }
 
 export default class Logger implements ILogger {
@@ -17,9 +17,12 @@ export default class Logger implements ILogger {
     this._context = ctx;
     if (level) {
       this._logLevel = level;
-    } else if (process?.env?.L2JSC_LOG_LEVEL) {
+    }
+    /* nodejs:start */
+    if (process?.env?.L2JSC_LOG_LEVEL) {
       this._logLevel = parseInt(process.env.L2JSC_LOG_LEVEL, 10) as LogLevel;
     }
+    /* nodejs:end */
   }
 
   static getLogger(ctx: string): Logger {
@@ -28,54 +31,22 @@ export default class Logger implements ILogger {
 
   debug(message: string | any, ...data: any[]): void {
     if (this._logLevel >= LogLevel.DEBUG) {
-      this._log(
-        "\x1b[36m[" +
-          new Date().toLocaleString() +
-          "]\x1b[m DEBUG " +
-          this._context +
-          " " +
-          message,
-        data
-      );
+      this._log("\x1b[36m[" + new Date().toLocaleString() + "]\x1b[m DEBUG " + this._context + " " + message, data);
     }
   }
   error(message: string | any, ...data: any[]): void {
     if (this._logLevel >= LogLevel.ERROR) {
-      this._log(
-        "\x1b[31m[" +
-          new Date().toLocaleString() +
-          "]\x1b[m ERROR " +
-          this._context +
-          " " +
-          message,
-        data
-      );
+      this._log("\x1b[31m[" + new Date().toLocaleString() + "]\x1b[m ERROR " + this._context + " " + message, data);
     }
   }
   warn(message: string | any, ...data: any[]): void {
     if (this._logLevel >= LogLevel.WARNING) {
-      this._log(
-        "\x1b[33m[" +
-          new Date().toLocaleString() +
-          "]\x1b[m WARN " +
-          this._context +
-          " " +
-          message,
-        data
-      );
+      this._log("\x1b[33m[" + new Date().toLocaleString() + "]\x1b[m WARN " + this._context + " " + message, data);
     }
   }
   info(message: string | any, ...data: any[]): void {
     if (this._logLevel >= LogLevel.INFO) {
-      this._log(
-        "\x1b[32m[" +
-          new Date().toLocaleString() +
-          "]\x1b[m INFO " +
-          this._context +
-          " " +
-          message,
-        data
-      );
+      this._log("\x1b[32m[" + new Date().toLocaleString() + "]\x1b[m INFO " + this._context + " " + message, data);
     }
   }
   private _log(msg: string | any, data: any[]): void {

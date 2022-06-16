@@ -16,6 +16,6 @@ export default class CommandRequestDuel extends AbstractGameCommand {
       return;
     }
 
-    this.GameClient?.sendPacket(new RequestDuelStart(char, partyDuel));
+    this.GameClient?.sendPacket(new RequestDuelStart(char as string, partyDuel));
   }
 }

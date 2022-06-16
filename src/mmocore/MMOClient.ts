@@ -91,7 +91,7 @@ export default abstract class MMOClient extends EventEmitter implements IProcess
           const packetData = new Uint8Array(data.slice(n + 2, n + packetLength)); // +2 is for skipping the packet size
           ctx.decrypt(packetData, 0, packetData.byteLength);
 
-          const rcp: ReceivablePacket = ctx.PacketHandler.handlePacket(packetData, ctx);
+          const rcp: ReceivablePacket = ctx.PacketHandler.handlePacket(packetData);
           if (!rcp) {
             reject(`Cannot find a handler for this packet. Opcode: 0x${(packetData[0] & 0xff).toString(16)}`);
             return; // We cannot find the required packet handler. Most probably the game packet is not yet implemented.

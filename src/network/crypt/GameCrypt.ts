@@ -1,4 +1,6 @@
-export default class GameCrypt {
+import ICrypt from "./ICrypt";
+
+export default class GameCrypt implements ICrypt {
   private _inKey!: Int8Array;
   private _outKey!: Int8Array;
 

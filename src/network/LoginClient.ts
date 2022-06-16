@@ -1,27 +1,23 @@
 import MMOClient from "../mmocore/MMOClient";
 import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
-import LoginCrypt from "./LoginCrypt";
+import LoginCrypt from "./crypt/LoginCrypt";
 import LoginPacketHandler from "./LoginPacketHandler";
 import L2Server from "../entities/L2Server";
 import LoginServerPacket from "./outgoing/login/LoginServerPacket";
 import IConnection from "../mmocore/IConnection";
 import mutators from "./mutators/login/index";
-import SocketFactory from "../socket/SocketFactory";
+import DefaultStreamFactory from "./stream/DefaultStreamFactory";
+import ICrypt from "./crypt/ICrypt";
 
 export default class LoginClient extends MMOClient {
-  private _loginCrypt: LoginCrypt = new LoginCrypt();
-  private _blowfishKey!: Uint8Array;
+  private _loginCrypt: ICrypt = new LoginCrypt();
+
   Servers: L2Server[] = [];
   ServerId = 1;
   Config!: MMOConfig;
 
-  get BlowfishKey(): Uint8Array {
-    return this._blowfishKey;
-  }
-
   set BlowfishKey(blowfishKey: Uint8Array) {
-    this._blowfishKey = blowfishKey;
     this._loginCrypt.setKey(blowfishKey);
   }
 
@@ -39,7 +35,7 @@ export default class LoginClient extends MMOClient {
   }
 
   init(config: MMOConfig, connection?: IConnection): this {
-    this.Connection = connection ?? new MMOConnection(SocketFactory.getSocketAdapter(config), this);
+    this.Connection = connection ?? new MMOConnection(new DefaultStreamFactory().getStream(config), this);
 
     this.Config = config;
 

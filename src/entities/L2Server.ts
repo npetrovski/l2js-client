@@ -23,162 +23,82 @@ export default class L2Server {
 
   private _brackets!: number;
 
-  /**
-   * Getter id
-   * @return {number}
-   */
   public get Id(): number {
     return this._id;
   }
 
-  /**
-   * Setter id
-   * @param {number} value
-   */
   public set Id(value: number) {
     this._id = value;
   }
 
-  /**
-   * Getter ip
-   * @return {number}
-   */
   public get Ip(): number {
     return this._ip;
   }
 
-  /**
-   * Setter ip
-   * @param {number} value
-   */
   public set Ip(value: number) {
     this._ip = value;
   }
 
-  /**
-   * Getter port
-   * @return {number}
-   */
   public get Port(): number {
     return this._port;
   }
 
-  /**
-   * Setter port
-   * @param {number} value
-   */
   public set Port(value: number) {
     this._port = value;
   }
 
-  /**
-   * Getter ageLimit
-   * @return {ServerAges}
-   */
   public get AgeLimit(): ServerAges {
     return this._ageLimit;
   }
 
-  /**
-   * Setter ageLimit
-   * @param {ServerAges} value
-   */
   public set AgeLimit(value: ServerAges) {
     this._ageLimit = value;
   }
 
-  /**
-   * Getter pvp
-   * @return {number}
-   */
   public get Pvp(): number {
     return this._pvp;
   }
 
-  /**
-   * Setter pvp
-   * @param {number} value
-   */
   public set Pvp(value: number) {
     this._pvp = value;
   }
 
-  /**
-   * Getter currentPlayers
-   * @return {number}
-   */
   public get CurrentPlayers(): number {
     return this._currentPlayers;
   }
 
-  /**
-   * Setter currentPlayers
-   * @param {number} value
-   */
   public set CurrentPlayers(value: number) {
     this._currentPlayers = value;
   }
 
-  /**
-   * Getter maxPlayers
-   * @return {number}
-   */
   public get MaxPlayers(): number {
     return this._maxPlayers;
   }
 
-  /**
-   * Setter maxPlayers
-   * @param {number} value
-   */
   public set MaxPlayers(value: number) {
     this._maxPlayers = value;
   }
 
-  /**
-   * Getter status
-   * @return {ServerStatus}
-   */
   public get Status(): ServerStatus {
     return this._status;
   }
 
-  /**
-   * Setter status
-   * @param {ServerStatus} value
-   */
   public set Status(value: ServerStatus) {
     this._status = value;
   }
 
-  /**
-   * Getter serverType
-   * @return {ServerTypes}
-   */
   public get ServerType(): ServerTypes {
     return this._serverType;
   }
 
-  /**
-   * Setter serverType
-   * @param {ServerTypes} value
-   */
   public set ServerType(value: ServerTypes) {
     this._serverType = value;
   }
 
-  /**
-   * Getter brackets
-   * @return {number}
-   */
   public get Brackets(): number {
     return this._brackets;
   }
 
-  /**
-   * Setter brackets
-   * @param {number} value
-   */
   public set Brackets(value: number) {
     this._brackets = value;
   }

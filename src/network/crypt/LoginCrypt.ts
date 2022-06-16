@@ -1,6 +1,7 @@
-import NewCrypt from "../mmocore/crypt/NewCrypt";
+import NewCrypt from "../../mmocore/crypt/NewCrypt";
+import ICrypt from "./ICrypt";
 
-export default class LoginCrypt {
+export default class LoginCrypt implements ICrypt {
   // prettier-ignore
   static readonly STATIC_BLOWFISH_KEY: Uint8Array = Uint8Array.from([
     0x6b, 0x60, 0xcb, 0x5b, 0x82, 0xce, 0x90, 0xb1,

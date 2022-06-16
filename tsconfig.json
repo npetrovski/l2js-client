@@ -1,20 +1,25 @@
 {
   "declaration": true,
+  "compileOnSave": true,
   "compilerOptions": {
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es6",
-    "lib": ["es5", "es6", "dom"],
+    "lib": ["es2019", "dom"],
     "declaration": true,
+    "baseUrl": "./",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "removeComments": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
     "esModuleInterop": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "typeRoots": ["./node_modules/@types"],
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
-  "include": ["**/*"],
-  "exclude": ["**/dist/**/*.d.ts", "./*.js", "dist", "node_modules", "examples", "proxy"]
+  "include": ["src/**/*"]
 }

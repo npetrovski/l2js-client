@@ -1,14 +1,12 @@
 import * as net from "net";
-import IStream from "../../mmocore/IStream";
+import AbstractPacketStream from "../../../mmocore/AbstractPacketStream";
 
-export default class NetSocket implements IStream {
+export default class NetSocket extends AbstractPacketStream {
   private _socket!: net.Socket;
 
   private timeoutTimer!: ReturnType<typeof setTimeout>;
 
   private timeout = 5000;
-
-  constructor(private ip: string, private port: number) {}
 
   connect(): Promise<void> {
     this._socket = new net.Socket();
@@ -21,7 +19,7 @@ export default class NetSocket implements IStream {
 
       this._socket.setTimeout(0);
       this._socket.once("error", (err) => reject(err));
-      this._socket.connect(this.port, this.ip, () => {
+      this._socket.connect(this.config.Port, this.config.Ip, () => {
         clearTimeout(this.timeoutTimer);
         resolve();
       });
@@ -70,9 +68,5 @@ export default class NetSocket implements IStream {
         this._socket.destroy();
       }
     });
-  }
-
-  toString(): string {
-    return `${this.ip}:${this.port}`;
   }
 }

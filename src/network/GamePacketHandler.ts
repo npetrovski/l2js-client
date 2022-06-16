@@ -8,7 +8,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
   // @Override
-  handlePacket(data: Uint8Array, client: GameClient): ReceivablePacket {
+  handlePacket(data: Uint8Array): ReceivablePacket {
     const opcode: number = data[0] & 0xff;
 
     let rpk!: ReceivablePacket;
@@ -411,7 +411,6 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           );
         }
       } else {
-        // rpk.Client = client;
         rpk.Buffer = data;
       }
     } catch (err) {

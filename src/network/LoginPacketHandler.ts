@@ -8,7 +8,7 @@ export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
   // @Override
-  handlePacket(data: Uint8Array, client: LoginClient): ReceivablePacket {
+  handlePacket(data: Uint8Array): ReceivablePacket {
     const opcode: number = data[0] & 0xff;
 
     let rpk!: ReceivablePacket;
@@ -56,7 +56,6 @@ export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
           );
         }
       } else {
-        // rpk.Client = client;
         rpk.Buffer = data;
       }
     } catch (err) {

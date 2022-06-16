@@ -1,4 +1,4 @@
-import IStream from "./IStream";
+import AbstractPacketStream from "./AbstractPacketStream";
 import IConnection from "./IConnection";
 import Logger from "./Logger";
 import IProcessable from "./IProcessable";
@@ -8,7 +8,7 @@ export default class MMOConnection implements IConnection {
 
   IsConnected = false;
 
-  constructor(private stream: IStream, private handler: IProcessable) {}
+  constructor(private stream: AbstractPacketStream, private handler: IProcessable) {}
 
   connect(): Promise<void> {
     this.logger.debug("Connecting", this.stream.toString());

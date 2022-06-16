@@ -10,16 +10,17 @@ import L2User from "../entities/L2User";
 import MMOClient from "../mmocore/MMOClient";
 import MMOConfig from "../mmocore/MMOConfig";
 import MMOConnection from "../mmocore/MMOConnection";
-import GameCrypt from "./GameCrypt";
+import GameCrypt from "./crypt/GameCrypt";
 import GamePacketHandler from "./GamePacketHandler";
 import GameServerPacket from "./outgoing/game/GameServerPacket";
 import L2Recipe from "../entities/L2Recipe";
 import IConnection from "../mmocore/IConnection";
 import mutators from "./mutators/game/index";
-import SocketFactory from "../socket/SocketFactory";
+import DefaultStreamFactory from "./stream/DefaultStreamFactory";
+import ICrypt from "./crypt/ICrypt";
 
 export default class GameClient extends MMOClient {
-  private _gameCrypt: GameCrypt = new GameCrypt();
+  private _gameCrypt: ICrypt = new GameCrypt();
   Config!: MMOConfig;
   ActiveChar: L2User = new L2User();
   CreaturesList: L2ObjectCollection<L2Creature> = new L2ClientObjectCollection(this);
@@ -51,7 +52,7 @@ export default class GameClient extends MMOClient {
   }
 
   init(config: MMOConfig, connection?: IConnection): this {
-    this.Connection = connection ?? new MMOConnection(SocketFactory.getSocketAdapter(config), this);
+    this.Connection = connection ?? new MMOConnection(new DefaultStreamFactory().getStream(config), this);
 
     this.Config = config;
 
