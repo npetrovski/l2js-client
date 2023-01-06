@@ -1,4 +1,8 @@
 import L2Character from "./L2Character";
+import { MountType } from '../enums/MountType'
+import { PrivateStoreType } from '../enums/PrivateStoreType'
+import { ClanPrivilege } from '../enums/ClanPriviledge'
+import { MovementType } from '../enums/MovementType'
 
 export default class L2User extends L2Character {
   private _pDef!: number;
@@ -25,6 +29,14 @@ export default class L2User extends L2Character {
   private _maxLoad!: number;
   private _gauge = 0;
   private _gaugeInterval!: ReturnType<typeof setInterval>;
+  private _gm!: boolean;
+  private _clanId!: number;
+  private _mountType!: MountType;
+  private _vitalityPoints!: number;
+  private _canCrystalizeItems!: boolean;
+  private _privateStoreType!: PrivateStoreType;
+  private _clanPrivileges!: ClanPrivilege;
+  private _movementType!: MovementType;
 
   public get PDef(): number {
     return this._pDef;
@@ -213,5 +225,68 @@ export default class L2User extends L2Character {
     } else {
       this.IsReady = true;
     }
+  }
+
+  public get IsGM() : boolean {
+    return this._gm;
+  }
+
+  public set IsGM(value: boolean) {
+    this._gm = value;
+  }
+  public get ClanId(): number {
+    return this._clanId;
+  }
+
+  public set ClanId( value: number ) {
+    this._clanId = value;
+  }
+
+  public get MountType(): MountType {
+    return this._mountType;
+  }
+
+  public set MountType( value: MountType ) {
+    this._mountType = value;
+  }
+
+  public get VitalityPoints(): number {
+    return this._vitalityPoints;
+  }
+
+  public set VitalityPoints( value: number ) {
+    this._vitalityPoints = value;
+  }
+
+  public get CanCrystalizeItems(): boolean {
+    return this._canCrystalizeItems;
+  }
+
+  public set CanCrystalizeItems( value: boolean ) {
+    this._canCrystalizeItems = value;
+  }
+
+  public get PrivateStoreType(): PrivateStoreType {
+    return this._privateStoreType;
+  }
+
+  public set PrivateStoreType( value: PrivateStoreType ) {
+    this._privateStoreType = value;
+  }
+
+  public get ClanPrivileges(): ClanPrivilege {
+    return this._clanPrivileges;
+  }
+
+  public set ClanPrivileges( value: ClanPrivilege ) {
+    this._clanPrivileges = value;
+  }
+
+  public get MovementType(): MovementType {
+    return this._movementType;
+  }
+
+  public set MovementType( value: MovementType ) {
+    this._movementType = value;
   }
 }
