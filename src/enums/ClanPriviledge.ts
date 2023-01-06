@@ -1,6 +1,6 @@
 export const enum ClanPrivilege {
-    None,
-    InviteToClan,
+    None = 0,
+    InviteToClan = 1,
     GrantTitle = 1 << 2,
     WarehouseAccess = 1 << 3,
     ManageRanks = 1 << 4,
