@@ -409,6 +409,8 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
               "] len=" +
               data.byteLength
           );
+        } else {
+          this.logger.debug("Unknown game packet received.");
         }
       } else {
         rpk.Buffer = data;

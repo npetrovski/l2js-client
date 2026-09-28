@@ -54,6 +54,8 @@ export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
               "] len=" +
               data.byteLength
           );
+        } else {
+          this.logger.debug("Unknown game packet received.");
         }
       } else {
         rpk.Buffer = data;
