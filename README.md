@@ -1,11 +1,163 @@
-# Lineage 2 JavaScript Client
+# l2js-client
 
-This project was made while experimenting with TypeScript and es6. The idea is to have an NCSoft Lineage 2 client library, that allows other projects to build L2 client functionalities (like bots, game helpers, etc.) on top of it. It can be also used as a framework for building Lineage2 automated tests for L2 private servers.
+A TypeScript client library for the Lineage 2 protocol. It provides login and game-server connections, packet handling, a local view of the game world, high-level commands, and typed events for building bots, game helpers, protocol experiments, and automated tests for private servers.
 
-[🕮 🇺🇸 Documentation in English](https://npetrovski.github.io/l2js-client/)
+The current implementation targets Lineage 2 High Five protocol versions **268**, **271**, and **273**.
 
-[🕮 🇷🇺 Документация на Русском](https://npetrovski.github.io/l2js-client/ru/)
+> This is an unofficial community project and is not affiliated with or endorsed by NCSOFT.
 
-## Documentation
+## Requirements
 
-The [l2js-client documentation](https://npetrovski.github.io/l2js-client/) are loaded with awesome stuff and tell you every thing you need to know about using and configuring l2js-client.
+- Node.js 26 or newer
+- npm 12 or newer
+- A compatible Lineage 2 High Five server
+
+## Installation
+
+```bash
+npm install l2js-client
+```
+
+## Quick start
+
+```ts
+import Client from "l2js-client/Client";
+
+const client = new Client();
+
+client.on("LoggedIn", () => {
+  console.log(`Logged in as ${client.Me.Name}`);
+  client.say("Hello from l2js-client");
+});
+
+client
+  .enter({
+    Username: process.env.L2_USERNAME ?? "",
+    Password: process.env.L2_PASSWORD ?? "",
+    Ip: process.env.L2_SERVER_IP ?? "127.0.0.1",
+    Port: 2106,
+    ServerId: 1,
+    CharSlotIndex: 0,
+  })
+  .catch(console.error);
+
+process.on("SIGINT", () => {
+  client.logout();
+  process.exit(0);
+});
+```
+
+The login server port defaults to `2106`. `ServerId` defaults to `1`, and `CharSlotIndex` defaults to `0`.
+
+Set `L2JSC_LOG_LEVEL=8` to enable verbose diagnostic logging while developing.
+
+## Working with the client
+
+### State
+
+After the `LoggedIn` event, the client exposes the active character and synchronized collections:
+
+| Property | Contents |
+| --- | --- |
+| `Me` | The active `L2User` |
+| `CreaturesList` | Known players, NPCs, mobs, summons, and other creatures |
+| `PartyList` | Current party members |
+| `DroppedItems` | Items visible on the ground |
+| `InventoryItems` | Inventory contents |
+| `BuffsList` | Active buffs |
+| `SkillsList` | Known skills |
+| `DwarfRecipeBook` | Dwarven recipes |
+| `CommonRecipeBook` | Common recipes |
+
+### Commands
+
+High-level methods cover common actions, including:
+
+- Chat: `say`, `shout`, `tell`, `sayToParty`, `sayToClan`, `sayToTrade`, and `sayToAlly`
+- Movement and combat: `moveTo`, `nextTarget`, `attack`, `hit`, `cast`, `cancelTarget`, and `validatePosition`
+- Items and crafting: `inventory`, `useItem`, `dropItem`, `autoShots`, `dwarvenCraftRecipes`, and `craft`
+- Social and character actions: party invitations, duels, resurrection, sitting or standing, and logout
+
+Commands accept entity objects where appropriate, so code can act directly on entries from the synchronized collections:
+
+```ts
+client.on("LoggedIn", () => {
+  const target = client.nextTarget();
+  if (target) client.attack(target);
+});
+```
+
+### Events
+
+Use `on`, `once`, and `off` to subscribe to typed client events. Common events include `LoggedIn`, `PacketReceived`, `PacketSent`, `Attacked`, `Die`, `StartMoving`, `StopMoving`, `CreatureSay`, `SystemMessage`, `PartyRequest`, and `CraftResult`.
+
+Packet events can also be filtered by packet class name:
+
+```ts
+client.on("PacketReceived", "CreatureSay", (event) => {
+  console.log(event.data.packet);
+});
+```
+
+See [`src/events/EventTypes.ts`](src/events/EventTypes.ts) for the complete event list and payload types, and [`src/commands/ClientCommands.ts`](src/commands/ClientCommands.ts) for the command API.
+
+## Examples
+
+The [`examples`](examples) project contains runnable TypeScript examples for login, chat, movement, following characters, combat, crafting, fishing, resurrection, multiple clients, proxies, and custom commands.
+
+To run an example against the local library build:
+
+```bash
+npm install
+npm run prebuildpackage
+
+cd examples
+npm install
+npm run login
+```
+
+Edit the credentials and server address in [`examples/src/login.ts`](examples/src/login.ts) before connecting. Other example scripts can be run with the matching npm command from [`examples/package.json`](examples/package.json).
+
+## Development
+
+```bash
+npm install
+npm run qa:typecheck
+npm run qa:lint
+npm run compile
+```
+
+Additional workflows:
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev:browser` | Start the browser development build |
+| `npm run build:browser` | Create the browser bundle |
+| `npm run prebuildpackage` | Produce a clean package in `dist/` |
+| `npm run buildpackage` | Pack the prepared `dist/` directory |
+
+Packet and mutator index files are generated by `build-indexes.js` during compilation. Do not hand-edit generated index files without checking that generator first.
+
+## Project structure
+
+```text
+src/
+├── commands/          High-level client actions
+├── entities/          In-memory Lineage 2 domain objects
+├── enums/             Protocol and game enumerations
+├── events/            Typed event definitions
+├── mmocore/           Connections, streams, packets, cryptography, and utilities
+└── network/
+    ├── incoming/      Packets received from login and game servers
+    ├── outgoing/      Packets sent to login and game servers
+    └── mutators/      Packet-to-client-state updates
+examples/             Runnable usage examples
+```
+
+## Contributing
+
+Bug reports and pull requests are welcome. When adding or changing protocol behavior, include the target protocol version and enough packet details to reproduce the behavior. Before submitting a change, run the type checker, linter, and compiler.
+
+## License
+
+[MIT](LICENSE.txt)

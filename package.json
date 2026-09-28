@@ -1,6 +1,6 @@
 {
   "name": "l2js-client",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "chronicle": "High Five",
   "protocols": [
     268,
@@ -19,16 +19,14 @@
   "main": "dist/Client.js",
   "types": "dist/Client.d.ts",
   "scripts": {
-    "build:browser": "npm run typecheck && rsbuild build",
-    "dev:browser": "rsbuild dev",
-    "typecheck": "tsc --noEmit",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "compile": "node build-indexes.js && tsc",
-    "clean": "rm -rf dist",
+    "build:browser": "npm run qa:typecheck && rsbuild build",
+    "dev:browser": "rsbuild dev",
+    "qa:lint": "eslint --ignore-pattern graphify-out ./src/**",
+    "qa:typecheck": "tsc --noEmit",
     "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
     "buildpackage": "cd dist && npm pack",
-    "lint": "eslint --ignore-pattern graphify-out ./src/**",
-    "dev:docs": "vuepress dev vuePress",
-    "build:docs": "vuepress build vuePress",
     "publish": "npm publish --access public"
   },
   "keywords": [
@@ -65,12 +63,11 @@
   "devDependencies": {
     "@rsbuild/core": "^2.2.10",
     "@rsbuild/plugin-umd": "^1.0.7",
-    "@typescript/native": "npm:typescript@^7.0.2",
     "@types/node": "^26.6.3",
     "@typescript-eslint/eslint-plugin": "^8.71.0",
     "@typescript-eslint/parser": "^8.71.0",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^8.57.1",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "vuepress": "^1.8.2"
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
   }
 }
