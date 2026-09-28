@@ -2,6 +2,7 @@
 .vscode
 browser
 dist
+dist-browser
 node_modules
 .idea
 *.iml
