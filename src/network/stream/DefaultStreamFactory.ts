@@ -1,12 +1,13 @@
 import AbstractPacketStream from "../../mmocore/AbstractPacketStream";
 import MMOConfig from "../../mmocore/MMOConfig";
+/* nodejs:start */
 import NetSocket from "./adapters/NetSocket";
+/* nodejs:end */
 import IStreamFactory from "./IStreamFactory";
 
 export default class DefaultStreamFactory implements IStreamFactory {
   getStream(config: MMOConfig): AbstractPacketStream {
     let stream: AbstractPacketStream | string | Function = config.Stream;
-
     if (typeof stream === "string") {
       switch (stream) {
         case "auto":
