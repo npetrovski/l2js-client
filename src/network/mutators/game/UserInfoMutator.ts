@@ -11,7 +11,7 @@ export default class UserInfoMutator extends IMMOClientMutator<
     if (!user) {
       this.Client.ActiveChar = packet.User;
     } else {
-      let eventHandlers = this.Client.ActiveChar._eventHandlers;
+      const eventHandlers = this.Client.ActiveChar._eventHandlers;
       Object.assign(this.Client.ActiveChar, packet.User);
       // Restore event handlers
       this.Client.ActiveChar._eventHandlers = eventHandlers;

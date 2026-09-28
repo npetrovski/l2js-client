@@ -16,6 +16,7 @@ module.exports = {
     "adjacent-overload-signatures": 0,
     "no-trailing-whitespace": 0,
     "@typescript-eslint/no-unused-vars": 0,
-    "@typescript-eslint/no-explicit-any": 0
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-unsafe-declaration-merging": 0
   },
 };

@@ -29,6 +29,11 @@
   ],
   "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
   "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=26.0.0",
+    "npm": ">=12.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/npetrovski/l2js-client"
@@ -37,7 +42,7 @@
     "l2js-client": "file:../dist/"
   },
   "devDependencies": {
-    "@types/node": "^13.13.4",
-    "typescript": "^4.7.3"
+    "@types/node": "^26.6.3",
+    "typescript": "^7.0.2"
   }
 }

@@ -1,5 +1,5 @@
 import AbstractPacketStream from "../../mmocore/AbstractPacketStream";
-import MMOConfig from "../../mmocore/MMOConfig";
+import MMOConfig, { PacketStreamConstructor } from "../../mmocore/MMOConfig";
 /* nodejs:start */
 import NetSocket from "./adapters/NetSocket";
 /* nodejs:end */
@@ -7,24 +7,24 @@ import IStreamFactory from "./IStreamFactory";
 
 export default class DefaultStreamFactory implements IStreamFactory {
   getStream(config: MMOConfig): AbstractPacketStream {
-    let stream: AbstractPacketStream | string | Function = config.Stream;
+    let stream = config.Stream;
     if (typeof stream === "string") {
       switch (stream) {
         case "auto":
           /* nodejs:start */
           if (typeof process !== "undefined" && process.release.name === "node") {
-            stream = NetSocket.prototype;
+            stream = NetSocket;
           }
           /* nodejs:end */
           break;
       }
     }
     if (typeof stream === "function") {
-      stream = (stream as any).prototype;
+      return new stream(config);
     }
 
     if (typeof stream === "object") {
-      return <AbstractPacketStream>new (Object.create(stream).constructor)(config);
+      return new (stream.constructor as PacketStreamConstructor)(config);
     }
 
     throw new Error("Cannot find appropriate PacketStream.");

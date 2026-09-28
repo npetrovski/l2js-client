@@ -11,6 +11,11 @@
   "author": "Nikolay Petrovski <to.petrovski@gmail.com>",
   "funding": "https://www.paypal.com/donate?hosted_button_id=9HF7J3CLAXDBG",
   "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=26.0.0",
+    "npm": ">=12.0.0"
+  },
   "main": "dist/Client.js",
   "types": "dist/Client.d.ts",
   "scripts": {
@@ -21,7 +26,7 @@
     "clean": "rm -rf dist",
     "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
     "buildpackage": "cd dist && npm pack",
-    "lint": "eslint ./src/**",
+    "lint": "eslint --ignore-pattern graphify-out ./src/**",
     "dev:docs": "vuepress dev vuePress",
     "build:docs": "vuepress build vuePress",
     "publish": "npm publish --access public"
@@ -60,11 +65,12 @@
   "devDependencies": {
     "@rsbuild/core": "^2.2.10",
     "@rsbuild/plugin-umd": "^1.0.7",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "@types/node": "^26.6.3",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "eslint": "^8.3.0",
-    "typescript": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.71.0",
+    "@typescript-eslint/parser": "^8.71.0",
+    "eslint": "^8.57.1",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vuepress": "^1.8.2"
   }
 }
