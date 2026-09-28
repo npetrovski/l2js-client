@@ -95,10 +95,10 @@ export default class UserInfo extends GameClientPacket {
     this.User.HairColor = (HairColor as any)[this.readD()];
     this.User.Face = (Face as any)[this.readD()];
 
-    const _isGM = this.readD();
+    this.User.IsGM = this.readD() === 1;
 
     this.User.Title = this.readS();
-    const _clanId = this.readD();
+    this.User.ClanId = this.readD();
     const _clanCrestId = this.readD();
     const _allyId = this.readD();
     const _allyCrestId = this.readD();
@@ -107,9 +107,9 @@ export default class UserInfo extends GameClientPacket {
     // siege flags: attacker - 0x180 sword over name, defender - 0x80 shield, 0xC0 crown (|leader), 0x1C0 flag (|leader)
     const _relation = this.readD();
 
-    const _mountType = this.readC();
-    const _privateStoreType = this.readC();
-    const _dwarvenCraft = this.readC();
+    this.User.MountType = this.readC();
+    this.User.PrivateStoreType = this.readC();
+    this.User.CanCrystalizeItems = this.readC() === 1;
 
     this.User.PkKills = this.readD();
     this.User.PvpKills = this.readD();
@@ -121,9 +121,9 @@ export default class UserInfo extends GameClientPacket {
 
     const _isInPartyMatchRoom = this.readC() === 1;
     const _isInvisible = this.readD() === 1;
-    const _stateSwimFly = this.readC(); // 1 - in water; 2 - in the air; 0 - ground
+    this.User.MovementType = this.readC(); // 1 - in water; 2 - in the air; 0 - ground
 
-    const _clanPrivilegesBitmask = this.readD();
+    this.User.ClanPrivileges = this.readD();
 
     this.User.RecommLeft = this.readH();
     this.User.RecommHave = this.readH();
@@ -176,7 +176,7 @@ export default class UserInfo extends GameClientPacket {
     this.User.Fame = this.readD();
 
     const _isMinimapAllowed = this.readD() === 1;
-    const _vitalityPoints = this.readD();
+    this.User.VitalityPoints = this.readD();
     const _abnormalVisualEffectSpecial = this.readD();
 
     return true;
