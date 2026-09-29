@@ -94,6 +94,6 @@ export default class L2Object extends EventEmmiter {
 
   constructor(init?: Partial<L2Object>) {
     super();
-    if (init) Object.assign(this, init);
+    if (init) {Object.assign(this, init);}
   }
 }

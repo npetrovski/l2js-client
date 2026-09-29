@@ -26,7 +26,7 @@ export default class MMOConnection implements IConnection {
   }
 
   async read(): Promise<void> {
-    if (!this.IsConnected) return;
+    if (!this.IsConnected) {return;}
     const data: Uint8Array = await this.stream.recv();
     if (data) {
       this.handler.process(data).catch((err) => this.logger.warn(err));

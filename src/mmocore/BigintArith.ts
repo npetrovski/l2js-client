@@ -32,10 +32,10 @@ export interface Egcd {
  * @returns A triple (g, x, y), such that ax + by = g = gcd(a, b).
  */
 export function eGcd(a: number | bigint, b: number | bigint): Egcd {
-  if (typeof a === "number") a = BigInt(a);
-  if (typeof b === "number") b = BigInt(b);
+  if (typeof a === "number") {a = BigInt(a);}
+  if (typeof b === "number") {b = BigInt(b);}
 
-  if (a <= big0 || b <= big0) throw new RangeError("a and b MUST be > 0"); // a and b MUST be positive
+  if (a <= big0 || b <= big0) {throw new RangeError("a and b MUST be > 0");} // a and b MUST be positive
 
   let x = big0;
   let y = big1;
@@ -85,9 +85,9 @@ export function gcd(a: number | bigint, b: number | bigint): bigint {
     bAbs >>= big1;
     shift++;
   }
-  while ((aAbs & big1) === big0) aAbs >>= big1;
+  while ((aAbs & big1) === big0) {aAbs >>= big1;}
   do {
-    while ((bAbs & big1) === big0) bAbs >>= big1;
+    while ((bAbs & big1) === big0) {bAbs >>= big1;}
     if (aAbs > bAbs) {
       const x = aAbs;
       aAbs = bAbs;
@@ -108,10 +108,10 @@ export function gcd(a: number | bigint, b: number | bigint): bigint {
  * @returns The least common multiple of a and b
  */
 export function lcm(a: number | bigint, b: number | bigint): bigint {
-  if (typeof a === "number") a = BigInt(a);
-  if (typeof b === "number") b = BigInt(b);
+  if (typeof a === "number") {a = BigInt(a);}
+  if (typeof b === "number") {b = BigInt(b);}
 
-  if (a === big0 && b === big0) return big0;
+  if (a === big0 && b === big0) {return big0;}
   return (abs(a * b) as bigint) / gcd(a, b);
 }
 
@@ -153,8 +153,8 @@ export function min(a: number | bigint, b: number | bigint): number | bigint {
  * @returns A bigint with the smallest positive representation of a modulo n
  */
 export function toZn(a: number | bigint, n: number | bigint): bigint {
-  if (typeof a === "number") a = BigInt(a);
-  if (typeof n === "number") n = BigInt(n);
+  if (typeof a === "number") {a = BigInt(a);}
+  if (typeof n === "number") {n = BigInt(n);}
 
   if (n <= big0) {
     throw new RangeError("n must be > 0");
@@ -195,9 +195,9 @@ export function modInv(a: number | bigint, n: number | bigint): bigint {
  * @returns b**e mod n
  */
 export function modPow(b: number | bigint, e: number | bigint, n: number | bigint): bigint {
-  if (typeof b === "number") b = BigInt(b);
-  if (typeof e === "number") e = BigInt(e);
-  if (typeof n === "number") n = BigInt(n);
+  if (typeof b === "number") {b = BigInt(b);}
+  if (typeof e === "number") {e = BigInt(e);}
+  if (typeof n === "number") {n = BigInt(n);}
 
   if (n <= big0) {
     throw new RangeError("n must be > 0");
@@ -219,7 +219,7 @@ export function modPow(b: number | bigint, e: number | bigint, n: number | bigin
       return ++right;
     }
     let result: any = left;
-    while (--right) result *= left;
+    while (--right) {result *= left;}
     return result;
   };
 

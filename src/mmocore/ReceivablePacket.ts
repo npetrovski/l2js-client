@@ -48,7 +48,7 @@ export default abstract class ReceivablePacket extends AbstractPacket {
     for (let i = this._offset; i < this._buffer.byteLength - 1; i += 2) {
       const c = this._view.getUint16(i, true);
       this._offset += 2;
-      if (c === 0) break;
+      if (c === 0) {break;}
       result += String.fromCharCode(c);
     }
     return result;

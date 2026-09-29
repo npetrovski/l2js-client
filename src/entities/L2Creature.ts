@@ -528,7 +528,7 @@ export default abstract class L2Creature extends L2Object {
 
     if (!heading) {
       let angleTarget = Math.atan2(dy - y, dx - x) * (180 / Math.PI);
-      if (angleTarget < 0) angleTarget = 360 + angleTarget;
+      if (angleTarget < 0) {angleTarget = 360 + angleTarget;}
       this.Heading = Math.floor(angleTarget * 182.044444444);
     } else {
       this.Heading = heading;
@@ -546,7 +546,7 @@ export default abstract class L2Creature extends L2Object {
     this._moveInterval = setInterval(() => {
       // Check if movement was not cancelled by the server
       if (!this.IsMoving) {
-        if (this._moveInterval) clearInterval(this._moveInterval);
+        if (this._moveInterval) {clearInterval(this._moveInterval);}
         this._moveInterval = null;
         return;
       }
@@ -566,7 +566,7 @@ export default abstract class L2Creature extends L2Object {
 
         this.IsMoving = false;
 
-        if (this._moveInterval) clearInterval(this._moveInterval);
+        if (this._moveInterval) {clearInterval(this._moveInterval);}
         this._moveInterval = null;
       }
     }, 100).unref();
