@@ -8,7 +8,7 @@ import { findGamePacket } from "./PacketRegistry";
 import { EXTENDED_SERVER_PACKET_NAMES, SERVER_PACKET_NAMES } from "./ServerPacketNames";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
-  protected logger: Logger = Logger.getLogger(this.constructor.name);
+  protected readonly logger = Logger.for(this);
 
   // @Override
   handlePacket(data: Uint8Array): ReceivablePacket {

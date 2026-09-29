@@ -4,7 +4,7 @@ import LoginClient from "../network/LoginClient";
 import GameClient from "../network/GameClient";
 
 export default abstract class AbstractGameCommand implements ICommand {
-  protected logger: Logger = Logger.getLogger(this.constructor.name);
+  protected readonly logger = Logger.for(this);
 
   constructor(public LoginClient: LoginClient, public GameClient: GameClient) {}
 

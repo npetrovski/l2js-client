@@ -9,6 +9,8 @@ export enum LogLevel {
 }
 
 export default class Logger implements ILogger {
+  private static readonly instances = new WeakMap<Function, Logger>();
+
   private _context = "";
 
   private _logLevel: LogLevel = 1;
@@ -25,8 +27,16 @@ export default class Logger implements ILogger {
     /* nodejs:end */
   }
 
-  static getLogger(ctx: string): Logger {
-    return new Logger(ctx);
+  static for(owner: object | Function): Logger {
+    const ctor = typeof owner === "function" ? owner : owner.constructor;
+    let logger = Logger.instances.get(ctor);
+
+    if (!logger) {
+      logger = new Logger(ctor.name);
+      Logger.instances.set(ctor, logger);
+    }
+
+    return logger;
   }
 
   debug(message: string | any, ...data: any[]): void {

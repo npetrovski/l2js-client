@@ -4,7 +4,7 @@ import Logger from "./Logger";
 import IProcessable from "./IProcessable";
 
 export default class MMOConnection implements IConnection {
-  protected logger: Logger = Logger.getLogger(this.constructor.name);
+  protected readonly logger = Logger.for(this);
 
   IsConnected = false;
 

@@ -11,7 +11,7 @@ import AbstractPacket from "./AbstractPacket";
 import MMOConfig from "./MMOConfig";
 
 export default abstract class MMOClient extends EventEmitter implements IProcessable {
-  protected logger: Logger = Logger.getLogger(this.constructor.name);
+  protected readonly logger = Logger.for(this);
 
   abstract init(config: MMOConfig, connection?: IConnection): this;
 

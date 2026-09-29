@@ -6,7 +6,7 @@ import "./incoming/login/index";
 import { findLoginPacket } from "./PacketRegistry";
 
 export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
-  protected logger: Logger = Logger.getLogger(this.constructor.name);
+  protected readonly logger = Logger.for(this);
 
   // @Override
   handlePacket(data: Uint8Array): ReceivablePacket {

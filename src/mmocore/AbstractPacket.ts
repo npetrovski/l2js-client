@@ -1,7 +1,7 @@
 import Logger from "./Logger";
 
 export default abstract class AbstractPacket {
-  protected logger: Logger = Logger.getLogger(this.constructor.name);
+  protected readonly logger = Logger.for(this);
 
   pow2(n: number): number {
     if (n >= 0 && n < 31) {

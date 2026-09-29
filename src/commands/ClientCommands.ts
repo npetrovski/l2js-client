@@ -178,7 +178,7 @@ export default interface ClientCommands {
 }
 
 export default abstract class ClientCommands {
-  protected logger: Logger = Logger.getLogger(this.constructor.name);
+  protected readonly logger = Logger.for(this);
 
   LoginClient = new LoginClient();
 
