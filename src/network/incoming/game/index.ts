@@ -49,6 +49,7 @@ import ItemList from "./ItemList";
 import JoinParty from "./JoinParty";
 import KeyPacket from "./KeyPacket";
 import LeaveWorld from "./LeaveWorld";
+import LoginFail from "./LoginFail";
 import MagicSkillLaunched from "./MagicSkillLaunched";
 import MagicSkillUse from "./MagicSkillUse";
 import MoveToLocation from "./MoveToLocation";
@@ -72,6 +73,7 @@ import PetDelete from "./PetDelete";
 import PlayerInGame from "./PlayerInGame";
 import PledgeInfo from "./PledgeInfo";
 import PrivateStoreListSell from "./PrivateStoreListSell";
+import RawGamePacket from "./RawGamePacket";
 import RecipeBookItemList from "./RecipeBookItemList";
 import RecipeItemMakeInfo from "./RecipeItemMakeInfo";
 import RelationChanged from "./RelationChanged";
@@ -178,6 +180,7 @@ export {
   JoinParty,
   KeyPacket,
   LeaveWorld,
+  LoginFail,
   MagicSkillLaunched,
   MagicSkillUse,
   MoveToLocation,
@@ -201,6 +204,7 @@ export {
   PlayerInGame,
   PledgeInfo,
   PrivateStoreListSell,
+  RawGamePacket,
   RecipeBookItemList,
   RecipeItemMakeInfo,
   RelationChanged,

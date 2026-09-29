@@ -3,6 +3,7 @@ import Logger from "../mmocore/Logger";
 import ReceivablePacket from "../mmocore/ReceivablePacket";
 import GameClient from "./GameClient";
 import * as Packets from "./incoming/game/index";
+import { EXTENDED_SERVER_PACKET_NAMES, SERVER_PACKET_NAMES } from "./ServerPacketNames";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
@@ -34,7 +35,7 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
           rpk = new Packets.CharSelectionInfo();
           break;
         case 0x0a:
-          rpk = new Packets.TempBan();
+          rpk = new Packets.LoginFail();
           break;
         case 0x0b:
           rpk = new Packets.CharSelected();
@@ -397,6 +398,16 @@ export default class GamePacketHandler implements IPacketHandler<GameClient> {
         default:
           // no-op
           break;
+      }
+
+      if (!rpk) {
+        const subOpcode = opcode === 0xfe && data.byteLength >= 3 ? data[1] + (data[2] << 8) : undefined;
+        const packetNames =
+          subOpcode === undefined ? SERVER_PACKET_NAMES[opcode] : EXTENDED_SERVER_PACKET_NAMES[subOpcode];
+
+        if (packetNames) {
+          rpk = new Packets.RawGamePacket(opcode, packetNames, subOpcode);
+        }
       }
 
       if (!rpk) {

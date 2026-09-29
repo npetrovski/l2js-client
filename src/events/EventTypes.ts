@@ -1,6 +1,5 @@
 import L2Creature from "../entities/L2Creature";
 import ReceivablePacket from "../mmocore/ReceivablePacket";
-import MMOClient from "../mmocore/MMOClient";
 import SendablePacket from "../mmocore/SendablePacket";
 import L2PartyMember from "../entities/L2PartyMember";
 import LoginClient from "../network/LoginClient";

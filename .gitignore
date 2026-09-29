@@ -3,6 +3,8 @@
 browser
 dist
 dist-browser
+server-source-code
+graphify-out
 node_modules
 .idea
 *.iml

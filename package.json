@@ -19,11 +19,11 @@
   "main": "dist/Client.js",
   "types": "dist/Client.d.ts",
   "scripts": {
-    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "clean": "node -e \"for(i of ['dist', 'dist-browser']) require('node:fs').rmSync(i, { recursive: true, force: true })\"",
     "compile": "node build-indexes.js && tsc",
     "build:browser": "npm run qa:typecheck && rsbuild build",
     "dev:browser": "rsbuild dev",
-    "qa:lint": "eslint --ignore-pattern graphify-out ./src/**",
+    "qa:lint": "eslint ./src/**",
     "qa:typecheck": "tsc --noEmit",
     "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
     "buildpackage": "cd dist && npm pack",
