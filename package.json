@@ -20,9 +20,10 @@
   "types": "dist/Client.d.ts",
   "scripts": {
     "clean": "node -e \"for(i of ['dist', 'dist-browser']) require('node:fs').rmSync(i, { recursive: true, force: true })\"",
+    "build": "rsbuild build",
+    "build:dev": "rsbuild dev",
     "compile": "node build-indexes.js && tsc",
     "build:browser": "npm run qa:typecheck && rsbuild build",
-    "dev:browser": "rsbuild dev",
     "qa:lint": "eslint ./src/**",
     "qa:typecheck": "tsc --noEmit",
     "prebuildpackage": "npm run clean && npm run compile && node dist/SetupPackage.js",
@@ -67,7 +68,9 @@
     "@typescript-eslint/eslint-plugin": "^8.71.0",
     "@typescript-eslint/parser": "^8.71.0",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "eslint": "^8.57.1",
-    "typescript": "npm:@typescript/typescript6@^6.0.2"
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.71.0"
   }
 }
