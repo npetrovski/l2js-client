@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0x33)
 export default class xFE_x33_ExSetCompassZoneCode extends GameClientPacket {
   static readonly ALTEREDZONE: number = 0x08;
   static readonly SIEGEWARZONE1: number = 0x0a;

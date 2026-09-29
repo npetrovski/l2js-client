@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x08)
 export default class x08_DeleteObject extends GameClientPacket {
   ObjectId!: number;
   // @Override

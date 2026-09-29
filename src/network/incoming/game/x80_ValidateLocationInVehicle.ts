@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x80)
 export default class x80_ValidateLocationInVehicle extends GameClientPacket {
   // @Override
   readImpl(): boolean {

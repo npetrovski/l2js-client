@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 import L2PartyMember from "../../../entities/L2PartyMember";
 
+@GamePacket(0x52)
 export default class x52_PartySmallWindowUpdate extends GameClientPacket {
   PartyMember: L2PartyMember = new L2PartyMember();
   // @Override

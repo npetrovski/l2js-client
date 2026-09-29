@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0xdf)
 export default class xFE_xDF_ExNevitAdventPointInfoPacket extends GameClientPacket {
   // @Override
   readImpl(): boolean {

@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x29)
 export default class x29_ChangeWaitType extends GameClientPacket {
   ObjectId!: number;
   MoveType!: number;

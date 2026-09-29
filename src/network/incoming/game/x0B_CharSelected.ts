@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import L2User from "../../../entities/L2User";
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x0b)
 export default class x0B_CharSelected extends GameClientPacket {
   User!: L2User;
 

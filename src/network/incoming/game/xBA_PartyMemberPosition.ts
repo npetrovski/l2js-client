@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xba)
 export default class xBA_PartyMemberPosition extends GameClientPacket {
   Members: Record<number, number[]> = {};
 

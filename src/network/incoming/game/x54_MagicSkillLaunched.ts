@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x54)
 export default class x54_MagicSkillLaunched extends GameClientPacket {
   // @Override
   readImpl(): boolean {

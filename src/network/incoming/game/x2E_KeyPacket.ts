@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x2e)
 export default class x2E_KeyPacket extends GameClientPacket {
   BlowfishKey!: Uint8Array;
 

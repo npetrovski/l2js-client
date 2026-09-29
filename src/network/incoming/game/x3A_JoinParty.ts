@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x3a)
 export default class x3A_JoinParty extends GameClientPacket {
   private _response = 0;
 

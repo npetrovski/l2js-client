@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0x2f)
 export default class xFE_x2F_ExStorageMaxCount extends GameClientPacket {
   // @Override
   readImpl(): boolean {

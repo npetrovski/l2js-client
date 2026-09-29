@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x71)
 export default class x71_RestartResponse extends GameClientPacket {
   // @Override
   readImpl(): boolean {

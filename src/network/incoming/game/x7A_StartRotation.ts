@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x7a)
 export default class x7A_StartRotation extends GameClientPacket {
   CharObjectId!: number;
   Degree!: number;

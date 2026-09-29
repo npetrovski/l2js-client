@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0xda)
 export default class xFE_xDA_ExBrExtraUserInfo extends GameClientPacket {
   CharObjectId!: number;
   VisualEffect!: number;

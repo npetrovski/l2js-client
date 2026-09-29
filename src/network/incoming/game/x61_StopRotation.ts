@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x61)
 export default class x61_StopRotation extends GameClientPacket {
   CharObjectId!: number;
   Degree!: number;

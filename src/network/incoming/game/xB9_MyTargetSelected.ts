@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xb9)
 export default class xB9_MyTargetSelected extends GameClientPacket {
   CreatureObjId!: number;
 

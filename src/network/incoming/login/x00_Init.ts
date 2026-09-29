@@ -1,5 +1,8 @@
+import { LoginPacket } from "../../PacketRegistry";
+
 import LoginClientPacket from "./LoginClientPacket";
 
+@LoginPacket(0x00)
 export default class x00_Init extends LoginClientPacket {
   PublicKey!: Uint8Array;
 

@@ -1,6 +1,9 @@
+import { LoginPacket } from "../../PacketRegistry";
+
 import LoginClientPacket from "./LoginClientPacket";
 import { AccountKickedReason } from "../../../enums/AccountKickedReason";
 
+@LoginPacket(0x02)
 export default class x02_AccountKicked extends LoginClientPacket {
   Reason!: number;
 

@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xe7)
 export default class xE7_HennaItemRemoveInfo extends GameClientPacket {
   // @Override
   readImpl(): boolean {

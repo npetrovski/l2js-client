@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x72)
 export default class x72_MoveToPawn extends GameClientPacket {
   CharObjId!: number;
   TargetObjId!: number;

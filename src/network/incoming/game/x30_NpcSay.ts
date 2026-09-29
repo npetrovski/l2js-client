@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x30)
 export default class x30_NpcSay extends GameClientPacket {
   // @Override
   readImpl(): boolean {

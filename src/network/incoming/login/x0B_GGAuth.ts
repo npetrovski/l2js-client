@@ -1,5 +1,8 @@
+import { LoginPacket } from "../../PacketRegistry";
+
 import LoginClientPacket from "./LoginClientPacket";
 
+@LoginPacket(0x0b)
 export default class x0B_GGAuth extends LoginClientPacket {
   // @Override
   readImpl(): boolean {

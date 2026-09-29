@@ -1,3 +1,5 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 import GameServerPacket from "../../outgoing/game/GameServerPacket";
 import L2User from "../../../entities/L2User";
@@ -6,6 +8,7 @@ import { HairColor } from "../../../enums/HairColor";
 import { Face } from "../../../enums/Face";
 import { ClassId } from "../../../enums/ClassId";
 
+@GamePacket(0x32)
 export default class x32_UserInfo extends GameClientPacket {
   User!: L2User;
 

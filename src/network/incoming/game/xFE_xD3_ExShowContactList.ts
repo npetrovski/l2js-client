@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0xd3)
 export default class xFE_xD3_ExShowContactList extends GameClientPacket {
   // @Override
   readImpl(): boolean {

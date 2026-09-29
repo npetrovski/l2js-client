@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import L2Buff from "../../../entities/L2Buff";
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x85)
 export default class x85_AbnormalStatusUpdate extends GameClientPacket {
   AbnormalBuffs: L2Buff[] = [];
 

@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0xe1)
 export default class xFE_xE1_ExNevitAdventTimeChange extends GameClientPacket {
   // @Override
   readImpl(): boolean {

@@ -1,3 +1,5 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import L2ObjectCollection from "../../../entities/L2ObjectCollection";
 import L2User from "../../../entities/L2User";
 import { ClassId } from "../../../enums/ClassId";
@@ -6,6 +8,7 @@ import { Sex } from "../../../enums/Sex";
 import GameServerPacket from "../../outgoing/game/GameServerPacket";
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x09)
 export default class x09_CharSelectionInfo extends GameClientPacket {
   characterPackagesSize!: number;
 

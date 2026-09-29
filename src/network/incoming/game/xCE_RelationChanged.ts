@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xce)
 export default class xCE_RelationChanged extends GameClientPacket {
   // @Override
   readImpl(): boolean {

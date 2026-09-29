@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 import L2PartyMember from "../../../entities/L2PartyMember";
 
+@GamePacket(0x4e)
 export default class x4E_PartySmallWindowAll extends GameClientPacket {
   PartyMembers: L2PartyMember[] = [];
   // @Override

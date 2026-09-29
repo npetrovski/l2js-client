@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x75)
 export default class x75_FriendList extends GameClientPacket {
   // @Override
   readImpl(): boolean {

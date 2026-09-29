@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x0d)
 export default class x0D_NewCharacterSuccess extends GameClientPacket {
   CreatureObjId!: number;
 

@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xe5)
 export default class xE5_HennaInfo extends GameClientPacket {
   // @Override
   readImpl(): boolean {

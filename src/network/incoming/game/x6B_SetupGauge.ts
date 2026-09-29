@@ -1,4 +1,7 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
+@GamePacket(0x6b)
 export default class x6B_SetupGauge extends GameClientPacket {
   CharObjectId!: number;
   CurrentTime!: number;

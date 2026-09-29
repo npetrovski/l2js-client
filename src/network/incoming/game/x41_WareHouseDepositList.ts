@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x41)
 export default class x41_WareHouseDepositList extends GameClientPacket {
   static readonly PRIVATE: number = 1;
   static readonly CLAN: number = 4;

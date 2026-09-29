@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xdd)
 export default class xDD_RecipeItemMakeInfo extends GameClientPacket {
   RecipeId: number = 0;
   CraftType: number = 0;

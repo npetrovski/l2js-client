@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0x8d)
 export default class xFE_x8D_NpcQuestHtmlMessage extends GameClientPacket {
   NpcObjectId: number = 0;
   Html: string = "";

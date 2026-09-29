@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x9f)
 export default class x9F_StaticObject extends GameClientPacket {
   // @Override
   readImpl(): boolean {

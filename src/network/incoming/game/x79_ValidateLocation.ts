@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x79)
 export default class x79_ValidateLocation extends GameClientPacket {
   ObjectId!: number;
   Heading!: number;

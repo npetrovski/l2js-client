@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x27)
 export default class x27_SocialAction extends GameClientPacket {
   static readonly LEVEL_UP: number = 2122;
 

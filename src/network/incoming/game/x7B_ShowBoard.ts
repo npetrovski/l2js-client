@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x7b)
 export default class x7B_ShowBoard extends GameClientPacket {
   // @Override
   readImpl(): boolean {

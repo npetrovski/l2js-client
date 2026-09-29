@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x22)
 export default class x22_TeleportToLocation extends GameClientPacket {
   ObjectId!: number;
   Heading!: number;

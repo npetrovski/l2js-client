@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 import L2Buff from "../../../entities/L2Buff";
 
+@GamePacket(0xf4)
 export default class xF4_PartySpelled extends GameClientPacket {
   PartyMemberObjectId!: number;
   PartyMemberBuffs: L2Buff[] = [];

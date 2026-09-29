@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x2f)
 export default class x2F_MoveToLocation extends GameClientPacket {
   ObjectId!: number;
 

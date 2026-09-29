@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x28)
 export default class x28_ChangeMoveType extends GameClientPacket {
   static readonly WALK: number = 0;
   static readonly RUN: number = 1;

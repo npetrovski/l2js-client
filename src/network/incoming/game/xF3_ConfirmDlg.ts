@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import AbstractMessagePacket from "./AbstractMessagePacket";
 
+@GamePacket(0xf3)
 export default class xF3_ConfirmDlg extends AbstractMessagePacket {
   Time!: number;
   RequesterId!: number;

@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x51)
 export default class x51_PartySmallWindowDelete extends GameClientPacket {
   MemberObjId!: number;
 

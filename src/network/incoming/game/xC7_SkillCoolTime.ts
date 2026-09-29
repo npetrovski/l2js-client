@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import L2Buff from "../../../entities/L2Buff";
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xc7)
 export default class xC7_SkillCoolTime extends GameClientPacket {
   BuffsList: {
     id: number;

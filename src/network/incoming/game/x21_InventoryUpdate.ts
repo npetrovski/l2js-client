@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import L2Item from "../../../entities/L2Item";
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x21)
 export default class x21_InventoryUpdate extends GameClientPacket {
   Items: L2Item[] = [];
 

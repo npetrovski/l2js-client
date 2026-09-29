@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0x28)
 export default class xFE_x28_ExFishingHpRegen extends GameClientPacket {
   ObjectId!: number;
   HpMode!: number;

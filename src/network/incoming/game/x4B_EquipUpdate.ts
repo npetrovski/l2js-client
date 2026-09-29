@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 import L2Item from "../../../entities/L2Item";
 
+@GamePacket(0x4b)
 export default class x4B_EquipUpdate extends GameClientPacket {
   // @Override
   readImpl(): boolean {

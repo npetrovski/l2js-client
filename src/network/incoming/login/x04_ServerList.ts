@@ -1,6 +1,9 @@
+import { LoginPacket } from "../../PacketRegistry";
+
 import L2Server from "../../../entities/L2Server";
 import LoginClientPacket from "./LoginClientPacket";
 
+@LoginPacket(0x04)
 export default class x04_ServerList extends LoginClientPacket {
   Servers: L2Server[] = [];
 

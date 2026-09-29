@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xee)
 export default class xEE_HennaEquipList extends GameClientPacket {
   // @Override
   readImpl(): boolean {

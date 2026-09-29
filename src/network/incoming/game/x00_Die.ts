@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x00)
 export default class x00_Die extends GameClientPacket {
   CharObjId!: number;
   Sweepable!: boolean;

@@ -1,8 +1,11 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import AbstractNpcInfo from "./AbstractNpcInfo";
 import L2Npc from "../../../entities/L2Npc";
 import L2Mob from "../../../entities/L2Mob";
 import L2Creature from "../../../entities/L2Creature";
 
+@GamePacket(0x0c)
 export default class x0C_NpcInfo extends AbstractNpcInfo {
   ObjectId!: number;
   IsAttackable!: boolean;

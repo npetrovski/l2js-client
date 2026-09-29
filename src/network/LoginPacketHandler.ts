@@ -1,64 +1,36 @@
 import IPacketHandler from "../mmocore/IPacketHandler";
-import ReceivablePacket from "../mmocore/ReceivablePacket";
 import Logger from "../mmocore/Logger";
+import ReceivablePacket from "../mmocore/ReceivablePacket";
 import LoginClient from "./LoginClient";
-import * as Packets from "./incoming/login/index";
+import "./incoming/login/index";
+import { findLoginPacket } from "./PacketRegistry";
 
 export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
   protected logger: Logger = Logger.getLogger(this.constructor.name);
 
   // @Override
   handlePacket(data: Uint8Array): ReceivablePacket {
-    const opcode: number = data[0] & 0xff;
+    const opcode = data[0] & 0xff;
 
     let rpk!: ReceivablePacket;
 
     try {
-      switch (opcode) {
-        case 0x00:
-          rpk = new Packets.x00_Init();
-          break;
-        case 0x01:
-          rpk = new Packets.x01_LoginFail();
-          break;
-        case 0x02:
-          rpk = new Packets.x02_AccountKicked();
-          break;
-        case 0x03:
-          rpk = new Packets.x03_LoginOk();
-          break;
-        case 0x04:
-          rpk = new Packets.x04_ServerList();
-          break;
-        case 0x06:
-          rpk = new Packets.x06_PlayFail();
-          break;
-        case 0x07:
-          rpk = new Packets.x07_PlayOk();
-          break;
-        case 0x0b:
-          rpk = new Packets.x0B_GGAuth();
-          break;
-        default:
-          // no-op
-          break;
-      }
+      const PacketClass = findLoginPacket(opcode);
 
-      if (!rpk) {
-        if (data.byteLength > 2) {
-          this.logger.debug(
-            "Unknown game packet received. [0x" +
-              opcode.toString(16) +
-              " 0x" +
-              data[1].toString(16) +
-              "] len=" +
-              data.byteLength
-          );
-        } else {
-          this.logger.debug("Unknown game packet received.");
-        }
-      } else {
+      if (PacketClass) {
+        rpk = new PacketClass();
         rpk.Buffer = data;
+      } else if (data.byteLength > 2) {
+        this.logger.debug(
+          "Unknown login packet received. [0x" +
+            opcode.toString(16) +
+            " 0x" +
+            data[1].toString(16) +
+            "] len=" +
+            data.byteLength
+        );
+      } else {
+        this.logger.debug("Unknown login packet received.");
       }
     } catch (err) {
       this.logger.error(err);

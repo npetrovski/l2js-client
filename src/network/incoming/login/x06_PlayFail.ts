@@ -1,6 +1,9 @@
+import { LoginPacket } from "../../PacketRegistry";
+
 import LoginClientPacket from "./LoginClientPacket";
 import { PlayFailReason } from "../../../enums/PlayFailReason";
 
+@LoginPacket(0x06)
 export default class x06_PlayFail extends LoginClientPacket {
   public FailReason!: PlayFailReason;
   // @Override

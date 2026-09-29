@@ -1,5 +1,8 @@
+import { LoginPacket } from "../../PacketRegistry";
+
 import LoginClientPacket from "./LoginClientPacket";
 
+@LoginPacket(0x07)
 export default class x07_PlayOk extends LoginClientPacket {
   PlayOk1!: number;
   PlayOk2!: number;

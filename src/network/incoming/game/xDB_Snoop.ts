@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xdb)
 export default class xDB_Snoop extends GameClientPacket {
   private _convoId = 0;
   private _name = "";

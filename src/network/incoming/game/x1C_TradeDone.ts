@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x1c)
 export default class x1C_TradeDone extends GameClientPacket {
   // @Override
   readImpl(): boolean {

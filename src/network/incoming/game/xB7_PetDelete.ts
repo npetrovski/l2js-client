@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xb7)
 export default class xB7_PetDelete extends GameClientPacket {
   // @Override
   readImpl(): boolean {

@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xe4)
 export default class xE4_HennaItemDrawInfo extends GameClientPacket {
   // @Override
   readImpl(): boolean {

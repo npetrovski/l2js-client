@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x23)
 export default class x23_TargetSelected extends GameClientPacket {
   ObjectId!: number;
   TargetObjectId!: number;

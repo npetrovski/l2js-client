@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import { ShortcutType } from "../../../enums/ShortcutType";
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x44)
 export default class x44_ShortCutRegister extends GameClientPacket {
   // @Override
   readImpl(): boolean {

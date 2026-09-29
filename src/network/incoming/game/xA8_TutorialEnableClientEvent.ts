@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xa8)
 export default class xA8_TutorialEnableClientEvent extends GameClientPacket {
   // @Override
   readImpl(): boolean {

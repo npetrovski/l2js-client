@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xfe, 0x70)
 export default class xFE_x70_ExUISetting extends GameClientPacket {
   // @Override
   readImpl(): boolean {

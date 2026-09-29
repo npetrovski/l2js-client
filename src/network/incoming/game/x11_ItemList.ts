@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import L2Item from "../../../entities/L2Item";
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x11)
 export default class x11_ItemList extends GameClientPacket {
   Items: L2Item[] = [];
   // @Override

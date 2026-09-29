@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 import L2DroppedItem from "../../../entities/L2DroppedItem";
 
+@GamePacket(0x16)
 export default class x16_DropItem extends GameClientPacket {
   Item: L2DroppedItem = new L2DroppedItem();
 

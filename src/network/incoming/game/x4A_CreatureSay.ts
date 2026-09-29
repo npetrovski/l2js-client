@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x4a)
 export default class x4A_CreatureSay extends GameClientPacket {
   ObjectId: number = 0;
   Type: number = 0;

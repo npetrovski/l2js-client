@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x33)
 export default class x33_Attack extends GameClientPacket {
   AttackerObjectId: number = 0;
   Subjects: number[] = [];

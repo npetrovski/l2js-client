@@ -1,6 +1,9 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 import L2Buff from "../../../entities/L2Buff";
 
+@GamePacket(0xf9)
 export default class xF9_EtcStatusUpdate extends GameClientPacket {
   static readonly ETC_DANGER_AREA: number = 4268;
   static readonly ETC_BLOCK_ALL_CHAT: number = 4269;

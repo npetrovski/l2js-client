@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xd6)
 export default class xD6_SpecialCamera extends GameClientPacket {
   private _skyState!: number;
   // @Override

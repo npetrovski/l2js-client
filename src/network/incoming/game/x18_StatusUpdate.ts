@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x18)
 export default class x18_StatusUpdate extends GameClientPacket {
   static readonly LEVEL: number = 0x01;
   static readonly EXP: number = 0x02;

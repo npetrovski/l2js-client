@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0xc0)
 export default class xC0_VehicleStarted extends GameClientPacket {
   // @Override
   readImpl(): boolean {

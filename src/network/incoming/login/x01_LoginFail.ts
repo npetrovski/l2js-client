@@ -1,6 +1,9 @@
+import { LoginPacket } from "../../PacketRegistry";
+
 import LoginClientPacket from "./LoginClientPacket";
 import { LoginFailReason } from "../../../enums/LoginFailReason";
 
+@LoginPacket(0x01)
 export default class x01_LoginFail extends LoginClientPacket {
   _securityCard = false;
 

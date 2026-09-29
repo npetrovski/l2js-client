@@ -1,3 +1,5 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import L2Character from "../../../entities/L2Character";
 import GameClientPacket from "./GameClientPacket";
 import GameServerPacket from "../../outgoing/game/GameServerPacket";
@@ -6,6 +8,7 @@ import { HairColor } from "../../../enums/HairColor";
 import { Face } from "../../../enums/Face";
 import { ClassId } from "../../../enums/ClassId";
 
+@GamePacket(0x31)
 export default class x31_CharInfo extends GameClientPacket {
   static readonly PAPERDOLL_ORDER: number[] = [
     GameServerPacket.PAPERDOLL_UNDER,

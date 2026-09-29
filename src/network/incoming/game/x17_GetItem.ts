@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x17)
 export default class x17_GetItem extends GameClientPacket {
   // @Override
   readImpl(): boolean {

@@ -1,4 +1,7 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
+@GamePacket(0x45)
 export default class x45_ShortCutInit extends GameClientPacket {
   // @Override
   readImpl(): boolean {

@@ -1,5 +1,8 @@
+import { GamePacket } from "../../PacketRegistry";
+
 import GameClientPacket from "./GameClientPacket";
 
+@GamePacket(0x48)
 export default class x48_MagicSkillUse extends GameClientPacket {
   ActiveCharObjId!: number;
   TargetObjId!: number;
