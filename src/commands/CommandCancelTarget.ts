@@ -1,5 +1,5 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import RequestTargetCancel from "../network/outgoing/game/RequestTargetCancel";
+import RequestTargetCancel from "../network/outgoing/game/x48_RequestTargetCancel";
 
 export default class CommandCancelTarget extends AbstractGameCommand {
   execute(): void {

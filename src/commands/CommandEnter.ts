@@ -2,26 +2,26 @@ import L2Character from "../entities/L2Character";
 import { EPacketReceived } from "../events/EventTypes";
 import MMOConfig from "../mmocore/MMOConfig";
 import GameClient from "../network/GameClient";
-import { CharCreateFail, CharSelectionInfo } from "../network/incoming/game";
-import SystemMessage from "../network/incoming/game/SystemMessage";
-import LoginFail from "../network/incoming/login/LoginFail";
-import PlayFail from "../network/incoming/login/PlayFail";
-import ServerList from "../network/incoming/login/ServerList";
+import { x10_CharCreateFail as CharCreateFail, x09_CharSelectionInfo as CharSelectionInfo } from "../network/incoming/game";
+import SystemMessage from "../network/incoming/game/x62_SystemMessage";
+import LoginFail from "../network/incoming/login/x01_LoginFail";
+import PlayFail from "../network/incoming/login/x06_PlayFail";
+import ServerList from "../network/incoming/login/x04_ServerList";
 import LoginClient from "../network/LoginClient";
-import Appearing from "../network/outgoing/game/Appearing";
-import AuthLogin from "../network/outgoing/game/AuthLogin";
-import CharacterCreate from "../network/outgoing/game/CharacterCreate";
-import CharacterSelect from "../network/outgoing/game/CharacterSelect";
-import EnterWorld from "../network/outgoing/game/EnterWorld";
-import NewCharacter from "../network/outgoing/game/NewCharacter";
-import ProtocolVersion from "../network/outgoing/game/ProtocolVersion";
-import RequestKeyMapping from "../network/outgoing/game/RequestKeyMapping";
-import RequestManorList from "../network/outgoing/game/RequestManorList";
-import ValidatePosition from "../network/outgoing/game/ValidatePosition";
-import AuthGameGuard from "../network/outgoing/login/AuthGameGuard";
-import RequestAuthLogin from "../network/outgoing/login/RequestAuthLogin";
-import RequestServerList from "../network/outgoing/login/RequestServerList";
-import RequestServerLogin from "../network/outgoing/login/RequestServerLogin";
+import Appearing from "../network/outgoing/game/x3A_Appearing";
+import AuthLogin from "../network/outgoing/game/x2B_AuthLogin";
+import CharacterCreate from "../network/outgoing/game/x0C_CharacterCreate";
+import CharacterSelect from "../network/outgoing/game/x12_CharacterSelect";
+import EnterWorld from "../network/outgoing/game/x11_EnterWorld";
+import NewCharacter from "../network/outgoing/game/x13_NewCharacter";
+import ProtocolVersion from "../network/outgoing/game/x0E_ProtocolVersion";
+import RequestKeyMapping from "../network/outgoing/game/xD0_x21_RequestKeyMapping";
+import RequestManorList from "../network/outgoing/game/xD0_x01_RequestManorList";
+import ValidatePosition from "../network/outgoing/game/x59_ValidatePosition";
+import AuthGameGuard from "../network/outgoing/login/x07_AuthGameGuard";
+import RequestAuthLogin from "../network/outgoing/login/x00_RequestAuthLogin";
+import RequestServerList from "../network/outgoing/login/x05_RequestServerList";
+import RequestServerLogin from "../network/outgoing/login/x02_RequestServerLogin";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandEnter extends AbstractGameCommand {
@@ -39,24 +39,24 @@ export default class CommandEnter extends AbstractGameCommand {
       this.LoginClient.init(this._config);
       this.LoginClient.connect()
         .then(() => {
-          this.LoginClient.once("PacketReceived:PlayFail", (e: EPacketReceived) => {
+          this.LoginClient.once("PacketReceived:x06_PlayFail", (e: EPacketReceived) => {
             reject((e.data.packet as PlayFail).FailReason);
           });
-          this.LoginClient.once("PacketReceived:LoginFail", (e: EPacketReceived) => {
+          this.LoginClient.once("PacketReceived:x01_LoginFail", (e: EPacketReceived) => {
             reject((e.data.packet as LoginFail).FailReason);
           });
-          this.LoginClient.once("PacketReceived:Init", () =>
+          this.LoginClient.once("PacketReceived:x00_Init", () =>
             this.LoginClient.sendPacket(new AuthGameGuard(this.LoginClient.Session.sessionId))
           );
-          this.LoginClient.once("PacketReceived:GGAuth", () =>
+          this.LoginClient.once("PacketReceived:x0B_GGAuth", () =>
             this.LoginClient.sendPacket(
               new RequestAuthLogin(this._config.Username, this._config.Password, this.LoginClient.Session)
             )
           );
-          this.LoginClient.once("PacketReceived:LoginOk", () =>
+          this.LoginClient.once("PacketReceived:x03_LoginOk", () =>
             this.LoginClient.sendPacket(new RequestServerList(this.LoginClient.Session))
           );
-          this.LoginClient.once("PacketReceived:ServerList", (e: EPacketReceived) => {
+          this.LoginClient.once("PacketReceived:x04_ServerList", (e: EPacketReceived) => {
             this.LoginClient.sendPacket(
               new RequestServerLogin(
                 this.LoginClient.Session,
@@ -64,7 +64,7 @@ export default class CommandEnter extends AbstractGameCommand {
               )
             );
           });
-          this.LoginClient.once("PacketReceived:PlayOk", () => {
+          this.LoginClient.once("PacketReceived:x07_PlayOk", () => {
             setTimeout(() => {
               this.LoginClient.Connection.close();
               this.LoginClient.offAll();
@@ -84,42 +84,42 @@ export default class CommandEnter extends AbstractGameCommand {
               .catch((e) => reject(e));
           });
 
-          this.GameClient.once("PacketReceived:KeyPacket", () =>
+          this.GameClient.once("PacketReceived:x2E_KeyPacket", () =>
             this.GameClient.sendPacket(new AuthLogin(this.GameClient.Session))
           );
 
           if (charData) {
             let sizeChar = 0;
-            this.GameClient.once("PacketReceived:CharSelectionInfo", (e: EPacketReceived) => {
+            this.GameClient.once("PacketReceived:x09_CharSelectionInfo", (e: EPacketReceived) => {
               sizeChar = (e.data.packet as CharSelectionInfo).characterPackagesSize;
               this.GameClient.sendPacket(new NewCharacter());
             });
 
-            this.GameClient.once("PacketReceived:NewCharacterSuccess", (e: EPacketReceived) =>
+            this.GameClient.once("PacketReceived:x0D_NewCharacterSuccess", (e: EPacketReceived) =>
               this.GameClient.sendPacket(new CharacterCreate(charData))
             );
 
-            this.GameClient.once("PacketReceived:CharCreateOk", (e: EPacketReceived) =>
+            this.GameClient.once("PacketReceived:x0F_CharCreateOk", (e: EPacketReceived) =>
               this.GameClient.sendPacket(new CharacterSelect(sizeChar ?? 0))
             );
 
-            this.GameClient.once("PacketReceived:CharCreateFail", (e: EPacketReceived) =>
+            this.GameClient.once("PacketReceived:x10_CharCreateFail", (e: EPacketReceived) =>
               reject((e.data.packet as CharCreateFail).FailReason)
             );
           } else {
-            this.GameClient.once("PacketReceived:CharSelectionInfo", () =>
+            this.GameClient.once("PacketReceived:x09_CharSelectionInfo", () =>
               this.GameClient.sendPacket(new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0))
             );
           }
 
-          this.GameClient.once("PacketReceived:CharSelected", () => {
+          this.GameClient.once("PacketReceived:x0B_CharSelected", () => {
             this.GameClient.sendPacket(new RequestManorList())
               .then(() => this.GameClient.sendPacket(new RequestKeyMapping()))
               .then(() => this.GameClient.sendPacket(new EnterWorld()))
               .catch((e) => reject("Enter world fail." + e));
           });
 
-          this.GameClient.on("PacketReceived:SystemMessage", (e: EPacketReceived) => {
+          this.GameClient.on("PacketReceived:x62_SystemMessage", (e: EPacketReceived) => {
             if ((e.data.packet as SystemMessage).messageId === 34 /** WELCOME_TO_LINEAGE */) {
               const param = {
                 login: this.LoginClient,
@@ -130,7 +130,7 @@ export default class CommandEnter extends AbstractGameCommand {
             }
           });
 
-          this.GameClient.on("PacketReceived:TeleportToLocation", () => {
+          this.GameClient.on("PacketReceived:x22_TeleportToLocation", () => {
             this.GameClient.sendPacket(new Appearing());
             this.GameClient.sendPacket(
               new ValidatePosition(

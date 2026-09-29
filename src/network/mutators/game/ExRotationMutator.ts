@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import ExRotation from "../../incoming/game/ExRotation";
+import ExRotation from "../../incoming/game/xFE_xC1_ExRotation";
 
 export default class ExRotationMutator extends IMMOClientMutator<
   GameClient,

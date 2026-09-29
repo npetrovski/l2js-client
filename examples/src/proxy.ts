@@ -1,7 +1,7 @@
 import { NetConnectOpts, createServer, connect, Socket } from "net";
 import LoginClient from "l2js-client/network/LoginClient";
 import GameClient from "l2js-client/network/GameClient";
-import ServerList from "l2js-client/network/incoming/login/ServerList";
+import ServerList from "l2js-client/network/incoming/login/x04_ServerList";
 import MMOClient from "l2js-client/mmocore/MMOClient";
 import ReceivablePacket from "l2js-client/mmocore/ReceivablePacket";
 import SendablePacket from "l2js-client/mmocore/SendablePacket";

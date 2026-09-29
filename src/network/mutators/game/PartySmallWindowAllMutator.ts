@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import PartySmallWindowAll from "../../incoming/game/PartySmallWindowAll";
+import PartySmallWindowAll from "../../incoming/game/x4E_PartySmallWindowAll";
 
 export default class PartySmallWindowAllMutator extends IMMOClientMutator<
   GameClient,

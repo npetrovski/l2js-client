@@ -1,5 +1,5 @@
 import L2Item from "../entities/L2Item";
-import RequestAutoSoulShot from "../network/outgoing/game/RequestAutoSoulShot";
+import RequestAutoSoulShot from "../network/outgoing/game/xD0_x0D_RequestAutoSoulShot";
 import AbstractGameCommand from "./AbstractGameCommand";
 import { ShotsType } from "../enums/ShotsType";
 

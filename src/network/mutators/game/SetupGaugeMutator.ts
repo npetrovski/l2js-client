@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import SetupGauge from "../../incoming/game/SetupGauge";
+import SetupGauge from "../../incoming/game/x6B_SetupGauge";
 
 export default class SetupGaugeMutator extends IMMOClientMutator<
   GameClient,

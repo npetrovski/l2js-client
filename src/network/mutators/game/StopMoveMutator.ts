@@ -1,7 +1,7 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import StopMove from "../../incoming/game/StopMove";
-import ValidatePosition from "../../outgoing/game/ValidatePosition";
+import StopMove from "../../incoming/game/x47_StopMove";
+import ValidatePosition from "../../outgoing/game/x59_ValidatePosition";
 
 /**
  * StopMove packet is not always send by the server,

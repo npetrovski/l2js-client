@@ -1,5 +1,5 @@
 import { EPacketReceived } from "l2js-client/events/EventTypes";
-import DropItem from "l2js-client/network/incoming/game/DropItem";
+import DropItem from "l2js-client/network/incoming/game/x16_DropItem";
 import l2 from "./login";
 
 import fs from "fs";

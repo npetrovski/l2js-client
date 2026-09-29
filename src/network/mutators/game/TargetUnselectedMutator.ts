@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import TargetUnselected from "../../incoming/game/TargetUnselected";
+import TargetUnselected from "../../incoming/game/x24_TargetUnselected";
 
 export default class TargetUnselectedMutator extends IMMOClientMutator<
   GameClient,

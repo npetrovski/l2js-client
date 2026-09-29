@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import Revive from "../../incoming/game/Revive";
+import Revive from "../../incoming/game/x01_Revive";
 
 export default class ReviveMutator extends IMMOClientMutator<
   GameClient,

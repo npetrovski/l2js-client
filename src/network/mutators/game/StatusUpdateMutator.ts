@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import StatusUpdate from "../../incoming/game/StatusUpdate";
+import StatusUpdate from "../../incoming/game/x18_StatusUpdate";
 
 import L2User from "../../../entities/L2User";
 

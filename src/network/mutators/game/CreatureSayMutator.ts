@@ -1,5 +1,5 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import CreatureSay from "../../incoming/game/CreatureSay";
+import CreatureSay from "../../incoming/game/x4A_CreatureSay";
 import GameClient from "../../GameClient";
 
 export default class CreatureSayMutator extends IMMOClientMutator<

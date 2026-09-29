@@ -16,28 +16,28 @@ export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
     try {
       switch (opcode) {
         case 0x00:
-          rpk = new Packets.Init();
+          rpk = new Packets.x00_Init();
           break;
         case 0x01:
-          rpk = new Packets.LoginFail();
+          rpk = new Packets.x01_LoginFail();
           break;
         case 0x02:
-          rpk = new Packets.AccountKicked();
+          rpk = new Packets.x02_AccountKicked();
           break;
         case 0x03:
-          rpk = new Packets.LoginOk();
+          rpk = new Packets.x03_LoginOk();
           break;
         case 0x04:
-          rpk = new Packets.ServerList();
+          rpk = new Packets.x04_ServerList();
           break;
         case 0x06:
-          rpk = new Packets.PlayFail();
+          rpk = new Packets.x06_PlayFail();
           break;
         case 0x07:
-          rpk = new Packets.PlayOk();
+          rpk = new Packets.x07_PlayOk();
           break;
         case 0x0b:
-          rpk = new Packets.GGAuth();
+          rpk = new Packets.x0B_GGAuth();
           break;
         default:
           // no-op

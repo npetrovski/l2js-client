@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import MoveToLocation from "../../incoming/game/MoveToLocation";
+import MoveToLocation from "../../incoming/game/x2F_MoveToLocation";
 
 export default class MoveToLocationMutator extends IMMOClientMutator<
   GameClient,

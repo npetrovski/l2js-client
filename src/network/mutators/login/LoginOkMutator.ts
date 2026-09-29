@@ -1,5 +1,5 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import LoginOk from "../../incoming/login/LoginOk";
+import LoginOk from "../../incoming/login/x03_LoginOk";
 import LoginClient from "../../LoginClient";
 
 export default class LoginOkMutator extends IMMOClientMutator<

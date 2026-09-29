@@ -1,4 +1,4 @@
-import RequestMagicSkillUse from "../network/outgoing/game/RequestMagicSkillUse";
+import RequestMagicSkillUse from "../network/outgoing/game/x39_RequestMagicSkillUse";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandCast extends AbstractGameCommand {

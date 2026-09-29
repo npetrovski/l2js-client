@@ -1,5 +1,5 @@
 import { Actions } from "../enums/Actions";
-import RequestActionUse from "../network/outgoing/game/RequestActionUse";
+import RequestActionUse from "../network/outgoing/game/x56_RequestActionUse";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandSitStand extends AbstractGameCommand {

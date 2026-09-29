@@ -1,5 +1,5 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import ExDuelAskStart from "../../incoming/game/ExDuelAskStart";
+import ExDuelAskStart from "../../incoming/game/xFE_x4C_ExDuelAskStart";
 import GameClient from "../../GameClient";
 
 export default class ExDuelAskStartMutator extends IMMOClientMutator<

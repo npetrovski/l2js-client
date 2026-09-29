@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import NpcInfo from "../../incoming/game/NpcInfo";
+import NpcInfo from "../../incoming/game/x0C_NpcInfo";
 
 export default class NpcInfoMutator extends IMMOClientMutator<
   GameClient,

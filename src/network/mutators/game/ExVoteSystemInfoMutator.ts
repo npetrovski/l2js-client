@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import ExVoteSystemInfo from "../../incoming/game/ExVoteSystemInfo";
+import ExVoteSystemInfo from "../../incoming/game/xFE_xC9_ExVoteSystemInfo";
 
 export default class ExVoteSystemInfoMutator extends IMMOClientMutator<
   GameClient,

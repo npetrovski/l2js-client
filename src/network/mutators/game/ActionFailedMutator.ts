@@ -1,5 +1,5 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import ActionFailed from "../../incoming/game/ActionFailed";
+import ActionFailed from "../../incoming/game/x1F_ActionFailed";
 import GameClient from "../../GameClient";
 
 export default class ActionFailedMutator extends IMMOClientMutator<

@@ -1,6 +1,6 @@
 import { EPacketReceived } from "l2js-client/events/EventTypes";
-import ExFishingHpRegen from "l2js-client/network/incoming/game/ExFishingHpRegen";
-import ExFishingEnd from "l2js-client/network/incoming/game/ExFishingEnd";
+import ExFishingHpRegen from "l2js-client/network/incoming/game/xFE_x28_ExFishingHpRegen";
+import ExFishingEnd from "l2js-client/network/incoming/game/xFE_x1F_ExFishingEnd";
 import l2 from "./login";
 
 const UsePump = () => l2.cast(1313);

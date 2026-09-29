@@ -1,5 +1,5 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import SystemMessage from "../../incoming/game/SystemMessage";
+import SystemMessage from "../../incoming/game/x62_SystemMessage";
 import GameClient from "../../GameClient";
 
 export default class SystemMessageMutator extends IMMOClientMutator<

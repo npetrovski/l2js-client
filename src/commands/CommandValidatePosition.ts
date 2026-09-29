@@ -1,4 +1,4 @@
-import ValidatePosition from "../network/outgoing/game/ValidatePosition";
+import ValidatePosition from "../network/outgoing/game/x59_ValidatePosition";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandValidatePosition extends AbstractGameCommand {

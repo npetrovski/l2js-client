@@ -1,5 +1,5 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import AskJoinParty from "../../incoming/game/AskJoinParty";
+import AskJoinParty from "../../incoming/game/x39_AskJoinParty";
 import GameClient from "../../GameClient";
 
 export default class AskJoinPartyMutator extends IMMOClientMutator<

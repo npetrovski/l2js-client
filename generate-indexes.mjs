@@ -47,6 +47,7 @@ function buildPacketIndex(directory) {
 
 function buildMutatorIndex(directory, packetDirectory, packetImportPath) {
   const mutators = listModules(directory);
+  const packetModules = listModules(packetDirectory);
   const imports = [];
   const registrations = [];
 
@@ -58,15 +59,20 @@ function buildMutatorIndex(directory, packetDirectory, packetImportPath) {
     }
 
     const packetName = mutatorName.slice(0, -"Mutator".length);
-    const packetFile = join(packetDirectory, `${packetName}.ts`);
+    const matchingPacketModules = packetModules.filter(
+      (moduleName) => moduleName === packetName || moduleName.endsWith(`_${packetName}`)
+    );
 
-    if (!existsSync(packetFile)) {
-      throw new Error(`${mutatorName} has no matching packet at ${relative(projectRoot, packetFile)}`);
+    if (matchingPacketModules.length !== 1) {
+      throw new Error(
+        `${mutatorName} must have exactly one matching packet in ${relative(projectRoot, packetDirectory)}; found ${matchingPacketModules.length}`
+      );
     }
 
+    const packetModule = matchingPacketModules[0];
     imports.push(`import ${mutatorName} from "./${mutatorName}";`);
-    imports.push(`import ${packetName} from "${packetImportPath}/${packetName}";`);
-    registrations.push(`  [${mutatorName}.prototype, ${packetName}],`);
+    imports.push(`import ${packetModule} from "${packetImportPath}/${packetModule}";`);
+    registrations.push(`  [${mutatorName}.prototype, ${packetModule}],`);
   }
 
   return `${generatedHeader}${imports.join("\n")}\n\nexport default [\n${registrations.join("\n")}\n];\n`;

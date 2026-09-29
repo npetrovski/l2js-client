@@ -1,5 +1,5 @@
 import L2Object from "../entities/L2Object";
-import AttackRequest from "../network/outgoing/game/AttackRequest";
+import AttackRequest from "../network/outgoing/game/x32_AttackRequest";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandAttack extends AbstractGameCommand {

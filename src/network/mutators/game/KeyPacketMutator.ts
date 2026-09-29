@@ -1,6 +1,6 @@
 import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
 import GameClient from "../../GameClient";
-import KeyPacket from "../../incoming/game/KeyPacket";
+import KeyPacket from "../../incoming/game/x2E_KeyPacket";
 
 export default class KeyPacketMutator extends IMMOClientMutator<
   GameClient,

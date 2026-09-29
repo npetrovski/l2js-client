@@ -1,5 +1,5 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import RequestDropItem from "../network/outgoing/game/RequestDropItem";
+import RequestDropItem from "../network/outgoing/game/x17_RequestDropItem";
 
 export default class CommandDropItem extends AbstractGameCommand {
   execute(
