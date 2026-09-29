@@ -1,5 +1,4 @@
 {
-  "declaration": true,
   "compileOnSave": true,
   "compilerOptions": {
     "module": "NodeNext",
@@ -12,6 +11,7 @@
     },
     "outDir": "./dist",
     "rootDir": "./src",
+    "noEmitOnError": true,
     "strict": true,
     "removeComments": true,
     "noImplicitThis": true,
