@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class xD0_x1B_RequestDuelStart extends GameServerPacket {
   private _charName: string;

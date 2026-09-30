@@ -1,6 +1,6 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 @GamePacket(0xfe, 0x1f)
 export default class xFE_x1F_ExFishingEnd extends GameClientPacket {

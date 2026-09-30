@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
-import L2Recipe from "../../../entities/L2Recipe";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import L2Recipe from "@entities/L2Recipe";
 
 @GamePacket(0xdc)
 export default class xDC_RecipeBookItemList extends GameClientPacket {

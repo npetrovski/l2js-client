@@ -1,6 +1,6 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import MoveBackwardToLocation from "../network/outgoing/game/x0F_MoveBackwardToLocation";
-import ValidatePosition from "../network/outgoing/game/x59_ValidatePosition";
+import MoveBackwardToLocation from "@network/outgoing/game/x0F_MoveBackwardToLocation";
+import ValidatePosition from "@network/outgoing/game/x59_ValidatePosition";
 
 export default class CommandMoveTo extends AbstractGameCommand {
   execute(x: number, y: number, z: number): void {

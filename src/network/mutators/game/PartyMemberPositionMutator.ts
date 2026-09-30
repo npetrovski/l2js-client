@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import PartyMemberPosition from "../../incoming/game/xBA_PartyMemberPosition";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import PartyMemberPosition from "@network/incoming/game/xBA_PartyMemberPosition";
 
 export default class PartyMemberPositionMutator extends IMMOClientMutator<GameClient, PartyMemberPosition> {
   update(packet: PartyMemberPosition): void {

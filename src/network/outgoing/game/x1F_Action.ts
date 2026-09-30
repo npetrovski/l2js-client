@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x1F_Action extends GameServerPacket {
   private _objectId: number;

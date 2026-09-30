@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x11_EnterWorld extends GameServerPacket {
   write(): void {

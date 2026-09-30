@@ -1,4 +1,4 @@
-import ILogger from "./ILogger";
+import ILogger from "@mmocore/ILogger";
 
 export enum LogLevel {
   NONE = 0,

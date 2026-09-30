@@ -1,6 +1,6 @@
-import L2Object from "./L2Object";
-import L2ObjectCollection from "./L2ObjectCollection";
-import MMOClient from "../mmocore/MMOClient";
+import L2Object from "@entities/L2Object";
+import L2ObjectCollection from "@entities/L2ObjectCollection";
+import MMOClient from "@mmocore/MMOClient";
 
 /**
  * Custom L2Object collection to attach event handlers

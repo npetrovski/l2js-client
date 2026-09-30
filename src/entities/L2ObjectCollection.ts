@@ -1,4 +1,4 @@
-import L2Object from "./L2Object";
+import L2Object from "@entities/L2Object";
 
 export default class L2ObjectCollection<T extends L2Object> extends Set<T> {
   public closest(): T {

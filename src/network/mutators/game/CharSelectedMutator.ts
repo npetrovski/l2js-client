@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import CharSelected from "../../incoming/game/x0B_CharSelected";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import CharSelected from "@network/incoming/game/x0B_CharSelected";
 
 export default class CharSelectedMutator extends IMMOClientMutator<
   GameClient,

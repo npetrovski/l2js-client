@@ -1,5 +1,5 @@
 import * as net from "net";
-import AbstractPacketStream from "../../../mmocore/AbstractPacketStream";
+import AbstractPacketStream from "@mmocore/AbstractPacketStream";
 
 export default class NetSocket extends AbstractPacketStream {
   private _socket!: net.Socket;

@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x39_RequestMagicSkillUse extends GameServerPacket {
   private _skillId: number;

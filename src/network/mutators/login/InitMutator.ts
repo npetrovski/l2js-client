@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import Init from "../../incoming/login/x00_Init";
-import LoginClient from "../../LoginClient";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import Init from "@network/incoming/login/x00_Init";
+import LoginClient from "@network/LoginClient";
 
 export default class InitMutator extends IMMOClientMutator<LoginClient, Init> {
   update(packet: Init): void {

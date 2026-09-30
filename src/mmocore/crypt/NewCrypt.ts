@@ -1,4 +1,4 @@
-import BlowfishEngine from "./BlowfishEngine";
+import BlowfishEngine from "@mmocore/crypt/BlowfishEngine";
 
 export default class NewCrypt {
   private _cipher = new BlowfishEngine();

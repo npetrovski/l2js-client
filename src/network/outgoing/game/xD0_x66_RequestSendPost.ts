@@ -1,5 +1,5 @@
-import L2Item from "../../../entities/L2Item";
-import GameServerPacket from "./GameServerPacket";
+import L2Item from "@entities/L2Item";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class xD0_x66_RequestSendPost extends GameServerPacket {
   constructor(

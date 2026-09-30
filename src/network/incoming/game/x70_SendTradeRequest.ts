@@ -1,6 +1,6 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 @GamePacket(0x70)
 export default class x70_SendTradeRequest extends GameClientPacket {

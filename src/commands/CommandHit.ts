@@ -1,6 +1,6 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import Action from "../network/outgoing/game/x1F_Action";
-import L2Object from "../entities/L2Object";
+import Action from "@network/outgoing/game/x1F_Action";
+import L2Object from "@entities/L2Object";
 
 export default class CommandHit extends AbstractGameCommand {
   execute(object: L2Object | number, shift?: boolean): void {

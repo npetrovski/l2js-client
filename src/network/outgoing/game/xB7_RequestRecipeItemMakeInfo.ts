@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class xB7_RequestRecipeItemMakeInfo extends GameServerPacket {
   constructor(public recipeId: number) {

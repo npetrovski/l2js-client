@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x49_Say2 extends GameServerPacket {
   static readonly ALL: number = 0;

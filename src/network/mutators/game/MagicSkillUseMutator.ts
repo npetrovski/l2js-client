@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import MagicSkillUse from "../../incoming/game/x48_MagicSkillUse";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import MagicSkillUse from "@network/incoming/game/x48_MagicSkillUse";
 
 export default class MagicSkillUseMutator extends IMMOClientMutator<
   GameClient,

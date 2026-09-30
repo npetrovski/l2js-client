@@ -1,6 +1,6 @@
-import MMOSession from "../../../mmocore/MMOSession";
-import LoginServerPacket from "./LoginServerPacket";
-import { bigToUint8Array, modPow } from "../../../mmocore/BigintArith";
+import MMOSession from "@mmocore/MMOSession";
+import LoginServerPacket from "@network/outgoing/login/LoginServerPacket";
+import { bigToUint8Array, modPow } from "@mmocore/BigintArith";
 
 export default class x00_RequestAuthLogin extends LoginServerPacket {
   constructor(private username: string, private password: string, private session: MMOSession) {

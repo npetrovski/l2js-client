@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import RecipeBookItemList from "../../incoming/game/xDC_RecipeBookItemList";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import RecipeBookItemList from "@network/incoming/game/xDC_RecipeBookItemList";
 
 export default class RecipeBookItemListMutator extends IMMOClientMutator<
   GameClient,

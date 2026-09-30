@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import ServerList from "../../incoming/login/x04_ServerList";
-import LoginClient from "../../LoginClient";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import ServerList from "@network/incoming/login/x04_ServerList";
+import LoginClient from "@network/LoginClient";
 
 export default class ServerListMutator extends IMMOClientMutator<
   LoginClient,

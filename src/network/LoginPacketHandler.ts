@@ -1,9 +1,9 @@
-import IPacketHandler from "../mmocore/IPacketHandler";
-import Logger from "../mmocore/Logger";
-import ReceivablePacket from "../mmocore/ReceivablePacket";
-import LoginClient from "./LoginClient";
-import "./incoming/login/index";
-import { findLoginPacket } from "./PacketRegistry";
+import IPacketHandler from "@mmocore/IPacketHandler";
+import Logger from "@mmocore/Logger";
+import ReceivablePacket from "@mmocore/ReceivablePacket";
+import LoginClient from "@network/LoginClient";
+import "@network/incoming/login/index";
+import { findLoginPacket } from "@network/PacketRegistry";
 
 export default class LoginPacketHandler implements IPacketHandler<LoginClient> {
   protected readonly logger = Logger.for(this);

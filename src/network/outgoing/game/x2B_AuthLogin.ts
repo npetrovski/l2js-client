@@ -1,5 +1,5 @@
-import MMOSession from "../../../mmocore/MMOSession";
-import GameServerPacket from "./GameServerPacket";
+import MMOSession from "@mmocore/MMOSession";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x2B_AuthLogin extends GameServerPacket {
   private _session: MMOSession;

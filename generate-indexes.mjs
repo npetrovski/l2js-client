@@ -32,20 +32,20 @@ function assertIdentifier(name, sourcePath) {
   }
 }
 
-function buildPacketIndex(directory) {
+function buildPacketIndex(directory, moduleImportPath) {
   const modules = listModules(directory);
 
   for (const moduleName of modules) {
     assertIdentifier(moduleName, join(directory, `${moduleName}.ts`));
   }
 
-  const imports = modules.map((moduleName) => `import ${moduleName} from "./${moduleName}";`).join("\n");
+  const imports = modules.map((moduleName) => `import ${moduleName} from "${moduleImportPath}/${moduleName}";`).join("\n");
   const exports = modules.map((moduleName) => `  ${moduleName},`).join("\n");
 
   return `${generatedHeader}${imports}\n\nexport {\n${exports}\n};\n`;
 }
 
-function buildMutatorIndex(directory, packetDirectory, packetImportPath) {
+function buildMutatorIndex(directory, packetDirectory, mutatorImportPath, packetImportPath) {
   const mutators = listModules(directory);
   const packetModules = listModules(packetDirectory);
   const imports = [];
@@ -70,7 +70,7 @@ function buildMutatorIndex(directory, packetDirectory, packetImportPath) {
     }
 
     const packetModule = matchingPacketModules[0];
-    imports.push(`import ${mutatorName} from "./${mutatorName}";`);
+    imports.push(`import ${mutatorName} from "${mutatorImportPath}/${mutatorName}";`);
     imports.push(`import ${packetModule} from "${packetImportPath}/${packetModule}";`);
     registrations.push(`  [${mutatorName}.prototype, ${packetModule}],`);
   }
@@ -112,15 +112,25 @@ const mutatorsLoginDirectory = join(projectRoot, "src", "network", "mutators", "
 const commandsDirectory = join(projectRoot, "src", "commands");
 
 const generatedFiles = new Map([
-  [join(incomingGameDirectory, indexFile), buildPacketIndex(incomingGameDirectory)],
-  [join(incomingLoginDirectory, indexFile), buildPacketIndex(incomingLoginDirectory)],
+  [join(incomingGameDirectory, indexFile), buildPacketIndex(incomingGameDirectory, "@network/incoming/game")],
+  [join(incomingLoginDirectory, indexFile), buildPacketIndex(incomingLoginDirectory, "@network/incoming/login")],
   [
     join(mutatorsGameDirectory, indexFile),
-    buildMutatorIndex(mutatorsGameDirectory, incomingGameDirectory, "../../incoming/game"),
+    buildMutatorIndex(
+      mutatorsGameDirectory,
+      incomingGameDirectory,
+      "@network/mutators/game",
+      "@network/incoming/game"
+    ),
   ],
   [
     join(mutatorsLoginDirectory, indexFile),
-    buildMutatorIndex(mutatorsLoginDirectory, incomingLoginDirectory, "../../incoming/login"),
+    buildMutatorIndex(
+      mutatorsLoginDirectory,
+      incomingLoginDirectory,
+      "@network/mutators/login",
+      "@network/incoming/login"
+    ),
   ],
   [join(commandsDirectory, indexFile), buildCommandIndex(commandsDirectory)],
 ]);

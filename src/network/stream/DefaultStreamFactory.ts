@@ -1,9 +1,9 @@
-import AbstractPacketStream from "../../mmocore/AbstractPacketStream";
-import MMOConfig, { PacketStreamConstructor } from "../../mmocore/MMOConfig";
+import AbstractPacketStream from "@mmocore/AbstractPacketStream";
+import MMOConfig, { PacketStreamConstructor } from "@mmocore/MMOConfig";
 /* nodejs:start */
-import NetSocket from "./adapters/NetSocket";
+import NetSocket from "@network/stream/adapters/NetSocket";
 /* nodejs:end */
-import IStreamFactory from "./IStreamFactory";
+import IStreamFactory from "@network/stream/IStreamFactory";
 
 export default class DefaultStreamFactory implements IStreamFactory {
   getStream(config: MMOConfig): AbstractPacketStream {

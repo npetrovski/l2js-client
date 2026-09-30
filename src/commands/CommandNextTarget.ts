@@ -1,6 +1,6 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import L2Creature from "../entities/L2Creature";
-import Action from "../network/outgoing/game/x1F_Action";
+import L2Creature from "@entities/L2Creature";
+import Action from "@network/outgoing/game/x1F_Action";
 
 export default class CommandNextTarget extends AbstractGameCommand {
   execute(): L2Creature | undefined {

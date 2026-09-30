@@ -1,5 +1,5 @@
-import L2ObjectCollection from "./L2ObjectCollection";
-import L2PartyPet from "./L2PartyPet";
+import L2ObjectCollection from "@entities/L2ObjectCollection";
+import L2PartyPet from "@entities/L2PartyPet";
 
 export default class L2PartyPetCollection extends L2ObjectCollection<L2PartyPet> {
   public GetItemByDisplayName(name: string): L2PartyPet | undefined {

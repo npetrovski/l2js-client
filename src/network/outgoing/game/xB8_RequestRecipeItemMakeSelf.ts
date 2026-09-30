@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class xB8_RequestRecipeItemMakeSelf extends GameServerPacket {
   private _recipeId: number;

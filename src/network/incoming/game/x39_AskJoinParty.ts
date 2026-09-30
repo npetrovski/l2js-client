@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
-import { PartyDistributionType } from "../../../enums/PartyDistributionType";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import { PartyDistributionType } from "@enums/PartyDistributionType";
 
 @GamePacket(0x39)
 export default class x39_AskJoinParty extends GameClientPacket {

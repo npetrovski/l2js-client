@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class xD0_x6E_RequestSentPost extends GameServerPacket {
   constructor(private _msgId: number) {

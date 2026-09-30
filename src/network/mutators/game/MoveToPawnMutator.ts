@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import MoveToPawn from "../../incoming/game/x72_MoveToPawn";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import MoveToPawn from "@network/incoming/game/x72_MoveToPawn";
 
 export default class MoveToPawnMutator extends IMMOClientMutator<
   GameClient,

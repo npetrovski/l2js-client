@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class xD0_x4B_RequestDispel extends GameServerPacket {
   private _objectId: number;

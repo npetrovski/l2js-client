@@ -1,6 +1,6 @@
-import GameServerPacket from "./GameServerPacket";
-import L2Item from "../../../entities/L2Item";
-import { ShotsType } from "../../../enums/ShotsType";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
+import L2Item from "@entities/L2Item";
+import { ShotsType } from "@enums/ShotsType";
 
 export default class xD0_x0D_RequestAutoSoulShot extends GameServerPacket {
   private _shotItemId: number;

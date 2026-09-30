@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class xD0_x7E_RequestVoteNew extends GameServerPacket {
   constructor(private _targetId: number) {

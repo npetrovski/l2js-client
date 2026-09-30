@@ -1,6 +1,6 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import UseItem from "../network/outgoing/game/x19_UseItem";
-import L2Item from "../entities/L2Item";
+import UseItem from "@network/outgoing/game/x19_UseItem";
+import L2Item from "@entities/L2Item";
 
 export default class CommandUseItem extends AbstractGameCommand {
   execute(item: L2Item | number): void {

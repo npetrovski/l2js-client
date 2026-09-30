@@ -1,8 +1,8 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import EtcStatusUpdate from "../../incoming/game/xF9_EtcStatusUpdate";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import EtcStatusUpdate from "@network/incoming/game/xF9_EtcStatusUpdate";
 
-import L2Buff from "../../../entities/L2Buff";
+import L2Buff from "@entities/L2Buff";
 
 export default class EtcStatusUpdateMutator extends IMMOClientMutator<
   GameClient,

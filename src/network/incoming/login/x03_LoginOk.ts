@@ -1,6 +1,6 @@
-import { LoginPacket } from "../../PacketRegistry";
+import { LoginPacket } from "@network/PacketRegistry";
 
-import LoginClientPacket from "./LoginClientPacket";
+import LoginClientPacket from "@network/incoming/login/LoginClientPacket";
 
 @LoginPacket(0x03)
 export default class x03_LoginOk extends LoginClientPacket {

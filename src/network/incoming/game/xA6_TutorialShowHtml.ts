@@ -1,6 +1,6 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 @GamePacket(0xa6)
 export default class xA6_TutorialShowHtml extends GameClientPacket {

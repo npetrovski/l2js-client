@@ -1,14 +1,14 @@
-import MMOClient from "../mmocore/MMOClient";
-import MMOConfig from "../mmocore/MMOConfig";
-import MMOConnection from "../mmocore/MMOConnection";
-import LoginCrypt from "./crypt/LoginCrypt";
-import LoginPacketHandler from "./LoginPacketHandler";
-import L2Server from "../entities/L2Server";
-import LoginServerPacket from "./outgoing/login/LoginServerPacket";
-import IConnection from "../mmocore/IConnection";
-import mutators from "./mutators/login/index";
-import DefaultStreamFactory from "./stream/DefaultStreamFactory";
-import ICrypt from "./crypt/ICrypt";
+import MMOClient from "@mmocore/MMOClient";
+import MMOConfig from "@mmocore/MMOConfig";
+import MMOConnection from "@mmocore/MMOConnection";
+import LoginCrypt from "@network/crypt/LoginCrypt";
+import LoginPacketHandler from "@network/LoginPacketHandler";
+import L2Server from "@entities/L2Server";
+import LoginServerPacket from "@network/outgoing/login/LoginServerPacket";
+import IConnection from "@mmocore/IConnection";
+import mutators from "@network/mutators/login/index";
+import DefaultStreamFactory from "@network/stream/DefaultStreamFactory";
+import ICrypt from "@network/crypt/ICrypt";
 
 export default class LoginClient extends MMOClient {
   private _loginCrypt: ICrypt = new LoginCrypt();

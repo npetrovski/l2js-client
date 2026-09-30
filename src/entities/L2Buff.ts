@@ -1,4 +1,4 @@
-import L2Object from "./L2Object";
+import L2Object from "@entities/L2Object";
 
 export default class L2Buff extends L2Object {
   private _isDebuff!: boolean;

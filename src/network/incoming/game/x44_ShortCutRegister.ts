@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import { ShortcutType } from "../../../enums/ShortcutType";
-import GameClientPacket from "./GameClientPacket";
+import { ShortcutType } from "@enums/ShortcutType";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 @GamePacket(0x44)
 export default class x44_ShortCutRegister extends GameClientPacket {

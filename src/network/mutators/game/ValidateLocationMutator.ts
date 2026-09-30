@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import ValidateLocation from "../../incoming/game/x79_ValidateLocation";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import ValidateLocation from "@network/incoming/game/x79_ValidateLocation";
 
 export default class ValidateLocationMutator extends IMMOClientMutator<GameClient, ValidateLocation> {
   update(packet: ValidateLocation): void {

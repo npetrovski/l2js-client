@@ -1,5 +1,5 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import Say2 from "../network/outgoing/game/x49_Say2";
+import Say2 from "@network/outgoing/game/x49_Say2";
 
 export default class CommandSayToAlly extends AbstractGameCommand {
   execute(text: string): void {

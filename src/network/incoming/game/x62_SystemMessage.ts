@@ -1,6 +1,6 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import AbstractMessagePacket from "./AbstractMessagePacket";
+import AbstractMessagePacket from "@network/incoming/game/AbstractMessagePacket";
 
 @GamePacket(0x62)
 export default class x62_SystemMessage extends AbstractMessagePacket {

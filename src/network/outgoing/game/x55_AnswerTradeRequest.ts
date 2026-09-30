@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x55_AnswerTradeRequest extends GameServerPacket {
   constructor(private _answer: number) {

@@ -1,4 +1,4 @@
-import ICrypt from "./ICrypt";
+import ICrypt from "@network/crypt/ICrypt";
 
 export default class GameCrypt implements ICrypt {
   private _inKey!: Int8Array;

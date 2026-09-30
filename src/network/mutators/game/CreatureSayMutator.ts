@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import CreatureSay from "../../incoming/game/x4A_CreatureSay";
-import GameClient from "../../GameClient";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import CreatureSay from "@network/incoming/game/x4A_CreatureSay";
+import GameClient from "@network/GameClient";
 
 export default class CreatureSayMutator extends IMMOClientMutator<
   GameClient,

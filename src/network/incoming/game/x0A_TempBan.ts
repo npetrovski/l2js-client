@@ -1,4 +1,4 @@
-import GameClientPacket from "./GameClientPacket";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 export default class x0A_TempBan extends GameClientPacket {
   // @Override

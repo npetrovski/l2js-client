@@ -1,4 +1,4 @@
-import GameClientPacket from "./GameClientPacket";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 /**
  * A server packet whose wire id is known but which does not yet have a

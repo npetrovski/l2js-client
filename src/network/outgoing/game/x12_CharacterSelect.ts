@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x12_CharacterSelect extends GameServerPacket {
   constructor(public slot: number) {

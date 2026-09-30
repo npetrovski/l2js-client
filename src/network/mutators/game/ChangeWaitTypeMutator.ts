@@ -1,7 +1,7 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import ChangeWaitType from "../../incoming/game/x29_ChangeWaitType";
-import L2Character from "../../../entities/L2Character";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import ChangeWaitType from "@network/incoming/game/x29_ChangeWaitType";
+import L2Character from "@entities/L2Character";
 
 export default class ChangeWaitTypeMutator extends IMMOClientMutator<GameClient, ChangeWaitType> {
   update(packet: ChangeWaitType): void {

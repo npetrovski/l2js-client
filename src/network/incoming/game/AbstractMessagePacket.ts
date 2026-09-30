@@ -1,4 +1,4 @@
-import GameClientPacket from "./GameClientPacket";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 export default abstract class AbstractMessagePacket extends GameClientPacket {
   // 15 exists in goddess of destruction but also may works in h5 needs to be verified!

@@ -1,5 +1,5 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import RequestBypassToServer from "../network/outgoing/game/x23_RequestBypassToServer";
+import RequestBypassToServer from "@network/outgoing/game/x23_RequestBypassToServer";
 
 export default class CommandRequestBypass extends AbstractGameCommand {
     execute(text: string): void {

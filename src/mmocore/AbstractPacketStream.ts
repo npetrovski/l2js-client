@@ -1,4 +1,4 @@
-import MMOConfig from "./MMOConfig";
+import MMOConfig from "@mmocore/MMOConfig";
 
 export default abstract class AbstractPacketStream {
   constructor(protected config: MMOConfig) {}

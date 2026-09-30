@@ -1,8 +1,8 @@
-import L2Object from "./L2Object";
-import { Element } from "../enums/Element";
-import { ItemType } from "../enums/ItemType";
-import { ItemGrade } from "../enums/ItemGrade";
-import L2ObjectCollection from "./L2ObjectCollection";
+import L2Object from "@entities/L2Object";
+import { Element } from "@enums/Element";
+import { ItemType } from "@enums/ItemType";
+import { ItemGrade } from "@enums/ItemGrade";
+import L2ObjectCollection from "@entities/L2ObjectCollection";
 
 export default class L2Item extends L2Object {
   static readonly SLOT_NONE: number = 0x0000;

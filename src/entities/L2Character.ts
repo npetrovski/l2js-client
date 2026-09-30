@@ -1,4 +1,4 @@
-import L2Creature from "./L2Creature";
+import L2Creature from "@entities/L2Creature";
 
 export default class L2Character extends L2Creature {
   private _isPartyMember!: boolean;

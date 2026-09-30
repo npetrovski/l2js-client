@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import AskJoinParty from "../../incoming/game/x39_AskJoinParty";
-import GameClient from "../../GameClient";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import AskJoinParty from "@network/incoming/game/x39_AskJoinParty";
+import GameClient from "@network/GameClient";
 
 export default class AskJoinPartyMutator extends IMMOClientMutator<
   GameClient,

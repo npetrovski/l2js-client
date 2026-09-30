@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import { CharCreateFailReason } from "../../../enums/CharCreateFailReason";
-import GameClientPacket from "./GameClientPacket";
+import { CharCreateFailReason } from "@enums/CharCreateFailReason";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 @GamePacket(0x10)
 export default class x10_CharCreateFail extends GameClientPacket {

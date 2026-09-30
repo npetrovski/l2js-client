@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
-import L2Skill from "../../../entities/L2Skill";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import L2Skill from "@entities/L2Skill";
 
 @GamePacket(0x5f)
 export default class x5F_SkillList extends GameClientPacket {

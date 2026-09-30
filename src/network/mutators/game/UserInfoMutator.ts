@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import UserInfo from "../../incoming/game/x32_UserInfo";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import UserInfo from "@network/incoming/game/x32_UserInfo";
 
 export default class UserInfoMutator extends IMMOClientMutator<
   GameClient,

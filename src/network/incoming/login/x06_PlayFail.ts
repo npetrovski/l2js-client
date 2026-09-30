@@ -1,7 +1,7 @@
-import { LoginPacket } from "../../PacketRegistry";
+import { LoginPacket } from "@network/PacketRegistry";
 
-import LoginClientPacket from "./LoginClientPacket";
-import { PlayFailReason } from "../../../enums/PlayFailReason";
+import LoginClientPacket from "@network/incoming/login/LoginClientPacket";
+import { PlayFailReason } from "@enums/PlayFailReason";
 
 @LoginPacket(0x06)
 export default class x06_PlayFail extends LoginClientPacket {

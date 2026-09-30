@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class xD0_x79_AnswerPartyLootModification extends GameServerPacket {
   constructor(private _answer: number) {

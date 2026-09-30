@@ -1,10 +1,10 @@
-import L2Creature from "../entities/L2Creature";
-import ReceivablePacket from "../mmocore/ReceivablePacket";
-import SendablePacket from "../mmocore/SendablePacket";
-import L2PartyMember from "../entities/L2PartyMember";
-import LoginClient from "../network/LoginClient";
-import GameClient from "../network/GameClient";
-import { ConfirmDlgType } from "../enums/ConfirmDlgType";
+import L2Creature from "@entities/L2Creature";
+import ReceivablePacket from "@mmocore/ReceivablePacket";
+import SendablePacket from "@mmocore/SendablePacket";
+import L2PartyMember from "@entities/L2PartyMember";
+import LoginClient from "@network/LoginClient";
+import GameClient from "@network/GameClient";
+import { ConfirmDlgType } from "@enums/ConfirmDlgType";
 
 export declare type ELoggedIn = {
   type: string;

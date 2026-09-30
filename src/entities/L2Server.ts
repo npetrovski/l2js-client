@@ -1,6 +1,6 @@
-import { ServerStatus } from "../enums/ServerStatus";
-import { ServerTypes } from "../enums/ServerTypes";
-import { ServerAges } from "../enums/ServerAges";
+import { ServerStatus } from "@enums/ServerStatus";
+import { ServerTypes } from "@enums/ServerTypes";
+import { ServerAges } from "@enums/ServerAges";
 
 export default class L2Server {
   private _id!: number;

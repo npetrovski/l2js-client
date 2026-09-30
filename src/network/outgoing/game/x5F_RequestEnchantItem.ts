@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x5F_RequestEnchantItem extends GameServerPacket {
   constructor(public objectId: number, public supportId: number) {

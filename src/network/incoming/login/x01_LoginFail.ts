@@ -1,7 +1,7 @@
-import { LoginPacket } from "../../PacketRegistry";
+import { LoginPacket } from "@network/PacketRegistry";
 
-import LoginClientPacket from "./LoginClientPacket";
-import { LoginFailReason } from "../../../enums/LoginFailReason";
+import LoginClientPacket from "@network/incoming/login/LoginClientPacket";
+import { LoginFailReason } from "@enums/LoginFailReason";
 
 @LoginPacket(0x01)
 export default class x01_LoginFail extends LoginClientPacket {

@@ -1,4 +1,4 @@
-import GameClientPacket from "./GameClientPacket";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 export default class x00_VersionCheck extends GameClientPacket {
   // @Override

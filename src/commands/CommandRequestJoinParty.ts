@@ -1,6 +1,6 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import L2Character from "../entities/L2Character";
-import RequestJoinParty from "../network/outgoing/game/x42_RequestJoinParty";
+import L2Character from "@entities/L2Character";
+import RequestJoinParty from "@network/outgoing/game/x42_RequestJoinParty";
 
 export default class CommandJoinParty extends AbstractGameCommand {
   execute(char?: L2Character | string): void {

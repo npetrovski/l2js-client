@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import ExQuestItemList from "../../incoming/game/xFE_xC6_ExQuestItemList";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import ExQuestItemList from "@network/incoming/game/xFE_xC6_ExQuestItemList";
 
 export default class ExQuestItemListMutator extends IMMOClientMutator<
   GameClient,

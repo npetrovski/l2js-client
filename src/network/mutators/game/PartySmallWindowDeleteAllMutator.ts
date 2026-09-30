@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import PartySmallWindowDeleteAll from "../../incoming/game/x50_PartySmallWindowDeleteAll";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import PartySmallWindowDeleteAll from "@network/incoming/game/x50_PartySmallWindowDeleteAll";
 
 export default class PartySmallWindowDeleteAllMutator extends IMMOClientMutator<
   GameClient,

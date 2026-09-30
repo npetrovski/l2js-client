@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import PartySpelled from "../../incoming/game/xF4_PartySpelled";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import PartySpelled from "@network/incoming/game/xF4_PartySpelled";
 
 export default class PartySpelledMutator extends IMMOClientMutator<
   GameClient,

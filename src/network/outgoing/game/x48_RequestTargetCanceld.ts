@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x48_RequestTargetCanceld extends GameServerPacket {
   constructor(private _unselect: number) {

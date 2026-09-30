@@ -1,5 +1,5 @@
-import AbstractPacket from "./AbstractPacket";
-import MMOClient from "./MMOClient";
+import AbstractPacket from "@mmocore/AbstractPacket";
+import MMOClient from "@mmocore/MMOClient";
 
 export default abstract class IMMOClientMutator<
   C extends MMOClient,

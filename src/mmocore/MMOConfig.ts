@@ -1,4 +1,4 @@
-import AbstractPacketStream from "./AbstractPacketStream";
+import AbstractPacketStream from "@mmocore/AbstractPacketStream";
 
 export type PacketStreamConstructor = new (config: MMOConfig) => AbstractPacketStream;
 

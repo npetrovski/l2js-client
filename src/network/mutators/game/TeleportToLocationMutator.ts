@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import TeleportToLocation from "../../incoming/game/x22_TeleportToLocation";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import TeleportToLocation from "@network/incoming/game/x22_TeleportToLocation";
 
 export default class TeleportToLocationMutator extends IMMOClientMutator<GameClient, TeleportToLocation> {
   update(packet: TeleportToLocation): void {

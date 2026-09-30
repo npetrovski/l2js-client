@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import SkillList from "../../incoming/game/x5F_SkillList";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import SkillList from "@network/incoming/game/x5F_SkillList";
 
 export default class SkillListMutator extends IMMOClientMutator<
   GameClient,

@@ -1,5 +1,5 @@
-import L2Character from "../../../entities/L2Character";
-import GameServerPacket from "./GameServerPacket";
+import L2Character from "@entities/L2Character";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x0C_CharacterCreate extends GameServerPacket {
   constructor(private char: L2Character) {

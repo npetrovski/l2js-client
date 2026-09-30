@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
-import L2Item from "../../../entities/L2Item";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import L2Item from "@entities/L2Item";
 
 @GamePacket(0x4b)
 export default class x4B_EquipUpdate extends GameClientPacket {

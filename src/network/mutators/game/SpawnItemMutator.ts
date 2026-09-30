@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import SpawnItem from "../../incoming/game/x05_SpawnItem";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import SpawnItem from "@network/incoming/game/x05_SpawnItem";
 
 export default class SpawnItemMutator extends IMMOClientMutator<GameClient, SpawnItem> {
   update(packet: SpawnItem): void {

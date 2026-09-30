@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import NpcHtmlMessage from "../../incoming/game/x19_NpcHtmlMessage";
-import GameClient from "../../GameClient";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import NpcHtmlMessage from "@network/incoming/game/x19_NpcHtmlMessage";
+import GameClient from "@network/GameClient";
 
 export default class NpcHtmlMessageMutator extends IMMOClientMutator<
   GameClient,

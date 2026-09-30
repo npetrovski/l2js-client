@@ -1,7 +1,7 @@
-import { ConfirmDlgType } from "../../../enums/ConfirmDlgType";
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import ConfirmDlg from "../../incoming/game/xF3_ConfirmDlg";
+import { ConfirmDlgType } from "@enums/ConfirmDlgType";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import ConfirmDlg from "@network/incoming/game/xF3_ConfirmDlg";
 
 export default class ConfirmDlgMutator extends IMMOClientMutator<
   GameClient,

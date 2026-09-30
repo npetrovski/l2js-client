@@ -1,4 +1,4 @@
-import Logger from "./Logger";
+import Logger from "@mmocore/Logger";
 
 export default abstract class AbstractPacket {
   protected readonly logger = Logger.for(this);

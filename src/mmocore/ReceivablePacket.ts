@@ -1,4 +1,4 @@
-import AbstractPacket from "./AbstractPacket";
+import AbstractPacket from "@mmocore/AbstractPacket";
 
 export default abstract class ReceivablePacket extends AbstractPacket {
   _buffer!: Uint8Array;

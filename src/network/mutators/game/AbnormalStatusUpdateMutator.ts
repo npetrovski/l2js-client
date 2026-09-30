@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import AbnormalStatusUpdate from "../../incoming/game/x85_AbnormalStatusUpdate";
-import GameClient from "../../GameClient";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import AbnormalStatusUpdate from "@network/incoming/game/x85_AbnormalStatusUpdate";
+import GameClient from "@network/GameClient";
 
 export default class AbnormalStatusUpdateMutator extends IMMOClientMutator<
   GameClient,

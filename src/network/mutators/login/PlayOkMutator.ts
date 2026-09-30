@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import PlayOk from "../../incoming/login/x07_PlayOk";
-import LoginClient from "../../LoginClient";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import PlayOk from "@network/incoming/login/x07_PlayOk";
+import LoginClient from "@network/LoginClient";
 
 export default class PlayOkMutator extends IMMOClientMutator<
   LoginClient,

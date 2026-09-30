@@ -1,5 +1,5 @@
 import AbstractGameCommand from "./AbstractGameCommand";
-import DlgAnswer from "../network/outgoing/game/xC6_DlgAnswer";
+import DlgAnswer from "@network/outgoing/game/xC6_DlgAnswer";
 
 export default class CommandAcceptResurrect extends AbstractGameCommand {
   execute(): void {

@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x7D_RequestRestartPoint extends GameServerPacket {
   constructor(public pointType: number) {

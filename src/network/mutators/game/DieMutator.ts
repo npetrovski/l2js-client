@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import Die from "../../incoming/game/x00_Die";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import Die from "@network/incoming/game/x00_Die";
 
 export default class DieMutator extends IMMOClientMutator<GameClient, Die> {
   update(packet: Die): void {

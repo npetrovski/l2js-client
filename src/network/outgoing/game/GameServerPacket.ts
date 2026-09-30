@@ -1,4 +1,4 @@
-import SendablePacket from "../../../mmocore/SendablePacket";
+import SendablePacket from "@mmocore/SendablePacket";
 
 export default abstract class GameServerPacket extends SendablePacket {
   static readonly PAPERDOLL_UNDER: number = 0;

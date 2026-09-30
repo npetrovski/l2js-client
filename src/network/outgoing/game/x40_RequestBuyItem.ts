@@ -1,5 +1,5 @@
-import L2Item from "../../../entities/L2Item";
-import GameServerPacket from "./GameServerPacket";
+import L2Item from "@entities/L2Item";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x40_RequestBuyItem extends GameServerPacket {
   constructor(public listId: number, public items: L2Item[]) {

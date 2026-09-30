@@ -1,4 +1,4 @@
-import ReceivablePacket from "../mmocore/ReceivablePacket";
+import ReceivablePacket from "@mmocore/ReceivablePacket";
 
 export type PacketConstructor = new () => ReceivablePacket;
 

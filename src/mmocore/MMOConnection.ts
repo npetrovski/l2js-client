@@ -1,7 +1,7 @@
-import AbstractPacketStream from "./AbstractPacketStream";
-import IConnection from "./IConnection";
-import Logger from "./Logger";
-import IProcessable from "./IProcessable";
+import AbstractPacketStream from "@mmocore/AbstractPacketStream";
+import IConnection from "@mmocore/IConnection";
+import Logger from "@mmocore/Logger";
+import IProcessable from "@mmocore/IProcessable";
 
 export default class MMOConnection implements IConnection {
   protected readonly logger = Logger.for(this);

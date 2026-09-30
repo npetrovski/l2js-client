@@ -1,5 +1,5 @@
-import L2Item from "../../../entities/L2Item";
-import ReceivablePacket from "../../../mmocore/ReceivablePacket";
+import L2Item from "@entities/L2Item";
+import ReceivablePacket from "@mmocore/ReceivablePacket";
 
 export default abstract class GameClientPacket extends ReceivablePacket {
   // @Override

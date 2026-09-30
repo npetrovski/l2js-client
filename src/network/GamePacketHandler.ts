@@ -1,11 +1,11 @@
-import IPacketHandler from "../mmocore/IPacketHandler";
-import Logger from "../mmocore/Logger";
-import ReceivablePacket from "../mmocore/ReceivablePacket";
-import GameClient from "./GameClient";
-import "./incoming/game/index";
-import RawGamePacket from "./incoming/game/RawGamePacket";
-import { findGamePacket } from "./PacketRegistry";
-import { EXTENDED_SERVER_PACKET_NAMES, SERVER_PACKET_NAMES } from "./ServerPacketNames";
+import IPacketHandler from "@mmocore/IPacketHandler";
+import Logger from "@mmocore/Logger";
+import ReceivablePacket from "@mmocore/ReceivablePacket";
+import GameClient from "@network/GameClient";
+import "@network/incoming/game/index";
+import RawGamePacket from "@network/incoming/game/RawGamePacket";
+import { findGamePacket } from "@network/PacketRegistry";
+import { EXTENDED_SERVER_PACKET_NAMES, SERVER_PACKET_NAMES } from "@network/ServerPacketNames";
 
 export default class GamePacketHandler implements IPacketHandler<GameClient> {
   protected readonly logger = Logger.for(this);

@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import L2Buff from "../../../entities/L2Buff";
-import GameClientPacket from "./GameClientPacket";
+import L2Buff from "@entities/L2Buff";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 @GamePacket(0xc7)
 export default class xC7_SkillCoolTime extends GameClientPacket {

@@ -1,5 +1,5 @@
-import MMOSession from "../../../mmocore/MMOSession";
-import LoginServerPacket from "./LoginServerPacket";
+import MMOSession from "@mmocore/MMOSession";
+import LoginServerPacket from "@network/outgoing/login/LoginServerPacket";
 
 export default class x02_RequestServerLogin extends LoginServerPacket {
   _loginOk1 = 0;

@@ -1,4 +1,4 @@
-import LoginServerPacket from "./LoginServerPacket";
+import LoginServerPacket from "@network/outgoing/login/LoginServerPacket";
 
 export default class x06_RequestSecurityCard extends LoginServerPacket {
   write(): void {

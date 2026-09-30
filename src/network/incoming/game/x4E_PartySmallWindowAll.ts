@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
-import L2PartyMember from "../../../entities/L2PartyMember";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import L2PartyMember from "@entities/L2PartyMember";
 
 @GamePacket(0x4e)
 export default class x4E_PartySmallWindowAll extends GameClientPacket {

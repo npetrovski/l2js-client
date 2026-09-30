@@ -1,4 +1,4 @@
-import GameServerPacket from "./GameServerPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
 
 export default class x5E_RequestShowBoard extends GameServerPacket {
   constructor(private _unknown: number = 0) {

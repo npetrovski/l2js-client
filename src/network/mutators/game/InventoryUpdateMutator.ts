@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import InventoryUpdate from "../../incoming/game/x21_InventoryUpdate";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import InventoryUpdate from "@network/incoming/game/x21_InventoryUpdate";
 
 export default class InventoryUpdateMutator extends IMMOClientMutator<
   GameClient,

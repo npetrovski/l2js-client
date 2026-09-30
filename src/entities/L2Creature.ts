@@ -1,13 +1,13 @@
-import L2Object from "./L2Object";
-import { Sex } from "../enums/Sex";
-import { Race } from "../enums/Race";
-import Vector from "../mmocore/Vector";
-import L2ObjectCollection from "./L2ObjectCollection";
-import L2Buff from "./L2Buff";
-import { ClassId } from "../enums/ClassId";
-import { Face } from "../enums/Face";
-import { HairStyle } from "../enums/HairStyle";
-import { HairColor } from "../enums/HairColor";
+import L2Object from "@entities/L2Object";
+import { Sex } from "@enums/Sex";
+import { Race } from "@enums/Race";
+import Vector from "@mmocore/Vector";
+import L2ObjectCollection from "@entities/L2ObjectCollection";
+import L2Buff from "@entities/L2Buff";
+import { ClassId } from "@enums/ClassId";
+import { Face } from "@enums/Face";
+import { HairStyle } from "@enums/HairStyle";
+import { HairColor } from "@enums/HairColor";
 
 export default abstract class L2Creature extends L2Object {
   private _hp!: number;

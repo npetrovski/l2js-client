@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import L2Item from "../../../entities/L2Item";
-import GameClientPacket from "./GameClientPacket";
+import L2Item from "@entities/L2Item";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 @GamePacket(0x21)
 export default class x21_InventoryUpdate extends GameClientPacket {

@@ -1,12 +1,12 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import L2Character from "../../../entities/L2Character";
-import GameClientPacket from "./GameClientPacket";
-import GameServerPacket from "../../outgoing/game/GameServerPacket";
-import { HairStyle } from "../../../enums/HairStyle";
-import { HairColor } from "../../../enums/HairColor";
-import { Face } from "../../../enums/Face";
-import { ClassId } from "../../../enums/ClassId";
+import L2Character from "@entities/L2Character";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
+import { HairStyle } from "@enums/HairStyle";
+import { HairColor } from "@enums/HairColor";
+import { Face } from "@enums/Face";
+import { ClassId } from "@enums/ClassId";
 
 @GamePacket(0x31)
 export default class x31_CharInfo extends GameClientPacket {

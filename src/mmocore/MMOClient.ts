@@ -1,14 +1,14 @@
-import ReceivablePacket from "./ReceivablePacket";
-import IPacketHandler from "./IPacketHandler";
-import EventEmitter from "./EventEmitter";
-import IConnection from "./IConnection";
-import Logger from "./Logger";
-import MMOSession from "./MMOSession";
-import IProcessable from "./IProcessable";
-import SendablePacket from "./SendablePacket";
-import IMMOClientMutator from "./IMMOClientMutator";
-import AbstractPacket from "./AbstractPacket";
-import MMOConfig from "./MMOConfig";
+import ReceivablePacket from "@mmocore/ReceivablePacket";
+import IPacketHandler from "@mmocore/IPacketHandler";
+import EventEmitter from "@mmocore/EventEmitter";
+import IConnection from "@mmocore/IConnection";
+import Logger from "@mmocore/Logger";
+import MMOSession from "@mmocore/MMOSession";
+import IProcessable from "@mmocore/IProcessable";
+import SendablePacket from "@mmocore/SendablePacket";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import AbstractPacket from "@mmocore/AbstractPacket";
+import MMOConfig from "@mmocore/MMOConfig";
 
 export default abstract class MMOClient extends EventEmitter implements IProcessable {
   protected readonly logger = Logger.for(this);

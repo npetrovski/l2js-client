@@ -1,7 +1,7 @@
 import ICommand from "./ICommand";
-import Logger from "../mmocore/Logger";
-import LoginClient from "../network/LoginClient";
-import GameClient from "../network/GameClient";
+import Logger from "@mmocore/Logger";
+import LoginClient from "@network/LoginClient";
+import GameClient from "@network/GameClient";
 
 export default abstract class AbstractGameCommand implements ICommand {
   protected readonly logger = Logger.for(this);

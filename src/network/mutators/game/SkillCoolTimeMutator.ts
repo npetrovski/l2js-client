@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import SkillCoolTime from "../../incoming/game/xC7_SkillCoolTime";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import SkillCoolTime from "@network/incoming/game/xC7_SkillCoolTime";
 
 export default class SkillCoolTimeMutator extends IMMOClientMutator<
   GameClient,

@@ -1,5 +1,5 @@
-import L2Object from "./L2Object";
-import { SkillOperateType } from "../enums/SkillOperateType";
+import L2Object from "@entities/L2Object";
+import { SkillOperateType } from "@enums/SkillOperateType";
 
 export default class L2Skill extends L2Object {
   public th!: ReturnType<typeof setTimeout>;

@@ -1,7 +1,7 @@
-import L2Object from "./L2Object";
-import { CraftType } from "../enums/CraftType";
-import L2Item from "./L2Item";
-import L2ObjectCollection from "./L2ObjectCollection";
+import L2Object from "@entities/L2Object";
+import { CraftType } from "@enums/CraftType";
+import L2Item from "@entities/L2Item";
+import L2ObjectCollection from "@entities/L2ObjectCollection";
 
 export default class L2Recipe extends L2Object {
   private _craftLevel!: number;

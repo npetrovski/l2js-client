@@ -1,8 +1,8 @@
-import L2Character from "./L2Character";
-import { MountType } from '../enums/MountType'
-import { PrivateStoreType } from '../enums/PrivateStoreType'
-import { ClanPrivilege } from '../enums/ClanPriviledge'
-import { MovementType } from '../enums/MovementType'
+import L2Character from "@entities/L2Character";
+import { MountType } from '@enums/MountType'
+import { PrivateStoreType } from '@enums/PrivateStoreType'
+import { ClanPrivilege } from '@enums/ClanPriviledge'
+import { MovementType } from '@enums/MovementType'
 
 export default class L2User extends L2Character {
   private _pDef!: number;

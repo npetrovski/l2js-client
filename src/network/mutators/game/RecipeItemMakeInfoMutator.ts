@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import RecipeItemMakeInfo from "../../incoming/game/xDD_RecipeItemMakeInfo";
-import GameClient from "../../GameClient";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import RecipeItemMakeInfo from "@network/incoming/game/xDD_RecipeItemMakeInfo";
+import GameClient from "@network/GameClient";
 
 export default class RecipeItemMakeInfoMutator extends IMMOClientMutator<
   GameClient,

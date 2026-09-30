@@ -1,12 +1,12 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import L2ObjectCollection from "../../../entities/L2ObjectCollection";
-import L2User from "../../../entities/L2User";
-import { ClassId } from "../../../enums/ClassId";
-import { Race } from "../../../enums/Race";
-import { Sex } from "../../../enums/Sex";
-import GameServerPacket from "../../outgoing/game/GameServerPacket";
-import GameClientPacket from "./GameClientPacket";
+import L2ObjectCollection from "@entities/L2ObjectCollection";
+import L2User from "@entities/L2User";
+import { ClassId } from "@enums/ClassId";
+import { Race } from "@enums/Race";
+import { Sex } from "@enums/Sex";
+import GameServerPacket from "@network/outgoing/game/GameServerPacket";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
 
 @GamePacket(0x09)
 export default class x09_CharSelectionInfo extends GameClientPacket {

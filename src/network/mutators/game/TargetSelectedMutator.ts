@@ -1,6 +1,6 @@
-import IMMOClientMutator from "../../../mmocore/IMMOClientMutator";
-import GameClient from "../../GameClient";
-import TargetSelected from "../../incoming/game/x23_TargetSelected";
+import IMMOClientMutator from "@mmocore/IMMOClientMutator";
+import GameClient from "@network/GameClient";
+import TargetSelected from "@network/incoming/game/x23_TargetSelected";
 
 export default class TargetSelectedMutator extends IMMOClientMutator<
   GameClient,

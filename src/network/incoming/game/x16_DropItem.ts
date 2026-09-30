@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
-import L2DroppedItem from "../../../entities/L2DroppedItem";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import L2DroppedItem from "@entities/L2DroppedItem";
 
 @GamePacket(0x16)
 export default class x16_DropItem extends GameClientPacket {

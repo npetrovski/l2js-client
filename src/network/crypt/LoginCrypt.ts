@@ -1,5 +1,5 @@
-import NewCrypt from "../../mmocore/crypt/NewCrypt";
-import ICrypt from "./ICrypt";
+import NewCrypt from "@mmocore/crypt/NewCrypt";
+import ICrypt from "@network/crypt/ICrypt";
 
 export default class LoginCrypt implements ICrypt {
   // prettier-ignore

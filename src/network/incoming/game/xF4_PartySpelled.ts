@@ -1,7 +1,7 @@
-import { GamePacket } from "../../PacketRegistry";
+import { GamePacket } from "@network/PacketRegistry";
 
-import GameClientPacket from "./GameClientPacket";
-import L2Buff from "../../../entities/L2Buff";
+import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import L2Buff from "@entities/L2Buff";
 
 @GamePacket(0xf4)
 export default class xF4_PartySpelled extends GameClientPacket {

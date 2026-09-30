@@ -7,6 +7,10 @@
     "lib": ["ESNext", "DOM"],
     "declaration": true,
     "paths": {
+      "@entities/*": ["./src/entities/*"],
+      "@enums/*": ["./src/enums/*"],
+      "@mmocore/*": ["./src/mmocore/*"],
+      "@network/*": ["./src/network/*"],
       "*": ["./*"]
     },
     "outDir": "./dist",

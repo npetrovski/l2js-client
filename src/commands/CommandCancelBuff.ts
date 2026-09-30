@@ -1,6 +1,6 @@
-import L2Buff from "../entities/L2Buff";
-import L2Character from "../entities/L2Character";
-import RequestDispel from "../network/outgoing/game/xD0_x4B_RequestDispel";
+import L2Buff from "@entities/L2Buff";
+import L2Character from "@entities/L2Character";
+import RequestDispel from "@network/outgoing/game/xD0_x4B_RequestDispel";
 import AbstractGameCommand from "./AbstractGameCommand";
 
 export default class CommandCancelBuff extends AbstractGameCommand {

@@ -1,6 +1,6 @@
-import L2Object from "./L2Object";
-import L2ObjectCollection from "./L2ObjectCollection";
-import L2Item from "./L2Item";
+import L2Object from "@entities/L2Object";
+import L2ObjectCollection from "@entities/L2ObjectCollection";
+import L2Item from "@entities/L2Item";
 
 export default class L2Mail extends L2Object {
   private _itemsList: L2ObjectCollection<L2Item> = new L2ObjectCollection();
