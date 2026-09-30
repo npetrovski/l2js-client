@@ -10,8 +10,15 @@ import mutators from "@network/mutators/login/index";
 import DefaultStreamFactory from "@network/stream/DefaultStreamFactory";
 import ICrypt from "@network/crypt/ICrypt";
 
+enum LoginInitEncoding {
+  Unknown,
+  Plaintext,
+  StaticBlowfishWithXor,
+}
+
 export default class LoginClient extends MMOClient {
   private _loginCrypt: ICrypt = new LoginCrypt();
+  private _loginInitEncoding = LoginInitEncoding.Unknown;
 
   Servers: L2Server[] = [];
   ServerId = 1;
@@ -35,6 +42,8 @@ export default class LoginClient extends MMOClient {
   }
 
   init(config: MMOConfig, connection?: IConnection): this {
+    this._loginCrypt = new LoginCrypt();
+    this._loginInitEncoding = LoginInitEncoding.Unknown;
     this.Connection = connection ?? new MMOConnection(new DefaultStreamFactory().getStream(config), this);
 
     this.Config = config;
@@ -87,6 +96,34 @@ export default class LoginClient extends MMOClient {
   }
 
   decrypt(buf: Uint8Array, offset: number, size: number): void {
+    if (this._loginInitEncoding === LoginInitEncoding.Unknown) {
+      this._loginInitEncoding = this.isPlaintextLoginInit(buf, offset, size)
+        ? LoginInitEncoding.Plaintext
+        : LoginInitEncoding.StaticBlowfishWithXor;
+    }
+
+    // Some L2Off login servers use asymmetric transport: client packets are
+    // encrypted with the advertised dynamic key, while all server packets stay
+    // plaintext. The first Init packet identifies which transport the server uses.
+    if (this._loginInitEncoding === LoginInitEncoding.Plaintext) {
+      return;
+    }
+
+    if ((size & 7) !== 0) {
+      throw new Error(`Invalid encrypted login packet size: ${size} (body must be a multiple of 8 bytes).`);
+    }
+
     this._loginCrypt.decrypt(buf, offset, size);
+  }
+
+  private isPlaintextLoginInit(buf: Uint8Array, offset: number, size: number): boolean {
+    return (
+      size >= 169 &&
+      buf[offset] === 0x00 &&
+      buf[offset + 5] === 0x21 &&
+      buf[offset + 6] === 0xc6 &&
+      buf[offset + 7] === 0x00 &&
+      buf[offset + 8] === 0x00
+    );
   }
 }
