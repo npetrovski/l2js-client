@@ -1,5 +1,6 @@
 .vs
 .vscode
+watch.cmd
 browser
 dist
 dist-browser
