@@ -39,7 +39,7 @@ export default defineConfig({
       appendRules({
         test: /\.ts$/,
         include: [path.resolve(rootDir, "src")],
-        loader: path.resolve(rootDir, "build/strip-node-blocks-loader.cjs"),
+        loader: path.resolve(rootDir, "strip-node-blocks-loader.cjs"),
       });
 
       config.output ??= {};
