@@ -9,14 +9,9 @@ interface ProxyTarget {
 
 const listenPort = Number(process.env.L2_WS_PROXY_PORT ?? 8080);
 
-// Add every login or game endpoint that browsers may reach. Keeping this list
-// explicit prevents the proxy from becoming an unrestricted TCP relay.
-const targets: ProxyTarget[] = [
-  { host: "127.0.0.1", port: 2106 },
-  { host: "127.0.0.1", port: 7777 },
-  { host: "149.56.28.81", port: 2106 },
-  { host: "149.56.28.81", port: 7777 },
-];
+// Add every login or game-server IP address that browsers may reach. Any valid
+// TCP port is allowed for these addresses, while all other hosts are rejected.
+const allowedIpAddresses = new Set(["127.0.0.1", "149.56.28.81"]);
 
 const server = new WebSocketServer({
   port: listenPort,
@@ -87,7 +82,11 @@ function resolveTarget(request: IncomingMessage): ProxyTarget | undefined {
   const host = url.searchParams.get("host");
   const port = Number(url.searchParams.get("port"));
 
-  return targets.find((target) => target.host === host && target.port === port);
+  if (!host || !allowedIpAddresses.has(host) || !Number.isInteger(port) || port < 1 || port > 65535) {
+    return undefined;
+  }
+
+  return { host, port };
 }
 
 function toBuffer(data: RawData): Buffer {
