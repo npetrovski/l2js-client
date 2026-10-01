@@ -20,7 +20,7 @@
     "browser": "npm --prefix .. run build:browser && npx tsx src/webserver.ts",
     "craft": "npx tsx src/craft.ts",
     "revive-town": "npx tsx src/revive-town.ts",
-    "proxy": "npx tsx src/proxy.ts",
+    "reverse-proxy": "npx tsx src/reverse-proxy.ts",
     "websocket-proxy": "npx tsx src/websocket-proxy.ts",
     "respond-to-attack": "npx tsx src/respond-to-attack.ts",
     "custom-command": "npx tsx src/custom-command.ts",

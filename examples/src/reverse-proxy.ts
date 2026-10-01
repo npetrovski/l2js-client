@@ -15,13 +15,13 @@ interface ProxyConfig {
 
 const config: ProxyConfig[] = [
   {
-    remoteIp: "176.9.27.229",
+    remoteIp: "149.56.28.81",
     remotePort: 2106,
     listenPort: 2106,
     mmoClient: new LoginClient()
   },
   {
-    remoteIp: "176.9.27.229",
+    remoteIp: "149.56.28.81",
     remotePort: 7777,
     listenPort: 7777,
     mmoClient: new GameClient()
@@ -62,7 +62,8 @@ const proxy = (cfg: ProxyConfig) => {
                 this.writeC(1);
                 list.forEach(s => {
                   this.writeC(s.Id);
-                  this.writeD(0x0100007f); // 127.0.0.1
+                  this.writeD("127.0.0.1".split('.')
+                                         .reduce((acc, octet, i) => (acc | (Number(octet) << (i * 8))), 0) >>> 0); // IP to big-endian number
                   this.writeD(s.Port);
                   this.writeC(s.AgeLimit);
                   this.writeC(s.Pvp);
@@ -76,7 +77,6 @@ const proxy = (cfg: ProxyConfig) => {
                 this.writeC(0);
               }
             })();
-            // fakeServerListPacket.Client = cfg.mmoClient as LoginClient;
 
             data = cfg.mmoClient.pack(fakeServerListPacket);
           }
