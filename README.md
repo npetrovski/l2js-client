@@ -113,10 +113,10 @@ npm run prebuildpackage
 
 cd examples
 npm install
-npm run login
+npm start
 ```
 
-Edit the credentials and server address in [`examples/src/login.ts`](examples/src/login.ts) before connecting. Other example scripts can be run with the matching npm command from [`examples/package.json`](examples/package.json).
+Select an example from the prompt. Edit its credentials and server address before connecting. Examples can also be run directly with the matching npm command from [`examples/package.json`](examples/package.json), such as `npm run login`.
 
 ### Browser WebSocket proxy
 

@@ -4,6 +4,7 @@
   "description": "An example client for l2js-client library",
   "main": "dist/index.js",
   "scripts": {
+    "start": "node start.mjs",
     "typecheck": "npx tsc --noEmit",
     "login": "npx tsx src/login.ts",
     "login-create-character": "npx tsx src/login-create-character.ts",
