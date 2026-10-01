@@ -127,7 +127,6 @@ Configure the allowed targets in [`examples/src/websocket-proxy.ts`](examples/sr
 ```bash
 cd examples
 npm install
-npm run prepare
 npm run websocket-proxy
 ```
 
