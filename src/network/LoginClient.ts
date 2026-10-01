@@ -41,6 +41,20 @@ export default class LoginClient extends MMOClient {
     });
   }
 
+  selectServer(serverId: number): boolean {
+    const server = this.Servers.find((entry) => entry.Id === serverId);
+    if (!server) {
+      return false;
+    }
+
+    this.ServerId = server.Id;
+    this.Session.server = {
+      host: server.Ipv4(),
+      port: server.Port,
+    };
+    return true;
+  }
+
   init(config: MMOConfig, connection?: IConnection): this {
     this._loginCrypt = new LoginCrypt();
     this._loginInitEncoding = LoginInitEncoding.Unknown;

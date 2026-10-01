@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>L2JS Browser Client</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="l2js-client.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <div class="page-glow page-glow-left"></div>
+    <div class="page-glow page-glow-right"></div>
+
+    <header class="app-header">
+      <a class="brand" href="#" aria-label="L2JS home">
+        <span class="brand-mark"><span>L2</span></span>
+        <span>
+          <strong>L2JS</strong>
+          <small>Browser client</small>
+        </span>
+      </a>
+      <div class="connection-state" id="connection-state">
+        <span class="state-dot"></span>
+        <span id="connection-label">Disconnected</span>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="screen active" id="login-screen" aria-labelledby="login-title">
+        <div class="hero-copy">
+          <span class="eyebrow">High Five protocol</span>
+          <h1>Enter the world of <em>Lineage II</em></h1>
+          <p>Connect through the secure WebSocket bridge, choose your realm, and step into the world.</p>
+          <div class="feature-row" aria-label="Connection features">
+            <span>Browser native</span>
+            <span>Live world state</span>
+            <span>Binary protocol</span>
+          </div>
+        </div>
+
+        <form class="panel login-panel" id="login-form">
+          <div class="panel-heading">
+            <span class="step-number">01</span>
+            <div>
+              <p class="kicker">Account access</p>
+              <h2 id="login-title">Sign in</h2>
+            </div>
+          </div>
+
+          <label>
+            <span>Username</span>
+            <input id="username" name="username" autocomplete="username" required placeholder="Account name" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              placeholder="Password"
+            />
+          </label>
+
+          <details class="connection-settings">
+            <summary>Connection settings</summary>
+            <div class="settings-grid">
+              <label>
+                <span>Login server</span>
+                <input id="login-host" value="149.56.28.81" required />
+              </label>
+              <label>
+                <span>Port</span>
+                <input id="login-port" type="number" value="2106" min="1" max="65535" required />
+              </label>
+              <label class="wide-field">
+                <span>WebSocket proxy</span>
+                <input id="websocket-url" type="url" value="ws://127.0.0.1:8080" required />
+              </label>
+            </div>
+          </details>
+
+          <p class="form-error" id="login-error" role="alert"></p>
+          <button class="primary-button" id="login-button" type="submit">
+            <span>Connect</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+      </section>
+
+      <section class="screen selection-screen" id="server-screen" aria-labelledby="server-title">
+        <div class="screen-heading">
+          <span class="step-number">02</span>
+          <p class="kicker">Choose your realm</p>
+          <h1 id="server-title">Server selection</h1>
+          <p>Select a destination from the list returned by the login server.</p>
+        </div>
+        <div class="selection-grid" id="server-list"></div>
+      </section>
+
+      <section class="screen selection-screen" id="character-screen" aria-labelledby="character-title">
+        <div class="screen-heading">
+          <span class="step-number">03</span>
+          <p class="kicker">Choose your hero</p>
+          <h1 id="character-title">Character selection</h1>
+          <p>Continue with one of the characters available on this account.</p>
+        </div>
+        <div class="selection-grid character-grid" id="character-list"></div>
+      </section>
+
+      <section class="screen world-screen" id="world-screen" aria-labelledby="world-title">
+        <div class="world-toolbar">
+          <div>
+            <p class="kicker">Live world state</p>
+            <h1 id="world-title">Nearby creatures</h1>
+          </div>
+          <div class="toolbar-actions">
+            <span class="sync-label"><span class="state-dot online"></span> Synchronized</span>
+            <button class="ghost-button" id="logout-button" type="button">Log out</button>
+          </div>
+        </div>
+
+        <div class="world-layout">
+          <aside class="panel character-sheet" id="current-character"></aside>
+          <section class="creature-browser">
+            <div class="creature-summary">
+              <div><strong id="mob-count">0</strong><span>Mobs</span></div>
+              <div><strong id="npc-count">0</strong><span>NPCs</span></div>
+              <label class="search-box">
+                <span aria-hidden="true">⌕</span>
+                <input id="creature-search" type="search" placeholder="Search nearby creatures" />
+              </label>
+            </div>
+            <div class="creature-list" id="creature-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer>Unofficial community client · Lineage II High Five</footer>
+  </body>
+</html>

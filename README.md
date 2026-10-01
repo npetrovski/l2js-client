@@ -118,6 +118,37 @@ npm run login
 
 Edit the credentials and server address in [`examples/src/login.ts`](examples/src/login.ts) before connecting. Other example scripts can be run with the matching npm command from [`examples/package.json`](examples/package.json).
 
+### Browser WebSocket proxy
+
+Browsers cannot open the TCP sockets used by Lineage II directly. The WebSocket proxy example bridges binary WebSocket messages to allowlisted login and game-server TCP endpoints without parsing, decrypting, or rewriting the server-list packet.
+
+Configure the allowed targets in [`examples/src/websocket-proxy.ts`](examples/src/websocket-proxy.ts), then start it:
+
+```bash
+cd examples
+npm install
+npm run prepare
+npm run websocket-proxy
+```
+
+Pass the proxy URL when using the browser bundle. The browser stream appends the current Lineage II `Ip` and `Port` as query parameters, so the game endpoint advertised by the login server is used unchanged:
+
+```js
+const l2 = new Client();
+
+l2.enter({
+  Username: "account",
+  Password: "password",
+  Ip: "176.9.27.229",
+  Port: 2106,
+  WebSocketUrl: "ws://127.0.0.1:8080",
+});
+```
+
+Use `wss://` when the page is served over HTTPS. In production, terminate TLS in front of the proxy and restrict browser origins in addition to keeping the target allowlist narrow.
+
+The complete interactive browser client is in [`examples/browser`](examples/browser). It provides account login, server and character selection, and a live view of the active character and nearby mobs and NPCs. See its README for build and run commands.
+
 ## Development
 
 ```bash

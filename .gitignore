@@ -1,7 +1,7 @@
 .vs
 .vscode
 watch.cmd
-browser
+/browser/
 dist
 dist-browser
 server-source-code

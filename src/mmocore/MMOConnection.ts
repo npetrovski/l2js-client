@@ -7,21 +7,30 @@ export default class MMOConnection implements IConnection {
   protected readonly logger = Logger.for(this);
 
   IsConnected = false;
+  private isClosing = false;
 
   constructor(private stream: AbstractPacketStream, private handler: IProcessable) {}
 
   connect(): Promise<void> {
+    this.isClosing = false;
     this.logger.debug("Connecting", this.stream.toString());
     return this.stream
       .connect()
       .then(() => {
         this.IsConnected = true;
         this.logger.info("Connected", this.stream.toString());
-        this.read();
+        void this.read().catch((error) => {
+          this.IsConnected = false;
+          if (!this.isClosing) {
+            this.logger.warn(error);
+            this.handler.handleConnectionClosed?.(error);
+          }
+        });
       })
-      .catch(() => {
+      .catch((error) => {
         this.IsConnected = false;
-        throw new Error("Connection failed to " + this.stream.toString());
+        const reason = error instanceof Error ? error.message : String(error);
+        throw new Error(`Connection failed to ${this.stream.toString()}: ${reason}`, { cause: error });
       });
   }
 
@@ -39,8 +48,9 @@ export default class MMOConnection implements IConnection {
   }
 
   close(): Promise<void> {
+    this.isClosing = true;
+    this.IsConnected = false;
     return this.stream.close().then(() => {
-      this.IsConnected = false;
       this.logger.info("Disconnected", this.stream.toString());
     });
   }

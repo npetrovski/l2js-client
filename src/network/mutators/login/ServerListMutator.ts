@@ -11,13 +11,9 @@ export default class ServerListMutator extends IMMOClientMutator<
       this.Client.Servers = packet.Servers;
 
       const server =
-        this.Client.Servers.find(s => s.Id === this.Client.ServerId) ??
+        this.Client.Servers.find((entry) => entry.Id === this.Client.ServerId) ??
         this.Client.Servers[0];
-
-      this.Client.Session.server = {
-        host: server.Ipv4(),
-        port: server.Port
-      };
+      this.Client.selectServer(server.Id);
     }
   }
 }

@@ -11,12 +11,11 @@ import GameClientPacket from "@network/incoming/game/GameClientPacket";
 @GamePacket(0x09)
 export default class x09_CharSelectionInfo extends GameClientPacket {
   characterPackagesSize!: number;
+  Characters: L2ObjectCollection<L2User> = new L2ObjectCollection();
 
   // @Override
   readImpl(): boolean {
     const _id = this.readC();
-    const _characterPackages: L2ObjectCollection<L2User> = new L2ObjectCollection();
-
     this.characterPackagesSize = this.readD();
     const _charMaxNumber = this.readD();
     const _pad = this.readC();
@@ -92,7 +91,7 @@ export default class x09_CharSelectionInfo extends GameClientPacket {
 
       char.Vitality = this.readD();
 
-      _characterPackages.add(char);
+      this.Characters.add(char);
     }
 
     return true;

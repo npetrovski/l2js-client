@@ -63,6 +63,10 @@ export default abstract class MMOClient extends EventEmitter implements IProcess
     return this.Connection.connect();
   }
 
+  handleConnectionClosed(error: unknown): void {
+    this.fire("ConnectionClosed", { error });
+  }
+
   process(raw: Uint8Array): Promise<ReceivablePacket> {
     return new Promise((resolve, reject) => {
       let data: Uint8Array = new Uint8Array(raw);

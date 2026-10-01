@@ -57,12 +57,20 @@ export default class CommandEnter extends AbstractGameCommand {
             this.LoginClient.sendPacket(new RequestServerList(this.LoginClient.Session))
           );
           this.LoginClient.once("PacketReceived:x04_ServerList", (e: EPacketReceived) => {
-            this.LoginClient.sendPacket(
-              new RequestServerLogin(
-                this.LoginClient.Session,
-                this.LoginClient.ServerId ?? (e.data.packet as ServerList).LastServerId
-              )
-            );
+            const packet = e.data.packet as ServerList;
+            const suggestedServerId = this.LoginClient.ServerId ?? packet.LastServerId;
+            const selectedServer = this._config.SelectServer
+              ? this._config.SelectServer(packet.Servers, suggestedServerId)
+              : suggestedServerId;
+
+            Promise.resolve(selectedServer)
+              .then((serverId) => {
+                if (!this.LoginClient.selectServer(serverId)) {
+                  throw new Error(`Server ${serverId} is not available.`);
+                }
+                return this.LoginClient.sendPacket(new RequestServerLogin(this.LoginClient.Session, serverId));
+              })
+              .catch(reject);
           });
           this.LoginClient.once("PacketReceived:x07_PlayOk", () => {
             setTimeout(() => {
@@ -107,9 +115,23 @@ export default class CommandEnter extends AbstractGameCommand {
               reject((e.data.packet as CharCreateFail).FailReason)
             );
           } else {
-            this.GameClient.once("PacketReceived:x09_CharSelectionInfo", () =>
-              this.GameClient.sendPacket(new CharacterSelect(this.GameClient.Config.CharSlotIndex ?? 0))
-            );
+            this.GameClient.once("PacketReceived:x09_CharSelectionInfo", (e: EPacketReceived) => {
+              const packet = e.data.packet as CharSelectionInfo;
+              const characters = Array.from(packet.Characters);
+              const suggestedSlot = this.GameClient.Config.CharSlotIndex ?? 0;
+              const selectedCharacter = this._config.SelectCharacter
+                ? this._config.SelectCharacter(characters, suggestedSlot)
+                : suggestedSlot;
+
+              Promise.resolve(selectedCharacter)
+                .then((slot) => {
+                  if (!Number.isInteger(slot) || slot < 0 || slot >= characters.length) {
+                    throw new Error(`Character slot ${slot} is not available.`);
+                  }
+                  return this.GameClient.sendPacket(new CharacterSelect(slot));
+                })
+                .catch(reject);
+            });
           }
 
           this.GameClient.once("PacketReceived:x0B_CharSelected", () => {

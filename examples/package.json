@@ -16,9 +16,11 @@
     "follow-advanced": "node dist/follow-advanced.js",
     "follow-vector": "node dist/follow-vector.js",
     "bot": "node dist/bot.js",
+    "browser": "npm --prefix .. run build:browser && npm run prepare && node dist/webserver.js",
     "craft": "node dist/craft.js",
     "revive-town": "node dist/revive-town.js",
     "proxy": "node dist/proxy.js",
+    "websocket-proxy": "node dist/websocket-proxy.js",
     "respond-to-attack": "node dist/respond-to-attack.js",
     "custom-command": "node dist/custom-command.js",
     "fisherman": "node dist/fisherman.js",
@@ -39,10 +41,12 @@
     "url": "https://github.com/npetrovski/l2js-client"
   },
   "dependencies": {
-    "l2js-client": "file:../dist/"
+    "l2js-client": "file:../dist/",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "@types/node": "^26.6.3",
+    "@types/ws": "^8.18.1",
     "typescript": "^7.0.2"
   }
 }

@@ -1,5 +1,6 @@
 import AbstractPacketStream from "@mmocore/AbstractPacketStream";
 import MMOConfig, { PacketStreamConstructor } from "@mmocore/MMOConfig";
+import WebSocketStream from "@network/stream/adapters/WebSocketStream";
 /* nodejs:start */
 import NetSocket from "@network/stream/adapters/NetSocket";
 /* nodejs:end */
@@ -11,6 +12,10 @@ export default class DefaultStreamFactory implements IStreamFactory {
     if (typeof stream === "string") {
       switch (stream) {
         case "auto":
+          if (config.WebSocketUrl && typeof WebSocket !== "undefined") {
+            stream = WebSocketStream;
+            break;
+          }
           /* nodejs:start */
           if (typeof process !== "undefined" && process.release.name === "node") {
             stream = NetSocket;
