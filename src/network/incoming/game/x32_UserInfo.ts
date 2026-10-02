@@ -1,4 +1,5 @@
 import { GamePacket } from "@network/PacketRegistry";
+import L2Clan from "@entities/L2Clan";
 
 import GameClientPacket from "@network/incoming/game/GameClientPacket";
 import GameServerPacket from "@network/outgoing/game/GameServerPacket";
@@ -102,9 +103,15 @@ export default class x32_UserInfo extends GameClientPacket {
 
     this.User.Title = this.readS();
     this.User.ClanId = this.readD();
-    const _clanCrestId = this.readD();
-    const _allyId = this.readD();
-    const _allyCrestId = this.readD();
+    const clanCrestId = this.readD();
+    const allyId = this.readD();
+    const allyCrestId = this.readD();
+    this.User.Clan = this.User.ClanId > 0 ? new L2Clan({
+      Id: this.User.ClanId,
+      CrestId: clanCrestId,
+      AllyId: allyId,
+      AllyCrestId: allyCrestId,
+    }) : null;
 
     // 0x40 leader rights
     // siege flags: attacker - 0x180 sword over name, defender - 0x80 shield, 0xC0 crown (|leader), 0x1C0 flag (|leader)

@@ -18,6 +18,10 @@ import IConnection from "@mmocore/IConnection";
 import mutators from "@network/mutators/game/index";
 import DefaultStreamFactory from "@network/stream/DefaultStreamFactory";
 import ICrypt from "@network/crypt/ICrypt";
+import L2Macro from "@entities/L2Macro";
+import L2Quest from "@entities/L2Quest";
+import L2Store from "@entities/L2Store";
+import L2Clan from "@entities/L2Clan";
 
 export default class GameClient extends MMOClient {
   private _gameCrypt: ICrypt = new GameCrypt();
@@ -30,6 +34,13 @@ export default class GameClient extends MMOClient {
   SkillsList: L2ClientObjectCollection<L2Skill> = new L2ClientObjectCollection(this);
   DwarfRecipeBook: L2ClientObjectCollection<L2Recipe> = new L2ClientObjectCollection(this);
   CommonRecipeBook: L2ClientObjectCollection<L2Recipe> = new L2ClientObjectCollection(this);
+  QuestsList: L2ClientObjectCollection<L2Quest> = new L2ClientObjectCollection(this);
+  MacroList: L2ClientObjectCollection<L2Macro> = new L2ClientObjectCollection(this);
+  PrivateStoreList: L2ClientObjectCollection<L2Store> = new L2ClientObjectCollection(this);
+  ClansList: L2ClientObjectCollection<L2Clan> = new L2ClientObjectCollection(this);
+
+  MacroRevision = 0;
+  MacroCount = 0;
 
   LastConfirmMessageId!: number;
   LastConfirmMessageRequesterId!: number;

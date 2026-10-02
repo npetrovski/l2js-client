@@ -1,4 +1,5 @@
 import { GamePacket } from "@network/PacketRegistry";
+import L2Clan from "@entities/L2Clan";
 
 import L2Character from "@entities/L2Character";
 import GameClientPacket from "@network/incoming/game/GameClientPacket";
@@ -93,10 +94,16 @@ export default class x31_CharInfo extends GameClientPacket {
 
     this.Char.Title = this.readS();
 
-    const _clanId = this.readD();
-    const _clanCrestId = this.readD();
-    const _clanAllyId = this.readD();
-    const _clanAllyCrestId = this.readD();
+    const clanId = this.readD();
+    const clanCrestId = this.readD();
+    const clanAllyId = this.readD();
+    const clanAllyCrestId = this.readD();
+    this.Char.Clan = clanId > 0 ? new L2Clan({
+      Id: clanId,
+      CrestId: clanCrestId,
+      AllyId: clanAllyId,
+      AllyCrestId: clanAllyCrestId,
+    }) : null;
 
     this.Char.IsSitting = this.readC() === 0; // standing = 1 sitting = 0
     this.Char.IsRunning = this.readC() === 1; // running = 1 walking = 0
@@ -107,7 +114,7 @@ export default class x31_CharInfo extends GameClientPacket {
 
     const _mountType = this.readC(); // 1-on Strider, 2-on Wyvern, 3-on Great Wolf, 0-no mount
 
-    const _privateStoreType = this.readC();
+    this.Char.PrivateStoreType = this.readC();
 
     const _cubicsSize = this.readH();
     for (let i = 0; i < _cubicsSize; i++) {

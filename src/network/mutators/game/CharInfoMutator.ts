@@ -1,6 +1,7 @@
 import IMMOClientMutator from "@mmocore/IMMOClientMutator";
 import GameClient from "@network/GameClient";
 import CharInfo from "@network/incoming/game/x31_CharInfo";
+import L2Character from "@entities/L2Character";
 
 export default class CharInfoMutator extends IMMOClientMutator<
   GameClient,
@@ -32,9 +33,23 @@ export default class CharInfoMutator extends IMMOClientMutator<
       char.IsNoble = packet.Char.IsNoble;
       char.IsHero = packet.Char.IsHero;
       char.Heading = packet.Char.Heading;
+      if (char instanceof L2Character) {
+        char.Clan = packet.Char.Clan;
+        char.PrivateStoreType = packet.Char.PrivateStoreType;
+      }
 
       if (packet.Char.ObjectId !== this.Client.ActiveChar.ObjectId) {
         char.calculateDistance(this.Client.ActiveChar);
+      }
+    }
+
+    if (packet.Char.Clan) {
+      const knownClan = this.Client.ClansList.getEntryById(packet.Char.Clan.Id);
+      if (knownClan) {
+        Object.assign(knownClan, packet.Char.Clan);
+        if (char instanceof L2Character) {char.Clan = knownClan;}
+      } else {
+        this.Client.ClansList.add(packet.Char.Clan);
       }
     }
 

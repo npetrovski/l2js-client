@@ -9,6 +9,10 @@ import L2User from "@entities/L2User";
 import L2Recipe from "@entities/L2Recipe";
 import { EventHandlerType } from "./events/EventTypes";
 import ClientCommands from "./commands/ClientCommands";
+import L2Macro from "@entities/L2Macro";
+import L2Quest from "@entities/L2Quest";
+import L2Store from "@entities/L2Store";
+import L2Clan from "@entities/L2Clan";
 
 /**
  * Lineage 2 Client main class
@@ -43,6 +47,18 @@ export default class Client extends ClientCommands {
   }
   get CommonRecipeBook(): L2ObjectCollection<L2Recipe> {
     return this.GameClient.CommonRecipeBook;
+  }
+  get QuestsList(): L2ObjectCollection<L2Quest> {
+    return this.GameClient.QuestsList;
+  }
+  get MacroList(): L2ObjectCollection<L2Macro> {
+    return this.GameClient.MacroList;
+  }
+  get PrivateStoreList(): L2ObjectCollection<L2Store> {
+    return this.GameClient.PrivateStoreList;
+  }
+  get ClansList(): L2ObjectCollection<L2Clan> {
+    return this.GameClient.ClansList;
   }
 
   private ___event_params(...params: EventHandlerType): {

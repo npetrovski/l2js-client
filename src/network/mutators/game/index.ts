@@ -28,6 +28,8 @@ import EtcStatusUpdateMutator from "@network/mutators/game/EtcStatusUpdateMutato
 import xF9_EtcStatusUpdate from "@network/incoming/game/xF9_EtcStatusUpdate";
 import ExDuelAskStartMutator from "@network/mutators/game/ExDuelAskStartMutator";
 import xFE_x4C_ExDuelAskStart from "@network/incoming/game/xFE_x4C_ExDuelAskStart";
+import ExPrivateStoreSetWholeMsgMutator from "@network/mutators/game/ExPrivateStoreSetWholeMsgMutator";
+import xFE_x80_ExPrivateStoreSetWholeMsg from "@network/incoming/game/xFE_x80_ExPrivateStoreSetWholeMsg";
 import ExQuestItemListMutator from "@network/mutators/game/ExQuestItemListMutator";
 import xFE_xC6_ExQuestItemList from "@network/incoming/game/xFE_xC6_ExQuestItemList";
 import ExRotationMutator from "@network/mutators/game/ExRotationMutator";
@@ -68,12 +70,22 @@ import PartySmallWindowUpdateMutator from "@network/mutators/game/PartySmallWind
 import x52_PartySmallWindowUpdate from "@network/incoming/game/x52_PartySmallWindowUpdate";
 import PartySpelledMutator from "@network/mutators/game/PartySpelledMutator";
 import xF4_PartySpelled from "@network/incoming/game/xF4_PartySpelled";
+import PledgeInfoMutator from "@network/mutators/game/PledgeInfoMutator";
+import x89_PledgeInfo from "@network/incoming/game/x89_PledgeInfo";
+import PrivateStoreMsgBuyMutator from "@network/mutators/game/PrivateStoreMsgBuyMutator";
+import xBF_PrivateStoreMsgBuy from "@network/incoming/game/xBF_PrivateStoreMsgBuy";
+import PrivateStoreMsgSellMutator from "@network/mutators/game/PrivateStoreMsgSellMutator";
+import xA2_PrivateStoreMsgSell from "@network/incoming/game/xA2_PrivateStoreMsgSell";
+import QuestListMutator from "@network/mutators/game/QuestListMutator";
+import x86_QuestList from "@network/incoming/game/x86_QuestList";
 import RecipeBookItemListMutator from "@network/mutators/game/RecipeBookItemListMutator";
 import xDC_RecipeBookItemList from "@network/incoming/game/xDC_RecipeBookItemList";
 import RecipeItemMakeInfoMutator from "@network/mutators/game/RecipeItemMakeInfoMutator";
 import xDD_RecipeItemMakeInfo from "@network/incoming/game/xDD_RecipeItemMakeInfo";
 import ReviveMutator from "@network/mutators/game/ReviveMutator";
 import x01_Revive from "@network/incoming/game/x01_Revive";
+import SendMacroListMutator from "@network/mutators/game/SendMacroListMutator";
+import xE8_SendMacroList from "@network/incoming/game/xE8_SendMacroList";
 import SetupGaugeMutator from "@network/mutators/game/SetupGaugeMutator";
 import x6B_SetupGauge from "@network/incoming/game/x6B_SetupGauge";
 import SkillCoolTimeMutator from "@network/mutators/game/SkillCoolTimeMutator";
@@ -114,6 +126,7 @@ export default [
   [DropItemMutator.prototype, x16_DropItem],
   [EtcStatusUpdateMutator.prototype, xF9_EtcStatusUpdate],
   [ExDuelAskStartMutator.prototype, xFE_x4C_ExDuelAskStart],
+  [ExPrivateStoreSetWholeMsgMutator.prototype, xFE_x80_ExPrivateStoreSetWholeMsg],
   [ExQuestItemListMutator.prototype, xFE_xC6_ExQuestItemList],
   [ExRotationMutator.prototype, xFE_xC1_ExRotation],
   [ExVoteSystemInfoMutator.prototype, xFE_xC9_ExVoteSystemInfo],
@@ -134,9 +147,14 @@ export default [
   [PartySmallWindowDeleteMutator.prototype, x51_PartySmallWindowDelete],
   [PartySmallWindowUpdateMutator.prototype, x52_PartySmallWindowUpdate],
   [PartySpelledMutator.prototype, xF4_PartySpelled],
+  [PledgeInfoMutator.prototype, x89_PledgeInfo],
+  [PrivateStoreMsgBuyMutator.prototype, xBF_PrivateStoreMsgBuy],
+  [PrivateStoreMsgSellMutator.prototype, xA2_PrivateStoreMsgSell],
+  [QuestListMutator.prototype, x86_QuestList],
   [RecipeBookItemListMutator.prototype, xDC_RecipeBookItemList],
   [RecipeItemMakeInfoMutator.prototype, xDD_RecipeItemMakeInfo],
   [ReviveMutator.prototype, x01_Revive],
+  [SendMacroListMutator.prototype, xE8_SendMacroList],
   [SetupGaugeMutator.prototype, x6B_SetupGauge],
   [SkillCoolTimeMutator.prototype, xC7_SkillCoolTime],
   [SkillListMutator.prototype, x5F_SkillList],

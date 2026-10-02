@@ -68,6 +68,10 @@ After the `LoggedIn` event, the client exposes the active character and synchron
 | `SkillsList` | Known skills |
 | `DwarfRecipeBook` | Dwarven recipes |
 | `CommonRecipeBook` | Common recipes |
+| `QuestsList` | Active quests and progress state |
+| `MacroList` | Server-side character macros |
+| `PrivateStoreList` | Known player private-store titles |
+| `ClansList` | Clan and alliance metadata learned from characters |
 
 ### Commands
 
@@ -90,6 +94,8 @@ client.on("LoggedIn", () => {
 ### Events
 
 Use `on`, `once`, and `off` to subscribe to typed client events. Common events include `LoggedIn`, `PacketReceived`, `PacketSent`, `Attacked`, `Die`, `StartMoving`, `StopMoving`, `CreatureSay`, `SystemMessage`, `PartyRequest`, and `CraftResult`.
+
+State-oriented events also include `QuestList`, `MacroList`, `PledgeInfo`, and `PrivateStore`.
 
 Packet events can also be filtered by packet class name:
 

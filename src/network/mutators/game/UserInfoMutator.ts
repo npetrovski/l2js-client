@@ -20,5 +20,14 @@ export default class UserInfoMutator extends IMMOClientMutator<
     if (!this.Client.CreaturesList.getEntryByObjectId(packet.User.ObjectId)) {
       this.Client.CreaturesList.add(this.Client.ActiveChar);
     }
+    if (this.Client.ActiveChar.Clan) {
+      const knownClan = this.Client.ClansList.getEntryById(this.Client.ActiveChar.Clan.Id);
+      if (knownClan) {
+        Object.assign(knownClan, this.Client.ActiveChar.Clan);
+        this.Client.ActiveChar.Clan = knownClan;
+      } else {
+        this.Client.ClansList.add(this.Client.ActiveChar.Clan);
+      }
+    }
   }
 }

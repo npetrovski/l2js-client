@@ -1,6 +1,5 @@
 import L2Character from "@entities/L2Character";
 import { MountType } from '@enums/MountType'
-import { PrivateStoreType } from '@enums/PrivateStoreType'
 import { ClanPrivilege } from '@enums/ClanPriviledge'
 import { MovementType } from '@enums/MovementType'
 
@@ -34,7 +33,6 @@ export default class L2User extends L2Character {
   private _mountType!: MountType;
   private _vitalityPoints!: number;
   private _canCrystalizeItems!: boolean;
-  private _privateStoreType!: PrivateStoreType;
   private _clanPrivileges!: ClanPrivilege;
   private _movementType!: MovementType;
 
@@ -264,14 +262,6 @@ export default class L2User extends L2Character {
 
   public set CanCrystalizeItems( value: boolean ) {
     this._canCrystalizeItems = value;
-  }
-
-  public get PrivateStoreType(): PrivateStoreType {
-    return this._privateStoreType;
-  }
-
-  public set PrivateStoreType( value: PrivateStoreType ) {
-    this._privateStoreType = value;
   }
 
   public get ClanPrivileges(): ClanPrivilege {

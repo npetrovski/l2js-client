@@ -5,6 +5,10 @@ import L2PartyMember from "@entities/L2PartyMember";
 import LoginClient from "@network/LoginClient";
 import GameClient from "@network/GameClient";
 import { ConfirmDlgType } from "@enums/ConfirmDlgType";
+import L2Clan from "@entities/L2Clan";
+import L2Macro from "@entities/L2Macro";
+import L2Quest from "@entities/L2Quest";
+import L2Store from "@entities/L2Store";
 
 export declare type ELoggedIn = {
   type: string;
@@ -137,6 +141,32 @@ export declare type EPartySpelled = {
   data: { creature: L2Creature };
   once: boolean;
 };
+export declare type EQuestList = {
+  type: string;
+  data: { quests: L2Quest[] };
+  once: boolean;
+};
+export declare type EMacroList = {
+  type: string;
+  data: {
+    macro?: L2Macro;
+    macros: L2Macro[];
+    revision: number;
+    count: number;
+    complete: boolean;
+  };
+  once: boolean;
+};
+export declare type EPledgeInfo = {
+  type: string;
+  data: { clan: L2Clan };
+  once: boolean;
+};
+export declare type EPrivateStore = {
+  type: string;
+  data: { store: L2Store };
+  once: boolean;
+};
 
 // Events
 export declare type OnLoggedIn = ["LoggedIn", (e: ELoggedIn) => void];
@@ -214,6 +244,10 @@ export declare type OnPartySpelled = [
   "PartySpelled",
   (e: EPartySpelled) => void
 ];
+export declare type OnQuestList = ["QuestList", (e: EQuestList) => void];
+export declare type OnMacroList = ["MacroList", (e: EMacroList) => void];
+export declare type OnPledgeInfo = ["PledgeInfo", (e: EPledgeInfo) => void];
+export declare type OnPrivateStore = ["PrivateStore", (e: EPrivateStore) => void];
 
 // prettier-ignore
 export declare type EventHandlerType =
@@ -240,4 +274,8 @@ export declare type EventHandlerType =
   | OnRecipeBookEvent
   | OnNpcHtmlMessage
   | OnNpcQuestHtmlMessage
-  | OnPartySpelled;
+  | OnPartySpelled
+  | OnQuestList
+  | OnMacroList
+  | OnPledgeInfo
+  | OnPrivateStore;
