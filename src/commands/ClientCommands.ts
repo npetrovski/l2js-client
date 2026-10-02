@@ -204,6 +204,12 @@ export default abstract class ClientCommands {
     });
   }
 
+  registerCommand<Name extends string, Args extends unknown[], Result>(
+    commandName: Name,
+    commandHandler: {
+      execute(this: AbstractGameCommand, ...args: Args): Result;
+    }
+  ): this & Record<Name, (...args: Args) => Result>;
   registerCommand(commandName: string, commandHandler: ICommand): this {
     if (commandName in this.commands) {
       throw new Error(`Command ${commandName} is already registered.`);
