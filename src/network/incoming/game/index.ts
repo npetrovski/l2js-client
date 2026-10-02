@@ -3,6 +3,7 @@
 import AbstractMessagePacket from "@network/incoming/game/AbstractMessagePacket";
 import AbstractNpcInfo from "@network/incoming/game/AbstractNpcInfo";
 import GameClientPacket from "@network/incoming/game/GameClientPacket";
+import PayloadGameClientPacket from "@network/incoming/game/PayloadGameClientPacket";
 import RawGamePacket from "@network/incoming/game/RawGamePacket";
 import x00_Die from "@network/incoming/game/x00_Die";
 import x00_VersionCheck from "@network/incoming/game/x00_VersionCheck";
@@ -40,6 +41,8 @@ import x26_AutoAttackStop from "@network/incoming/game/x26_AutoAttackStop";
 import x27_SocialAction from "@network/incoming/game/x27_SocialAction";
 import x28_ChangeMoveType from "@network/incoming/game/x28_ChangeMoveType";
 import x29_ChangeWaitType from "@network/incoming/game/x29_ChangeWaitType";
+import x2C_AskJoinPledge from "@network/incoming/game/x2C_AskJoinPledge";
+import x2D_JoinPledge from "@network/incoming/game/x2D_JoinPledge";
 import x2E_KeyPacket from "@network/incoming/game/x2E_KeyPacket";
 import x2F_MoveToLocation from "@network/incoming/game/x2F_MoveToLocation";
 import x30_NpcSay from "@network/incoming/game/x30_NpcSay";
@@ -54,6 +57,7 @@ import x44_ShortCutRegister from "@network/incoming/game/x44_ShortCutRegister";
 import x45_ShortCutInit from "@network/incoming/game/x45_ShortCutInit";
 import x47_StopMove from "@network/incoming/game/x47_StopMove";
 import x48_MagicSkillUse from "@network/incoming/game/x48_MagicSkillUse";
+import x49_MagicSkillCanceled from "@network/incoming/game/x49_MagicSkillCanceled";
 import x4A_CreatureSay from "@network/incoming/game/x4A_CreatureSay";
 import x4B_EquipUpdate from "@network/incoming/game/x4B_EquipUpdate";
 import x4E_PartySmallWindowAll from "@network/incoming/game/x4E_PartySmallWindowAll";
@@ -80,27 +84,42 @@ import x75_FriendList from "@network/incoming/game/x75_FriendList";
 import x79_ValidateLocation from "@network/incoming/game/x79_ValidateLocation";
 import x7A_StartRotation from "@network/incoming/game/x7A_StartRotation";
 import x7B_ShowBoard from "@network/incoming/game/x7B_ShowBoard";
+import x7C_ChooseInventoryItem from "@network/incoming/game/x7C_ChooseInventoryItem";
 import x7F_StopMoveInVehicle from "@network/incoming/game/x7F_StopMoveInVehicle";
 import x80_ValidateLocationInVehicle from "@network/incoming/game/x80_ValidateLocationInVehicle";
 import x82_TradeOtherDone from "@network/incoming/game/x82_TradeOtherDone";
 import x84_LeaveWorld from "@network/incoming/game/x84_LeaveWorld";
 import x85_AbnormalStatusUpdate from "@network/incoming/game/x85_AbnormalStatusUpdate";
+import x86_QuestList from "@network/incoming/game/x86_QuestList";
+import x87_EnchantResult from "@network/incoming/game/x87_EnchantResult";
 import x89_PledgeInfo from "@network/incoming/game/x89_PledgeInfo";
 import x9F_StaticObject from "@network/incoming/game/x9F_StaticObject";
+import xA0_PrivateStoreManageListSell from "@network/incoming/game/xA0_PrivateStoreManageListSell";
 import xA1_PrivateStoreListSell from "@network/incoming/game/xA1_PrivateStoreListSell";
+import xA2_PrivateStoreMsgSell from "@network/incoming/game/xA2_PrivateStoreMsgSell";
 import xA6_TutorialShowHtml from "@network/incoming/game/xA6_TutorialShowHtml";
 import xA7_TutorialShowQuestionMark from "@network/incoming/game/xA7_TutorialShowQuestionMark";
 import xA8_TutorialEnableClientEvent from "@network/incoming/game/xA8_TutorialEnableClientEvent";
 import xA9_TutorialCloseHtml from "@network/incoming/game/xA9_TutorialCloseHtml";
+import xB2_PetInfo from "@network/incoming/game/xB2_PetInfo";
+import xB3_PetItemList from "@network/incoming/game/xB3_PetItemList";
+import xB4_PetInventoryUpdate from "@network/incoming/game/xB4_PetInventoryUpdate";
+import xB6_PetStatusUpdate from "@network/incoming/game/xB6_PetStatusUpdate";
 import xB7_PetDelete from "@network/incoming/game/xB7_PetDelete";
 import xB9_MyTargetSelected from "@network/incoming/game/xB9_MyTargetSelected";
 import xBA_PartyMemberPosition from "@network/incoming/game/xBA_PartyMemberPosition";
+import xBD_PrivateStoreManageListBuy from "@network/incoming/game/xBD_PrivateStoreManageListBuy";
+import xBE_PrivateStoreListBuy from "@network/incoming/game/xBE_PrivateStoreListBuy";
+import xBF_PrivateStoreMsgBuy from "@network/incoming/game/xBF_PrivateStoreMsgBuy";
 import xC0_VehicleStarted from "@network/incoming/game/xC0_VehicleStarted";
 import xC7_SkillCoolTime from "@network/incoming/game/xC7_SkillCoolTime";
 import xCC_NicknameChanged from "@network/incoming/game/xCC_NicknameChanged";
 import xCE_RelationChanged from "@network/incoming/game/xCE_RelationChanged";
+import xD0_MultiSellList from "@network/incoming/game/xD0_MultiSellList";
+import xD4_FlyToLocation from "@network/incoming/game/xD4_FlyToLocation";
 import xD6_SpecialCamera from "@network/incoming/game/xD6_SpecialCamera";
 import xD7_NormalCamera from "@network/incoming/game/xD7_NormalCamera";
+import xD9_NetPing from "@network/incoming/game/xD9_NetPing";
 import xDB_Snoop from "@network/incoming/game/xDB_Snoop";
 import xDC_RecipeBookItemList from "@network/incoming/game/xDC_RecipeBookItemList";
 import xDD_RecipeItemMakeInfo from "@network/incoming/game/xDD_RecipeItemMakeInfo";
@@ -108,21 +127,55 @@ import xE4_HennaItemDrawInfo from "@network/incoming/game/xE4_HennaItemDrawInfo"
 import xE5_HennaInfo from "@network/incoming/game/xE5_HennaInfo";
 import xE6_HennaRemoveList from "@network/incoming/game/xE6_HennaRemoveList";
 import xE7_HennaItemRemoveInfo from "@network/incoming/game/xE7_HennaItemRemoveInfo";
+import xE8_SendMacroList from "@network/incoming/game/xE8_SendMacroList";
+import xE9_BuyListSeed from "@network/incoming/game/xE9_BuyListSeed";
 import xEE_HennaEquipList from "@network/incoming/game/xEE_HennaEquipList";
+import xF1_RadarControl from "@network/incoming/game/xF1_RadarControl";
 import xF3_ConfirmDlg from "@network/incoming/game/xF3_ConfirmDlg";
 import xF4_PartySpelled from "@network/incoming/game/xF4_PartySpelled";
 import xF9_EtcStatusUpdate from "@network/incoming/game/xF9_EtcStatusUpdate";
+import xFE_x0C_ExAutoSoulShot from "@network/incoming/game/xFE_x0C_ExAutoSoulShot";
+import xFE_x12_ExOpenMPCC from "@network/incoming/game/xFE_x12_ExOpenMPCC";
+import xFE_x18_ExPartyPetWindowAdd from "@network/incoming/game/xFE_x18_ExPartyPetWindowAdd";
+import xFE_x19_ExPartyPetWindowUpdate from "@network/incoming/game/xFE_x19_ExPartyPetWindowUpdate";
+import xFE_x1A_ExAskJoinMPCC from "@network/incoming/game/xFE_x1A_ExAskJoinMPCC";
 import xFE_x1F_ExFishingEnd from "@network/incoming/game/xFE_x1F_ExFishingEnd";
+import xFE_x20_ExShowQuestInfo from "@network/incoming/game/xFE_x20_ExShowQuestInfo";
+import xFE_x21_ExShowQuestMark from "@network/incoming/game/xFE_x21_ExShowQuestMark";
 import xFE_x22_ExSendManorList from "@network/incoming/game/xFE_x22_ExSendManorList";
 import xFE_x28_ExFishingHpRegen from "@network/incoming/game/xFE_x28_ExFishingHpRegen";
+import xFE_x2A_ExEnchantSkillInfo from "@network/incoming/game/xFE_x2A_ExEnchantSkillInfo";
 import xFE_x2F_ExStorageMaxCount from "@network/incoming/game/xFE_x2F_ExStorageMaxCount";
+import xFE_x31_ExMultiPartyCommandChannelInfo from "@network/incoming/game/xFE_x31_ExMultiPartyCommandChannelInfo";
 import xFE_x33_ExSetCompassZoneCode from "@network/incoming/game/xFE_x33_ExSetCompassZoneCode";
 import xFE_x39_ExShowScreenMessage from "@network/incoming/game/xFE_x39_ExShowScreenMessage";
 import xFE_x41_ExRedSky from "@network/incoming/game/xFE_x41_ExRedSky";
 import xFE_x4C_ExDuelAskStart from "@network/incoming/game/xFE_x4C_ExDuelAskStart";
+import xFE_x56_ExVariationResult from "@network/incoming/game/xFE_x56_ExVariationResult";
+import xFE_x58_ExVariationCancelResult from "@network/incoming/game/xFE_x58_ExVariationCancelResult";
+import xFE_x5E_ExEnchantSkillInfoDetail from "@network/incoming/game/xFE_x5E_ExEnchantSkillInfoDetail";
+import xFE_x61_ExAttributeEnchantResult from "@network/incoming/game/xFE_x61_ExAttributeEnchantResult";
+import xFE_x62_ExChooseInventoryAttributeItem from "@network/incoming/game/xFE_x62_ExChooseInventoryAttributeItem";
+import xFE_x6A_ExPartyPetWindowDelete from "@network/incoming/game/xFE_x6A_ExPartyPetWindowDelete";
+import xFE_x6C_ExRpItemLink from "@network/incoming/game/xFE_x6C_ExRpItemLink";
 import xFE_x70_ExUISetting from "@network/incoming/game/xFE_x70_ExUISetting";
+import xFE_x75_ExBaseAttributeCancelResult from "@network/incoming/game/xFE_x75_ExBaseAttributeCancelResult";
+import xFE_x80_ExPrivateStoreSetWholeMsg from "@network/incoming/game/xFE_x80_ExPrivateStoreSetWholeMsg";
+import xFE_x81_ExPutEnchantTargetItemResult from "@network/incoming/game/xFE_x81_ExPutEnchantTargetItemResult";
+import xFE_x82_ExPutEnchantSupportItemResult from "@network/incoming/game/xFE_x82_ExPutEnchantSupportItemResult";
 import xFE_x8D_NpcQuestHtmlMessage from "@network/incoming/game/xFE_x8D_NpcQuestHtmlMessage";
+import xFE_x99_ExStartScenePlayer from "@network/incoming/game/xFE_x99_ExStartScenePlayer";
+import xFE_xA0_ExVitalityPointInfo from "@network/incoming/game/xFE_xA0_ExVitalityPointInfo";
+import xFE_xA7_ExEnchantSkillResult from "@network/incoming/game/xFE_xA7_ExEnchantSkillResult";
+import xFE_xA9_ExNoticePostArrived from "@network/incoming/game/xFE_xA9_ExNoticePostArrived";
+import xFE_xAA_ExShowReceivedPostList from "@network/incoming/game/xFE_xAA_ExShowReceivedPostList";
+import xFE_xAB_ExReplyReceivedPost from "@network/incoming/game/xFE_xAB_ExReplyReceivedPost";
+import xFE_xB2_ExReplyPostItemList from "@network/incoming/game/xFE_xB2_ExReplyPostItemList";
+import xFE_xB3_ExChangePostState from "@network/incoming/game/xFE_xB3_ExChangePostState";
+import xFE_xB7_BuySellList from "@network/incoming/game/xFE_xB7_BuySellList";
+import xFE_xBE_ExChangeNpcState from "@network/incoming/game/xFE_xBE_ExChangeNpcState";
 import xFE_xC1_ExRotation from "@network/incoming/game/xFE_xC1_ExRotation";
+import xFE_xC5_ExQuestNpcLogList from "@network/incoming/game/xFE_xC5_ExQuestNpcLogList";
 import xFE_xC6_ExQuestItemList from "@network/incoming/game/xFE_xC6_ExQuestItemList";
 import xFE_xC9_ExVoteSystemInfo from "@network/incoming/game/xFE_xC9_ExVoteSystemInfo";
 import xFE_xD3_ExShowContactList from "@network/incoming/game/xFE_xD3_ExShowContactList";
@@ -134,6 +187,7 @@ export {
   AbstractMessagePacket,
   AbstractNpcInfo,
   GameClientPacket,
+  PayloadGameClientPacket,
   RawGamePacket,
   x00_Die,
   x00_VersionCheck,
@@ -171,6 +225,8 @@ export {
   x27_SocialAction,
   x28_ChangeMoveType,
   x29_ChangeWaitType,
+  x2C_AskJoinPledge,
+  x2D_JoinPledge,
   x2E_KeyPacket,
   x2F_MoveToLocation,
   x30_NpcSay,
@@ -185,6 +241,7 @@ export {
   x45_ShortCutInit,
   x47_StopMove,
   x48_MagicSkillUse,
+  x49_MagicSkillCanceled,
   x4A_CreatureSay,
   x4B_EquipUpdate,
   x4E_PartySmallWindowAll,
@@ -211,27 +268,42 @@ export {
   x79_ValidateLocation,
   x7A_StartRotation,
   x7B_ShowBoard,
+  x7C_ChooseInventoryItem,
   x7F_StopMoveInVehicle,
   x80_ValidateLocationInVehicle,
   x82_TradeOtherDone,
   x84_LeaveWorld,
   x85_AbnormalStatusUpdate,
+  x86_QuestList,
+  x87_EnchantResult,
   x89_PledgeInfo,
   x9F_StaticObject,
+  xA0_PrivateStoreManageListSell,
   xA1_PrivateStoreListSell,
+  xA2_PrivateStoreMsgSell,
   xA6_TutorialShowHtml,
   xA7_TutorialShowQuestionMark,
   xA8_TutorialEnableClientEvent,
   xA9_TutorialCloseHtml,
+  xB2_PetInfo,
+  xB3_PetItemList,
+  xB4_PetInventoryUpdate,
+  xB6_PetStatusUpdate,
   xB7_PetDelete,
   xB9_MyTargetSelected,
   xBA_PartyMemberPosition,
+  xBD_PrivateStoreManageListBuy,
+  xBE_PrivateStoreListBuy,
+  xBF_PrivateStoreMsgBuy,
   xC0_VehicleStarted,
   xC7_SkillCoolTime,
   xCC_NicknameChanged,
   xCE_RelationChanged,
+  xD0_MultiSellList,
+  xD4_FlyToLocation,
   xD6_SpecialCamera,
   xD7_NormalCamera,
+  xD9_NetPing,
   xDB_Snoop,
   xDC_RecipeBookItemList,
   xDD_RecipeItemMakeInfo,
@@ -239,21 +311,55 @@ export {
   xE5_HennaInfo,
   xE6_HennaRemoveList,
   xE7_HennaItemRemoveInfo,
+  xE8_SendMacroList,
+  xE9_BuyListSeed,
   xEE_HennaEquipList,
+  xF1_RadarControl,
   xF3_ConfirmDlg,
   xF4_PartySpelled,
   xF9_EtcStatusUpdate,
+  xFE_x0C_ExAutoSoulShot,
+  xFE_x12_ExOpenMPCC,
+  xFE_x18_ExPartyPetWindowAdd,
+  xFE_x19_ExPartyPetWindowUpdate,
+  xFE_x1A_ExAskJoinMPCC,
   xFE_x1F_ExFishingEnd,
+  xFE_x20_ExShowQuestInfo,
+  xFE_x21_ExShowQuestMark,
   xFE_x22_ExSendManorList,
   xFE_x28_ExFishingHpRegen,
+  xFE_x2A_ExEnchantSkillInfo,
   xFE_x2F_ExStorageMaxCount,
+  xFE_x31_ExMultiPartyCommandChannelInfo,
   xFE_x33_ExSetCompassZoneCode,
   xFE_x39_ExShowScreenMessage,
   xFE_x41_ExRedSky,
   xFE_x4C_ExDuelAskStart,
+  xFE_x56_ExVariationResult,
+  xFE_x58_ExVariationCancelResult,
+  xFE_x5E_ExEnchantSkillInfoDetail,
+  xFE_x61_ExAttributeEnchantResult,
+  xFE_x62_ExChooseInventoryAttributeItem,
+  xFE_x6A_ExPartyPetWindowDelete,
+  xFE_x6C_ExRpItemLink,
   xFE_x70_ExUISetting,
+  xFE_x75_ExBaseAttributeCancelResult,
+  xFE_x80_ExPrivateStoreSetWholeMsg,
+  xFE_x81_ExPutEnchantTargetItemResult,
+  xFE_x82_ExPutEnchantSupportItemResult,
   xFE_x8D_NpcQuestHtmlMessage,
+  xFE_x99_ExStartScenePlayer,
+  xFE_xA0_ExVitalityPointInfo,
+  xFE_xA7_ExEnchantSkillResult,
+  xFE_xA9_ExNoticePostArrived,
+  xFE_xAA_ExShowReceivedPostList,
+  xFE_xAB_ExReplyReceivedPost,
+  xFE_xB2_ExReplyPostItemList,
+  xFE_xB3_ExChangePostState,
+  xFE_xB7_BuySellList,
+  xFE_xBE_ExChangeNpcState,
   xFE_xC1_ExRotation,
+  xFE_xC5_ExQuestNpcLogList,
   xFE_xC6_ExQuestItemList,
   xFE_xC9_ExVoteSystemInfo,
   xFE_xD3_ExShowContactList,
