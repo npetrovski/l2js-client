@@ -75,8 +75,8 @@ High-level methods cover common actions, including:
 
 - Chat: `say`, `shout`, `tell`, `sayToParty`, `sayToClan`, `sayToTrade`, and `sayToAlly`
 - Movement and combat: `moveTo`, `nextTarget`, `attack`, `hit`, `cast`, `cancelTarget`, and `validatePosition`
-- Items and crafting: `inventory`, `useItem`, `dropItem`, `autoShots`, `dwarvenCraftRecipes`, and `craft`
-- Social and character actions: party invitations, duels, resurrection, sitting or standing, and logout
+- Items and crafting: `inventory`, `useItem`, `dropItem`, `destroyItem`, `crystallizeItem`, `autoShots`, recipe books, and crafting
+- Social and character actions: party and clan management, trading, duels, resurrection, sitting or standing, and logout
 
 Commands accept entity objects where appropriate, so code can act directly on entries from the synchronized collections:
 

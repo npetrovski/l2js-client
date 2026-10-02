@@ -3,6 +3,7 @@ import L2Character from "@entities/L2Character";
 import L2Creature from "@entities/L2Creature";
 import L2Item from "@entities/L2Item";
 import L2Object from "@entities/L2Object";
+import L2Recipe from "@entities/L2Recipe";
 import { RestartPoint } from "@enums/RestartPoint";
 import { ShotsType } from "@enums/ShotsType";
 import Logger from "@mmocore/Logger";
@@ -177,6 +178,44 @@ export default interface ClientCommands {
   logout(): void;
   /** Request a trade with a target, defaulting to the active target. */
   tradeRequest(target?: L2Object | number): void;
+  /** Accept an incoming trade request. */
+  acceptTrade(): void;
+  /** Decline an incoming trade request. */
+  declineTrade(): void;
+  /** Add an inventory item to the active trade. */
+  addTradeItem(item: L2Item | number, count?: number): void;
+  /** Confirm the active trade. */
+  confirmTrade(): void;
+  /** Cancel the active trade. */
+  cancelTrade(): void;
+  /** Destroy an inventory item. */
+  destroyItem(item: L2Item | number, count?: number): void;
+  /** Crystallize an inventory item. */
+  crystallizeItem(item: L2Item | number): void;
+  /** Request the current skill list. */
+  skills(): void;
+  /** Request the current quest list. */
+  quests(): void;
+  /** Abort a quest by id. */
+  abortQuest(questId: number): void;
+  /** Invite a target to the clan, defaulting to the active target. */
+  clanInvite(target?: L2Object | number, pledgeType?: number): void;
+  /** Accept an incoming clan invitation. */
+  acceptJoinClan(): void;
+  /** Decline an incoming clan invitation. */
+  declineJoinClan(): void;
+  /** Leave the current clan. */
+  leaveClan(): void;
+  /** Open the common craft recipe book. */
+  commonCraftRecipes(): void;
+  /** Request recipe information. */
+  recipeInfo(recipe: L2Recipe | number): void;
+  /** Delete a recipe from the recipe book. */
+  deleteRecipe(recipe: L2Recipe | number): void;
+  /** Set a clan nickname/title for a character. */
+  giveNickname(target: L2Character | string, nickname: string): void;
+  /** Request a chat-link representation of an inventory item. */
+  itemLink(item: L2Item | number): void;
   /** Leave the current party. */
   leaveParty(): void;
   /** Remove a member from the current party. */
