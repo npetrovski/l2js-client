@@ -7,6 +7,7 @@ import CommandAutoShots from "./CommandAutoShots";
 import CommandCancelBuff from "./CommandCancelBuff";
 import CommandCancelTarget from "./CommandCancelTarget";
 import CommandCast from "./CommandCast";
+import CommandChangePartyLeader from "./CommandChangePartyLeader";
 import CommandCraft from "./CommandCraft";
 import CommandDeclineJoinParty from "./CommandDeclineJoinParty";
 import CommandDeclineResurrect from "./CommandDeclineResurrect";
@@ -15,13 +16,16 @@ import CommandDwarvenCraftRecipes from "./CommandDwarvenCraftRecipes";
 import CommandEnter from "./CommandEnter";
 import CommandHit from "./CommandHit";
 import CommandInventory from "./CommandInventory";
+import CommandLeaveParty from "./CommandLeaveParty";
 import CommandLogout from "./CommandLogout";
 import CommandMoveTo from "./CommandMoveTo";
 import CommandNextTarget from "./CommandNextTarget";
+import CommandOustPartyMember from "./CommandOustPartyMember";
 import CommandRequestBypass from "./CommandRequestBypass";
 import CommandRequestDuel from "./CommandRequestDuel";
 import CommandRequestJoinParty from "./CommandRequestJoinParty";
 import CommandRevive from "./CommandRevive";
+import CommandRunWalk from "./CommandRunWalk";
 import CommandSay from "./CommandSay";
 import CommandSayToAlly from "./CommandSayToAlly";
 import CommandSayToClan from "./CommandSayToClan";
@@ -29,7 +33,14 @@ import CommandSayToParty from "./CommandSayToParty";
 import CommandSayToTrade from "./CommandSayToTrade";
 import CommandShout from "./CommandShout";
 import CommandSitStand from "./CommandSitStand";
+import CommandSocialDance from "./CommandSocialDance";
+import CommandSocialGreeting from "./CommandSocialGreeting";
+import CommandSocialYes from "./CommandSocialYes";
+import CommandStopMove from "./CommandStopMove";
+import CommandTarget from "./CommandTarget";
 import CommandTell from "./CommandTell";
+import CommandTradeRequest from "./CommandTradeRequest";
+import CommandUnstuck from "./CommandUnstuck";
 import CommandUseItem from "./CommandUseItem";
 import CommandValidatePosition from "./CommandValidatePosition";
 
@@ -41,6 +52,7 @@ export default {
   cancelBuff: CommandCancelBuff.prototype,
   cancelTarget: CommandCancelTarget.prototype,
   cast: CommandCast.prototype,
+  changePartyLeader: CommandChangePartyLeader.prototype,
   craft: CommandCraft.prototype,
   declineJoinParty: CommandDeclineJoinParty.prototype,
   declineResurrect: CommandDeclineResurrect.prototype,
@@ -49,13 +61,16 @@ export default {
   enter: CommandEnter.prototype,
   hit: CommandHit.prototype,
   inventory: CommandInventory.prototype,
+  leaveParty: CommandLeaveParty.prototype,
   logout: CommandLogout.prototype,
   moveTo: CommandMoveTo.prototype,
   nextTarget: CommandNextTarget.prototype,
+  oustPartyMember: CommandOustPartyMember.prototype,
   requestBypass: CommandRequestBypass.prototype,
   requestDuel: CommandRequestDuel.prototype,
   requestJoinParty: CommandRequestJoinParty.prototype,
   revive: CommandRevive.prototype,
+  runWalk: CommandRunWalk.prototype,
   say: CommandSay.prototype,
   sayToAlly: CommandSayToAlly.prototype,
   sayToClan: CommandSayToClan.prototype,
@@ -63,7 +78,14 @@ export default {
   sayToTrade: CommandSayToTrade.prototype,
   shout: CommandShout.prototype,
   sitStand: CommandSitStand.prototype,
+  socialDance: CommandSocialDance.prototype,
+  socialGreeting: CommandSocialGreeting.prototype,
+  socialYes: CommandSocialYes.prototype,
+  stopMove: CommandStopMove.prototype,
+  target: CommandTarget.prototype,
   tell: CommandTell.prototype,
+  tradeRequest: CommandTradeRequest.prototype,
+  unstuck: CommandUnstuck.prototype,
   useItem: CommandUseItem.prototype,
   validatePosition: CommandValidatePosition.prototype,
 };

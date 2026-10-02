@@ -175,6 +175,28 @@ export default interface ClientCommands {
    * Send logout request
    */
   logout(): void;
+  /** Request a trade with a target, defaulting to the active target. */
+  tradeRequest(target?: L2Object | number): void;
+  /** Leave the current party. */
+  leaveParty(): void;
+  /** Remove a member from the current party. */
+  oustPartyMember(member?: L2Character | string): void;
+  /** Transfer party leadership to a member. */
+  changePartyLeader(member?: L2Character | string): void;
+  /** Stop movement at the current client position. */
+  stopMove(): void;
+  /** Toggle between running and walking. */
+  runWalk(): void;
+  /** Perform the dance social action. */
+  socialDance(): void;
+  /** Perform the greeting social action. */
+  socialGreeting(): void;
+  /** Perform the affirmative social action. */
+  socialYes(): void;
+  /** Invoke the server's unstuck command. */
+  unstuck(): void;
+  /** Select an object by entity, object id, or known creature name. */
+  target(target: L2Object | number | string, shift?: boolean): void;
 }
 
 export default abstract class ClientCommands {
